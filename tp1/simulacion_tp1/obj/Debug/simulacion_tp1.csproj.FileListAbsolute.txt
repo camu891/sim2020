@@ -1,0 +1,10 @@
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\tp1\simulacion_tp1\obj\Debug\simulacion_tp1.csprojAssemblyReference.cache
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\tp1\simulacion_tp1\obj\Debug\simulacion_tp1.Form1.resources
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\tp1\simulacion_tp1\obj\Debug\simulacion_tp1.Properties.Resources.resources
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\tp1\simulacion_tp1\obj\Debug\simulacion_tp1.csproj.GenerateResource.cache
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\tp1\simulacion_tp1\obj\Debug\simulacion_tp1.csproj.CoreCompileInputs.cache
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\tp1\simulacion_tp1\bin\Debug\simulacion_tp1.exe.config
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\tp1\simulacion_tp1\bin\Debug\simulacion_tp1.exe
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\tp1\simulacion_tp1\bin\Debug\simulacion_tp1.pdb
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\tp1\simulacion_tp1\obj\Debug\simulacion_tp1.exe
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\tp1\simulacion_tp1\obj\Debug\simulacion_tp1.pdb
