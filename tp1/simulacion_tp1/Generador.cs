@@ -43,7 +43,6 @@ namespace simulacion_tp1
             {
                 nroRandom = mixto(semilla);
                 nroRandom.Posicion = i + 1;
-                //string aa = String.Format("{0:0.0000}", nroRandom);
                 lista.Add(nroRandom);
                 semilla = nroRandom.Siguiente;
             }

@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.grilla = new System.Windows.Forms.DataGridView();
@@ -52,21 +52,30 @@
             this.rbMultiplicativo = new System.Windows.Forms.RadioButton();
             this.rbMixto = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblGradosLibertad = new System.Windows.Forms.Label();
             this.chrGrafico = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dgvTablaFecuencia = new System.Windows.Forms.DataGridView();
             this.btnHistograma = new System.Windows.Forms.Button();
             this.cmbIntervalo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.lblGradosLibertad = new System.Windows.Forms.Label();
+            this.Integrantes = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chrGrafico)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTablaFecuencia)).BeginInit();
+            this.Integrantes.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnClear);
+            this.groupBox1.Controls.Add(this.Integrantes);
             this.groupBox1.Controls.Add(this.btnGenerar);
             this.groupBox1.Controls.Add(this.grilla);
             this.groupBox1.Controls.Add(this.txtTamanio);
@@ -83,9 +92,9 @@
             this.groupBox1.Controls.Add(this.rbMultiplicativo);
             this.groupBox1.Controls.Add(this.rbMixto);
             this.groupBox1.Location = new System.Drawing.Point(10, 10);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(458, 673);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -93,13 +102,16 @@
             // 
             // btnGenerar
             // 
-            this.btnGenerar.Location = new System.Drawing.Point(74, 145);
-            this.btnGenerar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGenerar.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerar.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnGenerar.Location = new System.Drawing.Point(8, 150);
+            this.btnGenerar.Margin = new System.Windows.Forms.Padding(2);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(56, 19);
+            this.btnGenerar.Size = new System.Drawing.Size(182, 43);
             this.btnGenerar.TabIndex = 13;
             this.btnGenerar.Text = "Generar";
-            this.btnGenerar.UseVisualStyleBackColor = true;
+            this.btnGenerar.UseVisualStyleBackColor = false;
             this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
             // grilla
@@ -111,7 +123,7 @@
             this.posicion,
             this.random});
             this.grilla.Location = new System.Drawing.Point(195, 14);
-            this.grilla.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grilla.Margin = new System.Windows.Forms.Padding(2);
             this.grilla.Name = "grilla";
             this.grilla.ReadOnly = true;
             this.grilla.RowHeadersWidth = 51;
@@ -143,7 +155,7 @@
             // txtTamanio
             // 
             this.txtTamanio.Location = new System.Drawing.Point(68, 110);
-            this.txtTamanio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTamanio.Margin = new System.Windows.Forms.Padding(2);
             this.txtTamanio.Name = "txtTamanio";
             this.txtTamanio.Size = new System.Drawing.Size(27, 20);
             this.txtTamanio.TabIndex = 12;
@@ -181,7 +193,7 @@
             // txtG
             // 
             this.txtG.Location = new System.Drawing.Point(164, 86);
-            this.txtG.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtG.Margin = new System.Windows.Forms.Padding(2);
             this.txtG.Name = "txtG";
             this.txtG.Size = new System.Drawing.Size(27, 20);
             this.txtG.TabIndex = 8;
@@ -190,7 +202,7 @@
             // txtC
             // 
             this.txtC.Location = new System.Drawing.Point(114, 86);
-            this.txtC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtC.Margin = new System.Windows.Forms.Padding(2);
             this.txtC.Name = "txtC";
             this.txtC.Size = new System.Drawing.Size(27, 20);
             this.txtC.TabIndex = 7;
@@ -199,7 +211,7 @@
             // txtK
             // 
             this.txtK.Location = new System.Drawing.Point(68, 86);
-            this.txtK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtK.Margin = new System.Windows.Forms.Padding(2);
             this.txtK.Name = "txtK";
             this.txtK.Size = new System.Drawing.Size(27, 20);
             this.txtK.TabIndex = 6;
@@ -218,7 +230,7 @@
             // txtX
             // 
             this.txtX.Location = new System.Drawing.Point(20, 86);
-            this.txtX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtX.Margin = new System.Windows.Forms.Padding(2);
             this.txtX.Name = "txtX";
             this.txtX.Size = new System.Drawing.Size(27, 20);
             this.txtX.TabIndex = 4;
@@ -238,7 +250,7 @@
             // 
             this.rbLenguaje.AutoSize = true;
             this.rbLenguaje.Location = new System.Drawing.Point(5, 63);
-            this.rbLenguaje.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbLenguaje.Margin = new System.Windows.Forms.Padding(2);
             this.rbLenguaje.Name = "rbLenguaje";
             this.rbLenguaje.Size = new System.Drawing.Size(69, 17);
             this.rbLenguaje.TabIndex = 2;
@@ -252,7 +264,7 @@
             // 
             this.rbMultiplicativo.AutoSize = true;
             this.rbMultiplicativo.Location = new System.Drawing.Point(5, 41);
-            this.rbMultiplicativo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbMultiplicativo.Margin = new System.Windows.Forms.Padding(2);
             this.rbMultiplicativo.Name = "rbMultiplicativo";
             this.rbMultiplicativo.Size = new System.Drawing.Size(86, 17);
             this.rbMultiplicativo.TabIndex = 1;
@@ -265,7 +277,7 @@
             // 
             this.rbMixto.AutoSize = true;
             this.rbMixto.Location = new System.Drawing.Point(5, 18);
-            this.rbMixto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbMixto.Margin = new System.Windows.Forms.Padding(2);
             this.rbMixto.Name = "rbMixto";
             this.rbMixto.Size = new System.Drawing.Size(50, 17);
             this.rbMixto.TabIndex = 0;
@@ -283,36 +295,45 @@
             this.groupBox2.Controls.Add(this.cmbIntervalo);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(472, 9);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(678, 674);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Histograma";
             // 
+            // lblGradosLibertad
+            // 
+            this.lblGradosLibertad.AutoSize = true;
+            this.lblGradosLibertad.Location = new System.Drawing.Point(4, 299);
+            this.lblGradosLibertad.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblGradosLibertad.Name = "lblGradosLibertad";
+            this.lblGradosLibertad.Size = new System.Drawing.Size(0, 13);
+            this.lblGradosLibertad.TabIndex = 5;
+            // 
             // chrGrafico
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chrGrafico.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chrGrafico.Legends.Add(legend3);
+            chartArea2.Name = "ChartArea1";
+            this.chrGrafico.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chrGrafico.Legends.Add(legend2);
             this.chrGrafico.Location = new System.Drawing.Point(4, 299);
-            this.chrGrafico.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chrGrafico.Margin = new System.Windows.Forms.Padding(2);
             this.chrGrafico.Name = "chrGrafico";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series2";
-            this.chrGrafico.Series.Add(series5);
-            this.chrGrafico.Series.Add(series6);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series2";
+            this.chrGrafico.Series.Add(series3);
+            this.chrGrafico.Series.Add(series4);
             this.chrGrafico.Size = new System.Drawing.Size(668, 366);
             this.chrGrafico.TabIndex = 4;
             this.chrGrafico.Text = "chart1";
-            title3.Name = "Histograma de frecuencias";
-            this.chrGrafico.Titles.Add(title3);
+            title2.Name = "Histograma de frecuencias";
+            this.chrGrafico.Titles.Add(title2);
             // 
             // dgvTablaFecuencia
             // 
@@ -338,7 +359,7 @@
             this.cmbIntervalo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbIntervalo.FormattingEnabled = true;
             this.cmbIntervalo.Location = new System.Drawing.Point(68, 17);
-            this.cmbIntervalo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbIntervalo.Margin = new System.Windows.Forms.Padding(2);
             this.cmbIntervalo.Name = "cmbIntervalo";
             this.cmbIntervalo.Size = new System.Drawing.Size(92, 21);
             this.cmbIntervalo.TabIndex = 1;
@@ -353,14 +374,72 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Intervalos";
             // 
-            // lblGradosLibertad
+            // Integrantes
             // 
-            this.lblGradosLibertad.AutoSize = true;
-            this.lblGradosLibertad.Location = new System.Drawing.Point(4, 299);
-            this.lblGradosLibertad.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblGradosLibertad.Name = "lblGradosLibertad";
-            this.lblGradosLibertad.Size = new System.Drawing.Size(0, 13);
-            this.lblGradosLibertad.TabIndex = 5;
+            this.Integrantes.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Integrantes.Controls.Add(this.label10);
+            this.Integrantes.Controls.Add(this.label9);
+            this.Integrantes.Controls.Add(this.label8);
+            this.Integrantes.Controls.Add(this.label7);
+            this.Integrantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Integrantes.Location = new System.Drawing.Point(5, 526);
+            this.Integrantes.Name = "Integrantes";
+            this.Integrantes.Size = new System.Drawing.Size(185, 126);
+            this.Integrantes.TabIndex = 14;
+            this.Integrantes.TabStop = false;
+            this.Integrantes.Text = "Integrantes";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(7, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(145, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Camusso Matias - 58227";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(6, 99);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(145, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Chavez Marcelo - 49904";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(7, 75);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(148, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Gordillo Gustavo - 16077";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(6, 50);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(148, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Carlesso Nicolas - 58326";
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(6, 206);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(184, 24);
+            this.btnClear.TabIndex = 15;
+            this.btnClear.Text = "Limpiar";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Visible = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // Form1
             // 
@@ -370,7 +449,7 @@
             this.ClientSize = new System.Drawing.Size(1160, 690);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Generado de números aleatorios";
@@ -381,6 +460,8 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chrGrafico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTablaFecuencia)).EndInit();
+            this.Integrantes.ResumeLayout(false);
+            this.Integrantes.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -412,6 +493,12 @@
         private System.Windows.Forms.DataGridView dgvTablaFecuencia;
         private System.Windows.Forms.DataVisualization.Charting.Chart chrGrafico;
         private System.Windows.Forms.Label lblGradosLibertad;
+        private System.Windows.Forms.GroupBox Integrantes;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 

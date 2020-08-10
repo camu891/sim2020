@@ -34,27 +34,27 @@ namespace simulacion_tp1
 
         private void rbLineal_CheckedChanged(object sender, EventArgs e)
         {
+            tipo = "mixto";
             limpiarCampos();
             txtX.Enabled = true;
             txtK.Enabled = true;
             txtC.Enabled = true;
             txtG.Enabled = true;
-            tipo = "mixto";
         }
 
         private void rbMultiplicativo_CheckedChanged(object sender, EventArgs e)
         {
+            tipo = "multiplicativo";
             limpiarCampos();
             txtX.Enabled = true;
             txtK.Enabled = true;
             txtC.Enabled = false;
-            txtC.Text = "0";
             txtG.Enabled = true;
-            tipo = "multiplicativo";
         }
 
         private void rbLenguaje_CheckedChanged(object sender, EventArgs e)
         {
+            tipo = "lenguaje";
             limpiarCampos();
             txtX.Text = "0";
             txtK.Text = "0";
@@ -64,16 +64,20 @@ namespace simulacion_tp1
             txtK.Enabled = false;
             txtC.Enabled = false;
             txtG.Enabled = false;
-            tipo = "lenguaje";
         }
 
         private void limpiarCampos()
         {
             txtX.Text = "";
             txtK.Text = "";
-            txtC.Text = "";
+            txtC.Text = tipo != "multiplicativo" ? "" : "0";
             txtG.Text = "";
             txtTamanio.Text = "";
+
+            //histograma
+            dgvTablaFecuencia.DataSource = null;
+            lblGradosLibertad.Text = "";
+            chrGrafico.Visible = false;
         }
 
         private void btnGenerar_Click(object sender, EventArgs e)
@@ -99,6 +103,17 @@ namespace simulacion_tp1
                         generador = new Generador();
                         lista = generador.lenguajeLista(tamanio);
                         break;
+                }
+
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    if (lista[i].Random < 0)
+                    {
+                        MessageBox.Show("El genenerador no contempla valores ingresados demasiados grandes.\n" +
+                            "Se recomienda seguir la regla para lograr el periodo máximo.", "Aviso",
+                      MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
                 }
 
                 grilla.DataSource = lista;
@@ -205,6 +220,7 @@ namespace simulacion_tp1
 
         private void generarGrafico()
         {
+            chrGrafico.Visible = true;
             ArrayList serieFo = new ArrayList();
             ArrayList serieFe = new ArrayList();
             ArrayList fo = new ArrayList();
@@ -221,5 +237,9 @@ namespace simulacion_tp1
             chrGrafico.Series[1].Points.DataBindXY(serieFe, fe);
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            limpiarCampos();
+        }
     }
 }
