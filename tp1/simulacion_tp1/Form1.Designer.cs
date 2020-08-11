@@ -28,12 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.Integrantes = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.grilla = new System.Windows.Forms.DataGridView();
             this.posicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,18 +64,12 @@
             this.btnHistograma = new System.Windows.Forms.Button();
             this.cmbIntervalo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.Integrantes = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btnClear = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.Integrantes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chrGrafico)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTablaFecuencia)).BeginInit();
-            this.Integrantes.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -99,6 +99,73 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parámetros";
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(6, 206);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(184, 24);
+            this.btnClear.TabIndex = 15;
+            this.btnClear.Text = "Limpiar";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Visible = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // Integrantes
+            // 
+            this.Integrantes.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Integrantes.Controls.Add(this.label10);
+            this.Integrantes.Controls.Add(this.label9);
+            this.Integrantes.Controls.Add(this.label8);
+            this.Integrantes.Controls.Add(this.label7);
+            this.Integrantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Integrantes.Location = new System.Drawing.Point(5, 526);
+            this.Integrantes.Name = "Integrantes";
+            this.Integrantes.Size = new System.Drawing.Size(185, 126);
+            this.Integrantes.TabIndex = 14;
+            this.Integrantes.TabStop = false;
+            this.Integrantes.Text = "Integrantes";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(6, 50);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(148, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Carlesso Nicolas - 58326";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(7, 75);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(148, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Gordillo Gustavo - 16077";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(6, 99);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(145, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Chavez Marcelo - 49904";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(7, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(145, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Camusso Matias - 58227";
             // 
             // btnGenerar
             // 
@@ -314,26 +381,26 @@
             // 
             // chrGrafico
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chrGrafico.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chrGrafico.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chrGrafico.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chrGrafico.Legends.Add(legend1);
             this.chrGrafico.Location = new System.Drawing.Point(4, 299);
             this.chrGrafico.Margin = new System.Windows.Forms.Padding(2);
             this.chrGrafico.Name = "chrGrafico";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series2";
-            this.chrGrafico.Series.Add(series3);
-            this.chrGrafico.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series2";
+            this.chrGrafico.Series.Add(series1);
+            this.chrGrafico.Series.Add(series2);
             this.chrGrafico.Size = new System.Drawing.Size(668, 366);
             this.chrGrafico.TabIndex = 4;
             this.chrGrafico.Text = "chart1";
-            title2.Name = "Histograma de frecuencias";
-            this.chrGrafico.Titles.Add(title2);
+            title1.Name = "Histograma de frecuencias";
+            this.chrGrafico.Titles.Add(title1);
             // 
             // dgvTablaFecuencia
             // 
@@ -374,73 +441,6 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Intervalos";
             // 
-            // Integrantes
-            // 
-            this.Integrantes.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.Integrantes.Controls.Add(this.label10);
-            this.Integrantes.Controls.Add(this.label9);
-            this.Integrantes.Controls.Add(this.label8);
-            this.Integrantes.Controls.Add(this.label7);
-            this.Integrantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Integrantes.Location = new System.Drawing.Point(5, 526);
-            this.Integrantes.Name = "Integrantes";
-            this.Integrantes.Size = new System.Drawing.Size(185, 126);
-            this.Integrantes.TabIndex = 14;
-            this.Integrantes.TabStop = false;
-            this.Integrantes.Text = "Integrantes";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(7, 27);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(145, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Camusso Matias - 58227";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(6, 99);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(145, 13);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Chavez Marcelo - 49904";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(7, 75);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(148, 13);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Gordillo Gustavo - 16077";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(6, 50);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(148, 13);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Carlesso Nicolas - 58326";
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(6, 206);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(184, 24);
-            this.btnClear.TabIndex = 15;
-            this.btnClear.Text = "Limpiar";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Visible = false;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -452,16 +452,16 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Generado de números aleatorios";
+            this.Text = "Generador de números aleatorios";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.Integrantes.ResumeLayout(false);
+            this.Integrantes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chrGrafico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTablaFecuencia)).EndInit();
-            this.Integrantes.ResumeLayout(false);
-            this.Integrantes.PerformLayout();
             this.ResumeLayout(false);
 
         }

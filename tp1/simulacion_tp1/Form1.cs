@@ -22,6 +22,7 @@ namespace simulacion_tp1
         public Form1()
         {
             InitializeComponent();
+            rbMixto.Checked = true;
             cmbIntervalo.Items.Add("10");
             cmbIntervalo.Items.Add("15");
             cmbIntervalo.Items.Add("20");

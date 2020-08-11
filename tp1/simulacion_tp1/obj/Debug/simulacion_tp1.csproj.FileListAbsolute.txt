@@ -18,3 +18,7 @@ C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp1\simulacion_tp1\obj\D
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp1\simulacion_tp1\obj\Debug\simulacion_tp1.csproj.CoreCompileInputs.cache
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp1\simulacion_tp1\obj\Debug\simulacion_tp1.exe
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp1\simulacion_tp1\obj\Debug\simulacion_tp1.pdb
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp1\simulacion_tp1\bin\Debug\simulacion_tp1.exe.manifest
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp1\simulacion_tp1\bin\Debug\simulacion_tp1.application
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp1\simulacion_tp1\obj\Debug\simulacion_tp1.exe.manifest
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp1\simulacion_tp1\obj\Debug\simulacion_tp1.application
