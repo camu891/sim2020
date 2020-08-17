@@ -28,12 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title9 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnSiguienteRND = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lblFormulaC1 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblFormula = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.Integrantes = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -64,7 +72,13 @@
             this.btnHistograma = new System.Windows.Forms.Button();
             this.cmbIntervalo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lblFormulaA = new System.Windows.Forms.Label();
+            this.lblFormulaC2 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.Integrantes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -74,6 +88,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox3);
+            this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.Integrantes);
             this.groupBox1.Controls.Add(this.btnGenerar);
@@ -95,10 +111,105 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(458, 673);
+            this.groupBox1.Size = new System.Drawing.Size(458, 688);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parámetros";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox3.Controls.Add(this.btnSiguienteRND);
+            this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox3.Location = new System.Drawing.Point(6, 203);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(187, 80);
+            this.groupBox3.TabIndex = 15;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Siguiente RND";
+            // 
+            // btnSiguienteRND
+            // 
+            this.btnSiguienteRND.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnSiguienteRND.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSiguienteRND.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSiguienteRND.Location = new System.Drawing.Point(7, 27);
+            this.btnSiguienteRND.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSiguienteRND.Name = "btnSiguienteRND";
+            this.btnSiguienteRND.Size = new System.Drawing.Size(175, 31);
+            this.btnSiguienteRND.TabIndex = 16;
+            this.btnSiguienteRND.Text = "Generar RND";
+            this.btnSiguienteRND.UseVisualStyleBackColor = false;
+            this.btnSiguienteRND.Click += new System.EventHandler(this.btnSiguienteRND_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox4.Controls.Add(this.lblFormulaC2);
+            this.groupBox4.Controls.Add(this.lblFormulaA);
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.lblFormulaC1);
+            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Controls.Add(this.lblFormula);
+            this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox4.Location = new System.Drawing.Point(6, 331);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(185, 206);
+            this.groupBox4.TabIndex = 16;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Fórmula";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(17, 92);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(61, 13);
+            this.label14.TabIndex = 22;
+            this.label14.Text = "m = módulo";
+            // 
+            // lblFormulaC1
+            // 
+            this.lblFormulaC1.AutoSize = true;
+            this.lblFormulaC1.Location = new System.Drawing.Point(17, 110);
+            this.lblFormulaC1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFormulaC1.Name = "lblFormulaC1";
+            this.lblFormulaC1.Size = new System.Drawing.Size(74, 13);
+            this.lblFormulaC1.TabIndex = 21;
+            this.lblFormulaC1.Text = "c = cte aditiva";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(17, 75);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(103, 13);
+            this.label12.TabIndex = 20;
+            this.label12.Text = "a = cte multiplicativa";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(15, 58);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(63, 13);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "X0 = semilla";
+            // 
+            // lblFormula
+            // 
+            this.lblFormula.AutoSize = true;
+            this.lblFormula.Location = new System.Drawing.Point(15, 28);
+            this.lblFormula.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFormula.Name = "lblFormula";
+            this.lblFormula.Size = new System.Drawing.Size(111, 13);
+            this.lblFormula.TabIndex = 18;
+            this.lblFormula.Text = "Xi+1 = ( a * Xi ) mod m";
             // 
             // btnClear
             // 
@@ -120,12 +231,12 @@
             this.Integrantes.Controls.Add(this.label8);
             this.Integrantes.Controls.Add(this.label7);
             this.Integrantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Integrantes.Location = new System.Drawing.Point(5, 526);
+            this.Integrantes.Location = new System.Drawing.Point(8, 557);
             this.Integrantes.Name = "Integrantes";
             this.Integrantes.Size = new System.Drawing.Size(185, 126);
             this.Integrantes.TabIndex = 14;
             this.Integrantes.TabStop = false;
-            this.Integrantes.Text = "Integrantes";
+            this.Integrantes.Text = "Grupo R";
             // 
             // label10
             // 
@@ -196,7 +307,7 @@
             this.grilla.RowHeadersWidth = 51;
             this.grilla.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.grilla.RowTemplate.Height = 24;
-            this.grilla.Size = new System.Drawing.Size(259, 651);
+            this.grilla.Size = new System.Drawing.Size(259, 669);
             this.grilla.TabIndex = 2;
             // 
             // posicion
@@ -355,6 +466,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.lblGradosLibertad);
             this.groupBox2.Controls.Add(this.chrGrafico);
             this.groupBox2.Controls.Add(this.dgvTablaFecuencia);
@@ -365,7 +477,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(678, 674);
+            this.groupBox2.Size = new System.Drawing.Size(678, 689);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Histograma";
@@ -381,26 +493,26 @@
             // 
             // chrGrafico
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chrGrafico.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chrGrafico.Legends.Add(legend1);
+            chartArea9.Name = "ChartArea1";
+            this.chrGrafico.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chrGrafico.Legends.Add(legend9);
             this.chrGrafico.Location = new System.Drawing.Point(4, 299);
             this.chrGrafico.Margin = new System.Windows.Forms.Padding(2);
             this.chrGrafico.Name = "chrGrafico";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series2";
-            this.chrGrafico.Series.Add(series1);
-            this.chrGrafico.Series.Add(series2);
+            series17.ChartArea = "ChartArea1";
+            series17.Legend = "Legend1";
+            series17.Name = "Series1";
+            series18.ChartArea = "ChartArea1";
+            series18.Legend = "Legend1";
+            series18.Name = "Series2";
+            this.chrGrafico.Series.Add(series17);
+            this.chrGrafico.Series.Add(series18);
             this.chrGrafico.Size = new System.Drawing.Size(668, 366);
             this.chrGrafico.TabIndex = 4;
             this.chrGrafico.Text = "chart1";
-            title1.Name = "Histograma de frecuencias";
-            this.chrGrafico.Titles.Add(title1);
+            title9.Name = "Histograma de frecuencias";
+            this.chrGrafico.Titles.Add(title9);
             // 
             // dgvTablaFecuencia
             // 
@@ -441,12 +553,52 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Intervalos";
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(17, 142);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(131, 13);
+            this.label15.TabIndex = 23;
+            this.label15.Text = "m = 2^g (g número entero)";
+            // 
+            // lblFormulaA
+            // 
+            this.lblFormulaA.AutoSize = true;
+            this.lblFormulaA.Location = new System.Drawing.Point(17, 159);
+            this.lblFormulaA.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFormulaA.Name = "lblFormulaA";
+            this.lblFormulaA.Size = new System.Drawing.Size(65, 13);
+            this.lblFormulaA.TabIndex = 24;
+            this.lblFormulaA.Text = "a = 1 + 4 * k";
+            // 
+            // lblFormulaC2
+            // 
+            this.lblFormulaC2.AutoSize = true;
+            this.lblFormulaC2.Location = new System.Drawing.Point(17, 175);
+            this.lblFormulaC2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFormulaC2.Name = "lblFormulaC2";
+            this.lblFormulaC2.Size = new System.Drawing.Size(136, 13);
+            this.lblFormulaC2.TabIndex = 25;
+            this.lblFormulaC2.Text = "c = relativamente primo a m";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(270, 21);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(225, 13);
+            this.label13.TabIndex = 26;
+            this.label13.Text = "Intervalos: Inferior (abierto) - Superior (cerrado)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1160, 690);
+            this.ClientSize = new System.Drawing.Size(1152, 709);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -455,6 +607,9 @@
             this.Text = "Generador de números aleatorios";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.Integrantes.ResumeLayout(false);
             this.Integrantes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla)).EndInit();
@@ -499,6 +654,18 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnSiguienteRND;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblFormula;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblFormulaC1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblFormulaC2;
+        private System.Windows.Forms.Label lblFormulaA;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label13;
     }
 }
 

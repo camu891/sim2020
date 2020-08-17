@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="simulacion_tp1.exe" size="25040">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="simulacion_tp1.exe" size="29136">
       <assemblyIdentity name="simulacion_tp1" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ezEHqGkm/atTEWrVtRL9pDZRDGNEaYXYZPH1DVl2UGQ=</dsig:DigestValue>
+        <dsig:DigestValue>9tA+Hreul0f9cOIwtzVkXK6vD5h6wmBTl+2gFROoeQE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

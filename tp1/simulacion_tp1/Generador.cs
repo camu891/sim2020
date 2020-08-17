@@ -12,6 +12,7 @@ namespace simulacion_tp1
         private int g;
         private int c;
         private Random random = new Random();
+        List<NroRandom> lista;
 
         public Generador()
         {
@@ -23,6 +24,7 @@ namespace simulacion_tp1
             this.k = k;
             this.g = g;
             this.c = c;
+            this.lista = null;
         }
 
         public NroRandom mixto(int x)
@@ -37,7 +39,7 @@ namespace simulacion_tp1
 
         public List<NroRandom> mixtoLista(int semilla, int cantidadGenerar)
         {
-            List<NroRandom> lista = new List<NroRandom>();
+            lista = new List<NroRandom>();
             NroRandom nroRandom;
             for (int i = 0; i < cantidadGenerar; i++)
             {
@@ -61,7 +63,8 @@ namespace simulacion_tp1
 
         public List<NroRandom> multiplicativoLista(int semilla, int cantidadGenerar)
         {
-            List<NroRandom> lista = new List<NroRandom>();
+
+            lista = new List<NroRandom>();
             NroRandom nroRandom;
             for (int i = 0; i < cantidadGenerar; i++)
             {
@@ -100,5 +103,25 @@ namespace simulacion_tp1
             double resultado = (double) nro / (m); // si se borra el 1 de le ecuacion no se incluye el 1 en la lista de randoms 
             return Math.Round(resultado, 4, MidpointRounding.AwayFromZero);
         }
+
+
+        public List<NroRandom> SiguienteRND(string metodo)
+        {
+            NroRandom nroRandom;
+            int semilla = lista.Last().Siguiente;
+            if (metodo == "mixto")
+            {
+                nroRandom = mixto(semilla);
+                nroRandom.Posicion = lista.Count + 1;
+                lista.Add(nroRandom);
+            } else {
+                nroRandom = multiplicativo(semilla);
+                nroRandom.Posicion = lista.Count + 1;
+                lista.Add(nroRandom);
+            }
+            return lista;
+        }
+
+
     }
 }

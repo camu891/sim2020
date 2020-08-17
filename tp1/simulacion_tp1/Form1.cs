@@ -31,11 +31,18 @@ namespace simulacion_tp1
             chrGrafico.ChartAreas[0].AxisY.Title = "Números Random";
             chrGrafico.Series[0].LegendText = "Fo";
             chrGrafico.Series[1].LegendText = "Fe";
+            lblFormula.Text = "Xi+1 = ( a * Xi ) mod m";
+            lblFormulaC1.Visible = false;
+            lblFormulaC2.Visible = false;
         }
 
         private void rbLineal_CheckedChanged(object sender, EventArgs e)
         {
             tipo = "mixto";
+            lblFormula.Text = "Xi+1 = ( a * Xi ) mod m";
+            lblFormulaA.Text = "a = 1 + 4 * k";
+            lblFormulaC1.Visible = false;
+            lblFormulaC2.Visible = false;
             limpiarCampos();
             txtX.Enabled = true;
             txtK.Enabled = true;
@@ -46,6 +53,10 @@ namespace simulacion_tp1
         private void rbMultiplicativo_CheckedChanged(object sender, EventArgs e)
         {
             tipo = "multiplicativo";
+            lblFormula.Text = "Xi+1 = ( a * Xi + c ) mod m";
+            lblFormulaA.Text = "a = 3 + 8 * k";
+            lblFormulaC1.Visible = true;
+            lblFormulaC2.Visible = true;
             limpiarCampos();
             txtX.Enabled = true;
             txtK.Enabled = true;
@@ -241,6 +252,12 @@ namespace simulacion_tp1
         private void btnClear_Click(object sender, EventArgs e)
         {
             limpiarCampos();
+        }
+
+        private void btnSiguienteRND_Click(object sender, EventArgs e)
+        {
+            lista = generador.SiguienteRND(tipo);
+            grilla.DataSource = new BindingSource(lista, "");
         }
     }
 }
