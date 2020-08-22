@@ -16,7 +16,12 @@ namespace simulacion_tp1
         private double fe;
         private double c;
         private double ca;
-
+        
+        private double po;
+        private double pe;
+        private double pAo;
+        private double pAe;
+        private double ks;
         public Intervalo(double inf, double sup)
         {
             this.inf = inf;
@@ -36,6 +41,35 @@ namespace simulacion_tp1
             fe = 0;
             c = 0;
             ca = 0;
+        }
+
+        public double Po
+        {
+            get { return po; }
+            set { po = value; }
+        }
+
+        public double Pe
+        {
+            get { return pe; }
+            set { pe = value; }
+        }
+
+        public double PAo
+        {
+            get { return pAo; }
+            set { pAo = value; }
+        }
+
+        public double PAe
+        {
+            get { return pAe; }
+            set { pAe = value; }
+        }
+         public double KS
+        {
+            get { return ks; }
+            set { ks = value; }
         }
         public double Mc
         {
