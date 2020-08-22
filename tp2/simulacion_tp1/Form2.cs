@@ -212,10 +212,25 @@ namespace simulacion_tp1
                              intervalos[i].calcularC();
                              caAcumulado += intervalos[i].C;
                              intervalos[i].Ca = Math.Round(caAcumulado, 2, MidpointRounding.AwayFromZero);
-
+   
+                          
                         }
                         
                         dgvChi.DataSource = intervalos;
+                        //KS
+                        for (int i = 0; i < intervalos.Count; i++)
+                        {
+
+                            intervalos[i].Po = intervalos[i].Fo / lstNros.Count;
+                            intervalos[i].Pe = intervalos[i].Fe / lstNros.Count;
+
+                            intervalos[i].PAo += intervalos[i].Po;
+                            intervalos[i].PAe += intervalos[i].Pe;
+                            intervalos[i].KS = intervalos[i].Po - intervalos[i].Pe;
+
+                        }
+
+                        dgvKs.DataSource = intervalos;
                         break;
                     case "Exponencial Negativa":
                         
