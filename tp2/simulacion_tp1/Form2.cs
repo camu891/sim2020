@@ -212,22 +212,37 @@ namespace simulacion_tp1
                              intervalos[i].calcularC();
                              caAcumulado += intervalos[i].C;
                              intervalos[i].Ca = Math.Round(caAcumulado, 2, MidpointRounding.AwayFromZero);
-   
-                          
                         }
                         
                         dgvChi.DataSource = intervalos;
+                        double maxKS = 0;
                         //KS
                         for (int i = 0; i < intervalos.Count; i++)
                         {
 
-                            intervalos[i].Po = intervalos[i].Fo / lstNros.Count;
+                            intervalos[i].Po = Convert.ToDouble(intervalos[i].Fo) / Convert.ToDouble(lstNros.Count);
                             intervalos[i].Pe = intervalos[i].Fe / lstNros.Count;
 
                             intervalos[i].PAo += intervalos[i].Po;
                             intervalos[i].PAe += intervalos[i].Pe;
                             intervalos[i].KS = intervalos[i].Po - intervalos[i].Pe;
 
+                            maxKS = maxKS > intervalos[i].KS ? maxKS :  intervalos[i].KS;
+                        }
+
+                        double v = cantIntervalos - 1;
+
+                        MathNet.Numerics.Distributions.ChiSquared chiCuadrado =
+                            new MathNet.Numerics.Distributions.ChiSquared(v);
+                        txtTabulado.Text = Convert.ToString(maxKS);
+                       
+                        double ChiCalculado = intervalos.Last().Ca;
+
+                        
+                        if (tabControl1.SelectedTab.Name == "tabChi") {
+                            txtCalculado.Text = Convert.ToString(ChiCalculado);
+                        } else {
+                            txtCalculado.Text = Convert.ToString(maxKS);
                         }
 
                         dgvKs.DataSource = intervalos;

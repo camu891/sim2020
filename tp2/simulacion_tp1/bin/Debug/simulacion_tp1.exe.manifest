@@ -42,24 +42,36 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="simulacion_tp1.exe" size="23504">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MathNet.Numerics.dll" size="1672192">
+      <assemblyIdentity name="MathNet.Numerics" version="4.12.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>utHsXES74Z2uMxzDMqV0M7lhO/Zbv+uRv8TBerfJ9lk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="simulacion_tp1.exe" size="25040">
       <assemblyIdentity name="simulacion_tp1" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3ixpVMK+iwZ5u0AmCkdgXa0//5N4icsxAMwEW4FGhzE=</dsig:DigestValue>
+        <dsig:DigestValue>DWXWJHrx9E6yDtilVInXfIUfQCed3QX0LsKtK7BzNyc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="simulacion_tp1.exe.config" size="189">
+  <file name="simulacion_tp1.exe.config" size="184">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>R+Wg8QGvQVHX8T0ta/qbhH1bXkqY0fRnS3wBV3J0bN8=</dsig:DigestValue>
+      <dsig:DigestValue>X+GtgC9o18R9u9jmAWK6iKuu0WLaXTgchdPkk1MRli4=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
