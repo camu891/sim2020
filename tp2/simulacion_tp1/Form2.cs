@@ -216,16 +216,20 @@ namespace simulacion_tp1
                         
                         dgvChi.DataSource = intervalos;
                         double maxKS = 0;
+                        double acuO = 0;
+                        double acuE = 0;
                         //KS
                         for (int i = 0; i < intervalos.Count; i++)
                         {
 
                             intervalos[i].Po = Convert.ToDouble(intervalos[i].Fo) / Convert.ToDouble(lstNros.Count);
-                            intervalos[i].Pe = intervalos[i].Fe / lstNros.Count;
+                            intervalos[i].Pe = Convert.ToDouble(intervalos[i].Fe) / Convert.ToDouble(lstNros.Count);
 
-                            intervalos[i].PAo += intervalos[i].Po;
-                            intervalos[i].PAe += intervalos[i].Pe;
-                            intervalos[i].KS = intervalos[i].Po - intervalos[i].Pe;
+                            acuO += intervalos[i].Po;
+                            acuE += intervalos[i].Pe;
+                            intervalos[i].PAo = acuO;
+                            intervalos[i].PAe = acuE;
+                            intervalos[i].KS = intervalos[i].PAo - intervalos[i].PAe;
 
                             maxKS = maxKS > intervalos[i].KS ? maxKS :  intervalos[i].KS;
                         }
