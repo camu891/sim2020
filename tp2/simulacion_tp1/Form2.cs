@@ -238,15 +238,17 @@ namespace simulacion_tp1
 
                         MathNet.Numerics.Distributions.ChiSquared chiCuadrado =
                             new MathNet.Numerics.Distributions.ChiSquared(v);
-                        txtTabulado.Text = Convert.ToString(maxKS);
+                        
+                        double ksTabla = 1.36/Math.Sqrt(v);
                        
                         double ChiCalculado = intervalos.Last().Ca;
-
-                        
+      
                         if (tabControl1.SelectedTab.Name == "tabChi") {
                             txtCalculado.Text = Convert.ToString(ChiCalculado);
+                            txtTabulado.Text = Convert.ToString(chiCuadrado.Median);
                         } else {
                             txtCalculado.Text = Convert.ToString(maxKS);
+                            txtTabulado.Text = Convert.ToString(ksTabla);
                         }
 
                         dgvKs.DataSource = intervalos;
