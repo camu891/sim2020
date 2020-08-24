@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections;
-//using System.;
 
 namespace simulacion_tp1
 {
@@ -45,8 +44,6 @@ namespace simulacion_tp1
             opnFile.ShowDialog();
             asignarArchivo(opnFile.FileName);
             lstNros = leerDatosDesdeArchivo(opnFile.FileName);
-        
-
         }
 
         private void asignarArchivo(string nombreArchivo)
@@ -181,18 +178,13 @@ namespace simulacion_tp1
             {
                 distribucion= cmbDistribucion.Text;
                 for (int i = 0; i < lstNros.Count; i++)
-                    {
-                            aux += lstNros[i];
-                    }
-                                        caAcumulado=0;
-                for (int i = 0; i < lstNros.Count; i++)
                 {
-                  aux += lstNros[i];
+                    aux += lstNros[i];
                 }
                 media = aux / lstNros.Count;
                 for (int i = 0; i < lstNros.Count; i++)
                 {
-                  var += Math.Pow(lstNros[i] - media, 2);
+                    var += Math.Pow(lstNros[i] - media, 2);
                 }
                 var = var / lstNros.Count;
                 txtMedia.Text = Convert.ToString(media);
@@ -211,58 +203,15 @@ namespace simulacion_tp1
                             double b = -0.5 * expaux;
                             double aa = Math.Exp(b);
                             po = (1/(desv * Math.Sqrt(2 * Math.PI))) * aa ;
-                             
-                             intervalos[i].Fe = po * lstNros.Count ;
-                             intervalos[i].calcularC();
-                             caAcumulado += intervalos[i].C;
-                             intervalos[i].Ca = Math.Round(caAcumulado, 2, MidpointRounding.AwayFromZero);
+                            intervalos[i].Fe = po * lstNros.Count ;
                         }
-                        
-                        dgvChi.DataSource = intervalos;
-                        double maxKS = 0;
-                        double acuO = 0;
-                        double acuE = 0;
-                        //KS
-                        for (int i = 0; i < intervalos.Count; i++)
-                        {
-
-                            intervalos[i].Po = Convert.ToDouble(intervalos[i].Fo) / Convert.ToDouble(lstNros.Count);
-                            intervalos[i].Pe = Convert.ToDouble(intervalos[i].Fe) / Convert.ToDouble(lstNros.Count);
-
-                            acuO += intervalos[i].Po;
-                            acuE += intervalos[i].Pe;
-                            intervalos[i].PAo = acuO;
-                            intervalos[i].PAe = acuE;
-                            intervalos[i].KS = intervalos[i].PAo - intervalos[i].PAe;
-
-                            maxKS = maxKS > intervalos[i].KS ? maxKS :  intervalos[i].KS;
-                        }
-
-                        double v = cantIntervalos - 1;
-
-                        MathNet.Numerics.Distributions.ChiSquared chiCuadrado =
-                            new MathNet.Numerics.Distributions.ChiSquared(v);
-                        
-                        double ksTabla = 1.36/Math.Sqrt(v);
-                       
-                        double ChiCalculado = intervalos.Last().Ca;
-      
-                        if (tabControl1.SelectedTab.Name == "tabChi") {
-                            txtCalculado.Text = Convert.ToString(ChiCalculado);
-                            txtTabulado.Text = Convert.ToString(chiCuadrado.Median);
-                        } else {
-                            txtCalculado.Text = Convert.ToString(maxKS);
-                            txtTabulado.Text = Convert.ToString(ksTabla);
-                        }
-
-                        dgvKs.DataSource = intervalos;
                         break;
+
                     case "Exponencial Negativa":
                         double po_exp = 0;
                         double lambda = 1 / media;             
                         double expaux_a = 0;
                         double expaux_b = 0;
-
                         for (int i = 0; i < intervalos.Count; i++)
                         {
                             // Falta especificar la formula de la exponencial
@@ -270,98 +219,54 @@ namespace simulacion_tp1
                             expaux_b = 1-Math.Pow(Math.E, (-lambda*intervalos[i].Inf));
                             po_exp = (expaux_a - expaux_b) ;
                             intervalos[i].Fe = po_exp * lstNros.Count ;
-                            intervalos[i].calcularC();
-                            caAcumulado += intervalos[i].C;
-                            intervalos[i].Ca = Math.Round(caAcumulado, 2, MidpointRounding.AwayFromZero);
                         }
-                        dgvChi.DataSource = intervalos;
-                        double maxKS_exp = 0;
-                        double acuO_exp = 0;
-                        double acuE_exp = 0;
-                        //KS
-                        for (int i = 0; i < intervalos.Count; i++)
-                        {
-
-                            intervalos[i].Po = Convert.ToDouble(intervalos[i].Fo) / Convert.ToDouble(lstNros.Count);
-                            intervalos[i].Pe = Convert.ToDouble(intervalos[i].Fe) / Convert.ToDouble(lstNros.Count);
-
-                            acuO_exp += intervalos[i].Po;
-                            acuE_exp += intervalos[i].Pe;
-                            intervalos[i].PAo = acuO_exp;
-                            intervalos[i].PAe = acuE_exp;
-                            intervalos[i].KS = intervalos[i].PAo - intervalos[i].PAe;
-
-                            maxKS_exp = maxKS_exp > intervalos[i].KS ? maxKS_exp :  intervalos[i].KS;
-                        }
-
-                        double v_exp = cantIntervalos - 1;
-
-                        MathNet.Numerics.Distributions.ChiSquared chiCuadrado_exp =
-                            new MathNet.Numerics.Distributions.ChiSquared(v_exp);
-                        
-                        double ksTabla_exp = 1.36/Math.Sqrt(v_exp);
-                       
-                        double ChiCalculado_exp = intervalos.Last().Ca;
-      
-                        if (tabControl1.SelectedTab.Name == "tabChi") {
-                            txtCalculado.Text = Convert.ToString(ChiCalculado_exp);
-                            txtTabulado.Text = Convert.ToString(chiCuadrado_exp.Median);
-                        } else {
-                            txtCalculado.Text = Convert.ToString(maxKS_exp);
-                            txtTabulado.Text = Convert.ToString(ksTabla_exp);
-                        }
-
-                        dgvKs.DataSource = intervalos;
                         break;
+
                     case "Uniforme":
                         for (int i = 0; i < intervalos.Count; i++)
                         {
                             // Falta especificar la formula de la exponencial
                             intervalos[i].Fe = lstNros.Count/intervalos.Count ;
-                            intervalos[i].calcularC();
-                            caAcumulado += intervalos[i].C;
-                            intervalos[i].Ca = Math.Round(caAcumulado, 2, MidpointRounding.AwayFromZero);
                         }
-                        dgvChi.DataSource = intervalos;
-                        double maxKS_uni = 0;
-                        double acuO_uni = 0;
-                        double acuE_uni = 0;
-                        //KS
-                        for (int i = 0; i < intervalos.Count; i++)
-                        {
-
-                            intervalos[i].Po = Convert.ToDouble(intervalos[i].Fo) / Convert.ToDouble(lstNros.Count);
-                            intervalos[i].Pe = Convert.ToDouble(intervalos[i].Fe) / Convert.ToDouble(lstNros.Count);
-
-                            acuO_uni += intervalos[i].Po;
-                            acuE_uni += intervalos[i].Pe;
-                            intervalos[i].PAo = acuO_uni;
-                            intervalos[i].PAe = acuE_uni;
-                            intervalos[i].KS = intervalos[i].PAo - intervalos[i].PAe;
-
-                            maxKS_uni = maxKS_uni > intervalos[i].KS ? maxKS_uni :  intervalos[i].KS;
-                        }
-
-                        double v_uni = cantIntervalos - 1;
-
-                        MathNet.Numerics.Distributions.ChiSquared chiCuadrado_uni =
-                            new MathNet.Numerics.Distributions.ChiSquared(v_uni);
-                        
-                        double ksTabla_uni = 1.36/Math.Sqrt(v_uni);
-                       
-                        double ChiCalculado_uni = intervalos.Last().Ca;
-      
-                        if (tabControl1.SelectedTab.Name == "tabChi") {
-                            txtCalculado.Text = Convert.ToString(ChiCalculado_uni);
-                            txtTabulado.Text = Convert.ToString(chiCuadrado_uni.Median);
-                        } else {
-                            txtCalculado.Text = Convert.ToString(maxKS_uni);
-                            txtTabulado.Text = Convert.ToString(ksTabla_uni);
-                        }
-
-                        dgvKs.DataSource = intervalos;
                         break;
                 }
+                //Chi cuadrado y KS
+                double maxKS = 0;
+                double acuO = 0;
+                double acuE = 0;
+                caAcumulado = 0;
+                for (int i = 0; i < intervalos.Count; i++)
+                {
+                    intervalos[i].calcularC();
+                    caAcumulado += intervalos[i].C;
+                    intervalos[i].Ca = Math.Round(caAcumulado, 2, MidpointRounding.AwayFromZero);
+                    intervalos[i].Po = Convert.ToDouble(intervalos[i].Fo) / Convert.ToDouble(lstNros.Count);
+                    intervalos[i].Pe = Convert.ToDouble(intervalos[i].Fe) / Convert.ToDouble(lstNros.Count);
+
+                    acuO += intervalos[i].Po;
+                    acuE += intervalos[i].Pe;
+                    intervalos[i].PAo = acuO;
+                    intervalos[i].PAe = acuE;
+                    intervalos[i].KS = intervalos[i].PAo - intervalos[i].PAe;
+
+                    maxKS = maxKS > intervalos[i].KS ? maxKS :  intervalos[i].KS;
+                }
+
+                double v = cantIntervalos - 1;
+                MathNet.Numerics.Distributions.ChiSquared chiCuadrado =
+                    new MathNet.Numerics.Distributions.ChiSquared(v);    
+                double ksTabla = 1.36/Math.Sqrt(lstNros.Count);            
+                double ChiCalculado = intervalos.Last().Ca;
+      
+                if (tabControl1.SelectedTab.Name == "tabChi") {
+                    txtCalculado.Text = Convert.ToString(ChiCalculado);
+                    txtTabulado.Text = Convert.ToString(chiCuadrado.Median);
+                } else {
+                    txtCalculado.Text = Convert.ToString(maxKS);
+                    txtTabulado.Text = Convert.ToString(ksTabla);
+                }
+                dgvChi.DataSource = intervalos;
+                dgvKs.DataSource = intervalos;
             }
             catch (Exception)
             {
