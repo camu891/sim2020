@@ -54,24 +54,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="simulacion_tp1.exe" size="25040">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="simulacion_tp1.exe" size="27600">
       <assemblyIdentity name="simulacion_tp1" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>DWXWJHrx9E6yDtilVInXfIUfQCed3QX0LsKtK7BzNyc=</dsig:DigestValue>
+        <dsig:DigestValue>rTDzE12f5/AiRRlxOdKRmKSjfJtS6kw7xivjPT+PaTE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="simulacion_tp1.exe.config" size="184">
+  <file name="simulacion_tp1.exe.config" size="189">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>X+GtgC9o18R9u9jmAWK6iKuu0WLaXTgchdPkk1MRli4=</dsig:DigestValue>
+      <dsig:DigestValue>R+Wg8QGvQVHX8T0ta/qbhH1bXkqY0fRnS3wBV3J0bN8=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

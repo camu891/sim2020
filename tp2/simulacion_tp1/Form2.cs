@@ -160,13 +160,22 @@ namespace simulacion_tp1
                         }
                     }
                 }
-              
-                dgvTablaFecuencia.DataSource = intervalos;
+
+                //dgvTablaFecuencia.DataSource = intervalos;
+                llenarTablaIntervalos(intervalos);
                 generarGrafico();
 
             }
         }
 
+        private void llenarTablaIntervalos(List<Intervalo> lst)
+        {
+            dgvTablaFecuencia.Rows.Clear();
+            for (var i = 0; i < lst.Count; i++)
+            {
+                dgvTablaFecuencia.Rows.Add(lst[i].Inf, lst[i].Sup, lst[i].Fo);
+            }
+        }
         private void btnTest_Click(object sender, EventArgs e)
         {
             int aux = 0;
@@ -265,8 +274,10 @@ namespace simulacion_tp1
                     txtCalculado.Text = Convert.ToString(maxKS);
                     txtTabulado.Text = Convert.ToString(ksTabla);
                 }
-                dgvChi.DataSource = intervalos;
-                dgvKs.DataSource = intervalos;
+                //dgvChi.DataSource = intervalos;
+                //dgvKs.DataSource = intervalos;
+                llenarTablaChi(intervalos);
+                llenarTablaKS(intervalos);
             }
             catch (Exception)
             {
@@ -275,6 +286,23 @@ namespace simulacion_tp1
             }
         }
 
+        private void llenarTablaChi(List<Intervalo> lst)
+        {
+            dgvChi.Rows.Clear();
+            for (var i = 0; i < lst.Count; i++)
+            {
+                dgvChi.Rows.Add(lst[i].Inf, lst[i].Sup, lst[i].Fo, lst[i].Fe, lst[i].C, lst[i].Ca);
+            }
+        }
+
+        private void llenarTablaKS(List<Intervalo> lst)
+        {
+            dgvKs.Rows.Clear();
+            for (var i = 0; i < lst.Count; i++)
+            {
+                dgvKs.Rows.Add(lst[i].Inf, lst[i].Sup, lst[i].Fo, lst[i].Fe, lst[i].Po, lst[i].Pe, lst[i].PAo, lst[i].PAe, lst[i].KS);
+            }
+        }
         private void tabChi_Click(object sender, EventArgs e)
         {
 
