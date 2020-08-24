@@ -339,7 +339,7 @@ namespace simulacion_tp1
                             intervalos[i].PAe = acuE_uni;
                             intervalos[i].KS = intervalos[i].PAo - intervalos[i].PAe;
 
-                            maxKS_exp = maxKS_uni > intervalos[i].KS ? maxKS_uni :  intervalos[i].KS;
+                            maxKS_uni = maxKS_uni > intervalos[i].KS ? maxKS_uni :  intervalos[i].KS;
                         }
 
                         double v_uni = cantIntervalos - 1;
