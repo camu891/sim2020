@@ -133,7 +133,7 @@ namespace simulacion_tp1
                 //lblGradosLibertad.Text = "Grados de libertad: " + (cantIntervalos - 1);
 
                 double inf = lstNros.Min();
-                double sup = lstNros.Max();
+                double sup = lstNros.Max()+1; // Se agrega uno para incluir el superior
                 double mc = 0;
                 double ancho = (sup - inf  )/ cantIntervalos;
                 intervalos = new List<Intervalo>();
@@ -143,7 +143,7 @@ namespace simulacion_tp1
                     if (i != cantIntervalos - 1)
                         sup = inf + ancho;
                     else
-                        sup = lstNros.Max();
+                        sup = lstNros.Max()+1; // Se agrega uno para incluir el superior
                     mc = (sup + inf) / 2;
                     intervalos.Add(new Intervalo(inf, sup, mc));
                     inf = sup;
