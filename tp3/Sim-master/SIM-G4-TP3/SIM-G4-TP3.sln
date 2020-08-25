@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIM-G4-TP3", "SIM-G4-TP3.csproj", "{CF692A62-8153-4B9F-91FD-3640A110D118}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF692A62-8153-4B9F-91FD-3640A110D118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF692A62-8153-4B9F-91FD-3640A110D118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF692A62-8153-4B9F-91FD-3640A110D118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF692A62-8153-4B9F-91FD-3640A110D118}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB217CE3-DF9D-4512-A786-4FB5E6EC6BA3}
+	EndGlobalSection
+EndGlobal
