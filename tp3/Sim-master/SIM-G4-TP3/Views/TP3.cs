@@ -91,7 +91,8 @@ namespace SIM_G4_TP3
             this.Cursor = Cursors.WaitCursor;
 
             //calculo numero aletorios
-            randomNumbers = rndGen.GenerateExponentialDistribution(lamnda, rndGen.GenerateCSharpRandoms(seed, rndNumCount));
+            
+            randomNumbers = rndGen.GenerateCSharpRandomsPoisson(seed, rndNumCount ,lamnda);
             FillDgNumbers(randomNumbers);
             this.Cursor = Cursors.Default;
 
@@ -99,7 +100,7 @@ namespace SIM_G4_TP3
             if (numIntervals <= 0) return;
 
             timer = Stopwatch.StartNew();
-            frecuencies = rndGen.GeneratePoissonFrecuencies(numIntervals, randomNumbers, lamnda);
+            frecuencies = rndGen.GeneratePoissonFrecuencies(numIntervals, randomNumbers, lamnda, rndNumCount);
 
             FillDbFrecuencies(frecuencies);
             gradlib.Visible = true;

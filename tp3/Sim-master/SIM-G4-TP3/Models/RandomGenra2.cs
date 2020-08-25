@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SIM_G4_TP3.Models
 {
@@ -42,7 +43,27 @@ namespace SIM_G4_TP3.Models
             ).ToList();
         }
 
-        public double[] GenerateUniformDistribution(double a, double b, double[] randoms)
+        public double[] GenerateCSharpRandomsPoisson(int semilla, uint cantidad, double lambda)
+        {
+            double[] lstRnd = new double[cantidad];
+            double a = Math.Exp(-lambda);
+            var rnd = new Random();
+            double aux = 0;
+            for (int i = 0; i < cantidad; i++)
+            {
+                double P = 1;
+                int X = -1;
+                do
+                {
+                    aux = rnd.NextDouble();
+                    P = P * aux;
+                    X++;
+                } while (P >= a);
+                lstRnd[i] = X;
+            }
+            return lstRnd;
+        }
+            public double[] GenerateUniformDistribution(double a, double b, double[] randoms)
         {
             return randoms.Select(x => (a + x * (b - a)).TruncateDouble(4)).ToArray();
         }
@@ -57,21 +78,31 @@ namespace SIM_G4_TP3.Models
             return randoms.Select(x => ((x.Sum() - 6) * desviacion) + media).ToArray();
         }
 
-        public List<double[]> GeneratePoissonFrecuencies(uint cantIntervalos, double[] randoms, double lambda)
+        public List<double[]> GeneratePoissonFrecuencies(uint cantIntervalos, double[] randoms, double lambda, uint nroN)
         {
             var min = randoms.Min();
-            var max = randoms.Max() + 0.01;
-            var intervalRange = Math.Round((max - min) / cantIntervalos, 4);
+            var max = randoms.Max() ;
+            var intervalRange = (max - min) / cantIntervalos;
 
             var a = new List<double[]>();
             double calcEstAcum = 0;
-
+            var intervalStart = 0;
+            var intervalEnd = 0;
             for (var i = 0; i < cantIntervalos; i++)
             {
-                var intervalStart = min + intervalRange * i;
-                var intervalEnd = intervalStart + intervalRange;
+                //var intervalStart = min + intervalRange * i;
+               
+                if (i==0)
+                    intervalStart = Convert.ToInt32 (min);
+                else
+                    intervalStart = intervalEnd;
+                intervalEnd = Convert.ToInt32( intervalStart + intervalRange);
                 var frecObs = randoms.CantidadEnIntervalo(intervalStart, intervalEnd);
-                var frecEsperada = (((1 - Math.Exp(-lambda * (intervalEnd))) - (1 - Math.Exp(-lambda * (intervalStart)))) * randoms.Length).TruncateDouble(4);
+
+                //var frecEsperada = (((1 - Math.Exp(-lambda * (intervalEnd))) - (1 - Math.Exp(-lambda * (intervalStart)))) * randoms.Length).TruncateDouble(4);
+
+               
+                var frecEsperada = ((lambda * randoms[i] * Math.Exp(-lambda)) / factorial(Convert.ToInt32(frecObs)) * nroN);
                 var c = Math.Round(Math.Pow(frecObs - frecEsperada, 2) / frecEsperada, 4);
                 calcEstAcum += c;
                 a.Add(
@@ -90,7 +121,13 @@ namespace SIM_G4_TP3.Models
             return a;
         }
 
-
+        public static int factorial(int nro)
+        {
+            if (nro == 0)
+                return 1;
+            else
+                return (nro * factorial(nro - 1));
+        }
         public List<double[]>  GenerateUniformFrecuencies(uint cantIntervalos, double[] randoms, double A, double B)
         {
 

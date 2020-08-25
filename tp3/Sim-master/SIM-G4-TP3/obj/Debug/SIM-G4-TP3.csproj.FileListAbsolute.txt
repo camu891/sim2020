@@ -22,3 +22,15 @@ C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp3\Sim-master\SIM-G4-TP
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp3\Sim-master\SIM-G4-TP3\obj\Debug\SIM-G4-TP3.csproj.CoreCompileInputs.cache
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp3\Sim-master\SIM-G4-TP3\obj\Debug\SIM-G4-TP3.exe
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp3\Sim-master\SIM-G4-TP3\obj\Debug\SIM-G4-TP3.pdb
+C:\Users\note\Desktop\git\sim2020\tp3\Sim-master\SIM-G4-TP3\bin\Debug\assets\excel-icon.png
+C:\Users\note\Desktop\git\sim2020\tp3\Sim-master\SIM-G4-TP3\bin\Debug\SIM-G4-TP3.exe.config
+C:\Users\note\Desktop\git\sim2020\tp3\Sim-master\SIM-G4-TP3\bin\Debug\SIM-G4-TP3.exe
+C:\Users\note\Desktop\git\sim2020\tp3\Sim-master\SIM-G4-TP3\bin\Debug\SIM-G4-TP3.pdb
+C:\Users\note\Desktop\git\sim2020\tp3\Sim-master\SIM-G4-TP3\obj\Debug\SIM_G7_TP1.Main.resources
+C:\Users\note\Desktop\git\sim2020\tp3\Sim-master\SIM-G4-TP3\obj\Debug\SIM_G4_TP3.Properties.Resources.resources
+C:\Users\note\Desktop\git\sim2020\tp3\Sim-master\SIM-G4-TP3\obj\Debug\SIM_G4_TP3.TP3.resources
+C:\Users\note\Desktop\git\sim2020\tp3\Sim-master\SIM-G4-TP3\obj\Debug\SIM-G4-TP3.csproj.GenerateResource.cache
+C:\Users\note\Desktop\git\sim2020\tp3\Sim-master\SIM-G4-TP3\obj\Debug\SIM-G4-TP3.csproj.CoreCompileInputs.cache
+C:\Users\note\Desktop\git\sim2020\tp3\Sim-master\SIM-G4-TP3\obj\Debug\SIM-G4-TP3.exe
+C:\Users\note\Desktop\git\sim2020\tp3\Sim-master\SIM-G4-TP3\obj\Debug\SIM-G4-TP3.pdb
+C:\Users\note\Desktop\git\sim2020\tp3\Sim-master\SIM-G4-TP3\obj\Debug\SIM-G4-TP3.csprojAssemblyReference.cache
