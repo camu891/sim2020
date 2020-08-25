@@ -1,4 +1,4 @@
-﻿using SIM_G4_TP3.Models;
+﻿using SIM_GR_TP3.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace SIM_G4_TP3
+namespace SIM_GR_TP3
 {
     public partial class TP3 : Form
     {

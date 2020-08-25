@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace SIM_G4_TP3.Models
+namespace SIM_GR_TP3.Models
 {
     public class RandomGenra2
     {

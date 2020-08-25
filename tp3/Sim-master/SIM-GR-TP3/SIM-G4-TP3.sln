@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIM-G4-TP3", "SIM-G4-TP3.csproj", "{CF692A62-8153-4B9F-91FD-3640A110D118}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIM-GR-TP3", "SIM-GR-TP3.csproj", "{CF692A62-8153-4B9F-91FD-3640A110D118}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

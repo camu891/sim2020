@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace SIM_G4_TP3
+namespace SIM_GR_TP3
 {
     static class Program
     {
