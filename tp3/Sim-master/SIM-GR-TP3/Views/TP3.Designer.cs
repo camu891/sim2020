@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbIntervalo = new System.Windows.Forms.ComboBox();
             this.lblElapsedTimeGenerator = new System.Windows.Forms.Label();
@@ -215,9 +215,9 @@
             // tabRandomMethods
             // 
             this.tabRandomMethods.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tabRandomMethods.Controls.Add(this.tabPage1);
             this.tabRandomMethods.Controls.Add(this.tabPage2);
             this.tabRandomMethods.Controls.Add(this.tabPage3);
+            this.tabRandomMethods.Controls.Add(this.tabPage1);
             this.tabRandomMethods.Location = new System.Drawing.Point(9, 9);
             this.tabRandomMethods.Multiline = true;
             this.tabRandomMethods.Name = "tabRandomMethods";
@@ -244,14 +244,14 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(20, 39);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(12, 13);
+            this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 13;
-            this.label4.Text = "λ";
+            this.label4.Text = "media";
             // 
             // lblLambda
             // 
             this.lblLambda.DecimalPlaces = 2;
-            this.lblLambda.Location = new System.Drawing.Point(38, 37);
+            this.lblLambda.Location = new System.Drawing.Point(61, 37);
             this.lblLambda.Name = "lblLambda";
             this.lblLambda.Size = new System.Drawing.Size(120, 20);
             this.lblLambda.TabIndex = 12;
@@ -426,14 +426,14 @@
             this.dtgIntervalos.AllowUserToAddRows = false;
             this.dtgIntervalos.AllowUserToDeleteRows = false;
             this.dtgIntervalos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgIntervalos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgIntervalos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dtgIntervalos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgIntervalos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columna1,
@@ -452,8 +452,8 @@
             // 
             // columna1
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.columna1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.columna1.DefaultCellStyle = dataGridViewCellStyle4;
             this.columna1.HeaderText = "Intervalos";
             this.columna1.Name = "columna1";
             this.columna1.ReadOnly = true;
@@ -485,33 +485,33 @@
             // graficoObtenida
             // 
             this.graficoObtenida.AllowDrop = true;
-            chartArea1.AxisX.MajorGrid.Enabled = false;
-            chartArea1.AxisX.Title = "Intervalos / Clases";
-            chartArea1.AxisX.TitleAlignment = System.Drawing.StringAlignment.Near;
-            chartArea1.AxisY.Title = "Frecuencia";
-            chartArea1.AxisY.TitleAlignment = System.Drawing.StringAlignment.Near;
-            chartArea1.Name = "ChartArea1";
-            this.graficoObtenida.ChartAreas.Add(chartArea1);
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisX.Title = "Intervalos / Clases";
+            chartArea2.AxisX.TitleAlignment = System.Drawing.StringAlignment.Near;
+            chartArea2.AxisY.Title = "Frecuencia";
+            chartArea2.AxisY.TitleAlignment = System.Drawing.StringAlignment.Near;
+            chartArea2.Name = "ChartArea1";
+            this.graficoObtenida.ChartAreas.Add(chartArea2);
             this.graficoObtenida.ImeMode = System.Windows.Forms.ImeMode.On;
-            legend1.Name = "Legend1";
-            this.graficoObtenida.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.graficoObtenida.Legends.Add(legend2);
             this.graficoObtenida.Location = new System.Drawing.Point(355, 406);
             this.graficoObtenida.Name = "graficoObtenida";
             this.graficoObtenida.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            series1.BorderColor = System.Drawing.Color.Red;
-            series1.ChartArea = "ChartArea1";
-            series1.CustomProperties = "PointWidth=1";
-            series1.Legend = "Legend1";
-            series1.LegendText = "Observada";
-            series1.Name = "Observada";
-            series1.SmartLabelStyle.Enabled = false;
-            series2.BorderColor = System.Drawing.Color.Red;
-            series2.ChartArea = "ChartArea1";
-            series2.CustomProperties = "PointWidth=1";
-            series2.Legend = "Legend1";
-            series2.Name = "Esperada";
-            this.graficoObtenida.Series.Add(series1);
-            this.graficoObtenida.Series.Add(series2);
+            series3.BorderColor = System.Drawing.Color.Red;
+            series3.ChartArea = "ChartArea1";
+            series3.CustomProperties = "PointWidth=1";
+            series3.Legend = "Legend1";
+            series3.LegendText = "Observada";
+            series3.Name = "Observada";
+            series3.SmartLabelStyle.Enabled = false;
+            series4.BorderColor = System.Drawing.Color.Red;
+            series4.ChartArea = "ChartArea1";
+            series4.CustomProperties = "PointWidth=1";
+            series4.Legend = "Legend1";
+            series4.Name = "Esperada";
+            this.graficoObtenida.Series.Add(series3);
+            this.graficoObtenida.Series.Add(series4);
             this.graficoObtenida.Size = new System.Drawing.Size(991, 286);
             this.graficoObtenida.SuppressExceptions = true;
             this.graficoObtenida.TabIndex = 10;
