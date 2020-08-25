@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.lblRuta = new System.Windows.Forms.Label();
             this.txtRuta = new System.Windows.Forms.TextBox();
@@ -115,16 +115,16 @@
             // 
             // chrGrafico
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chrGrafico.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chrGrafico.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chrGrafico.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chrGrafico.Legends.Add(legend1);
             this.chrGrafico.Location = new System.Drawing.Point(463, 87);
             this.chrGrafico.Name = "chrGrafico";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chrGrafico.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chrGrafico.Series.Add(series1);
             this.chrGrafico.Size = new System.Drawing.Size(543, 218);
             this.chrGrafico.TabIndex = 3;
             this.chrGrafico.Text = "chart1";
@@ -216,12 +216,12 @@
             this.cmbDistribucion.Location = new System.Drawing.Point(75, 284);
             this.cmbDistribucion.Margin = new System.Windows.Forms.Padding(2);
             this.cmbDistribucion.Name = "cmbDistribucion";
-            this.cmbDistribucion.Size = new System.Drawing.Size(102, 21);
+            this.cmbDistribucion.Size = new System.Drawing.Size(150, 21);
             this.cmbDistribucion.TabIndex = 9;
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(194, 278);
+            this.btnTest.Location = new System.Drawing.Point(260, 276);
             this.btnTest.Margin = new System.Windows.Forms.Padding(2);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(94, 32);
