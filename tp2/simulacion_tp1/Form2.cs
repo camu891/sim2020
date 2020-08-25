@@ -211,7 +211,8 @@ namespace simulacion_tp1
                             expaux = Math.Pow(((intervalos[i].Mc - media) / desv),2);
                             double b = -0.5 * expaux;
                             double aa = Math.Exp(b);
-                            po = (1/(desv * Math.Sqrt(2 * Math.PI))) * aa ;
+                            double paso = intervalos[i].Sup - intervalos[i].Inf;
+                            po = ((1/(desv * Math.Sqrt(2 * Math.PI))) * aa) * paso;
                             intervalos[i].Fe = po * lstNros.Count ;
                         }
                         break;
