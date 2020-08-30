@@ -78,44 +78,54 @@ namespace SIM_GR_TP3.Models
             return randoms.Select(x => ((x.Sum() - 6) * desviacion) + media).ToArray();
         }
 
-        public List<double[]> GeneratePoissonFrecuencies(uint cantIntervalos, double[] randoms, double lambda, uint nroN)
+        public List<double[]> GeneratePoissonFrecuencies( double[] randoms, double lambda, uint nroN)
         {
+            /*
             var min = randoms.Min();
             var max = randoms.Max() ;
             var intervalRange = (max - min) / cantIntervalos;
-
+            */
             var a = new List<double[]>();
             double calcEstAcum = 0;
-            var intervalStart = 0;
-            var intervalEnd = 0;
-            for (var i = 0; i < cantIntervalos; i++)
+            //var intervalStart = 0;
+            //var intervalEnd = 0;
+            
+            for (int i = 0; i < randoms.Length; i++)
             {
-                //var intervalStart = min + intervalRange * i;
-               
-                if (i==0)
-                    intervalStart = Convert.ToInt32 (min);
-                else
-                    intervalStart = intervalEnd;
-                intervalEnd = Convert.ToInt32( intervalStart + intervalRange);
-                var frecObs = randoms.CantidadEnIntervalo(intervalStart, intervalEnd);
+                var valor = 0;
+                var frecObs = 0;
+                bool aux = false;
+                for (int j = 0; j < randoms.Length; j++)
+                {
+                    if (randoms[j] == randoms[i])
+                        frecObs++;
+                }
 
-                //var frecEsperada = (((1 - Math.Exp(-lambda * (intervalEnd))) - (1 - Math.Exp(-lambda * (intervalStart)))) * randoms.Length).TruncateDouble(4);
+                for(int j = 0; j < randoms.Length; j++)
+                {
 
-               
-                var frecEsperada = ((lambda * randoms[i] * Math.Exp(-lambda)) / factorial(Convert.ToInt32(frecObs)) * nroN);
-                var c = Math.Round(Math.Pow(frecObs - frecEsperada, 2) / frecEsperada, 4);
-                calcEstAcum += c;
-                a.Add(
-                    new double[6]
-                        {
-                            intervalStart ,  //min intervalo
-                            intervalEnd,   //max intervalo
+                if (randoms[j] == randoms[i] && aux == false)
+                {
+                    valor = Convert.ToInt32(randoms[i]);
+                    aux = true;
+                    var frecEsperada = ((lambda * randoms[i] * Math.Exp(-lambda)) / factorial(Convert.ToInt32(frecObs)) * nroN);
+                    var c = Math.Round(Math.Pow(frecObs - frecEsperada, 2) / frecEsperada, 4);
+                    calcEstAcum += c;
+                    a.Add(
+                            new double[5]
+                            {
+                            valor,  //min intervalo
+                            //intervalEnd,   //max intervalo
                             frecObs,   //frec observada
                             frecEsperada,   //frec esperada
                             c,   // c
                             calcEstAcum  // c acum
-                        }
-                    );
+                            }
+                            );
+                    }
+               
+            }
+                
             }
 
             return a;

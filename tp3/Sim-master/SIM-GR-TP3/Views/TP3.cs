@@ -56,17 +56,19 @@ namespace SIM_GR_TP3
             switch (tabRandomMethods.SelectedIndex)
             {
                 case 0:
-                    GeneratePoissonDistrib();
-                    distName = "Poisson";
-                    break;
+                        GenerateExponentialDistrib();
+                        distName = "Exponencial";
+                         break;
+
                 case 1:
-                    GenerateExponentialDistrib();
-                    distName = "Exponencial";
-                    break;
+                        GenerateNormalDistrib();
+                        distName = "Normal";
+                        break;
                 case 2:
-                    GenerateNormalDistrib();
-                    distName = "Normal";
-                    break;
+                        GeneratePoissonDistrib();
+                        distName = "Poisson";
+                        break;
+                    
             }
 
             timer.Stop();
@@ -85,7 +87,7 @@ namespace SIM_GR_TP3
             var rndNumCount = Convert.ToUInt32(nudRandomNumbersCount.Value);
             var seed = Convert.ToInt32(nudUniformDistribSeed.Value);
             var lamnda = Convert.ToDouble(lblLambda.Value);
-            var numIntervals = Convert.ToUInt32(cmbIntervalo.Text);
+            //var numIntervals = Convert.ToUInt32(cmbIntervalo.Text);
 
             var rndGen = new RandomGenra2();
             this.Cursor = Cursors.WaitCursor;
@@ -97,12 +99,12 @@ namespace SIM_GR_TP3
             this.Cursor = Cursors.Default;
 
             //calculo frecuencias
-            if (numIntervals <= 0) return;
+           // if (numIntervals <= 0) return;
 
             timer = Stopwatch.StartNew();
-            frecuencies = rndGen.GeneratePoissonFrecuencies(numIntervals, randomNumbers, lamnda, rndNumCount);
+            frecuencies = rndGen.GeneratePoissonFrecuencies(randomNumbers, lamnda, rndNumCount);
 
-            FillDbFrecuencies(frecuencies);
+            FillDbFrecuenciesPoisson(frecuencies);
             gradlib.Visible = true;
             gradlib.Text = String.Format("Grados de Libertad: {0}", (frecuencies.Count - 1));
             fillChart(frecuencies);
@@ -208,6 +210,14 @@ namespace SIM_GR_TP3
             dtgIntervalos.Rows.Clear();
             frecuencias.ForEach(x =>
                     dtgIntervalos.Rows.Add(String.Format("{0} - {1}", x[0], x[1]), x[2], x[3], x[4], x[5])
+                );
+        }
+
+        private void FillDbFrecuenciesPoisson(List<double[]> frecuencias)
+        {
+            dtgIntervalos.Rows.Clear();
+            frecuencias.ForEach(x =>
+                    dtgIntervalos.Rows.Add( x[0], x[1], x[2], x[3], x[4])
                 );
         }
 
