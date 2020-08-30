@@ -198,6 +198,7 @@ namespace SIM_GR_TP3
         private void FillDgNumbers(double[] num)
         {
             dtgNumeros.Rows.Clear();
+            dtgIntervalos.Columns[0].HeaderText = "Intervalos";
             for (var i = 0; i < num.Length; i++)
             {
                 dtgNumeros.Rows.Add(i + 1, num[i]);
@@ -208,6 +209,7 @@ namespace SIM_GR_TP3
         private void FillDbFrecuencies(List<double[]> frecuencias)
         {
             dtgIntervalos.Rows.Clear();
+            dtgIntervalos.Columns[0].HeaderText = "Intervalos";
             frecuencias.ForEach(x =>
                     dtgIntervalos.Rows.Add(String.Format("{0} - {1}", x[0], x[1]), x[2], x[3], x[4], x[5])
                 );
@@ -216,6 +218,7 @@ namespace SIM_GR_TP3
         private void FillDbFrecuenciesPoisson(List<double[]> frecuencias)
         {
             dtgIntervalos.Rows.Clear();
+            dtgIntervalos.Columns[0].HeaderText = "Valor";
             frecuencias.ForEach(x =>
                     dtgIntervalos.Rows.Add( x[0], x[1], x[2], x[3], x[4])
                 );

@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbIntervalo = new System.Windows.Forms.ComboBox();
             this.lblElapsedTimeGenerator = new System.Windows.Forms.Label();
@@ -46,11 +46,6 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.tabRandomMethods = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblLambda = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.nudUniformDistribSeed = new System.Windows.Forms.NumericUpDown();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -63,6 +58,11 @@
             this.nudNormalDistribMedia = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.nudNormalDistribSeed = new System.Windows.Forms.NumericUpDown();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblLambda = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.nudUniformDistribSeed = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblElapsedTimeFrecuencies = new System.Windows.Forms.Label();
             this.dtgIntervalos = new System.Windows.Forms.DataGridView();
@@ -79,9 +79,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomNumbersCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgNumeros)).BeginInit();
             this.tabRandomMethods.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLambda)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudUniformDistribSeed)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudExponentialDistribLambda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudExponentialDistribSeed)).BeginInit();
@@ -89,6 +86,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistribDeviation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistribMedia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistribSeed)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblLambda)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUniformDistribSeed)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgIntervalos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoObtenida)).BeginInit();
@@ -225,60 +225,6 @@
             this.tabRandomMethods.Size = new System.Drawing.Size(315, 135);
             this.tabRandomMethods.TabIndex = 0;
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.lblLambda);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.nudUniformDistribSeed);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(307, 106);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Poisson";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 39);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(13, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "μ";
-            // 
-            // lblLambda
-            // 
-            this.lblLambda.DecimalPlaces = 2;
-            this.lblLambda.Location = new System.Drawing.Point(39, 37);
-            this.lblLambda.Name = "lblLambda";
-            this.lblLambda.Size = new System.Drawing.Size(120, 20);
-            this.lblLambda.TabIndex = 12;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 6);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Semilla:";
-            this.label3.Visible = false;
-            // 
-            // nudUniformDistribSeed
-            // 
-            this.nudUniformDistribSeed.Location = new System.Drawing.Point(181, 6);
-            this.nudUniformDistribSeed.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-            this.nudUniformDistribSeed.Name = "nudUniformDistribSeed";
-            this.nudUniformDistribSeed.Size = new System.Drawing.Size(120, 20);
-            this.nudUniformDistribSeed.TabIndex = 0;
-            this.nudUniformDistribSeed.Visible = false;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label8);
@@ -305,7 +251,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(15, 6);
+            this.label9.Location = new System.Drawing.Point(13, 6);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 13);
             this.label9.TabIndex = 10;
@@ -380,7 +326,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 6);
+            this.label2.Location = new System.Drawing.Point(16, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 3;
@@ -399,6 +345,60 @@
             this.nudNormalDistribSeed.Size = new System.Drawing.Size(120, 20);
             this.nudNormalDistribSeed.TabIndex = 2;
             this.nudNormalDistribSeed.Visible = false;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.lblLambda);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.nudUniformDistribSeed);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(307, 106);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Poisson";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(18, 32);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(13, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "μ";
+            // 
+            // lblLambda
+            // 
+            this.lblLambda.DecimalPlaces = 2;
+            this.lblLambda.Location = new System.Drawing.Point(37, 30);
+            this.lblLambda.Name = "lblLambda";
+            this.lblLambda.Size = new System.Drawing.Size(120, 20);
+            this.lblLambda.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Semilla:";
+            this.label3.Visible = false;
+            // 
+            // nudUniformDistribSeed
+            // 
+            this.nudUniformDistribSeed.Location = new System.Drawing.Point(181, 6);
+            this.nudUniformDistribSeed.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.nudUniformDistribSeed.Name = "nudUniformDistribSeed";
+            this.nudUniformDistribSeed.Size = new System.Drawing.Size(120, 20);
+            this.nudUniformDistribSeed.TabIndex = 0;
+            this.nudUniformDistribSeed.Visible = false;
             // 
             // groupBox2
             // 
@@ -426,14 +426,14 @@
             this.dtgIntervalos.AllowUserToAddRows = false;
             this.dtgIntervalos.AllowUserToDeleteRows = false;
             this.dtgIntervalos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgIntervalos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgIntervalos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgIntervalos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgIntervalos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columna1,
@@ -452,8 +452,8 @@
             // 
             // columna1
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.columna1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.columna1.DefaultCellStyle = dataGridViewCellStyle2;
             this.columna1.HeaderText = "Intervalos";
             this.columna1.Name = "columna1";
             this.columna1.ReadOnly = true;
@@ -485,33 +485,33 @@
             // graficoObtenida
             // 
             this.graficoObtenida.AllowDrop = true;
-            chartArea3.AxisX.MajorGrid.Enabled = false;
-            chartArea3.AxisX.Title = "Intervalos / Clases";
-            chartArea3.AxisX.TitleAlignment = System.Drawing.StringAlignment.Near;
-            chartArea3.AxisY.Title = "Frecuencia";
-            chartArea3.AxisY.TitleAlignment = System.Drawing.StringAlignment.Near;
-            chartArea3.Name = "ChartArea1";
-            this.graficoObtenida.ChartAreas.Add(chartArea3);
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.Title = "Intervalos / Clases";
+            chartArea1.AxisX.TitleAlignment = System.Drawing.StringAlignment.Near;
+            chartArea1.AxisY.Title = "Frecuencia";
+            chartArea1.AxisY.TitleAlignment = System.Drawing.StringAlignment.Near;
+            chartArea1.Name = "ChartArea1";
+            this.graficoObtenida.ChartAreas.Add(chartArea1);
             this.graficoObtenida.ImeMode = System.Windows.Forms.ImeMode.On;
-            legend3.Name = "Legend1";
-            this.graficoObtenida.Legends.Add(legend3);
+            legend1.Name = "Legend1";
+            this.graficoObtenida.Legends.Add(legend1);
             this.graficoObtenida.Location = new System.Drawing.Point(355, 406);
             this.graficoObtenida.Name = "graficoObtenida";
             this.graficoObtenida.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            series5.BorderColor = System.Drawing.Color.Red;
-            series5.ChartArea = "ChartArea1";
-            series5.CustomProperties = "PointWidth=1";
-            series5.Legend = "Legend1";
-            series5.LegendText = "Observada";
-            series5.Name = "Observada";
-            series5.SmartLabelStyle.Enabled = false;
-            series6.BorderColor = System.Drawing.Color.Red;
-            series6.ChartArea = "ChartArea1";
-            series6.CustomProperties = "PointWidth=1";
-            series6.Legend = "Legend1";
-            series6.Name = "Esperada";
-            this.graficoObtenida.Series.Add(series5);
-            this.graficoObtenida.Series.Add(series6);
+            series1.BorderColor = System.Drawing.Color.Red;
+            series1.ChartArea = "ChartArea1";
+            series1.CustomProperties = "PointWidth=1";
+            series1.Legend = "Legend1";
+            series1.LegendText = "Observada";
+            series1.Name = "Observada";
+            series1.SmartLabelStyle.Enabled = false;
+            series2.BorderColor = System.Drawing.Color.Red;
+            series2.ChartArea = "ChartArea1";
+            series2.CustomProperties = "PointWidth=1";
+            series2.Legend = "Legend1";
+            series2.Name = "Esperada";
+            this.graficoObtenida.Series.Add(series1);
+            this.graficoObtenida.Series.Add(series2);
             this.graficoObtenida.Size = new System.Drawing.Size(991, 286);
             this.graficoObtenida.SuppressExceptions = true;
             this.graficoObtenida.TabIndex = 10;
@@ -571,10 +571,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomNumbersCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgNumeros)).EndInit();
             this.tabRandomMethods.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblLambda)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudUniformDistribSeed)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudExponentialDistribLambda)).EndInit();
@@ -584,6 +580,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistribDeviation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistribMedia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistribSeed)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblLambda)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUniformDistribSeed)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgIntervalos)).EndInit();

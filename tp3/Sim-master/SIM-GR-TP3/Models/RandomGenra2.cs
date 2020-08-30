@@ -24,7 +24,7 @@ namespace SIM_GR_TP3.Models
             // Por cada 12 nros aleatorios genera 1 con dist normal
 
             var rnd = new Random(semilla);
-            return new double[cantidad].Select(x => 
+            return new double[cantidad].Select(x =>
                 new double[12]
                 {
                     rnd.NextDouble().TruncateDouble(4),
@@ -39,7 +39,7 @@ namespace SIM_GR_TP3.Models
                     rnd.NextDouble().TruncateDouble(4),
                     rnd.NextDouble().TruncateDouble(4),
                     rnd.NextDouble().TruncateDouble(4)
-                }            
+                }
             ).ToList();
         }
 
@@ -63,7 +63,7 @@ namespace SIM_GR_TP3.Models
             }
             return lstRnd;
         }
-            public double[] GenerateUniformDistribution(double a, double b, double[] randoms)
+        public double[] GenerateUniformDistribution(double a, double b, double[] randoms)
         {
             return randoms.Select(x => (a + x * (b - a)).TruncateDouble(4)).ToArray();
         }
@@ -78,54 +78,38 @@ namespace SIM_GR_TP3.Models
             return randoms.Select(x => ((x.Sum() - 6) * desviacion) + media).ToArray();
         }
 
-        public List<double[]> GeneratePoissonFrecuencies( double[] randoms, double lambda, uint nroN)
+        public List<double[]> GeneratePoissonFrecuencies(double[] randoms, double lambda, uint nroN)
         {
-            /*
-            var min = randoms.Min();
-            var max = randoms.Max() ;
-            var intervalRange = (max - min) / cantIntervalos;
-            */
             var a = new List<double[]>();
             double calcEstAcum = 0;
-            //var intervalStart = 0;
-            //var intervalEnd = 0;
-            
-            for (int i = 0; i < randoms.Length; i++)
-            {
-                var valor = 0;
+
+            double[] rndFiltrados = randoms.Distinct().ToArray();
+
+            for (int i = 0; i < rndFiltrados.Length; i++){
+
                 var frecObs = 0;
-                bool aux = false;
                 for (int j = 0; j < randoms.Length; j++)
                 {
-                    if (randoms[j] == randoms[i])
+                    if (randoms[j] == rndFiltrados[i])
                         frecObs++;
                 }
 
-                for(int j = 0; j < randoms.Length; j++)
-                {
-
-                if (randoms[j] == randoms[i] && aux == false)
-                {
-                    valor = Convert.ToInt32(randoms[i]);
-                    aux = true;
-                    var frecEsperada = ((lambda * randoms[i] * Math.Exp(-lambda)) / factorial(Convert.ToInt32(frecObs)) * nroN);
-                    var c = Math.Round(Math.Pow(frecObs - frecEsperada, 2) / frecEsperada, 4);
-                    calcEstAcum += c;
-                    a.Add(
-                            new double[5]
-                            {
+                var valor = Convert.ToInt32(rndFiltrados[i]);
+                var frecEsperada = ((Math.Pow(lambda, valor) * Math.Exp(-lambda)) / factorial(Convert.ToInt32(valor)) * nroN);
+                var c = Math.Round(Math.Pow(frecObs - frecEsperada, 2) / frecEsperada, 4);
+                calcEstAcum += c;
+                a.Add(
+                        new double[5]
+                        {
                             valor,  //min intervalo
                             //intervalEnd,   //max intervalo
                             frecObs,   //frec observada
                             frecEsperada,   //frec esperada
                             c,   // c
                             calcEstAcum  // c acum
-                            }
-                            );
-                    }
-               
-            }
-                
+                        }
+                        );
+
             }
 
             return a;
@@ -138,7 +122,7 @@ namespace SIM_GR_TP3.Models
             else
                 return (nro * factorial(nro - 1));
         }
-        public List<double[]>  GenerateUniformFrecuencies(uint cantIntervalos, double[] randoms, double A, double B)
+        public List<double[]> GenerateUniformFrecuencies(uint cantIntervalos, double[] randoms, double A, double B)
         {
 
             var min = A; //intervalo min
@@ -156,7 +140,7 @@ namespace SIM_GR_TP3.Models
                 var interval_start = min + (intervalRange * i);
                 var interval_end = interval_start + intervalRange;
                 var frec_obs = randoms.CantidadEnIntervalo(interval_start, interval_end);
-                var c = Math.Round(Math.Pow(frec_obs - frecEsperada, 2) / frecEsperada, 4);  
+                var c = Math.Round(Math.Pow(frec_obs - frecEsperada, 2) / frecEsperada, 4);
                 calcEstAcum += c;
                 a.Add(
                     new double[6]
@@ -174,7 +158,7 @@ namespace SIM_GR_TP3.Models
             return a;
         }
 
-        public List<double[]>  GenerateExponentialFrecuencies(uint cantIntervalos,double lambda, double[] randoms)
+        public List<double[]> GenerateExponentialFrecuencies(uint cantIntervalos, double lambda, double[] randoms)
         {
             var min = randoms.Min();
             var max = randoms.Max() + 0.01;
@@ -207,7 +191,7 @@ namespace SIM_GR_TP3.Models
             return a;
         }
 
-        public List<double[]>  GenerateNormalFrecuencies(uint cantIntervalos, double media, double desvEstandar, double[] randoms)
+        public List<double[]> GenerateNormalFrecuencies(uint cantIntervalos, double media, double desvEstandar, double[] randoms)
         {
             var min = randoms.Min();
             var max = randoms.Max() + 0.01;
@@ -254,7 +238,7 @@ namespace SIM_GR_TP3.Models
         public static double TruncateDouble(this double value, double precision)
         {
             var val = Math.Pow(10, precision);
-            return (Math.Truncate(val * value))/ val;
+            return (Math.Truncate(val * value)) / val;
         }
 
         public static double CantidadEnIntervalo(this double[] values, double min, double max)
