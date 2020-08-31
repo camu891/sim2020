@@ -19,7 +19,7 @@ namespace SIM_GR_TP3
         Stopwatch timer;
         List<double[]> frecuencies;
         string distName;
-
+        bool poisson = false;
         public TP3()
         {
             InitializeComponent();
@@ -58,15 +58,18 @@ namespace SIM_GR_TP3
                 case 0:
                         GenerateExponentialDistrib();
                         distName = "Exponencial";
+                        poisson = false;
                          break;
 
                 case 1:
                         GenerateNormalDistrib();
                         distName = "Normal";
+                        poisson = false;
                         break;
                 case 2:
                         GeneratePoissonDistrib();
                         distName = "Poisson";
+                        poisson = true;
                         break;
                     
             }
@@ -249,7 +252,7 @@ namespace SIM_GR_TP3
             graficoObtenida.ChartAreas[0].AxisX.Maximum = frecuencias.Last()[1] + ((frecuencias.First()[1] - frecuencias.First()[0]) / 2);
         }
 
-        private void fillExcelChart()
+        private void fillExcelChart(bool poisson)
         {
             if (frecuencies == null)
             {
@@ -275,15 +278,31 @@ namespace SIM_GR_TP3
                 worksheet.Cells[1, i] = dtgIntervalos.Columns[i - 1].HeaderText.ToString();
             }
 
-
-            for (int i = 0; i < frecuencies.Count; i++)
+            if (poisson == true)
             {
-                worksheet.Cells[2 + i, 1] = String.Format("{0} - {1}", frecuencies.ElementAt(i)[0], frecuencies.ElementAt(i)[1]);
-                worksheet.Cells[2 + i, 2] = (double)frecuencies.ElementAt(i)[2];
-                worksheet.Cells[2 + i, 3] = (double)frecuencies.ElementAt(i)[3];
-                worksheet.Cells[2 + i, 4] = (double)frecuencies.ElementAt(i)[4];
-                worksheet.Cells[2 + i, 5] = (double)frecuencies.ElementAt(i)[5];
+                for (int i = 0; i < frecuencies.Count; i++)
+                {
+                    worksheet.Cells[2 + i, 1] = (double)frecuencies.ElementAt(i)[0];
+                    worksheet.Cells[2 + i, 2] = (double)frecuencies.ElementAt(i)[1];
+                    worksheet.Cells[2 + i, 3] = (double)frecuencies.ElementAt(i)[2];
+                    worksheet.Cells[2 + i, 4] = (double)frecuencies.ElementAt(i)[3];
+                    worksheet.Cells[2 + i, 5] = (double)frecuencies.ElementAt(i)[4];
+                }
             }
+            else
+            {
+                for (int i = 0; i < frecuencies.Count; i++)
+                {
+                    worksheet.Cells[2 + i, 1] = String.Format("{0} - {1}", frecuencies.ElementAt(i)[0], frecuencies.ElementAt(i)[1]);
+                    worksheet.Cells[2 + i, 2] = (double)frecuencies.ElementAt(i)[2];
+                    worksheet.Cells[2 + i, 3] = (double)frecuencies.ElementAt(i)[3];
+                    worksheet.Cells[2 + i, 4] = (double)frecuencies.ElementAt(i)[4];
+                    worksheet.Cells[2 + i, 5] = (double)frecuencies.ElementAt(i)[5];
+                }
+            }
+
+
+          
 
         
 
@@ -342,7 +361,7 @@ namespace SIM_GR_TP3
 
         private void btnGraficoExcel_Click(object sender, EventArgs e)
         {
-            fillExcelChart();
+            fillExcelChart(poisson);
         }
 
         private Boolean isValid() {
