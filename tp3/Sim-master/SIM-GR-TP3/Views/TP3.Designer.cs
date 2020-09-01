@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbIntervalo = new System.Windows.Forms.ComboBox();
             this.lblElapsedTimeGenerator = new System.Windows.Forms.Label();
@@ -75,6 +75,11 @@
             this.btnGraficoExcel = new System.Windows.Forms.Button();
             this.gradlib = new System.Windows.Forms.Label();
             this.gbResult = new System.Windows.Forms.GroupBox();
+            this.Integrantes = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomNumbersCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgNumeros)).BeginInit();
@@ -93,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgIntervalos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoObtenida)).BeginInit();
             this.gbResult.SuspendLayout();
+            this.Integrantes.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -224,6 +230,7 @@
             this.tabRandomMethods.SelectedIndex = 0;
             this.tabRandomMethods.Size = new System.Drawing.Size(315, 135);
             this.tabRandomMethods.TabIndex = 0;
+            this.tabRandomMethods.Selected += new System.Windows.Forms.TabControlEventHandler(this.distChange);
             // 
             // tabPage2
             // 
@@ -426,14 +433,14 @@
             this.dtgIntervalos.AllowUserToAddRows = false;
             this.dtgIntervalos.AllowUserToDeleteRows = false;
             this.dtgIntervalos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgIntervalos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgIntervalos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dtgIntervalos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgIntervalos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columna1,
@@ -452,8 +459,8 @@
             // 
             // columna1
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.columna1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.columna1.DefaultCellStyle = dataGridViewCellStyle8;
             this.columna1.HeaderText = "Intervalos";
             this.columna1.Name = "columna1";
             this.columna1.ReadOnly = true;
@@ -485,33 +492,33 @@
             // graficoObtenida
             // 
             this.graficoObtenida.AllowDrop = true;
-            chartArea1.AxisX.MajorGrid.Enabled = false;
-            chartArea1.AxisX.Title = "Intervalos / Clases";
-            chartArea1.AxisX.TitleAlignment = System.Drawing.StringAlignment.Near;
-            chartArea1.AxisY.Title = "Frecuencia";
-            chartArea1.AxisY.TitleAlignment = System.Drawing.StringAlignment.Near;
-            chartArea1.Name = "ChartArea1";
-            this.graficoObtenida.ChartAreas.Add(chartArea1);
+            chartArea4.AxisX.MajorGrid.Enabled = false;
+            chartArea4.AxisX.Title = "Intervalos / Clases";
+            chartArea4.AxisX.TitleAlignment = System.Drawing.StringAlignment.Near;
+            chartArea4.AxisY.Title = "Frecuencia";
+            chartArea4.AxisY.TitleAlignment = System.Drawing.StringAlignment.Near;
+            chartArea4.Name = "ChartArea1";
+            this.graficoObtenida.ChartAreas.Add(chartArea4);
             this.graficoObtenida.ImeMode = System.Windows.Forms.ImeMode.On;
-            legend1.Name = "Legend1";
-            this.graficoObtenida.Legends.Add(legend1);
+            legend4.Name = "Legend1";
+            this.graficoObtenida.Legends.Add(legend4);
             this.graficoObtenida.Location = new System.Drawing.Point(355, 406);
             this.graficoObtenida.Name = "graficoObtenida";
             this.graficoObtenida.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            series1.BorderColor = System.Drawing.Color.Red;
-            series1.ChartArea = "ChartArea1";
-            series1.CustomProperties = "PointWidth=1";
-            series1.Legend = "Legend1";
-            series1.LegendText = "Observada";
-            series1.Name = "Observada";
-            series1.SmartLabelStyle.Enabled = false;
-            series2.BorderColor = System.Drawing.Color.Red;
-            series2.ChartArea = "ChartArea1";
-            series2.CustomProperties = "PointWidth=1";
-            series2.Legend = "Legend1";
-            series2.Name = "Esperada";
-            this.graficoObtenida.Series.Add(series1);
-            this.graficoObtenida.Series.Add(series2);
+            series7.BorderColor = System.Drawing.Color.Red;
+            series7.ChartArea = "ChartArea1";
+            series7.CustomProperties = "PointWidth=1";
+            series7.Legend = "Legend1";
+            series7.LegendText = "Observada";
+            series7.Name = "Observada";
+            series7.SmartLabelStyle.Enabled = false;
+            series8.BorderColor = System.Drawing.Color.Red;
+            series8.ChartArea = "ChartArea1";
+            series8.CustomProperties = "PointWidth=1";
+            series8.Legend = "Legend1";
+            series8.Name = "Esperada";
+            this.graficoObtenida.Series.Add(series7);
+            this.graficoObtenida.Series.Add(series8);
             this.graficoObtenida.Size = new System.Drawing.Size(991, 286);
             this.graficoObtenida.SuppressExceptions = true;
             this.graficoObtenida.TabIndex = 10;
@@ -552,12 +559,68 @@
             this.gbResult.TabStop = false;
             this.gbResult.Text = "Resultado";
             // 
+            // Integrantes
+            // 
+            this.Integrantes.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Integrantes.Controls.Add(this.label5);
+            this.Integrantes.Controls.Add(this.label11);
+            this.Integrantes.Controls.Add(this.label12);
+            this.Integrantes.Controls.Add(this.label13);
+            this.Integrantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Integrantes.Location = new System.Drawing.Point(355, 695);
+            this.Integrantes.Name = "Integrantes";
+            this.Integrantes.Size = new System.Drawing.Size(689, 53);
+            this.Integrantes.TabIndex = 16;
+            this.Integrantes.TabStop = false;
+            this.Integrantes.Text = "Grupo R";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(177, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(148, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Carlesso Nicolas - 58326";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(347, 27);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(148, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Gordillo Gustavo - 16077";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(523, 27);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(145, 13);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Chavez Marcelo - 49904";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(7, 27);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(145, 13);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Camusso Matias - 58227";
+            // 
             // TP3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.Integrantes);
             this.Controls.Add(this.gbResult);
             this.Controls.Add(this.btnGraficoExcel);
             this.Controls.Add(this.graficoObtenida);
@@ -590,6 +653,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.graficoObtenida)).EndInit();
             this.gbResult.ResumeLayout(false);
             this.gbResult.PerformLayout();
+            this.Integrantes.ResumeLayout(false);
+            this.Integrantes.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -637,6 +702,11 @@
         private System.Windows.Forms.GroupBox gbResult;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown lblLambda;
+        private System.Windows.Forms.GroupBox Integrantes;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }
 

@@ -301,11 +301,6 @@ namespace SIM_GR_TP3
                 }
             }
 
-
-          
-
-        
-
             var topLeft = "A2";
             var bottomRight = "C" + (frecuencies.Count + 1);
 
@@ -368,5 +363,18 @@ namespace SIM_GR_TP3
             return nudRandomNumbersCount.Value != 0;
         }
 
+        private void distChange(object sender, TabControlEventArgs e)
+        {
+            if (tabRandomMethods.SelectedIndex == 2)
+            {
+                label10.Hide();
+                cmbIntervalo.Hide();
+            } 
+            else
+            {
+                label10.Show();
+                cmbIntervalo.Show();
+            }
+        }
     }
 }
