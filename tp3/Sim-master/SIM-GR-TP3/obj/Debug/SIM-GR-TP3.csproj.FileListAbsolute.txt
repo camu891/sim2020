@@ -15,7 +15,6 @@ C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp3\Sim-master\SIM-GR-TP
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp3\Sim-master\SIM-GR-TP3\bin\Debug\SIM-G4-TP3.exe
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp3\Sim-master\SIM-GR-TP3\bin\Debug\SIM-G4-TP3.pdb
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp3\Sim-master\SIM-GR-TP3\obj\Debug\SIM-GR-TP3.csprojAssemblyReference.cache
-C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp3\Sim-master\SIM-GR-TP3\obj\Debug\SIM_G7_TP1.Main.resources
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp3\Sim-master\SIM-GR-TP3\obj\Debug\SIM_G4_TP3.Properties.Resources.resources
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp3\Sim-master\SIM-GR-TP3\obj\Debug\SIM_GR_TP3.TP3.resources
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp3\Sim-master\SIM-GR-TP3\obj\Debug\SIM-GR-TP3.csproj.GenerateResource.cache
