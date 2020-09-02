@@ -278,6 +278,8 @@ namespace SIM_GR_TP3
                 worksheet.Cells[1, i] = dtgIntervalos.Columns[i - 1].HeaderText.ToString();
             }
 
+            var topLeft = "";
+            var bottomRight = "";
             if (poisson == true)
             {
                 for (int i = 0; i < frecuencies.Count; i++)
@@ -288,6 +290,8 @@ namespace SIM_GR_TP3
                     worksheet.Cells[2 + i, 4] = (double)frecuencies.ElementAt(i)[3];
                     worksheet.Cells[2 + i, 5] = (double)frecuencies.ElementAt(i)[4];
                 }
+                topLeft = "B2";
+                bottomRight = "C" + (frecuencies.Count + 1);
             }
             else
             {
@@ -299,10 +303,11 @@ namespace SIM_GR_TP3
                     worksheet.Cells[2 + i, 4] = (double)frecuencies.ElementAt(i)[4];
                     worksheet.Cells[2 + i, 5] = (double)frecuencies.ElementAt(i)[5];
                 }
+                topLeft = "A2";
+                bottomRight = "C" + (frecuencies.Count + 1);
             }
 
-            var topLeft = "A2";
-            var bottomRight = "C" + (frecuencies.Count + 1);
+            
 
             // Add chart.
             var charts = worksheet.ChartObjects() as
