@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbIntervalo = new System.Windows.Forms.ComboBox();
             this.lblElapsedTimeGenerator = new System.Windows.Forms.Label();
@@ -80,6 +80,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.salidaPrueba = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomNumbersCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgNumeros)).BeginInit();
@@ -99,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.graficoObtenida)).BeginInit();
             this.gbResult.SuspendLayout();
             this.Integrantes.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -109,12 +113,11 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.nudRandomNumbersCount);
             this.groupBox1.Controls.Add(this.dtgNumeros);
-            this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.btnGenerate);
             this.groupBox1.Controls.Add(this.tabRandomMethods);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(335, 811);
+            this.groupBox1.Size = new System.Drawing.Size(334, 811);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -175,11 +178,11 @@
             this.dtgNumeros.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Orden2,
             this.Column1});
-            this.dtgNumeros.Location = new System.Drawing.Point(13, 259);
+            this.dtgNumeros.Location = new System.Drawing.Point(68, 259);
             this.dtgNumeros.Name = "dtgNumeros";
             this.dtgNumeros.RowHeadersVisible = false;
             this.dtgNumeros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgNumeros.Size = new System.Drawing.Size(154, 486);
+            this.dtgNumeros.Size = new System.Drawing.Size(153, 486);
             this.dtgNumeros.StandardTab = true;
             this.dtgNumeros.TabIndex = 5;
             // 
@@ -197,9 +200,9 @@
             // btnClear
             // 
             this.btnClear.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnClear.Location = new System.Drawing.Point(194, 218);
+            this.btnClear.Location = new System.Drawing.Point(355, 328);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(123, 28);
+            this.btnClear.Size = new System.Drawing.Size(165, 60);
             this.btnClear.TabIndex = 6;
             this.btnClear.Text = "Limpiar";
             this.btnClear.UseVisualStyleBackColor = false;
@@ -212,7 +215,7 @@
             this.btnGenerate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnGenerate.Location = new System.Drawing.Point(9, 212);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(162, 41);
+            this.btnGenerate.Size = new System.Drawing.Size(266, 41);
             this.btnGenerate.TabIndex = 5;
             this.btnGenerate.Text = "GENERAR";
             this.btnGenerate.UseVisualStyleBackColor = false;
@@ -228,7 +231,7 @@
             this.tabRandomMethods.Multiline = true;
             this.tabRandomMethods.Name = "tabRandomMethods";
             this.tabRandomMethods.SelectedIndex = 0;
-            this.tabRandomMethods.Size = new System.Drawing.Size(315, 135);
+            this.tabRandomMethods.Size = new System.Drawing.Size(320, 135);
             this.tabRandomMethods.TabIndex = 0;
             this.tabRandomMethods.Selected += new System.Windows.Forms.TabControlEventHandler(this.distChange);
             // 
@@ -241,7 +244,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(307, 106);
+            this.tabPage2.Size = new System.Drawing.Size(312, 106);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Exponencial";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -291,7 +294,7 @@
             this.tabPage3.Controls.Add(this.nudNormalDistribSeed);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(307, 106);
+            this.tabPage3.Size = new System.Drawing.Size(312, 106);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Normal";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -326,6 +329,11 @@
             // 
             this.nudNormalDistribMedia.DecimalPlaces = 2;
             this.nudNormalDistribMedia.Location = new System.Drawing.Point(38, 29);
+            this.nudNormalDistribMedia.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.nudNormalDistribMedia.Name = "nudNormalDistribMedia";
             this.nudNormalDistribMedia.Size = new System.Drawing.Size(120, 20);
             this.nudNormalDistribMedia.TabIndex = 0;
@@ -433,14 +441,14 @@
             this.dtgIntervalos.AllowUserToAddRows = false;
             this.dtgIntervalos.AllowUserToDeleteRows = false;
             this.dtgIntervalos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgIntervalos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgIntervalos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dtgIntervalos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgIntervalos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columna1,
@@ -459,8 +467,8 @@
             // 
             // columna1
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.columna1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.columna1.DefaultCellStyle = dataGridViewCellStyle14;
             this.columna1.HeaderText = "Intervalos";
             this.columna1.Name = "columna1";
             this.columna1.ReadOnly = true;
@@ -492,34 +500,34 @@
             // graficoObtenida
             // 
             this.graficoObtenida.AllowDrop = true;
-            chartArea1.AxisX.MajorGrid.Enabled = false;
-            chartArea1.AxisX.Title = "Intervalos / Clases";
-            chartArea1.AxisX.TitleAlignment = System.Drawing.StringAlignment.Near;
-            chartArea1.AxisY.Title = "Frecuencia";
-            chartArea1.AxisY.TitleAlignment = System.Drawing.StringAlignment.Near;
-            chartArea1.Name = "ChartArea1";
-            this.graficoObtenida.ChartAreas.Add(chartArea1);
+            chartArea7.AxisX.MajorGrid.Enabled = false;
+            chartArea7.AxisX.Title = "Intervalos / Clases";
+            chartArea7.AxisX.TitleAlignment = System.Drawing.StringAlignment.Near;
+            chartArea7.AxisY.Title = "Frecuencia";
+            chartArea7.AxisY.TitleAlignment = System.Drawing.StringAlignment.Near;
+            chartArea7.Name = "ChartArea1";
+            this.graficoObtenida.ChartAreas.Add(chartArea7);
             this.graficoObtenida.ImeMode = System.Windows.Forms.ImeMode.On;
-            legend1.Name = "Legend1";
-            this.graficoObtenida.Legends.Add(legend1);
-            this.graficoObtenida.Location = new System.Drawing.Point(355, 406);
+            legend7.Name = "Legend1";
+            this.graficoObtenida.Legends.Add(legend7);
+            this.graficoObtenida.Location = new System.Drawing.Point(355, 574);
             this.graficoObtenida.Name = "graficoObtenida";
             this.graficoObtenida.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            series1.BorderColor = System.Drawing.Color.Red;
-            series1.ChartArea = "ChartArea1";
-            series1.CustomProperties = "PointWidth=1";
-            series1.Legend = "Legend1";
-            series1.LegendText = "Observada";
-            series1.Name = "Observada";
-            series1.SmartLabelStyle.Enabled = false;
-            series2.BorderColor = System.Drawing.Color.Red;
-            series2.ChartArea = "ChartArea1";
-            series2.CustomProperties = "PointWidth=1";
-            series2.Legend = "Legend1";
-            series2.Name = "Esperada";
-            this.graficoObtenida.Series.Add(series1);
-            this.graficoObtenida.Series.Add(series2);
-            this.graficoObtenida.Size = new System.Drawing.Size(991, 286);
+            series13.BorderColor = System.Drawing.Color.Red;
+            series13.ChartArea = "ChartArea1";
+            series13.CustomProperties = "PointWidth=1";
+            series13.Legend = "Legend1";
+            series13.LegendText = "Observada";
+            series13.Name = "Observada";
+            series13.SmartLabelStyle.Enabled = false;
+            series14.BorderColor = System.Drawing.Color.Red;
+            series14.ChartArea = "ChartArea1";
+            series14.CustomProperties = "PointWidth=1";
+            series14.Legend = "Legend1";
+            series14.Name = "Esperada";
+            this.graficoObtenida.Series.Add(series13);
+            this.graficoObtenida.Series.Add(series14);
+            this.graficoObtenida.Size = new System.Drawing.Size(1003, 115);
             this.graficoObtenida.SuppressExceptions = true;
             this.graficoObtenida.TabIndex = 10;
             this.graficoObtenida.Text = "Gráfico";
@@ -552,12 +560,13 @@
             // gbResult
             // 
             this.gbResult.Controls.Add(this.gradlib);
-            this.gbResult.Location = new System.Drawing.Point(344, 318);
+            this.gbResult.Location = new System.Drawing.Point(1070, 328);
             this.gbResult.Name = "gbResult";
             this.gbResult.Size = new System.Drawing.Size(276, 70);
             this.gbResult.TabIndex = 15;
             this.gbResult.TabStop = false;
             this.gbResult.Text = "Resultado";
+            this.gbResult.Visible = false;
             // 
             // Integrantes
             // 
@@ -614,17 +623,50 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "Camusso Matias - 58227";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.salidaPrueba);
+            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Location = new System.Drawing.Point(355, 406);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1003, 162);
+            this.groupBox3.TabIndex = 17;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Resultado";
+            // 
+            // salidaPrueba
+            // 
+            this.salidaPrueba.AutoSize = true;
+            this.salidaPrueba.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.salidaPrueba.Location = new System.Drawing.Point(33, 35);
+            this.salidaPrueba.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.salidaPrueba.Name = "salidaPrueba";
+            this.salidaPrueba.Size = new System.Drawing.Size(15, 20);
+            this.salidaPrueba.TabIndex = 19;
+            this.salidaPrueba.Text = "-";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(17, 57);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(0, 13);
+            this.label14.TabIndex = 17;
+            // 
             // TP3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1386, 764);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.Integrantes);
             this.Controls.Add(this.gbResult);
             this.Controls.Add(this.btnGraficoExcel);
             this.Controls.Add(this.graficoObtenida);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.groupBox1);
             this.Name = "TP3";
             this.Text = "SIM - Grupo R - TP 3";
@@ -655,6 +697,8 @@
             this.gbResult.PerformLayout();
             this.Integrantes.ResumeLayout(false);
             this.Integrantes.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -707,6 +751,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label salidaPrueba;
+        private System.Windows.Forms.Label label14;
     }
 }
 

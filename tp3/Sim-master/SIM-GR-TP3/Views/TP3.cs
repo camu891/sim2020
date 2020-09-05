@@ -109,8 +109,11 @@ namespace SIM_GR_TP3
 
             FillDbFrecuenciesPoisson(frecuencies);
             gradlib.Visible = true;
-            gradlib.Text = String.Format("Grados de Libertad: {0}", (frecuencies.Count - 1));
+            var gradLib = frecuencies.Count - 1;
+            gradlib.Text = String.Format("Grados de Libertad: {0}", gradLib);
             fillChart(frecuencies);
+            var chi = frecuencies[frecuencies.Count - 1][4];
+            messageResultado("Distribución de Poisson", chisquared(gradLib), chi, gradLib);
         }
 
 
@@ -151,8 +154,11 @@ namespace SIM_GR_TP3
             lblElapsedTimeFrecuencies.Text = timer.ElapsedMilliseconds.ToString();
             FillDbFrecuencies(frecuencies);
             gradlib.Visible = true;
-            gradlib.Text = String.Format("Grados de Libertad: {0}", (frecuencies.Count - 1));
+            var gradLib = frecuencies.Count - 1;
+            gradlib.Text = String.Format("Grados de Libertad: {0}", gradLib);
             fillChart(frecuencies);
+            var chi = frecuencies[frecuencies.Count - 1][5];
+            messageResultado("Distribución Exponencial", chisquared(gradLib), chi, gradLib);
         }
 
 
@@ -193,8 +199,11 @@ namespace SIM_GR_TP3
             lblElapsedTimeFrecuencies.Text = timer.ElapsedMilliseconds.ToString();
             FillDbFrecuencies(frecuencies);
             gradlib.Visible = true;
-            gradlib.Text = String.Format("Grados de Libertad: {0}", (frecuencies.Count - 1));
+            var gradLib = frecuencies.Count - 1;
+            gradlib.Text = String.Format("Grados de Libertad: {0}", gradLib);
             fillChart(frecuencies);
+            var chi = frecuencies[frecuencies.Count-1][5];
+            messageResultado("Distribución Normal", chisquared(gradLib), chi, gradLib);
         }
 
 
@@ -357,6 +366,7 @@ namespace SIM_GR_TP3
             graficoObtenida.Series[0].Points.Clear();
             graficoObtenida.Series[1].Points.Clear();
             gradlib.Visible = false;
+            salidaPrueba.Text = "";
         }
 
         private void btnGraficoExcel_Click(object sender, EventArgs e)
@@ -380,6 +390,22 @@ namespace SIM_GR_TP3
                 label10.Show();
                 cmbIntervalo.Show();
             }
+        }
+        private void messageResultado(string tipo, double tabla, double calculado, int v)
+        {
+            if (calculado <= tabla)
+            {
+                salidaPrueba.Text = tipo + "\nCon un nivel de confianza de 95% no se rechaza la hipotesis nula!" + "\nValorCritico: " + calculado + "\nGrados de libertad: " + v + "\nValor prueba: " + tabla;
+            }
+            else
+            {
+                salidaPrueba.Text = tipo + "\nCon un nivel de confianza de 95% se rechaza la hipotesis nula!" + "\nValorCritico: " + calculado + "\nGrados de libertad: " + v + "\nValor tabla: " + tabla;
+            }
+        }
+        private double chisquared(int v)
+        {
+            double[] chi = new double[37] { 3.84, 5.99, 7.81, 9.49, 11.1, 12.6, 14.1, 15.5, 16.9, 18.3, 19.7, 21.0, 22.4, 23.7, 25.0, 26.3, 27.6, 28.9, 30.1, 31.4, 32.7, 33.9, 35.2, 36.4, 37.7, 38.9, 40.1, 41.3, 42.6, 43.8, 55.8, 67.5, 79.1, 90.5, 101.9, 113.1, 124.3 };
+            return (double)chi.GetValue(v);
         }
     }
 }
