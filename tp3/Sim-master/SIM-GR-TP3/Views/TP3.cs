@@ -86,6 +86,11 @@ namespace SIM_GR_TP3
                 return;
             }
 
+            if (!isValidLambda())
+            {
+                MessageBox.Show("Ingrese el valor de lambda.");
+                return;
+            }
             // Variables tomadas de interfaz 
             var rndNumCount = Convert.ToUInt32(nudRandomNumbersCount.Value);
             var seed = Convert.ToInt32(nudUniformDistribSeed.Value);
@@ -376,6 +381,11 @@ namespace SIM_GR_TP3
 
         private Boolean isValid() {
             return nudRandomNumbersCount.Value != 0;
+        }
+
+        private Boolean isValidLambda()
+        {
+            return lblLambda.Value != 0;
         }
 
         private void distChange(object sender, TabControlEventArgs e)
