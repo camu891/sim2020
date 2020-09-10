@@ -70,14 +70,6 @@ namespace WindowsFormsApplication1
                  lbl_resultados.Text = "  la ganancia promedio en el pto A es: ";
                  return;
             }
-            if (rb_Pb2.Checked)
-            {
-                 cantComprada = 8;
-                 cantCajones = 2;
-                 lbl_resultados.Text = "  la ganancia promedio en el pto B.2  es: ";
-                 costoCompra = cantComprada * precioCompra;
-                 return;
-            }
             if (rb_Pb1.Checked)
             {
                  cantComprada = 16;
@@ -85,15 +77,6 @@ namespace WindowsFormsApplication1
                  lbl_resultados.Text = "  la ganancia promedio en el pto B.1  es: ";
                  costoCompra = cantComprada * precioCompra;
                  return;
-            }
-
-            if (rb_Pc.Checked)
-            {
-                cantComprada = 3;
-                cantCajones = 0;
-                lbl_resultados.Text = "  la ganancia promedio en el pto C es: ";
-                
-                return;
             }
             
         }
@@ -185,12 +168,10 @@ namespace WindowsFormsApplication1
             precioCompra = Math.Round(precioCompra, 2);
             precioVenta = Convert.ToDouble(txt_precVenta.Text) * 12;
             precioVenta = Math.Round(precioVenta, 2);
-            precioVentaCementerio = Convert.ToDouble(txt_precCementerio.Text) * 12;
+            precioVentaCementerio = Convert.ToDouble(txt_horasTurno.Text) * 12;
             precioVentaCementerio = Math.Round(precioVentaCementerio, 2);
-            costoFalta = Convert.ToDouble(txt_precFaltante.Text) * 12;
+            costoFalta = Convert.ToDouble(txt_gramosFrasco.Text) * 12;
             costoFalta = Math.Round(costoFalta, 2);
-
-            precioCompraExcedente_PtoD = Convert.ToDouble(txt_precFaltante_PtoD.Text) * 12;
 
             precioCompraExcedente_PtoD = Math.Round(precioCompraExcedente_PtoD, 2);
                  
@@ -210,30 +191,40 @@ namespace WindowsFormsApplication1
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("NroDia");
-            dt.Columns.Add("RND");
-            dt.Columns.Add("Tipo dia");
-            dt.Columns.Add("RndDem");
-            dt.Columns.Add("Docenas demandadas");
-            dt.Columns.Add("Cajones comprados");
-            dt.Columns.Add("Cantidad comprada X docena");
-            dt.Columns.Add("Costo Compra X docena");
-            dt.Columns.Add("Rosas vendidas");
-            dt.Columns.Add("Ingreso venta");
-            dt.Columns.Add("Rosas cementerio");
-            dt.Columns.Add("Ingreso por el cementerio");
-            dt.Columns.Add("Total ingresos");
-            dt.Columns.Add("Rosas faltantes");
-            dt.Columns.Add("Costo rosas faltantes");
-            dt.Columns.Add("Costo Total");
-            dt.Columns.Add("Ganancia diaria");
-            dt.Columns.Add("Acumula ganancia diaria");
-            dt.Columns.Add("Ganancia promedio");
-            dt.Columns.Add("Rosas faltantes PtoD");
-            dt.Columns.Add("Costo rosas faltantes PtoD");
-            dt.Columns.Add("Costo Total PtoD");
-            dt.Columns.Add("Ganancia diaria PtoD");
-            dt.Columns.Add("Acumula ganancia diaria PtoD");
-            dt.Columns.Add("Ganancia promedio PtoD");
+            dt.Columns.Add("RND compra");
+            dt.Columns.Add("Demora Compra");
+            dt.Columns.Add("Costo Compra");
+            dt.Columns.Add("RND consu M");
+            dt.Columns.Add("Consumo Mañana");
+            dt.Columns.Add("Cantidad vendida");
+            dt.Columns.Add("Ingreso Mañana");
+            dt.Columns.Add("Cant faltante mañana");
+            dt.Columns.Add("RND consu T");
+            dt.Columns.Add("Consumo Tarde");
+            dt.Columns.Add("Cantidad Vendida");
+            dt.Columns.Add("Ingreso Tarde");
+            dt.Columns.Add("Cant faltante tarde");
+            dt.Columns.Add("Stock Gr");
+            dt.Columns.Add("Stock Frasco");
+            dt.Columns.Add("Costo Faltante");
+            dt.Columns.Add("Cant Hs perdidas");
+            dt.Columns.Add("Porcentaje Hs perdidas");
+            dt.Columns.Add("Prom Cant Cafe almacen Gr");
+            dt.Columns.Add("Prom Cant Cafe almacen Frascos");
+            dt.Columns.Add("Prom Cant faltante");
+            dt.Columns.Add("Ingreso Prom");
+            dt.Columns.Add("Beneficio Diario");
+            dt.Columns.Add("Beneficio Prom");
+            dt.Columns.Add("Cant dias con faltantes");
+            dt.Columns.Add("% dias con faltantes");
+            dt.Columns.Add("cant sobrante <2");
+            dt.Columns.Add("% sobrante <2");
+            dt.Columns.Add("cant sobrante 2<x<5");
+            dt.Columns.Add("% sobrante 2<x<5");
+            dt.Columns.Add("cant sobrante 5<x<8");
+            dt.Columns.Add("% sobrante 5<x<8");
+            dt.Columns.Add("cant sobrante >8");
+            dt.Columns.Add("% sobrante >8");
 
 
             Random RND = new Random();
@@ -365,32 +356,41 @@ namespace WindowsFormsApplication1
                             DataRow dr = dt.NewRow();
                             // Carga datos
                             dr["NroDia"] = i;
-                            dr["RND"] = RNDaux;
-                            dr["Tipo dia"] = dia;
-                            dr["RndDem"] = r2;
-                            dr["Docenas demandadas"] = demanda;
-                            dr["Cajones comprados"] = cantCajones;
-                            dr["Cantidad comprada X docena"] = cantComprada;
-                            dr["Costo Compra X docena"] = cc;
-                            dr["Rosas vendidas"] = rosasV;
-                            dr["Ingreso venta"] = v;
-                            dr["Rosas cementerio"] = rosasC;
-                            dr["Ingreso por el cementerio"] = gs;
-                            dr["Total ingresos"] = gt;
-                            dr["Rosas faltantes"] = rosasF;
-                            dr["Costo rosas faltantes"] = k;
-                            dr["Costo Total"] = ct;
-                            dr["ganancia diaria"] = gd;
-                            dr["Acumula ganancia diaria"] = acg;
-                            dr["Ganancia promedio"] = gananP;
-                            dr["Rosas faltantes PtoD"] = rosasF;
-                            dr["Costo rosas faltantes PtoD"] = kD;
-                            dr["Costo Total PtoD"] = ctD;
-                            dr["Ganancia diaria PtoD"] = gdD;
-                            dr["Acumula ganancia diaria PtoD"] = acgD;
-                            dr["Ganancia promedio PtoD"] = gananPD;
+                            dr["RND compra"] = RNDaux;
+                            dr["Demora Compra"] = dia;
+                            dr["Costo Compra"] = r2;
+                            dr["RND consu M"] = demanda;
+                            dr["Consumo Mañana"] = cantCajones;
+                            dr["Cantidad vendida"] = cantComprada;
+                            dr["Ingreso Mañana"] = cc;
+                            dr["Cant faltante mañana"] = rosasV;
+                            dr["RND consu T"] = v;
+                            dr["Consumo Tarde"] = rosasC;
+                            dr["Cantidad Vendida"] = gs;
+                            dr["Ingreso Tarde"] = gt;
+                            dr["Cant faltante tarde"] = rosasF;
+                            dr["Stock Gr"] = k;
+                            dr["Stock Frasco"] = ct;
+                            dr["Costo Faltante"] = gd;
+                            dr["Cant Hs perdidas"] = acg;
+                            dr["Porcentaje Hs perdidas"] = gananP;
+                            dr["Prom Cant Cafe almacen Gr"] = rosasF;
+                            dr["Prom Cant Cafe almacen Frascos"] = kD;
+                            dr["Prom Cant faltante"] = ctD;
+                            dr["Ingreso Prom"] = gdD;
+                            dr["Beneficio Diario"] = acgD;
+                            dr["Beneficio Prom"] = gananPD;
+                            dr["Cant dias con faltantes"] = gananPD;
+                            dr["% dias con faltantes"] = gananPD;
+                            dr["% sobrante <2"] = gananPD;
+                            dr["cant sobrante 2<x<5"] = gananPD;
+                            dr["% sobrante 2<x<5"] = gananPD;
+                            dr["cant sobrante 5<x<8"] = gananPD;
+                            dr["% sobrante 5<x<8"] = gananPD;
+                            dr["cant sobrante >8"] = gananPD;
+                            dr["% sobrante >8"] = gananPD;
 
-                            dt.Rows.Add(dr);
+                        dt.Rows.Add(dr);
 
 
                         }
@@ -517,34 +517,76 @@ namespace WindowsFormsApplication1
 
 
                             DataRow dr = dt.NewRow();
-                            // Carga datos
-                            dr["NroDia"] = i;
-                            dr["RND"] = RNDaux;
-                            dr["Tipo dia"] = dia;
-                            dr["RndDem"] = r2;
-                            dr["Docenas demandadas"] = demanda;
-                            dr["Cajones comprados"] = cantCajones;
-                            dr["Cantidad comprada X docena"] = cantComprada;
-                            dr["Costo Compra X docena"] = cc;
-                            dr["Rosas vendidas"] = rosasV;
-                            dr["Ingreso venta"] = v;
-                            dr["Rosas cementerio"] = rosasC;
-                            dr["Ingreso por el cementerio"] = gs;
-                            dr["Total ingresos"] = gt;
-                            dr["Rosas faltantes"] = rosasF;
-                            dr["Costo rosas faltantes"] = k;
-                            dr["Costo Total"] = ct;
-                            dr["ganancia diaria"] = gd;
-                            dr["Acumula ganancia diaria"] = acg;
-                            dr["Ganancia promedio"] = gananP;
-                            dr["Rosas faltantes PtoD"] = rosasF;
-                            dr["Costo rosas faltantes PtoD"] = kD;
-                            dr["Costo Total PtoD"] = ctD;
-                            dr["Ganancia diaria PtoD"] = gdD;
-                            dr["Acumula ganancia diaria PtoD"] = acgD;
-                            dr["Ganancia promedio PtoD"] = gananPD;
+                        // Carga datos
+                        dr["NroDia"] = i;
+                        dr["RND compra"] = RNDaux;
+                        dr["Demora Compra"] = dia;
+                        dr["Costo Compra"] = r2;
+                        dr["RND consu M"] = demanda;
+                        dr["Consumo Mañana"] = cantCajones;
+                        dr["Cantidad vendida"] = cantComprada;
+                        dr["Ingreso Mañana"] = cc;
+                        dr["Cant faltante mañana"] = rosasV;
+                        dr["RND consu T"] = v;
+                        dr["Consumo Tarde"] = rosasC;
+                        dr["Cantidad Vendida"] = gs;
+                        dr["Ingreso Tarde"] = gt;
+                        dr["Cant faltante tarde"] = rosasF;
+                        dr["Stock Gr"] = k;
+                        dr["Stock Frasco"] = ct;
+                        dr["Costo Faltante"] = gd;
+                        dr["Cant Hs perdidas"] = acg;
+                        dr["Porcentaje Hs perdidas"] = gananP;
+                        dr["Prom Cant Cafe almacen Gr"] = rosasF;
+                        dr["Prom Cant Cafe almacen Frascos"] = kD;
+                        dr["Prom Cant faltante"] = ctD;
+                        dr["Ingreso Prom"] = gdD;
+                        dr["Beneficio Diario"] = acgD;
+                        dr["Beneficio Prom"] = gananPD;
+                        dr["Cant dias con faltantes"] = gananPD;
+                        dr["% dias con faltantes"] = gananPD;
+                        dr["% sobrante <2"] = gananPD;
+                        dr["cant sobrante 2<x<5"] = gananPD;
+                        dr["% sobrante 2<x<5"] = gananPD;
+                        dr["cant sobrante 5<x<8"] = gananPD;
+                        dr["% sobrante 5<x<8"] = gananPD;
+                        dr["cant sobrante >8"] = gananPD;
+                        dr["% sobrante >8"] = gananPD; dr["NroDia"] = i;
+                        dr["RND compra"] = RNDaux;
+                        dr["Demora Compra"] = dia;
+                        dr["Costo Compra"] = r2;
+                        dr["RND consu M"] = demanda;
+                        dr["Consumo Mañana"] = cantCajones;
+                        dr["Cantidad vendida"] = cantComprada;
+                        dr["Ingreso Mañana"] = cc;
+                        dr["Cant faltante mañana"] = rosasV;
+                        dr["RND consu T"] = v;
+                        dr["Consumo Tarde"] = rosasC;
+                        dr["Cantidad Vendida"] = gs;
+                        dr["Ingreso Tarde"] = gt;
+                        dr["Cant faltante tarde"] = rosasF;
+                        dr["Stock Gr"] = k;
+                        dr["Stock Frasco"] = ct;
+                        dr["Costo Faltante"] = gd;
+                        dr["Cant Hs perdidas"] = acg;
+                        dr["Porcentaje Hs perdidas"] = gananP;
+                        dr["Prom Cant Cafe almacen Gr"] = rosasF;
+                        dr["Prom Cant Cafe almacen Frascos"] = kD;
+                        dr["Prom Cant faltante"] = ctD;
+                        dr["Ingreso Prom"] = gdD;
+                        dr["Beneficio Diario"] = acgD;
+                        dr["Beneficio Prom"] = gananPD;
+                        dr["Cant dias con faltantes"] = gananPD;
+                        dr["% dias con faltantes"] = gananPD;
+                        dr["% sobrante <2"] = gananPD;
+                        dr["cant sobrante 2<x<5"] = gananPD;
+                        dr["% sobrante 2<x<5"] = gananPD;
+                        dr["cant sobrante 5<x<8"] = gananPD;
+                        dr["% sobrante 5<x<8"] = gananPD;
+                        dr["cant sobrante >8"] = gananPD;
+                        dr["% sobrante >8"] = gananPD;
 
-                            dt.Rows.Add(dr);
+                        dt.Rows.Add(dr);
 
 
                         }
@@ -779,18 +821,16 @@ namespace WindowsFormsApplication1
             if(txt_precVenta.Enabled== true)
                {
                     txt_precVenta.Enabled = false;
-                    txt_precFaltante.Enabled = false;
+                    txt_gramosFrasco.Enabled = false;
                     txt_precCompra.Enabled = false;
-                    txt_precCementerio.Enabled = false;
-                    txt_precFaltante_PtoD.Enabled = false;
+                    txt_horasTurno.Enabled = false;
                }
             else
                 {
                     txt_precVenta.Enabled = true;
-                    txt_precFaltante.Enabled = true;
+                    txt_gramosFrasco.Enabled = true;
                     txt_precCompra.Enabled = true;
-                    txt_precCementerio.Enabled = true;
-                    txt_precFaltante_PtoD.Enabled = true;
+                    txt_horasTurno.Enabled = true;
                 }
         }
 
@@ -829,10 +869,6 @@ namespace WindowsFormsApplication1
                 e.Handled = true;
             }
         }
-
-    
-    
-    
-}
+    }
 }
 
