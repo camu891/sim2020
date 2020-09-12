@@ -30,6 +30,7 @@ namespace WindowsFormsApplication1
         double cantFaltaMañana = 0;
         double cantFaltaTarde = 0;
         double cantHorasPerdidas = 0;
+        double porcHorasPerd = 0;
 
         // datos parametrizados
         double cantComprada = 0;
@@ -79,7 +80,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void demoraDemanda(double RND)
+        private void demoraEntregaPedido(double RND)
         {
 
             if (RND >= 0.00 && RND < 0.50)
@@ -110,6 +111,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
+                //TODO aplicar formula correcta
                 consumoMañana = 60+(RND *30);
                 return;
             }
@@ -147,24 +149,53 @@ namespace WindowsFormsApplication1
 
         private void generar_tablaSimulacion()
         {
+            double diaLlegadaPedido = 0;
             DataTable dt = getColumnName();
             Random RND = new Random();
             double RNDDem0 = Math.Round(RND.NextDouble(), 4);
-            demoraDemanda(RNDDem0);
-            stockFrascos = cantComprada;
-            stockGr = cantComprada * gramosxFrasco;
+            demoraEntregaPedido(RNDDem0);
+            costoCompra = cantComprada * precioCompra;
+            if (demora == 0)
+            {
+                stockFrascos += cantComprada;
+                stockGr += cantComprada * gramosxFrasco;
+            } else
+            {
+                diaLlegadaPedido = demora;
+            }
+            DataRow dr0 = dt.NewRow();
+            dr0["NroDia"] = 0;
+            dr0["RND compra"] = RNDDem0;
+            dr0["Demora Compra"] = demora;
+            dr0["Costo Compra"] = costoCompra;
+            dr0["Stock Gr"] = stockGr;
+            dr0["Stock Frasco"] = stockFrascos;
+            dt.Rows.Add(dr0);
             for (int i = 1; i <= cantDias; i++)
             {
+                if (i == diaLlegadaPedido)
+                {
+                    stockFrascos += cantComprada;
+                    stockGr += cantComprada * gramosxFrasco;
+                }
                 double RNDDem = Math.Round(RND.NextDouble(), 4);
                 Boolean sepide = false;
                 if (i % cadaCuantoComprar == 0)
                 {
                     sepide = true;
-                    demoraDemanda(RNDDem);
+                    demoraEntregaPedido(RNDDem);
                     costoCompra = cantComprada * precioCompra;
-                    stockFrascos += cantComprada;
-                    stockGr += cantComprada * gramosxFrasco;
+                    if (demora == 0)
+                    {
+                        stockFrascos += cantComprada;
+                        stockGr += cantComprada * gramosxFrasco;
+                    }
+                    else
+                    {
+                        diaLlegadaPedido = i + demora;
+                    }
                 }
+
                 double RNDConMa = Math.Round(RND.NextDouble(), 4);
                 double RNDConTa = Math.Round(RND.NextDouble(), 4);
                 calcularConsumoMañana(RNDConMa);
@@ -172,7 +203,7 @@ namespace WindowsFormsApplication1
                 calcularVentaMañana();
                 calcularVentaTarde();
                 costoFaltante();
-                calcularHorasPerdidas();
+                calcularHorasPerdidas(i);
                     // suma costos
                     costoTotal = costoCompra + costoFalta;
                     // obtener la ganancia diaria, segun lo que obtuve de costos y ganancias
@@ -213,8 +244,8 @@ namespace WindowsFormsApplication1
                     dr["Stock Gr"] = stockGr;
                     dr["Stock Frasco"] = stockFrascos;
                     dr["Costo Faltante Ac"] = costoFalta;
-                    dr["Cant Hs perdidas"] = cantHorasPerdidas;
-                        dr["Porcentaje Hs perdidas"] = gananP;
+                    dr["Porcentaje Hs perdidas"] = porcHorasPerd;
+                    //TODO columnas faltantes
                         dr["Prom Cant Cafe almacen Gr"] = gananP;
                         dr["Prom Cant Cafe almacen Frascos"] = gananP;
                         dr["Prom Cant faltante"] = gananP;
@@ -230,9 +261,7 @@ namespace WindowsFormsApplication1
                         dr["% sobrante 5<x<8"] = gananP;
                         dr["cant sobrante >8"] = gananP;
                         dr["% sobrante >8"] = gananP;
-
                         dt.Rows.Add(dr);
-
                 }
 
             }
@@ -290,12 +319,13 @@ namespace WindowsFormsApplication1
             costoFalta += cantFaltaTarde + cantFaltaMañana;
         }
 
-        public void calcularHorasPerdidas()
+        public void calcularHorasPerdidas(int i)
         {
             if ((cantFaltaTarde + cantFaltaMañana) > 0)
             {
-                double porcenFaltante = (consumoMañana + consumoTarde) / (cantFaltaTarde + cantFaltaMañana);
-                cantHorasPerdidas = porcenFaltante * (horasxTurno * 2);
+                //faltante *16 /consumo total
+                //TODO validar si se debe agregar acumulados de faltante y consumo
+                porcHorasPerd = (cantFaltaTarde + cantFaltaMañana) * (horasxTurno * 2)  / (consumoMañana + consumoTarde);
             }
         }
 
@@ -323,6 +353,8 @@ namespace WindowsFormsApplication1
             gananciaPromedio = 0;
             cantFaltaTarde = 0;
             cantFaltaMañana = 0;
+            consumoMañana = 0;
+            consumoTarde = 0;
         }
 
         private void colorColumnas()
@@ -488,7 +520,6 @@ namespace WindowsFormsApplication1
             dt.Columns.Add("Stock Gr");
             dt.Columns.Add("Stock Frasco");
             dt.Columns.Add("Costo Faltante Ac");
-            dt.Columns.Add("Cant Hs perdidas");
             dt.Columns.Add("Porcentaje Hs perdidas");
             dt.Columns.Add("Prom Cant Cafe almacen Gr");
             dt.Columns.Add("Prom Cant Cafe almacen Frascos");
