@@ -33,16 +33,8 @@
             this.btn_generarSimulacion = new System.Windows.Forms.Button();
             this.dgv_simulacion = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rb_Pb1 = new System.Windows.Forms.RadioButton();
-            this.rb_Pa = new System.Windows.Forms.RadioButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lbl_reservaciones = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.pol_20fras = new System.Windows.Forms.RadioButton();
+            this.pol_10Fras = new System.Windows.Forms.RadioButton();
             this.lbl_resultados = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txt_hasta = new System.Windows.Forms.TextBox();
@@ -61,15 +53,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.lbl_resultados_D = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.pol_3Fras = new System.Windows.Forms.RadioButton();
+            this.pol_2Fras = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.pol_3dias = new System.Windows.Forms.RadioButton();
+            this.pol_2dias = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -117,135 +105,40 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.rb_Pb1);
-            this.groupBox1.Controls.Add(this.rb_Pa);
+            this.groupBox1.Controls.Add(this.pol_20fras);
+            this.groupBox1.Controls.Add(this.pol_10Fras);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(176, 71);
+            this.groupBox1.Size = new System.Drawing.Size(234, 71);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Politicas de almacenamiento";
             // 
-            // rb_Pb1
+            // pol_20fras
             // 
-            this.rb_Pb1.AutoSize = true;
-            this.rb_Pb1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rb_Pb1.Location = new System.Drawing.Point(71, 35);
-            this.rb_Pb1.Name = "rb_Pb1";
-            this.rb_Pb1.Size = new System.Drawing.Size(58, 21);
-            this.rb_Pb1.TabIndex = 1;
-            this.rb_Pb1.TabStop = true;
-            this.rb_Pb1.Text = "PolitB";
-            this.rb_Pb1.UseVisualStyleBackColor = true;
+            this.pol_20fras.AutoSize = true;
+            this.pol_20fras.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pol_20fras.Location = new System.Drawing.Point(100, 35);
+            this.pol_20fras.Name = "pol_20fras";
+            this.pol_20fras.Size = new System.Drawing.Size(86, 21);
+            this.pol_20fras.TabIndex = 1;
+            this.pol_20fras.TabStop = true;
+            this.pol_20fras.Text = "20 frascos";
+            this.pol_20fras.UseVisualStyleBackColor = true;
             // 
-            // rb_Pa
+            // pol_10Fras
             // 
-            this.rb_Pa.AutoSize = true;
-            this.rb_Pa.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rb_Pa.Location = new System.Drawing.Point(6, 35);
-            this.rb_Pa.Name = "rb_Pa";
-            this.rb_Pa.Size = new System.Drawing.Size(59, 21);
-            this.rb_Pa.TabIndex = 0;
-            this.rb_Pa.TabStop = true;
-            this.rb_Pa.Text = "PolitA";
-            this.rb_Pa.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(197, 47);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(155, 30);
-            this.label3.TabIndex = 25;
-            this.label3.Text = "10 frascos";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbl_reservaciones
-            // 
-            this.lbl_reservaciones.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbl_reservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl_reservaciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbl_reservaciones.Location = new System.Drawing.Point(347, 47);
-            this.lbl_reservaciones.Name = "lbl_reservaciones";
-            this.lbl_reservaciones.Size = new System.Drawing.Size(155, 30);
-            this.lbl_reservaciones.TabIndex = 24;
-            this.lbl_reservaciones.Text = "  20 frascos";
-            this.lbl_reservaciones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(197, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 41);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Politica A";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(347, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(155, 41);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "Politica B";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label4.Location = new System.Drawing.Point(682, 50);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(155, 30);
-            this.label4.TabIndex = 29;
-            this.label4.Text = "2 Frascos";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(682, 12);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(155, 41);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "Politica A";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label6.Location = new System.Drawing.Point(834, 50);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(155, 30);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "3 frascos";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Location = new System.Drawing.Point(834, 12);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(155, 41);
-            this.label8.TabIndex = 30;
-            this.label8.Text = "Politica B";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pol_10Fras.AutoSize = true;
+            this.pol_10Fras.Checked = true;
+            this.pol_10Fras.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pol_10Fras.Location = new System.Drawing.Point(6, 35);
+            this.pol_10Fras.Name = "pol_10Fras";
+            this.pol_10Fras.Size = new System.Drawing.Size(88, 21);
+            this.pol_10Fras.TabIndex = 0;
+            this.pol_10Fras.TabStop = true;
+            this.pol_10Fras.Text = "10 Frascos";
+            this.pol_10Fras.UseVisualStyleBackColor = true;
             // 
             // lbl_resultados
             // 
@@ -315,19 +208,19 @@
             this.label55.AutoSize = true;
             this.label55.Location = new System.Drawing.Point(6, 36);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(73, 17);
+            this.label55.Size = new System.Drawing.Size(122, 17);
             this.label55.TabIndex = 96;
-            this.label55.Text = "Prec Venta";
+            this.label55.Text = "Prec Venta x100 gr";
             // 
             // txt_precVenta
             // 
             this.txt_precVenta.Enabled = false;
             this.txt_precVenta.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.txt_precVenta.Location = new System.Drawing.Point(87, 32);
+            this.txt_precVenta.Location = new System.Drawing.Point(134, 31);
             this.txt_precVenta.Name = "txt_precVenta";
             this.txt_precVenta.Size = new System.Drawing.Size(36, 25);
             this.txt_precVenta.TabIndex = 97;
-            this.txt_precVenta.Text = "1";
+            this.txt_precVenta.Text = "150";
             this.txt_precVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txt_precVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_precVenta_KeyPress);
             // 
@@ -344,7 +237,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(804, 107);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(361, 106);
+            this.groupBox3.Size = new System.Drawing.Size(422, 106);
             this.groupBox3.TabIndex = 98;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Precios por cada rosa";
@@ -366,7 +259,7 @@
             this.txt_gramosFrasco.Name = "txt_gramosFrasco";
             this.txt_gramosFrasco.Size = new System.Drawing.Size(36, 25);
             this.txt_gramosFrasco.TabIndex = 102;
-            this.txt_gramosFrasco.Text = "0,1";
+            this.txt_gramosFrasco.Text = "170";
             this.txt_gramosFrasco.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txt_gramosFrasco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_precFaltante_KeyPress);
             // 
@@ -387,7 +280,7 @@
             this.txt_horasTurno.Name = "txt_horasTurno";
             this.txt_horasTurno.Size = new System.Drawing.Size(36, 25);
             this.txt_horasTurno.TabIndex = 100;
-            this.txt_horasTurno.Text = "0,09";
+            this.txt_horasTurno.Text = "8";
             this.txt_horasTurno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txt_horasTurno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_precCementerio_KeyPress);
             // 
@@ -395,22 +288,22 @@
             // 
             this.txt_precCompra.Enabled = false;
             this.txt_precCompra.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.txt_precCompra.Location = new System.Drawing.Point(214, 33);
+            this.txt_precCompra.Location = new System.Drawing.Point(336, 31);
             this.txt_precCompra.Name = "txt_precCompra";
             this.txt_precCompra.Size = new System.Drawing.Size(36, 25);
             this.txt_precCompra.TabIndex = 99;
-            this.txt_precCompra.Text = "0,75";
+            this.txt_precCompra.Text = "250";
             this.txt_precCompra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txt_precCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_precCompra_KeyPress);
             // 
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(124, 37);
+            this.label56.Location = new System.Drawing.Point(196, 35);
             this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(86, 17);
+            this.label56.Size = new System.Drawing.Size(134, 17);
             this.label56.TabIndex = 98;
-            this.label56.Text = "Prec Compra";
+            this.label56.Text = "Prec Compra xfrasco";
             // 
             // button1
             // 
@@ -433,123 +326,76 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.radioButton3);
-            this.groupBox4.Controls.Add(this.radioButton4);
+            this.groupBox4.Controls.Add(this.pol_3Fras);
+            this.groupBox4.Controls.Add(this.pol_2Fras);
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(508, 16);
+            this.groupBox4.Location = new System.Drawing.Point(320, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(168, 71);
+            this.groupBox4.Size = new System.Drawing.Size(213, 71);
             this.groupBox4.TabIndex = 101;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Politicas de compras";
             // 
-            // radioButton3
+            // pol_3Fras
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton3.Location = new System.Drawing.Point(71, 35);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(58, 21);
-            this.radioButton3.TabIndex = 1;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "PolitB";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.pol_3Fras.AutoSize = true;
+            this.pol_3Fras.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pol_3Fras.Location = new System.Drawing.Point(113, 35);
+            this.pol_3Fras.Name = "pol_3Fras";
+            this.pol_3Fras.Size = new System.Drawing.Size(81, 21);
+            this.pol_3Fras.TabIndex = 1;
+            this.pol_3Fras.TabStop = true;
+            this.pol_3Fras.Text = "3 Frascos";
+            this.pol_3Fras.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // pol_2Fras
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton4.Location = new System.Drawing.Point(6, 35);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(59, 21);
-            this.radioButton4.TabIndex = 0;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "PolitA";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.pol_2Fras.AutoSize = true;
+            this.pol_2Fras.Checked = true;
+            this.pol_2Fras.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pol_2Fras.Location = new System.Drawing.Point(6, 35);
+            this.pol_2Fras.Name = "pol_2Fras";
+            this.pol_2Fras.Size = new System.Drawing.Size(81, 21);
+            this.pol_2Fras.TabIndex = 0;
+            this.pol_2Fras.TabStop = true;
+            this.pol_2Fras.Text = "2 Frascos";
+            this.pol_2Fras.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.radioButton1);
-            this.groupBox5.Controls.Add(this.radioButton2);
+            this.groupBox5.Controls.Add(this.pol_3dias);
+            this.groupBox5.Controls.Add(this.pol_2dias);
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(997, 19);
+            this.groupBox5.Location = new System.Drawing.Point(579, 15);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(168, 71);
+            this.groupBox5.Size = new System.Drawing.Size(248, 71);
             this.groupBox5.TabIndex = 106;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Politicas periodo de compras";
             // 
-            // radioButton1
+            // pol_3dias
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(71, 35);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(58, 21);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "PolitB";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.pol_3dias.AutoSize = true;
+            this.pol_3dias.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pol_3dias.Location = new System.Drawing.Point(113, 35);
+            this.pol_3dias.Name = "pol_3dias";
+            this.pol_3dias.Size = new System.Drawing.Size(61, 21);
+            this.pol_3dias.TabIndex = 1;
+            this.pol_3dias.Text = "3 días";
+            this.pol_3dias.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // pol_2dias
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(6, 35);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(59, 21);
-            this.radioButton2.TabIndex = 0;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "PolitA";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            this.label11.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label11.Location = new System.Drawing.Point(1323, 53);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(155, 30);
-            this.label11.TabIndex = 105;
-            this.label11.Text = "3 días";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label12
-            // 
-            this.label12.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label12.Location = new System.Drawing.Point(1323, 15);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(155, 41);
-            this.label12.TabIndex = 104;
-            this.label12.Text = "Politica B";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            this.label13.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label13.Location = new System.Drawing.Point(1171, 53);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(155, 30);
-            this.label13.TabIndex = 103;
-            this.label13.Text = "2 días";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label14
-            // 
-            this.label14.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label14.Location = new System.Drawing.Point(1171, 15);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(155, 41);
-            this.label14.TabIndex = 102;
-            this.label14.Text = "Politica A";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pol_2dias.AutoSize = true;
+            this.pol_2dias.Checked = true;
+            this.pol_2dias.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pol_2dias.Location = new System.Drawing.Point(26, 35);
+            this.pol_2dias.Name = "pol_2dias";
+            this.pol_2dias.Size = new System.Drawing.Size(61, 21);
+            this.pol_2dias.TabIndex = 0;
+            this.pol_2dias.TabStop = true;
+            this.pol_2dias.Text = "2 días";
+            this.pol_2dias.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -558,23 +404,11 @@
             this.ClientSize = new System.Drawing.Size(1687, 902);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.lbl_resultados_D);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label14);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lbl_resultados);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.lbl_reservaciones);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgv_simulacion);
             this.Controls.Add(this.txt_cantDias);
@@ -606,16 +440,8 @@
         private System.Windows.Forms.Button btn_generarSimulacion;
         private System.Windows.Forms.DataGridView dgv_simulacion;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rb_Pb1;
-        private System.Windows.Forms.RadioButton rb_Pa;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lbl_reservaciones;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RadioButton pol_20fras;
+        private System.Windows.Forms.RadioButton pol_10Fras;
         private System.Windows.Forms.Label lbl_resultados;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txt_hasta;
@@ -634,15 +460,11 @@
         private System.Windows.Forms.TextBox txt_gramosFrasco;
         private System.Windows.Forms.Label lbl_resultados_D;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton pol_3Fras;
+        private System.Windows.Forms.RadioButton pol_2Fras;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.RadioButton pol_3dias;
+        private System.Windows.Forms.RadioButton pol_2dias;
     }
 }
 
