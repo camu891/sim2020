@@ -58,17 +58,29 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.pol_3dias = new System.Windows.Forms.RadioButton();
             this.pol_2dias = new System.Windows.Forms.RadioButton();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtM = new System.Windows.Forms.TextBox();
+            this.txtC = new System.Windows.Forms.TextBox();
+            this.txtA = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtX = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.pol_Congr = new System.Windows.Forms.RadioButton();
+            this.pol_Leng = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_cantDias
             // 
-            this.txt_cantDias.Location = new System.Drawing.Point(300, 133);
+            this.txt_cantDias.Location = new System.Drawing.Point(683, 116);
             this.txt_cantDias.Name = "txt_cantDias";
             this.txt_cantDias.Size = new System.Drawing.Size(140, 20);
             this.txt_cantDias.TabIndex = 19;
@@ -77,7 +89,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(208, 136);
+            this.label7.Location = new System.Drawing.Point(591, 119);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 13);
             this.label7.TabIndex = 18;
@@ -86,7 +98,7 @@
             // btn_generarSimulacion
             // 
             this.btn_generarSimulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_generarSimulacion.Location = new System.Drawing.Point(211, 167);
+            this.btn_generarSimulacion.Location = new System.Drawing.Point(594, 150);
             this.btn_generarSimulacion.Name = "btn_generarSimulacion";
             this.btn_generarSimulacion.Size = new System.Drawing.Size(313, 28);
             this.btn_generarSimulacion.TabIndex = 17;
@@ -235,7 +247,7 @@
             this.groupBox3.Controls.Add(this.label55);
             this.groupBox3.Controls.Add(this.txt_precVenta);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(804, 107);
+            this.groupBox3.Location = new System.Drawing.Point(936, 15);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(422, 106);
             this.groupBox3.TabIndex = 98;
@@ -307,7 +319,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(646, 136);
+            this.button1.Location = new System.Drawing.Point(1055, 136);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 23);
             this.button1.TabIndex = 99;
@@ -397,11 +409,133 @@
             this.pol_2dias.Text = "2 días";
             this.pol_2dias.UseVisualStyleBackColor = true;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label4);
+            this.groupBox6.Controls.Add(this.label3);
+            this.groupBox6.Controls.Add(this.txtM);
+            this.groupBox6.Controls.Add(this.txtC);
+            this.groupBox6.Controls.Add(this.txtA);
+            this.groupBox6.Controls.Add(this.label5);
+            this.groupBox6.Controls.Add(this.txtX);
+            this.groupBox6.Controls.Add(this.label6);
+            this.groupBox6.Controls.Add(this.pol_Congr);
+            this.groupBox6.Controls.Add(this.pol_Leng);
+            this.groupBox6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox6.Location = new System.Drawing.Point(234, 98);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(320, 115);
+            this.groupBox6.TabIndex = 107;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Tipo de randoms";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(196, 74);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(20, 17);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "m";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(149, 74);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(14, 17);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "c";
+            // 
+            // txtM
+            // 
+            this.txtM.Location = new System.Drawing.Point(217, 71);
+            this.txtM.Margin = new System.Windows.Forms.Padding(2);
+            this.txtM.Name = "txtM";
+            this.txtM.Size = new System.Drawing.Size(27, 25);
+            this.txtM.TabIndex = 16;
+            this.txtM.Text = "101";
+            // 
+            // txtC
+            // 
+            this.txtC.Location = new System.Drawing.Point(165, 71);
+            this.txtC.Margin = new System.Windows.Forms.Padding(2);
+            this.txtC.Name = "txtC";
+            this.txtC.Size = new System.Drawing.Size(27, 25);
+            this.txtC.TabIndex = 15;
+            this.txtC.Text = "43";
+            // 
+            // txtA
+            // 
+            this.txtA.Location = new System.Drawing.Point(119, 71);
+            this.txtA.Margin = new System.Windows.Forms.Padding(2);
+            this.txtA.Name = "txtA";
+            this.txtA.Size = new System.Drawing.Size(27, 25);
+            this.txtA.TabIndex = 14;
+            this.txtA.Text = "13";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(102, 74);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(15, 17);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "a";
+            // 
+            // txtX
+            // 
+            this.txtX.Location = new System.Drawing.Point(71, 71);
+            this.txtX.Margin = new System.Windows.Forms.Padding(2);
+            this.txtX.Name = "txtX";
+            this.txtX.Size = new System.Drawing.Size(27, 25);
+            this.txtX.TabIndex = 12;
+            this.txtX.Text = "37";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(56, 74);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(15, 17);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "x";
+            // 
+            // pol_Congr
+            // 
+            this.pol_Congr.AutoSize = true;
+            this.pol_Congr.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pol_Congr.Location = new System.Drawing.Point(165, 34);
+            this.pol_Congr.Name = "pol_Congr";
+            this.pol_Congr.Size = new System.Drawing.Size(102, 21);
+            this.pol_Congr.TabIndex = 3;
+            this.pol_Congr.TabStop = true;
+            this.pol_Congr.Text = "Congruencial";
+            this.pol_Congr.UseVisualStyleBackColor = true;
+            // 
+            // pol_Leng
+            // 
+            this.pol_Leng.AutoSize = true;
+            this.pol_Leng.Checked = true;
+            this.pol_Leng.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pol_Leng.Location = new System.Drawing.Point(17, 34);
+            this.pol_Leng.Name = "pol_Leng";
+            this.pol_Leng.Size = new System.Drawing.Size(95, 21);
+            this.pol_Leng.TabIndex = 2;
+            this.pol_Leng.TabStop = true;
+            this.pol_Leng.Text = "De lenguaje";
+            this.pol_Leng.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1687, 902);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.lbl_resultados_D);
@@ -428,6 +562,8 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -465,6 +601,17 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RadioButton pol_3dias;
         private System.Windows.Forms.RadioButton pol_2dias;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtM;
+        private System.Windows.Forms.TextBox txtC;
+        private System.Windows.Forms.TextBox txtA;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtX;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.RadioButton pol_Congr;
+        private System.Windows.Forms.RadioButton pol_Leng;
     }
 }
 

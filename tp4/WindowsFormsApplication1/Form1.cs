@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
@@ -39,6 +42,11 @@ namespace WindowsFormsApplication1
         double precioVenta = 0;
         double gramosxFrasco = 0;
         double horasxTurno = 0;
+
+        //generador
+        private Generador generador;
+        List<NroRandom> lst= new List<NroRandom>();
+        NroRandom rnd;
 
         public Form1()
         {
@@ -150,9 +158,14 @@ namespace WindowsFormsApplication1
             double diaLlegadaPedido = 0;
             DataTable dt = getColumnName();
             Random RND = new Random();
-
+            //variab auxiliar para los randoms congruenciales
+            int aux = 0;
             // Inicio Fila 0 (cero)
+           
+
             double RNDDem0 = Math.Round(RND.NextDouble(), 4);
+            
+            
             demoraEntregaPedido(RNDDem0);
             costoCompra = cantComprada * precioCompra;
             if (demora == 0)
@@ -181,7 +194,53 @@ namespace WindowsFormsApplication1
                 {
                     actualizarStock();
                 }
-                double RNDDem = Math.Round(RND.NextDouble(), 4);
+                
+                double RNDDem = 0;
+                double RNDConMa = 0;
+                double RNDConTa = 0;
+
+                if (pol_Leng.Checked)
+                {
+                    RNDDem = Math.Round(RND.NextDouble(), 4);
+                    RNDConMa = Math.Round(RND.NextDouble(), 4);
+                    RNDConTa = Math.Round(RND.NextDouble(), 4);
+                }
+                else
+                {
+                    if (aux == 0)
+                    {
+                        generador = new Generador(int.Parse(txtA.Text), int.Parse(txtC.Text), int.Parse(txtM.Text));
+                        rnd = generador.mixto(int.Parse(txtX.Text));
+                        rnd.Posicion = lst.Count + 1;
+                        lst.Add(rnd);
+                        RNDDem  = Math.Round(rnd.Random, 4);
+                        rnd = generador.mixto(lst.Last().Siguiente);
+                        rnd.Posicion = lst.Count + 1;
+                        lst.Add(rnd);
+                        RNDConMa = Math.Round(rnd.Random, 4);
+                        rnd = generador.mixto(lst.Last().Siguiente);
+                        rnd.Posicion = lst.Count + 1;
+                        lst.Add(rnd);
+                        RNDConTa = Math.Round(rnd.Random, 4);
+                        aux = 1;
+                    }
+                    else
+                    {
+                        rnd = generador.mixto(lst.Last().Siguiente);
+                        rnd.Posicion = lst.Count + 1;
+                        lst.Add(rnd);
+                        RNDDem = Math.Round(rnd.Random, 4);
+                        rnd = generador.mixto(lst.Last().Siguiente);
+                        rnd.Posicion = lst.Count + 1;
+                        lst.Add(rnd);
+                        RNDConMa = Math.Round(rnd.Random, 4);
+                        rnd = generador.mixto(lst.Last().Siguiente);
+                        rnd.Posicion = lst.Count + 1;
+                        lst.Add(rnd);
+                        RNDConTa = Math.Round(rnd.Random, 4);
+                    }
+
+                }
                 Boolean sepide = false;
                 if (i % cadaCuantoComprar == 0)
                 {
@@ -198,8 +257,8 @@ namespace WindowsFormsApplication1
                     }
                 }
 
-                double RNDConMa = Math.Round(RND.NextDouble(), 4);
-                double RNDConTa = Math.Round(RND.NextDouble(), 4);
+               
+                
                 calcularConsumoMañana(RNDConMa);
                 calcularConsumoTarde(RNDConTa);
                 calcularVentaMañana();

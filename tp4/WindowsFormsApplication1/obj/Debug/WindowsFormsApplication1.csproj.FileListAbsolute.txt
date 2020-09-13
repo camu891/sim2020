@@ -44,3 +44,13 @@ D:\Sim2020\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplicatio
 D:\Sim2020\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.CoreCompileInputs.cache
 D:\Sim2020\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 D:\Sim2020\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.cache
+C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.CoreCompileInputs.cache
+C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojAssemblyReference.cache
+C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
