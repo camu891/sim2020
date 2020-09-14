@@ -51,7 +51,6 @@
             this.txt_precCompra = new System.Windows.Forms.TextBox();
             this.label56 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.lbl_resultados_D = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.pol_3Fras = new System.Windows.Forms.RadioButton();
             this.pol_2Fras = new System.Windows.Forms.RadioButton();
@@ -75,6 +74,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.lbl_Resultados2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -161,9 +161,10 @@
             // 
             // lbl_resultados
             // 
-            this.lbl_resultados.Location = new System.Drawing.Point(12, 784);
+            this.lbl_resultados.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_resultados.Location = new System.Drawing.Point(12, 762);
             this.lbl_resultados.Name = "lbl_resultados";
-            this.lbl_resultados.Size = new System.Drawing.Size(1612, 38);
+            this.lbl_resultados.Size = new System.Drawing.Size(476, 99);
             this.lbl_resultados.TabIndex = 32;
             this.lbl_resultados.Text = "Resultados";
             this.lbl_resultados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -333,15 +334,6 @@
             this.button1.Text = "Habilitar Precios";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // lbl_resultados_D
-            // 
-            this.lbl_resultados_D.Location = new System.Drawing.Point(12, 835);
-            this.lbl_resultados_D.Name = "lbl_resultados_D";
-            this.lbl_resultados_D.Size = new System.Drawing.Size(1593, 38);
-            this.lbl_resultados_D.TabIndex = 100;
-            this.lbl_resultados_D.Text = "Resultados";
-            this.lbl_resultados_D.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBox4
             // 
@@ -602,17 +594,26 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // lbl_Resultados2
+            // 
+            this.lbl_Resultados2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Resultados2.Location = new System.Drawing.Point(524, 762);
+            this.lbl_Resultados2.Name = "lbl_Resultados2";
+            this.lbl_Resultados2.Size = new System.Drawing.Size(480, 99);
+            this.lbl_Resultados2.TabIndex = 109;
+            this.lbl_Resultados2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // TP4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1861, 932);
+            this.Controls.Add(this.lbl_Resultados2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Integrantes);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.lbl_resultados_D);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -670,7 +671,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.TextBox txt_gramosFrasco;
-        private System.Windows.Forms.Label lbl_resultados_D;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.RadioButton pol_3Fras;
         private System.Windows.Forms.RadioButton pol_2Fras;
@@ -694,6 +694,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lbl_Resultados2;
     }
 }
 

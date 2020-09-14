@@ -42,6 +42,7 @@ namespace WindowsFormsApplication1
         double cantdiasFaltante = 0;
         double gananciaTotal = 0;
         double costoFaltanteDia = 0;
+        double ingresoProm = 0;
 
         // datos parametrizados
         double cantComprada = 0;
@@ -312,6 +313,9 @@ namespace WindowsFormsApplication1
                 if (stockGr > 0)
                 { cantdiasconstock ++; }
 
+                //ingreso promedio
+                ingresoProm = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * ingresoProm + ingresoMañana + ingresoTarde), 2);
+
                 if (i >= desde && i <= hasta)
                 {
                     DataRow dr = dt.NewRow();
@@ -340,31 +344,39 @@ namespace WindowsFormsApplication1
                     dr["Prom Cant Cafe almacen Gr"] = promCantGr;
                     dr["Prom Cant Cafe almacen Frascos"] = promCantFrasco;
                     dr["Prom Cant faltante Gr"] = promCantFaltante;
-                    //*dr["Ingreso Prom"] = "";
+                    dr["Ingreso Prom"] = ingresoProm;
                     dr["Beneficio Diario"] = gananciaDiaria;
                     dr["Beneficio Prom"] = gananciaPromedio;
                     dr["Cant dias con faltantes"] = cantdiasFaltante;
-                    dr["% dias con faltantes"] = Math.Round(cantdiasFaltante / Convert.ToDouble(i) * 100, 2);
+                    dr["% dias con faltantes"] = Math.Round(cantdiasFaltante / Convert.ToDouble(i), 2) * 100;
                     dr["cant sobrante <2"] = cantdiasfrascos2;
-                    dr["% sobrante <2"] = Math.Round(cantdiasfrascos2 / Convert.ToDouble(i) * 100, 2);
+                    dr["% sobrante <2"] = Math.Round(cantdiasfrascos2 / Convert.ToDouble(i), 2) * 100;
                     dr["cant sobrante 2<x<5"] = cantdiasfrascos5;
-                    dr["% sobrante 2<x<5"] = Math.Round(cantdiasfrascos5 / Convert.ToDouble(i) * 100, 2);
+                    dr["% sobrante 2<x<5"] = Math.Round(cantdiasfrascos5 / Convert.ToDouble(i), 2) * 100;
                     dr["cant sobrante 5<x<8"] = cantdiasfrascos8;
-                    dr["% sobrante 5<x<8"] = Math.Round(cantdiasfrascos8 / Convert.ToDouble(i) * 100, 2);
+                    dr["% sobrante 5<x<8"] = Math.Round(cantdiasfrascos8 / Convert.ToDouble(i), 2) * 100;
                     dr["cant sobrante >8"] = cantdiasfrascos9;
-                    dr["% sobrante >8"] = Math.Round(cantdiasfrascos9 / Convert.ToDouble(i) * 100, 2);
+                    dr["% sobrante >8"] = Math.Round(cantdiasfrascos9 / Convert.ToDouble(i), 2) * 100;
                     dt.Rows.Add(dr);
                     
                 }
                 costoCompra = 0;
             }
 
-            lbl_resultados.Text = "Promedio Gcia:" + gananciaPromedio + "; Promedio de cafe faltante: " + promCantFaltante + 
-                " gr" + ", Promedio de cafe Almacenado: " + promCantGr + " gr, Frascos equivalentes " + Math.Round(promCantGr / gramosxFrasco, 2);
-            lbl_resultados_D.Text = "% Dias con stock " + Math.Round(cantdiasconstock / cantDias * 100, 2) + "; % dias faltante :" + 
-                Math.Round(cantdiasFaltante / cantDias * 100, 2) + "; % Frascos < 2: " + Math.Round(cantdiasfrascos2 / cantDias * 100, 2) + 
-                "; % Frascos (3-5) :" + Math.Round(cantdiasfrascos5 / cantDias * 100, 2) + "; % Frascos (>8) :" + Math.Round(cantdiasfrascos9 / cantDias * 100, 2) + 
-                "; % Frascos (3-5) :" + Math.Round(cantdiasfrascos5 / cantDias * 100, 2) + "; Porcentaje de horas perdidas: " + porcHorasPerd + " hs";
+            lbl_resultados.Text =
+                "-Promedio Cafe almacenado: " + promCantGr + " gr /" + Math.Round(promCantGr / gramosxFrasco, 2) + " frascos \n" +
+                "-Ingreso Promedio diario: $ " + ingresoProm + "\n" +
+                "-Porcentaje dias con faltante: " + Math.Round(cantdiasFaltante / cantDias, 2) * 100 + " %" + "\n" +
+                "-Porcentaje dias con (2-5) de Frascos: " + Math.Round(cantdiasfrascos5 / cantDias, 2) * 100 + " %" + "\n" +
+                "-Porcentaje dias con mas de 8 Frascos: " + Math.Round(cantdiasfrascos9 / cantDias, 2) * 100 + " %";
+            
+            lbl_Resultados2.Text =
+                "-Promedio de cafe faltante: " + promCantFaltante + " gr" + "\n" +
+                "-Promedio diario del beneficio del cafe vendido: $" + gananciaPromedio + "\n" +
+                "-Porcentaje dias con menos de 2 Frascos: " + Math.Round(cantdiasfrascos2 / cantDias, 2) * 100 + " %" + "\n" +
+                "-Porcentaje dias con (5-8) de Frascos: " + Math.Round(cantdiasfrascos8 / cantDias, 2) * 100 + " %" + "\n" +
+                "-Porcentaje de horas perdidas: " + porcHorasPerd + " hs";
+
 
             this.dgv_simulacion.DataSource = dt;
             //this.colorColumnas();
@@ -528,6 +540,7 @@ namespace WindowsFormsApplication1
             cantdiasfrascos5 = 0;
             cantdiasfrascos8 = 0;
             cantdiasfrascos9 = 0;
+            ingresoProm = 0;
         }
 
         private void colorColumnas()
@@ -695,7 +708,7 @@ namespace WindowsFormsApplication1
             dt.Columns.Add("Prom Cant Cafe almacen Gr");
             dt.Columns.Add("Prom Cant Cafe almacen Frascos");
             dt.Columns.Add("Prom Cant faltante Gr");
-            //dt.Columns.Add("Ingreso Prom");
+            dt.Columns.Add("Ingreso Prom");
             dt.Columns.Add("Beneficio Diario");
             dt.Columns.Add("Beneficio Prom");
             dt.Columns.Add("Cant dias con faltantes");
