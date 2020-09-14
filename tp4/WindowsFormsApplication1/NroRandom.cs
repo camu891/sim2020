@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1
 {
-    class NroRandom
+    public class NroRandom
     {
         private int semilla;
         private int siguiente;

@@ -703,6 +703,12 @@ namespace WindowsFormsApplication1
             dt.Columns.Add("% sobrante >8");
             return dt;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+            new Form2(lst).Show();
+        }
     }
 }
 

@@ -74,6 +74,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -438,7 +439,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(196, 74);
+            this.label4.Location = new System.Drawing.Point(186, 72);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(20, 17);
@@ -448,7 +449,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(149, 74);
+            this.label3.Location = new System.Drawing.Point(139, 72);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(14, 17);
@@ -457,7 +458,7 @@
             // 
             // txtM
             // 
-            this.txtM.Location = new System.Drawing.Point(217, 71);
+            this.txtM.Location = new System.Drawing.Point(207, 69);
             this.txtM.Margin = new System.Windows.Forms.Padding(2);
             this.txtM.Name = "txtM";
             this.txtM.Size = new System.Drawing.Size(27, 25);
@@ -466,7 +467,7 @@
             // 
             // txtC
             // 
-            this.txtC.Location = new System.Drawing.Point(165, 71);
+            this.txtC.Location = new System.Drawing.Point(155, 69);
             this.txtC.Margin = new System.Windows.Forms.Padding(2);
             this.txtC.Name = "txtC";
             this.txtC.Size = new System.Drawing.Size(27, 25);
@@ -475,7 +476,7 @@
             // 
             // txtA
             // 
-            this.txtA.Location = new System.Drawing.Point(119, 71);
+            this.txtA.Location = new System.Drawing.Point(109, 69);
             this.txtA.Margin = new System.Windows.Forms.Padding(2);
             this.txtA.Name = "txtA";
             this.txtA.Size = new System.Drawing.Size(27, 25);
@@ -485,7 +486,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(102, 74);
+            this.label5.Location = new System.Drawing.Point(92, 72);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(15, 17);
@@ -494,7 +495,7 @@
             // 
             // txtX
             // 
-            this.txtX.Location = new System.Drawing.Point(71, 71);
+            this.txtX.Location = new System.Drawing.Point(61, 69);
             this.txtX.Margin = new System.Windows.Forms.Padding(2);
             this.txtX.Name = "txtX";
             this.txtX.Size = new System.Drawing.Size(27, 25);
@@ -504,7 +505,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(56, 74);
+            this.label6.Location = new System.Drawing.Point(46, 72);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(15, 17);
@@ -591,11 +592,22 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "Camusso Matias - 58227";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(707, 190);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(85, 23);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "Mostrar Rnds";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // TP4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1678, 947);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.Integrantes);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
@@ -681,6 +693,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button2;
     }
 }
 
