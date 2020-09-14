@@ -55,3 +55,4 @@ C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\obj\Debug\Windows
 D:\Sim2020\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.TP4.resources
 C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.TP4.resources
 C:\Users\note\Desktop\tp4\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form2.resources
+D:\Sim2020\sim2020\tp4\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form2.resources

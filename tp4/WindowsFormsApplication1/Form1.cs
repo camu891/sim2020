@@ -302,20 +302,8 @@ namespace WindowsFormsApplication1
                 calcularVentaTarde();
                 costoYAcuFaltante();
                 calcularHorasPerdidas(i);
-                //calcularPromediosAlamcen(i);
-
-                // obtener la ganancia diaria, segun lo que obtuve de costos y ganancias
-                costoFaltanteDia = (cantFaltaMañana + cantFaltaTarde) * 1;
-                gananciaDiaria = ingresoMañana + ingresoTarde - costoCompra - costoFaltanteDia;
-                gananciaDiaria = Math.Round(gananciaDiaria, 2);
-                // se calcula ganacia total y promedio.
-                gananciaTotal += gananciaDiaria;
-                gananciaPromedio = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * gananciaPromedio + gananciaDiaria), 2);
-
-                //promedio cantidad faltante
-                promCantFaltante = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * promCantFaltante + cantFaltaTarde + cantFaltaMañana), 2);
-
-                promCantGr = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * promCantGr + stockGr), 2);
+                calcularPromediosAlamcen(i);
+                calcularBeneficios(i);
 
                 //acumulo días faltantes
                 if (costoFaltanteDia > 0)
@@ -481,9 +469,28 @@ namespace WindowsFormsApplication1
 
         public void calcularPromediosAlamcen(int i)
         {
+            /**
             promCantGr = Math.Round(stockGrAcu / i, 4);
             promCantFrasco = Math.Round(stockFrascosAcu / i, 4);
             promCantFaltante = Math.Round(cantFaltanteAcu / i, 4);
+            */
+
+            //promedio cantidad faltante
+            promCantFaltante = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * promCantFaltante + cantFaltaTarde + cantFaltaMañana), 2);
+
+            promCantGr = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * promCantGr + stockGr), 2);
+        }
+
+        public void calcularBeneficios(int i)
+        {
+            // obtener la ganancia diaria, segun lo que obtuve de costos y ganancias
+            costoFaltanteDia = (cantFaltaMañana + cantFaltaTarde) * 1;
+            double costoXVentas = Math.Round((ventaMañana + ventaTarde) * precioCompra/gramosxFrasco, 2);
+            gananciaDiaria = ingresoMañana + ingresoTarde - costoFaltanteDia - costoXVentas;
+            gananciaDiaria = Math.Round(gananciaDiaria, 2);
+            // se calcula ganacia total y promedio.
+            gananciaTotal += gananciaDiaria;
+            gananciaPromedio = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * gananciaPromedio + gananciaDiaria), 2);
         }
 
         public void limpiarDatos()
