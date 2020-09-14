@@ -429,22 +429,22 @@ namespace WindowsFormsApplication1
             stockGrAcu += stockGr;
             stockFrascos = Math.Round(stockGr / gramosxFrasco, 0);
             if (stockFrascos * gramosxFrasco < stockGr)
-            { stockFrascos += 1; }
+            { stockFrascos ++; }
+            stockFrascosAcu += stockFrascos;
 
             if (stockFrascos < 3)
-            { cantdiasfrascos2 += 1; }
+            { cantdiasfrascos2 ++; }
             else
             {
                 if (stockFrascos < 6)
-                { cantdiasfrascos5 += 1; }
+                { cantdiasfrascos5 ++; }
                 else
                 {
                     if (stockFrascos < 9)
-                    { cantdiasfrascos8 += 1; }
-                    else { cantdiasfrascos9 += 1; }
+                    { cantdiasfrascos8 ++; }
+                    else { cantdiasfrascos9 ++; }
                 }
             }
-            stockFrascosAcu += stockFrascos;
         }
 
         public void actualizarStock()
@@ -525,14 +525,14 @@ namespace WindowsFormsApplication1
 
         private void colorColumnas()
         {
-            Color ptoD = Color.LightGreen;
+            Color verde = Color.LightGreen;
 
-            dgv_simulacion.Columns[19].DefaultCellStyle.BackColor = ptoD;
-            dgv_simulacion.Columns[20].DefaultCellStyle.BackColor = ptoD;
-            dgv_simulacion.Columns[21].DefaultCellStyle.BackColor = ptoD;
-            dgv_simulacion.Columns[22].DefaultCellStyle.BackColor = ptoD;
-            dgv_simulacion.Columns[23].DefaultCellStyle.BackColor = ptoD;
-            dgv_simulacion.Columns[24].DefaultCellStyle.BackColor = ptoD;
+            dgv_simulacion.Columns[19].DefaultCellStyle.BackColor = verde;
+            dgv_simulacion.Columns[20].DefaultCellStyle.BackColor = verde;
+            dgv_simulacion.Columns[21].DefaultCellStyle.BackColor = verde;
+            dgv_simulacion.Columns[22].DefaultCellStyle.BackColor = verde;
+            dgv_simulacion.Columns[23].DefaultCellStyle.BackColor = verde;
+            dgv_simulacion.Columns[24].DefaultCellStyle.BackColor = verde;
         }
 
         public bool controlDatos()
