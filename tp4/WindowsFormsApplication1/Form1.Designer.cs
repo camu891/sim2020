@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class Form1
+    partial class TP4
     {
         /// <summary>
         /// Variable del diseñador requerida.
@@ -69,6 +69,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.pol_Congr = new System.Windows.Forms.RadioButton();
             this.pol_Leng = new System.Windows.Forms.RadioButton();
+            this.Integrantes = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -76,6 +81,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.Integrantes.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_cantDias
@@ -112,7 +118,7 @@
             this.dgv_simulacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_simulacion.Location = new System.Drawing.Point(12, 237);
             this.dgv_simulacion.Name = "dgv_simulacion";
-            this.dgv_simulacion.Size = new System.Drawing.Size(1612, 509);
+            this.dgv_simulacion.Size = new System.Drawing.Size(1612, 506);
             this.dgv_simulacion.TabIndex = 20;
             // 
             // groupBox1
@@ -158,7 +164,7 @@
             this.lbl_resultados.Name = "lbl_resultados";
             this.lbl_resultados.Size = new System.Drawing.Size(766, 38);
             this.lbl_resultados.TabIndex = 32;
-            this.lbl_resultados.Text = "Resultados de la simulación politica elegida";
+            this.lbl_resultados.Text = "Resultados";
             this.lbl_resultados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBox2
@@ -252,7 +258,7 @@
             this.groupBox3.Size = new System.Drawing.Size(422, 106);
             this.groupBox3.TabIndex = 98;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Precios por cada rosa";
+            this.groupBox3.Text = "Precios";
             // 
             // label58
             // 
@@ -333,7 +339,7 @@
             this.lbl_resultados_D.Name = "lbl_resultados_D";
             this.lbl_resultados_D.Size = new System.Drawing.Size(766, 38);
             this.lbl_resultados_D.TabIndex = 100;
-            this.lbl_resultados_D.Text = "Resultados de la simulación pto d";
+            this.lbl_resultados_D.Text = "Resultados";
             this.lbl_resultados_D.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBox4
@@ -530,11 +536,67 @@
             this.pol_Leng.Text = "De lenguaje";
             this.pol_Leng.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // Integrantes
+            // 
+            this.Integrantes.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Integrantes.Controls.Add(this.label1);
+            this.Integrantes.Controls.Add(this.label11);
+            this.Integrantes.Controls.Add(this.label12);
+            this.Integrantes.Controls.Add(this.label13);
+            this.Integrantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Integrantes.Location = new System.Drawing.Point(234, 876);
+            this.Integrantes.Name = "Integrantes";
+            this.Integrantes.Size = new System.Drawing.Size(689, 53);
+            this.Integrantes.TabIndex = 108;
+            this.Integrantes.TabStop = false;
+            this.Integrantes.Text = "Grupo R";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(177, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(148, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Carlesso Nicolas - 58326";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(347, 27);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(148, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Gordillo Gustavo - 16077";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(523, 27);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(145, 13);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Chavez Marcelo - 49904";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(7, 27);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(145, 13);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Camusso Matias - 58227";
+            // 
+            // TP4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1678, 947);
+            this.Controls.Add(this.Integrantes);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -548,8 +610,8 @@
             this.Controls.Add(this.txt_cantDias);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btn_generarSimulacion);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "TP4";
+            this.Text = "TP 4";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -564,6 +626,8 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.Integrantes.ResumeLayout(false);
+            this.Integrantes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -612,6 +676,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RadioButton pol_Congr;
         private System.Windows.Forms.RadioButton pol_Leng;
+        private System.Windows.Forms.GroupBox Integrantes;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }
 

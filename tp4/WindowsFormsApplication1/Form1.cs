@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Form1 : Form
+    public partial class TP4 : Form
     {
         double desde = 0;
         double hasta = 0;
@@ -48,7 +48,7 @@ namespace WindowsFormsApplication1
         List<NroRandom> lst= new List<NroRandom>();
         NroRandom rnd;
 
-        public Form1()
+        public TP4()
         {
             InitializeComponent();
         }
@@ -99,7 +99,7 @@ namespace WindowsFormsApplication1
                 demora = 1;
                 return;
             }
-            if (RND >= 0.75 && RND < 1)
+            if (RND >= 0.75)
             {
                 demora = 2;
                 return;
@@ -118,7 +118,7 @@ namespace WindowsFormsApplication1
             else
             {
                 //TODO aplicar formula correcta
-                consumoMañana = 60+(RND *30);
+                consumoMañana = Math.Round(60 +(RND *30), 4);
                 return;
             }
 
@@ -126,7 +126,14 @@ namespace WindowsFormsApplication1
 
         private void calcularConsumoTarde(double RND)
         {
-            consumoTarde = -70 * (Math.Log(1 - RND));
+            if (RND == 1)
+            {
+                consumoTarde = Math.Round(-70 * (Math.Log(1 - 0.9999)), 4);
+            }
+            else
+            {
+                consumoTarde = Math.Round(-70 * (Math.Log(1 - RND)), 4);
+            }
 
         }
 
@@ -162,10 +169,32 @@ namespace WindowsFormsApplication1
             int aux = 0;
             // Inicio Fila 0 (cero)
            
+            double RNDDem0 = 0;
+            if (pol_Leng.Checked)
+            {
+                RNDDem0 = Math.Round(RND.NextDouble(), 4);
+            }
+            else
+            {
+                if (aux == 0)
+                {
+                    generador = new Generador(int.Parse(txtA.Text), int.Parse(txtC.Text), int.Parse(txtM.Text));
+                    rnd = generador.mixto(int.Parse(txtX.Text));
+                    rnd.Posicion = lst.Count + 1;
+                    lst.Add(rnd);
+                    RNDDem0 = Math.Round(rnd.Random, 4);
+                    aux = 1;
+                }
+                else
+                {
+                    rnd = generador.mixto(lst.Last().Siguiente);
+                    rnd.Posicion = lst.Count + 1;
+                    lst.Add(rnd);
+                    RNDDem0 = Math.Round(rnd.Random, 4);
+                }
 
-            double RNDDem0 = Math.Round(RND.NextDouble(), 4);
-            
-            
+            }
+
             demoraEntregaPedido(RNDDem0);
             costoCompra = cantComprada * precioCompra;
             if (demora == 0)
@@ -297,7 +326,7 @@ namespace WindowsFormsApplication1
                     dr["Prom Cant Cafe almacen Frascos"] = promCantFrasco;
                     dr["Prom Cant faltante Gr"] = promCantFaltante;
                     //TODO columnas faltantes
-                    dr["Ingreso Prom"] = "";
+                    /*dr["Ingreso Prom"] = "";
                     dr["Beneficio Diario"] = "";
                     dr["Beneficio Prom"] = "";
                     dr["Cant dias con faltantes"] = "";
@@ -310,16 +339,18 @@ namespace WindowsFormsApplication1
                     dr["% sobrante 5<x<8"] = "";
                     dr["cant sobrante >8"] = "";
                     dr["% sobrante >8"] = "";
+                    */
                     dt.Rows.Add(dr);
+                    
                 }
-
+                costoCompra = 0;
             }
            
             lbl_resultados.Text = "Promedio de cafe faltante: " + promCantFaltante + " gr" + ", Promedio de cafe Almacenado: " + promCantFrasco + " frascos";
             lbl_resultados_D.Text = "Porcentaje de horas perdidas: " + porcHorasPerd + " hs";
 
             this.dgv_simulacion.DataSource = dt;
-            this.colorColumnas();
+            //this.colorColumnas();
         }
 
         public void calcularVentaMañana()
@@ -327,15 +358,15 @@ namespace WindowsFormsApplication1
             if (stockGr >= consumoMañana)
             {
                 ventaMañana = consumoMañana;
-                ingresoMañana = Math.Round(consumoMañana * precioVenta, 3);
+                ingresoMañana = Math.Round(consumoMañana * precioVenta, 4);
                 stockGr = stockGr - consumoMañana;
-                stockFrascos = Math.Round(stockGr /gramosxFrasco, 3);
+                stockFrascos = Math.Round(stockGr /gramosxFrasco, 4);
             }
             else
             {
-                cantFaltaMañana = consumoMañana - stockGr;
+                cantFaltaMañana = Math.Round(consumoMañana - stockGr, 4);
                 ventaMañana = stockGr;
-                ingresoMañana = Math.Round(stockGr * precioVenta, 3);
+                ingresoMañana = Math.Round(stockGr * precioVenta, 4);
                 stockGr = 0;
                 stockFrascos = 0;
             }
@@ -346,17 +377,17 @@ namespace WindowsFormsApplication1
             if (stockGr >= consumoTarde)
             {
                 ventaTarde = consumoTarde;
-                ingresoTarde = Math.Round(consumoTarde * precioVenta, 3);
-                stockGr = stockGr - consumoTarde;
-                stockFrascos = stockGr / gramosxFrasco;
+                ingresoTarde = Math.Round(consumoTarde * precioVenta, 4);
+                stockGr = Math.Round(stockGr - consumoTarde, 4);
+                stockFrascos = Math.Round(stockGr / gramosxFrasco, 4);
                 stockGrAcu += stockGr;
                 stockFrascosAcu += stockFrascos;
             }
             else
             {
-                cantFaltaTarde = consumoTarde - stockGr;
+                cantFaltaTarde = Math.Round(consumoTarde - stockGr, 4);
                 ventaTarde = stockGr;
-                ingresoTarde = Math.Round(stockGr * precioVenta, 3);
+                ingresoTarde = Math.Round(stockGr * precioVenta, 4);
                 stockGr = 0;
                 stockFrascos = 0;
                 stockGrAcu += stockGr;
@@ -366,15 +397,22 @@ namespace WindowsFormsApplication1
 
         public void actualizarStock()
         {
-            stockFrascos += cantComprada;
-            stockGr += Math.Round(cantComprada * gramosxFrasco, 3);
+            if ((stockFrascos + cantComprada) <= cantMaxAlmacenar)
+            {
+                stockFrascos += cantComprada;
+                stockGr += Math.Round(cantComprada * gramosxFrasco, 4);
+            } else
+            {
+                stockFrascos = cantMaxAlmacenar;
+                stockGr = Math.Round(cantMaxAlmacenar * gramosxFrasco, 4);
+            }
         }
 
         public void costoYAcuFaltante()
         {
             //El costo faltante es $1 x gramo
-            costoFalta += cantFaltaTarde + cantFaltaMañana;
-            cantFaltanteAcu += cantFaltaTarde + cantFaltaMañana;
+            costoFalta += Math.Round(cantFaltaTarde + cantFaltaMañana, 4);
+            cantFaltanteAcu += Math.Round(cantFaltaTarde + cantFaltaMañana, 4);
         }
 
         public void calcularHorasPerdidas(int i)
@@ -384,15 +422,15 @@ namespace WindowsFormsApplication1
                 //faltante *16 /consumo total
                 //TODO validar si se debe agregar acumulados de faltante y consumo
                 porcHorasPerd = (cantFaltaTarde + cantFaltaMañana) * (horasxTurno * 2)  / (consumoMañana + consumoTarde);
-                porcHorasPerd = Math.Round(porcHorasPerd, 3);
+                porcHorasPerd = Math.Round(porcHorasPerd, 4);
             }
         }
 
         public void calcularPromediosAlamcen(int i)
         {
-            promCantGr = Math.Round(stockGrAcu / i, 3);
-            promCantFrasco = Math.Round(stockFrascosAcu / i, 3);
-            promCantFaltante = Math.Round(cantFaltanteAcu / i, 3);
+            promCantGr = Math.Round(stockGrAcu / i, 4);
+            promCantFrasco = Math.Round(stockFrascosAcu / i, 4);
+            promCantFaltante = Math.Round(cantFaltanteAcu / i, 4);
         }
 
         public void limpiarDatos()
@@ -424,9 +462,7 @@ namespace WindowsFormsApplication1
 
         private void colorColumnas()
         {
-            // VERDULERIA
             Color ptoD = Color.LightGreen;
-
 
             dgv_simulacion.Columns[19].DefaultCellStyle.BackColor = ptoD;
             dgv_simulacion.Columns[20].DefaultCellStyle.BackColor = ptoD;
@@ -448,7 +484,7 @@ namespace WindowsFormsApplication1
 
             if (txt_cantDias.Text == "")
             {
-                MessageBox.Show("Debe ingresar la cantida de dias");
+                MessageBox.Show("Debe ingresar la cantidad de dias");
                 return false;
             }
             if (txt_desde.Text == "")
@@ -589,6 +625,7 @@ namespace WindowsFormsApplication1
             dt.Columns.Add("Prom Cant Cafe almacen Gr");
             dt.Columns.Add("Prom Cant Cafe almacen Frascos");
             dt.Columns.Add("Prom Cant faltante Gr");
+            /*
             dt.Columns.Add("Ingreso Prom");
             dt.Columns.Add("Beneficio Diario");
             dt.Columns.Add("Beneficio Prom");
@@ -602,6 +639,7 @@ namespace WindowsFormsApplication1
             dt.Columns.Add("% sobrante 5<x<8");
             dt.Columns.Add("cant sobrante >8");
             dt.Columns.Add("% sobrante >8");
+            */
             return dt;
         }
     }
