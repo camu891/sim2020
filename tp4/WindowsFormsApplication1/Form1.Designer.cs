@@ -162,7 +162,7 @@
             // 
             this.lbl_resultados.Location = new System.Drawing.Point(12, 784);
             this.lbl_resultados.Name = "lbl_resultados";
-            this.lbl_resultados.Size = new System.Drawing.Size(766, 38);
+            this.lbl_resultados.Size = new System.Drawing.Size(1612, 38);
             this.lbl_resultados.TabIndex = 32;
             this.lbl_resultados.Text = "Resultados";
             this.lbl_resultados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -337,7 +337,7 @@
             // 
             this.lbl_resultados_D.Location = new System.Drawing.Point(12, 835);
             this.lbl_resultados_D.Name = "lbl_resultados_D";
-            this.lbl_resultados_D.Size = new System.Drawing.Size(766, 38);
+            this.lbl_resultados_D.Size = new System.Drawing.Size(1593, 38);
             this.lbl_resultados_D.TabIndex = 100;
             this.lbl_resultados_D.Text = "Resultados";
             this.lbl_resultados_D.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
@@ -27,12 +26,21 @@ namespace WindowsFormsApplication1
         double stockFrascosAcu = 0;
         double cantFaltaMañana = 0;
         double cantFaltaTarde = 0;
+        double cantdiasconstock = 0;
+        double cantdiasfrascos2 = 0;
+        double cantdiasfrascos5 = 0;
+        double cantdiasfrascos8 = 0;
+        double cantdiasfrascos9 = 0;
         double cantFaltanteAcu = 0;
         double porcHorasPerd = 0;
         double promCantGr = 0;
         double promCantFrasco = 0;
         double promCantFaltante = 0;
         double costoFalta = 0;
+        double gananciaDiaria = 0;
+        double gananciaPromedio = 0;
+        double cantdiasFaltante = 0;
+        double gananciaTotal = 0;
 
         // datos parametrizados
         double cantComprada = 0;
@@ -194,9 +202,8 @@ namespace WindowsFormsApplication1
                 }
 
             }
-
             demoraEntregaPedido(RNDDem0);
-            costoCompra = cantComprada * precioCompra;
+
             if (demora == 0)
             {
                 actualizarStock();
@@ -275,7 +282,7 @@ namespace WindowsFormsApplication1
                 {
                     sepide = true;
                     demoraEntregaPedido(RNDDem);
-                    costoCompra = cantComprada * precioCompra;
+
                     if (demora == 0)
                     {
                         actualizarStock();
@@ -294,8 +301,26 @@ namespace WindowsFormsApplication1
                 calcularVentaTarde();
                 costoYAcuFaltante();
                 calcularHorasPerdidas(i);
-                calcularPromediosAlamcen(i);
+                //calcularPromediosAlamcen(i);
 
+                // obtener la ganancia diaria, segun lo que obtuve de costos y ganancias
+                gananciaDiaria = ingresoMañana + ingresoTarde - costoCompra - costoFalta;
+                gananciaDiaria = Math.Round(gananciaDiaria, 2);
+                // se calcula ganacia total y promedio.
+                gananciaTotal += gananciaDiaria;
+                gananciaPromedio = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * gananciaPromedio + gananciaDiaria), 2);
+
+                //promedio cantidad faltante
+                promCantFaltante = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * promCantFaltante + cantFaltaTarde + cantFaltaMañana), 2);
+
+                promCantGr = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * promCantGr + stockGr), 2);
+
+                //acumulo días faltantes
+                if (costoFalta > 0)
+                { cantdiasFaltante += 1; }
+                //acumulo días con stock al final del día
+                if (stockGr > 0)
+                { cantdiasconstock += 1; }
 
                 if (i >= desde && i <= hasta)
                 {
@@ -325,29 +350,31 @@ namespace WindowsFormsApplication1
                     dr["Prom Cant Cafe almacen Gr"] = promCantGr;
                     dr["Prom Cant Cafe almacen Frascos"] = promCantFrasco;
                     dr["Prom Cant faltante Gr"] = promCantFaltante;
-                    //TODO columnas faltantes
-                    /*dr["Ingreso Prom"] = "";
-                    dr["Beneficio Diario"] = "";
-                    dr["Beneficio Prom"] = "";
-                    dr["Cant dias con faltantes"] = "";
-                    dr["% dias con faltantes"] = "";
-                    dr["cant sobrante <2"] = "";
-                    dr["% sobrante <2"] = "";
-                    dr["cant sobrante 2<x<5"] = "";
-                    dr["% sobrante 2<x<5"] = "";
-                    dr["cant sobrante 5<x<8"] = "";
-                    dr["% sobrante 5<x<8"] = "";
-                    dr["cant sobrante >8"] = "";
-                    dr["% sobrante >8"] = "";
-                    */
+                    //*dr["Ingreso Prom"] = "";
+                    dr["Beneficio Diario"] = gananciaDiaria;
+                    dr["Beneficio Prom"] = gananciaPromedio;
+                    dr["Cant dias con faltantes"] = cantdiasFaltante;
+                    dr["% dias con faltantes"] = Math.Round(cantdiasFaltante / Convert.ToDouble(i) * 100, 2);
+                    dr["cant sobrante <2"] = cantdiasfrascos2;
+                    dr["% sobrante <2"] = Math.Round(cantdiasfrascos2 / Convert.ToDouble(i) * 100, 2);
+                    dr["cant sobrante 2<x<5"] = cantdiasfrascos5;
+                    dr["% sobrante 2<x<5"] = Math.Round(cantdiasfrascos5 / Convert.ToDouble(i) * 100, 2);
+                    dr["cant sobrante 5<x<8"] = cantdiasfrascos8;
+                    dr["% sobrante 5<x<8"] = Math.Round(cantdiasfrascos8 / Convert.ToDouble(i) * 100, 2);
+                    dr["cant sobrante >8"] = cantdiasfrascos9;
+                    dr["% sobrante >8"] = Math.Round(cantdiasfrascos9 / Convert.ToDouble(i) * 100, 2);
                     dt.Rows.Add(dr);
                     
                 }
                 costoCompra = 0;
             }
-           
-            lbl_resultados.Text = "Promedio de cafe faltante: " + promCantFaltante + " gr" + ", Promedio de cafe Almacenado: " + promCantFrasco + " frascos";
-            lbl_resultados_D.Text = "Porcentaje de horas perdidas: " + porcHorasPerd + " hs";
+
+            lbl_resultados.Text = "Promedio Gcia:" + gananciaPromedio + "; Promedio de cafe faltante: " + promCantFaltante + 
+                " gr" + ", Promedio de cafe Almacenado: " + promCantGr + " gr, Frascos equivalentes " + Math.Round(promCantGr / gramosxFrasco, 2);
+            lbl_resultados_D.Text = "% Dias con stock " + Math.Round(cantdiasconstock / cantDias * 100, 2) + "; % dias faltante :" + 
+                Math.Round(cantdiasFaltante / cantDias * 100, 2) + "; % Frascos < 2: " + Math.Round(cantdiasfrascos2 / cantDias * 100, 2) + 
+                "; % Frascos (3-5) :" + Math.Round(cantdiasfrascos5 / cantDias * 100, 2) + "; % Frascos (>8) :" + Math.Round(cantdiasfrascos9 / cantDias * 100, 2) + 
+                "; % Frascos (3-5) :" + Math.Round(cantdiasfrascos5 / cantDias * 100, 2) + "; Porcentaje de horas perdidas: " + porcHorasPerd + " hs";
 
             this.dgv_simulacion.DataSource = dt;
             //this.colorColumnas();
@@ -361,6 +388,7 @@ namespace WindowsFormsApplication1
                 ingresoMañana = Math.Round(consumoMañana * precioVenta, 4);
                 stockGr = stockGr - consumoMañana;
                 stockFrascos = Math.Round(stockGr /gramosxFrasco, 4);
+                cantFaltaMañana = 0;
             }
             else
             {
@@ -380,8 +408,8 @@ namespace WindowsFormsApplication1
                 ingresoTarde = Math.Round(consumoTarde * precioVenta, 4);
                 stockGr = Math.Round(stockGr - consumoTarde, 4);
                 stockFrascos = Math.Round(stockGr / gramosxFrasco, 4);
-                stockGrAcu += stockGr;
-                stockFrascosAcu += stockFrascos;
+                cantFaltaTarde = 0;
+                stockAlFinalDelDia();
             }
             else
             {
@@ -390,13 +418,36 @@ namespace WindowsFormsApplication1
                 ingresoTarde = Math.Round(stockGr * precioVenta, 4);
                 stockGr = 0;
                 stockFrascos = 0;
-                stockGrAcu += stockGr;
-                stockFrascosAcu += stockFrascos;
+                stockAlFinalDelDia();
             }
+        }
+
+        public void stockAlFinalDelDia()
+        {
+            stockGrAcu += stockGr;
+            stockFrascos = Math.Round(stockGr / gramosxFrasco, 0);
+            if (stockFrascos * gramosxFrasco < stockGr)
+            { stockFrascos += 1; }
+
+            if (stockFrascos < 3)
+            { cantdiasfrascos2 += 1; }
+            else
+            {
+                if (stockFrascos < 6)
+                { cantdiasfrascos5 += 1; }
+                else
+                {
+                    if (stockFrascos < 9)
+                    { cantdiasfrascos8 += 1; }
+                    else { cantdiasfrascos9 += 1; }
+                }
+            }
+            stockFrascosAcu += stockFrascos;
         }
 
         public void actualizarStock()
         {
+            costoCompra = cantComprada * precioCompra;
             if ((stockFrascos + cantComprada) <= cantMaxAlmacenar)
             {
                 stockFrascos += cantComprada;
@@ -458,6 +509,16 @@ namespace WindowsFormsApplication1
             promCantFrasco = 0;
             promCantFaltante = 0;
             costoFalta = 0;
+            costoCompra = 0;
+            gananciaDiaria = 0;
+            gananciaTotal = 0;
+            gananciaPromedio = 0;
+            cantdiasFaltante = 0;
+            cantdiasconstock = 0;
+            cantdiasfrascos2 = 0;
+            cantdiasfrascos5 = 0;
+            cantdiasfrascos8 = 0;
+            cantdiasfrascos9 = 0;
         }
 
         private void colorColumnas()
@@ -618,15 +679,14 @@ namespace WindowsFormsApplication1
             dt.Columns.Add("Cantidad Vendida T (gr)");
             dt.Columns.Add("Ingreso Tarde $");
             dt.Columns.Add("Cant faltante tarde");
-            dt.Columns.Add("Stock Gr");
-            dt.Columns.Add("Stock Frasco");
             dt.Columns.Add("Costo Faltante Total");
             dt.Columns.Add("Porcentaje Hs perdidas");
+            dt.Columns.Add("Stock Gr");
+            dt.Columns.Add("Stock Frasco");
             dt.Columns.Add("Prom Cant Cafe almacen Gr");
             dt.Columns.Add("Prom Cant Cafe almacen Frascos");
             dt.Columns.Add("Prom Cant faltante Gr");
-            /*
-            dt.Columns.Add("Ingreso Prom");
+            //dt.Columns.Add("Ingreso Prom");
             dt.Columns.Add("Beneficio Diario");
             dt.Columns.Add("Beneficio Prom");
             dt.Columns.Add("Cant dias con faltantes");
@@ -639,7 +699,6 @@ namespace WindowsFormsApplication1
             dt.Columns.Add("% sobrante 5<x<8");
             dt.Columns.Add("cant sobrante >8");
             dt.Columns.Add("% sobrante >8");
-            */
             return dt;
         }
     }
