@@ -41,6 +41,7 @@ namespace WindowsFormsApplication1
         double gananciaPromedio = 0;
         double cantdiasFaltante = 0;
         double gananciaTotal = 0;
+        double costoFaltanteDia = 0;
 
         // datos parametrizados
         double cantComprada = 0;
@@ -304,7 +305,8 @@ namespace WindowsFormsApplication1
                 //calcularPromediosAlamcen(i);
 
                 // obtener la ganancia diaria, segun lo que obtuve de costos y ganancias
-                gananciaDiaria = ingresoMañana + ingresoTarde - costoCompra - costoFalta;
+                costoFaltanteDia = (cantFaltaMañana + cantFaltaTarde) * 1;
+                gananciaDiaria = ingresoMañana + ingresoTarde - costoCompra - costoFaltanteDia;
                 gananciaDiaria = Math.Round(gananciaDiaria, 2);
                 // se calcula ganacia total y promedio.
                 gananciaTotal += gananciaDiaria;
@@ -316,11 +318,11 @@ namespace WindowsFormsApplication1
                 promCantGr = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * promCantGr + stockGr), 2);
 
                 //acumulo días faltantes
-                if (costoFalta > 0)
-                { cantdiasFaltante += 1; }
+                if (costoFaltanteDia > 0)
+                { cantdiasFaltante ++; }
                 //acumulo días con stock al final del día
                 if (stockGr > 0)
-                { cantdiasconstock += 1; }
+                { cantdiasconstock ++; }
 
                 if (i >= desde && i <= hasta)
                 {
