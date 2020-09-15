@@ -44,6 +44,7 @@ namespace WindowsFormsApplication1
         double gananciaTotal = 0;
         double costoFaltanteDia = 0;
         double ingresoProm = 0;
+        double cantTirada = 0;
 
         // datos parametrizados
         double cantComprada = 0;
@@ -384,7 +385,7 @@ namespace WindowsFormsApplication1
                 "-Porcentaje dias con menos de 2 Frascos: " + Math.Round(cantdiasfrascos2 / cantDias, 6) * 100 + " %\n" +
                 "-Porcentaje dias con (5-8) de Frascos: " + Math.Round(cantdiasfrascos8 / cantDias, 6) * 100 + " %\n" +
                 "-Porcentaje de horas perdidas: " + porcHorasPerd + " hs\n" +
-                "-Ganancia Promedio por dia: $ " + (ingresoProm - Math.Round((costoFalta + costoCompraAcu) / cantDias, 2));
+                "-Cantidad tirada por día: " + Math.Round(cantTirada / cantDias, 2) + " gr";
 
 
             this.dgv_simulacion.DataSource = dt;
@@ -441,8 +442,9 @@ namespace WindowsFormsApplication1
                 stockFrascos ++;
             
             //Se corta el stock al max posible
-            if (stockFrascosAcu > cantMaxAlmacenar)
+            if (stockFrascos > cantMaxAlmacenar)
             {
+                cantTirada += stockGr - (cantMaxAlmacenar * gramosxFrasco);
                 stockFrascos = cantMaxAlmacenar;
                 stockGr = Math.Round(cantMaxAlmacenar * gramosxFrasco, 4);
             }
@@ -545,7 +547,6 @@ namespace WindowsFormsApplication1
             promCantFrasco = 0;
             promCantFaltante = 0;
             costoFalta = 0;
-            costoCompra = 0;
             gananciaDiaria = 0;
             gananciaTotal = 0;
             gananciaPromedio = 0;
@@ -557,6 +558,7 @@ namespace WindowsFormsApplication1
             cantdiasfrascos9 = 0;
             ingresoProm = 0;
             costoCompraAcu = 0;
+            cantTirada = 0;
         }
 
         private void colorColumnas()
