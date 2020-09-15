@@ -219,6 +219,7 @@ namespace WindowsFormsApplication1
             if (demora == 0)
             {
                 actualizarStock();
+                costoCompra = 0;
             } else
             {
                 diaLlegadaPedido = demora;
@@ -333,8 +334,8 @@ namespace WindowsFormsApplication1
                     {
                         dr["RND compra"] = RNDDem;
                         dr["Demora Compra"] = demora;
-                        dr["Costo Compra"] = costoCompra;
                     }
+                    dr["Costo Compra"] = costoCompra;
                     dr["RND consu M"] = RNDConMa;
                     dr["Consumo Mañana (gr)"] = consumoMañana;
                     dr["Cantidad vendida M (gr)"] = ventaMañana;
@@ -479,7 +480,7 @@ namespace WindowsFormsApplication1
 
         public void actualizarStock()
         {
-            costoCompra = cantComprada * precioCompra;
+            costoCompra += cantComprada * precioCompra;
             costoCompraAcu += costoCompra;
             stockFrascos += cantComprada;
             stockGr += Math.Round(cantComprada * gramosxFrasco, 4);
@@ -497,8 +498,8 @@ namespace WindowsFormsApplication1
             if ((cantFaltaTarde + cantFaltaMañana) > 0)
             {
                 //TODO validar si se debe agregar acumulados de faltante y consumo
-                porcHorasPerd = (cantFaltaTarde + cantFaltaMañana) * (horasxTurno * 2)  / (consumoMañana + consumoTarde);
-                porcHorasPerd = Math.Round(porcHorasPerd, 4);
+                double porcHorasPerdDia = (cantFaltaTarde + cantFaltaMañana) * (horasxTurno * 2)  / (consumoMañana + consumoTarde);
+                porcHorasPerd = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * porcHorasPerd + porcHorasPerdDia), 4);
             }
         }
 
@@ -506,7 +507,6 @@ namespace WindowsFormsApplication1
         {
             //promedio cantidad faltante
             promCantFaltante = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * promCantFaltante + cantFaltaTarde + cantFaltaMañana), 2);
-
             promCantGr = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * promCantGr + stockGr), 2);
         }
 
