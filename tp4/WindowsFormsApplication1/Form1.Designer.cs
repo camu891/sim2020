@@ -77,6 +77,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.lbl_Resultados2 = new System.Windows.Forms.Label();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.pol_4dias = new System.Windows.Forms.RadioButton();
+            this.pol_1frasco = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -354,12 +356,13 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.pol_1frasco);
             this.groupBox4.Controls.Add(this.pol_3Fras);
             this.groupBox4.Controls.Add(this.pol_2Fras);
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(320, 12);
+            this.groupBox4.Location = new System.Drawing.Point(265, 15);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(213, 71);
+            this.groupBox4.Size = new System.Drawing.Size(294, 71);
             this.groupBox4.TabIndex = 101;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Politicas de compras";
@@ -368,11 +371,10 @@
             // 
             this.pol_3Fras.AutoSize = true;
             this.pol_3Fras.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pol_3Fras.Location = new System.Drawing.Point(113, 35);
+            this.pol_3Fras.Location = new System.Drawing.Point(197, 36);
             this.pol_3Fras.Name = "pol_3Fras";
             this.pol_3Fras.Size = new System.Drawing.Size(81, 21);
             this.pol_3Fras.TabIndex = 1;
-            this.pol_3Fras.TabStop = true;
             this.pol_3Fras.Text = "3 Frascos";
             this.pol_3Fras.UseVisualStyleBackColor = true;
             // 
@@ -381,22 +383,22 @@
             this.pol_2Fras.AutoSize = true;
             this.pol_2Fras.Checked = true;
             this.pol_2Fras.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pol_2Fras.Location = new System.Drawing.Point(6, 35);
+            this.pol_2Fras.Location = new System.Drawing.Point(103, 36);
             this.pol_2Fras.Name = "pol_2Fras";
             this.pol_2Fras.Size = new System.Drawing.Size(81, 21);
             this.pol_2Fras.TabIndex = 0;
-            this.pol_2Fras.TabStop = true;
             this.pol_2Fras.Text = "2 Frascos";
             this.pol_2Fras.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.pol_4dias);
             this.groupBox5.Controls.Add(this.pol_3dias);
             this.groupBox5.Controls.Add(this.pol_2dias);
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(579, 15);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(248, 71);
+            this.groupBox5.Size = new System.Drawing.Size(266, 71);
             this.groupBox5.TabIndex = 106;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Politicas periodo de compras";
@@ -641,6 +643,28 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
+            // pol_4dias
+            // 
+            this.pol_4dias.AutoSize = true;
+            this.pol_4dias.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pol_4dias.Location = new System.Drawing.Point(199, 35);
+            this.pol_4dias.Name = "pol_4dias";
+            this.pol_4dias.Size = new System.Drawing.Size(61, 21);
+            this.pol_4dias.TabIndex = 2;
+            this.pol_4dias.Text = "4 días";
+            this.pol_4dias.UseVisualStyleBackColor = true;
+            // 
+            // pol_1frasco
+            // 
+            this.pol_1frasco.AutoSize = true;
+            this.pol_1frasco.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pol_1frasco.Location = new System.Drawing.Point(16, 36);
+            this.pol_1frasco.Name = "pol_1frasco";
+            this.pol_1frasco.Size = new System.Drawing.Size(81, 21);
+            this.pol_1frasco.TabIndex = 2;
+            this.pol_1frasco.Text = "1 Frascos";
+            this.pol_1frasco.UseVisualStyleBackColor = true;
+            // 
             // TP4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -735,6 +759,8 @@
         private System.Windows.Forms.Label lbl_Resultados2;
         private System.Windows.Forms.RadioButton radioCada10mil;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton pol_1frasco;
+        private System.Windows.Forms.RadioButton pol_4dias;
     }
 }
 

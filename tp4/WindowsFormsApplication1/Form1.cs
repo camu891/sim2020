@@ -86,6 +86,14 @@ namespace WindowsFormsApplication1
             {
                 cadaCuantoComprar = 3;
             }
+            if (pol_4dias.Checked)
+            {
+                cadaCuantoComprar = 4;
+            }
+            if (pol_1frasco.Checked)
+            {
+                cantComprada = 1;
+            }
             if (pol_2Fras.Checked)
             {
                 cantComprada = 2;
