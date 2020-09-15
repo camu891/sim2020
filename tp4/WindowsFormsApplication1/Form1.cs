@@ -20,6 +20,7 @@ namespace WindowsFormsApplication1
         double ingresoMañana = 0;
         double ingresoTarde = 0;
         double costoCompra = 0;
+        double costoCompraAcu = 0;
         double stockGr = 0;
         double stockFrascos = 0;
         double stockGrAcu = 0;
@@ -374,14 +375,16 @@ namespace WindowsFormsApplication1
                 "-Ingreso Promedio diario: $ " + ingresoProm + "\n" +
                 "-Porcentaje dias con faltante: " + Math.Round(cantdiasFaltante / cantDias, 6) * 100 + " %\n" +
                 "-Porcentaje dias con (2-5) de Frascos: " + Math.Round(cantdiasfrascos5 / cantDias, 6) * 100 + " %\n" +
-                "-Porcentaje dias con mas de 8 Frascos: " + Math.Round(cantdiasfrascos9 / cantDias, 6) * 100 + " %";
-            
+                "-Porcentaje dias con mas de 8 Frascos: " + Math.Round(cantdiasfrascos9 / cantDias, 6) * 100 + " %\n" +
+                "-Costo Promedio por dia: $ " + Math.Round((costoFalta + costoCompraAcu) / cantDias, 2);
+
             lbl_Resultados2.Text =
                 "-Promedio de cafe faltante: " + promCantFaltante + " gr\n" +
                 "-Promedio diario del beneficio del cafe vendido: $" + gananciaPromedio + "\n" +
                 "-Porcentaje dias con menos de 2 Frascos: " + Math.Round(cantdiasfrascos2 / cantDias, 6) * 100 + " %\n" +
                 "-Porcentaje dias con (5-8) de Frascos: " + Math.Round(cantdiasfrascos8 / cantDias, 6) * 100 + " %\n" +
-                "-Porcentaje de horas perdidas: " + porcHorasPerd + " hs";
+                "-Porcentaje de horas perdidas: " + porcHorasPerd + " hs\n" +
+                "-Ganancia Promedio por dia: $ " + (ingresoProm - Math.Round((costoFalta + costoCompraAcu) / cantDias, 2));
 
 
             this.dgv_simulacion.DataSource = dt;
@@ -475,6 +478,7 @@ namespace WindowsFormsApplication1
         public void actualizarStock()
         {
             costoCompra = cantComprada * precioCompra;
+            costoCompraAcu += costoCompra;
             stockFrascos += cantComprada;
             stockGr += Math.Round(cantComprada * gramosxFrasco, 4);
         }
@@ -552,6 +556,7 @@ namespace WindowsFormsApplication1
             cantdiasfrascos8 = 0;
             cantdiasfrascos9 = 0;
             ingresoProm = 0;
+            costoCompraAcu = 0;
         }
 
         private void colorColumnas()
