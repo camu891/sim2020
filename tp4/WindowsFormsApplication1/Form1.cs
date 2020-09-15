@@ -295,8 +295,6 @@ namespace WindowsFormsApplication1
                     }
                 }
 
-               
-                
                 calcularConsumoMañana(RNDConMa);
                 calcularConsumoTarde(RNDConTa);
                 calcularVentaMañana();
@@ -308,15 +306,15 @@ namespace WindowsFormsApplication1
 
                 //acumulo días faltantes
                 if (costoFaltanteDia > 0)
-                { cantdiasFaltante ++; }
+                    cantdiasFaltante ++;
                 //acumulo días con stock al final del día
                 if (stockGr > 0)
-                { cantdiasconstock ++; }
+                    cantdiasconstock ++;
 
                 //ingreso promedio
                 ingresoProm = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * ingresoProm + ingresoMañana + ingresoTarde), 2);
 
-                if (i >= desde && i <= hasta)
+                if ((i >= desde && i <= hasta) || (radioCada10mil.Checked && (i % 10000 == 0)))
                 {
                     DataRow dr = dt.NewRow();
                     // Carga datos
@@ -348,15 +346,15 @@ namespace WindowsFormsApplication1
                     dr["Beneficio Diario"] = gananciaDiaria;
                     dr["Beneficio Prom"] = gananciaPromedio;
                     dr["Cant dias con faltantes"] = cantdiasFaltante;
-                    dr["% dias con faltantes"] = Math.Round(cantdiasFaltante / Convert.ToDouble(i), 2) * 100;
+                    dr["% dias con faltantes"] = Math.Round(cantdiasFaltante / Convert.ToDouble(i), 6) * 100;
                     dr["cant sobrante <2"] = cantdiasfrascos2;
-                    dr["% sobrante <2"] = Math.Round(cantdiasfrascos2 / Convert.ToDouble(i), 2) * 100;
+                    dr["% sobrante <2"] = Math.Round(cantdiasfrascos2 / Convert.ToDouble(i), 6) * 100;
                     dr["cant sobrante 2<x<5"] = cantdiasfrascos5;
-                    dr["% sobrante 2<x<5"] = Math.Round(cantdiasfrascos5 / Convert.ToDouble(i), 2) * 100;
+                    dr["% sobrante 2<x<5"] = Math.Round(cantdiasfrascos5 / Convert.ToDouble(i), 6) * 100;
                     dr["cant sobrante 5<x<8"] = cantdiasfrascos8;
-                    dr["% sobrante 5<x<8"] = Math.Round(cantdiasfrascos8 / Convert.ToDouble(i), 2) * 100;
+                    dr["% sobrante 5<x<8"] = Math.Round(cantdiasfrascos8 / Convert.ToDouble(i), 6) * 100;
                     dr["cant sobrante >8"] = cantdiasfrascos9;
-                    dr["% sobrante >8"] = Math.Round(cantdiasfrascos9 / Convert.ToDouble(i), 2) * 100;
+                    dr["% sobrante >8"] = Math.Round(cantdiasfrascos9 / Convert.ToDouble(i), 6) * 100;
                     dt.Rows.Add(dr);
                     
                 }
@@ -364,17 +362,17 @@ namespace WindowsFormsApplication1
             }
 
             lbl_resultados.Text =
-                "-Promedio Cafe almacenado: " + promCantGr + " gr /" + Math.Round(promCantGr / gramosxFrasco, 2) + " frascos \n" +
+                "-Promedio Cafe almacenado: " + promCantGr + " gr /" + Math.Round(promCantGr / gramosxFrasco, 2) + " frascos\n" +
                 "-Ingreso Promedio diario: $ " + ingresoProm + "\n" +
-                "-Porcentaje dias con faltante: " + Math.Round(cantdiasFaltante / cantDias, 2) * 100 + " %" + "\n" +
-                "-Porcentaje dias con (2-5) de Frascos: " + Math.Round(cantdiasfrascos5 / cantDias, 2) * 100 + " %" + "\n" +
-                "-Porcentaje dias con mas de 8 Frascos: " + Math.Round(cantdiasfrascos9 / cantDias, 2) * 100 + " %";
+                "-Porcentaje dias con faltante: " + Math.Round(cantdiasFaltante / cantDias, 6) * 100 + " %\n" +
+                "-Porcentaje dias con (2-5) de Frascos: " + Math.Round(cantdiasfrascos5 / cantDias, 6) * 100 + " %\n" +
+                "-Porcentaje dias con mas de 8 Frascos: " + Math.Round(cantdiasfrascos9 / cantDias, 6) * 100 + " %";
             
             lbl_Resultados2.Text =
-                "-Promedio de cafe faltante: " + promCantFaltante + " gr" + "\n" +
+                "-Promedio de cafe faltante: " + promCantFaltante + " gr\n" +
                 "-Promedio diario del beneficio del cafe vendido: $" + gananciaPromedio + "\n" +
-                "-Porcentaje dias con menos de 2 Frascos: " + Math.Round(cantdiasfrascos2 / cantDias, 2) * 100 + " %" + "\n" +
-                "-Porcentaje dias con (5-8) de Frascos: " + Math.Round(cantdiasfrascos8 / cantDias, 2) * 100 + " %" + "\n" +
+                "-Porcentaje dias con menos de 2 Frascos: " + Math.Round(cantdiasfrascos2 / cantDias, 6) * 100 + " %\n" +
+                "-Porcentaje dias con (5-8) de Frascos: " + Math.Round(cantdiasfrascos8 / cantDias, 6) * 100 + " %\n" +
                 "-Porcentaje de horas perdidas: " + porcHorasPerd + " hs";
 
 
@@ -426,23 +424,42 @@ namespace WindowsFormsApplication1
 
         public void stockAlFinalDelDia()
         {
-            stockGrAcu += stockGr;
+            //Se calculan el stock en frascos
             stockFrascos = Math.Round(stockGr / gramosxFrasco, 0);
             if (stockFrascos * gramosxFrasco < stockGr)
-            { stockFrascos ++; }
-            stockFrascosAcu += stockFrascos;
+                stockFrascos ++;
+            
+            //Se corta el stock al max posible
+            if (stockFrascosAcu > cantMaxAlmacenar)
+            {
+                stockFrascos = cantMaxAlmacenar;
+                stockGr = Math.Round(cantMaxAlmacenar * gramosxFrasco, 4);
+            }
 
+            //Se cargan los acumuladores
+            stockFrascosAcu += stockFrascos;
+            stockGrAcu += stockGr;
+
+            //Se cargan variables de cantidades de frascos
             if (stockFrascos < 3)
-            { cantdiasfrascos2 ++; }
+            { 
+                cantdiasfrascos2 ++;
+            }
             else
             {
                 if (stockFrascos < 6)
-                { cantdiasfrascos5 ++; }
+                { 
+                    cantdiasfrascos5 ++; 
+                }
                 else
                 {
                     if (stockFrascos < 9)
-                    { cantdiasfrascos8 ++; }
-                    else { cantdiasfrascos9 ++; }
+                    { 
+                        cantdiasfrascos8 ++; 
+                    }
+                    else { 
+                        cantdiasfrascos9 ++; 
+                    }
                 }
             }
         }
@@ -450,15 +467,8 @@ namespace WindowsFormsApplication1
         public void actualizarStock()
         {
             costoCompra = cantComprada * precioCompra;
-            if ((stockFrascos + cantComprada) <= cantMaxAlmacenar)
-            {
-                stockFrascos += cantComprada;
-                stockGr += Math.Round(cantComprada * gramosxFrasco, 4);
-            } else
-            {
-                stockFrascos = cantMaxAlmacenar;
-                stockGr = Math.Round(cantMaxAlmacenar * gramosxFrasco, 4);
-            }
+            stockFrascos += cantComprada;
+            stockGr += Math.Round(cantComprada * gramosxFrasco, 4);
         }
 
         public void costoYAcuFaltante()
@@ -472,7 +482,6 @@ namespace WindowsFormsApplication1
         {
             if ((cantFaltaTarde + cantFaltaMañana) > 0)
             {
-                //faltante *16 /consumo total
                 //TODO validar si se debe agregar acumulados de faltante y consumo
                 porcHorasPerd = (cantFaltaTarde + cantFaltaMañana) * (horasxTurno * 2)  / (consumoMañana + consumoTarde);
                 porcHorasPerd = Math.Round(porcHorasPerd, 4);
@@ -481,12 +490,6 @@ namespace WindowsFormsApplication1
 
         public void calcularPromediosAlamcen(int i)
         {
-            /**
-            promCantGr = Math.Round(stockGrAcu / i, 4);
-            promCantFrasco = Math.Round(stockFrascosAcu / i, 4);
-            promCantFaltante = Math.Round(cantFaltanteAcu / i, 4);
-            */
-
             //promedio cantidad faltante
             promCantFaltante = Math.Round(1 / Convert.ToDouble(i) * ((i - 1) * promCantFaltante + cantFaltaTarde + cantFaltaMañana), 2);
 
@@ -570,31 +573,30 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Debe ingresar la cantidad de dias");
                 return false;
             }
-            if (txt_desde.Text == "")
+            if (txt_desde.Text == "" && txt_hasta.Text == "" && !radioCada10mil.Checked)
             {
-                MessageBox.Show("Debe ingresar valores en desde");
-                return false;
-            }
-            if (txt_hasta.Text == "")
-            {
-                MessageBox.Show("Debe ingresar valores en hasta");
+                MessageBox.Show("Debe ingresar valores en desde y hasta");
                 return false;
             }
 
+            if (!radioCada10mil.Checked)
+            {
+                // tomar rango
+                desde = Convert.ToDouble(txt_desde.Text);
+                hasta = Convert.ToDouble(txt_hasta.Text);
+            } 
             // tomar la cantidad de dias
             cantDias = Convert.ToDouble(txt_cantDias.Text);
-            // tomar rango
-            desde = Convert.ToDouble(txt_desde.Text);
-            hasta = Convert.ToDouble(txt_hasta.Text);
+          
 
-            if (desde >= hasta)
+            if ((desde >= hasta) && !radioCada10mil.Checked)
             {
                 MessageBox.Show("desde debe ser menor que hasta");
                 return false;
             }
 
 
-            if (hasta > cantDias)
+            if (hasta > cantDias && !radioCada10mil.Checked)
             {
                 MessageBox.Show("hasta debe ser menor o igual que la cantidad de dias");
                 return false;
@@ -728,6 +730,39 @@ namespace WindowsFormsApplication1
         {
            
             new Form2(lst).Show();
+        }
+
+        private void allowMostrarRnds(object sender, EventArgs e)
+        {
+            if (pol_Congr.Checked)
+            {
+                button2.Enabled = true;
+                txtA.Enabled = true;
+                txtC.Enabled = true;
+                txtM.Enabled = true;
+                txtX.Enabled = true;
+            } else
+            {
+                button2.Enabled = false;
+                txtA.Enabled = false;
+                txtC.Enabled = false;
+                txtM.Enabled = false;
+                txtX.Enabled = false;
+            }
+        }
+
+        private void radioCada10mil_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioCada10mil.Checked)
+            {
+                txt_desde.Enabled = false;
+                txt_hasta.Enabled = false;
+            }
+            else
+            {
+                txt_desde.Enabled = true;
+                txt_hasta.Enabled = true;
+            }
         }
     }
 }

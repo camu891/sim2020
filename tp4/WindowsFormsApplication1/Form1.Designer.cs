@@ -37,6 +37,7 @@
             this.pol_10Fras = new System.Windows.Forms.RadioButton();
             this.lbl_resultados = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioCada10mil = new System.Windows.Forms.RadioButton();
             this.txt_hasta = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txt_desde = new System.Windows.Forms.TextBox();
@@ -75,6 +76,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.lbl_Resultados2 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -166,11 +168,13 @@
             this.lbl_resultados.Name = "lbl_resultados";
             this.lbl_resultados.Size = new System.Drawing.Size(476, 99);
             this.lbl_resultados.TabIndex = 32;
-            this.lbl_resultados.Text = "Resultados";
+            this.lbl_resultados.Text = "Resultados: -";
             this.lbl_resultados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.radioButton1);
+            this.groupBox2.Controls.Add(this.radioCada10mil);
             this.groupBox2.Controls.Add(this.txt_hasta);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.txt_desde);
@@ -178,10 +182,23 @@
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(1, 98);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(187, 115);
+            this.groupBox2.Size = new System.Drawing.Size(197, 133);
             this.groupBox2.TabIndex = 51;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rango a mostrar";
+            // 
+            // radioCada10mil
+            // 
+            this.radioCada10mil.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.radioCada10mil.AutoSize = true;
+            this.radioCada10mil.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioCada10mil.Location = new System.Drawing.Point(11, 97);
+            this.radioCada10mil.Name = "radioCada10mil";
+            this.radioCada10mil.Size = new System.Drawing.Size(146, 21);
+            this.radioCada10mil.TabIndex = 19;
+            this.radioCada10mil.Text = "Mostrar Cada 10 mil";
+            this.radioCada10mil.UseVisualStyleBackColor = true;
+            this.radioCada10mil.CheckedChanged += new System.EventHandler(this.radioCada10mil_CheckedChanged);
             // 
             // txt_hasta
             // 
@@ -423,7 +440,7 @@
             this.groupBox6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(234, 98);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(320, 115);
+            this.groupBox6.Size = new System.Drawing.Size(325, 133);
             this.groupBox6.TabIndex = 107;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Tipo de randoms";
@@ -431,7 +448,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(186, 72);
+            this.label4.Location = new System.Drawing.Point(193, 91);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(20, 17);
@@ -441,7 +458,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(139, 72);
+            this.label3.Location = new System.Drawing.Point(146, 91);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(14, 17);
@@ -450,7 +467,8 @@
             // 
             // txtM
             // 
-            this.txtM.Location = new System.Drawing.Point(207, 69);
+            this.txtM.Enabled = false;
+            this.txtM.Location = new System.Drawing.Point(214, 88);
             this.txtM.Margin = new System.Windows.Forms.Padding(2);
             this.txtM.Name = "txtM";
             this.txtM.Size = new System.Drawing.Size(27, 25);
@@ -459,7 +477,8 @@
             // 
             // txtC
             // 
-            this.txtC.Location = new System.Drawing.Point(155, 69);
+            this.txtC.Enabled = false;
+            this.txtC.Location = new System.Drawing.Point(162, 88);
             this.txtC.Margin = new System.Windows.Forms.Padding(2);
             this.txtC.Name = "txtC";
             this.txtC.Size = new System.Drawing.Size(27, 25);
@@ -468,7 +487,8 @@
             // 
             // txtA
             // 
-            this.txtA.Location = new System.Drawing.Point(109, 69);
+            this.txtA.Enabled = false;
+            this.txtA.Location = new System.Drawing.Point(116, 88);
             this.txtA.Margin = new System.Windows.Forms.Padding(2);
             this.txtA.Name = "txtA";
             this.txtA.Size = new System.Drawing.Size(27, 25);
@@ -478,7 +498,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(92, 72);
+            this.label5.Location = new System.Drawing.Point(99, 91);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(15, 17);
@@ -487,7 +507,8 @@
             // 
             // txtX
             // 
-            this.txtX.Location = new System.Drawing.Point(61, 69);
+            this.txtX.Enabled = false;
+            this.txtX.Location = new System.Drawing.Point(68, 88);
             this.txtX.Margin = new System.Windows.Forms.Padding(2);
             this.txtX.Name = "txtX";
             this.txtX.Size = new System.Drawing.Size(27, 25);
@@ -497,7 +518,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 72);
+            this.label6.Location = new System.Drawing.Point(53, 91);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(15, 17);
@@ -515,6 +536,7 @@
             this.pol_Congr.TabStop = true;
             this.pol_Congr.Text = "Congruencial";
             this.pol_Congr.UseVisualStyleBackColor = true;
+            this.pol_Congr.Click += new System.EventHandler(this.allowMostrarRnds);
             // 
             // pol_Leng
             // 
@@ -528,6 +550,7 @@
             this.pol_Leng.TabStop = true;
             this.pol_Leng.Text = "De lenguaje";
             this.pol_Leng.UseVisualStyleBackColor = true;
+            this.pol_Leng.Click += new System.EventHandler(this.allowMostrarRnds);
             // 
             // Integrantes
             // 
@@ -537,7 +560,7 @@
             this.Integrantes.Controls.Add(this.label12);
             this.Integrantes.Controls.Add(this.label13);
             this.Integrantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Integrantes.Location = new System.Drawing.Point(234, 876);
+            this.Integrantes.Location = new System.Drawing.Point(945, 867);
             this.Integrantes.Name = "Integrantes";
             this.Integrantes.Size = new System.Drawing.Size(689, 53);
             this.Integrantes.TabIndex = 108;
@@ -586,6 +609,7 @@
             // 
             // button2
             // 
+            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(707, 190);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(85, 23);
@@ -601,7 +625,21 @@
             this.lbl_Resultados2.Name = "lbl_Resultados2";
             this.lbl_Resultados2.Size = new System.Drawing.Size(480, 99);
             this.lbl_Resultados2.TabIndex = 109;
+            this.lbl_Resultados2.Text = "-";
             this.lbl_Resultados2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(11, 52);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(14, 13);
+            this.radioButton1.TabIndex = 20;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // TP4
             // 
@@ -695,6 +733,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lbl_Resultados2;
+        private System.Windows.Forms.RadioButton radioCada10mil;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
 
