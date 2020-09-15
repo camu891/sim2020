@@ -182,39 +182,30 @@ namespace WindowsFormsApplication1
 
         private void generar_tablaSimulacion()
         {
+            double RNDDem = 0;
+            double RNDConMa = 0;
+            double RNDConTa = 0;
             double diaLlegadaPedido = 0;
             DataTable dt = getColumnName();
             Random RND = new Random();
             //variab auxiliar para los randoms congruenciales
             int aux = 0;
+
             // Inicio Fila 0 (cero)
-           
-            double RNDDem0 = 0;
             if (pol_Leng.Checked)
             {
-                RNDDem0 = Math.Round(RND.NextDouble(), 4);
+                RNDDem = Math.Round(RND.NextDouble(), 4);
             }
             else
             {
-                if (aux == 0)
-                {
-                    generador = new Generador(int.Parse(txtA.Text), int.Parse(txtC.Text), int.Parse(txtM.Text));
-                    rnd = generador.mixto(int.Parse(txtX.Text));
-                    rnd.Posicion = lst.Count + 1;
-                    lst.Add(rnd);
-                    RNDDem0 = Math.Round(rnd.Random, 4);
-                    aux = 1;
-                }
-                else
-                {
-                    rnd = generador.mixto(lst.Last().Siguiente);
-                    rnd.Posicion = lst.Count + 1;
-                    lst.Add(rnd);
-                    RNDDem0 = Math.Round(rnd.Random, 4);
-                }
-
+                generador = new Generador(int.Parse(txtA.Text), int.Parse(txtC.Text), int.Parse(txtM.Text));
+                rnd = generador.mixto(int.Parse(txtX.Text));
+                rnd.Posicion = lst.Count + 1;
+                lst.Add(rnd);
+                RNDDem = Math.Round(rnd.Random, 4);
+                aux = 1;
             }
-            demoraEntregaPedido(RNDDem0);
+            demoraEntregaPedido(RNDDem);
 
             if (demora == 0)
             {
@@ -227,7 +218,7 @@ namespace WindowsFormsApplication1
             {
                 DataRow dr0 = dt.NewRow();
                 dr0["NroDia"] = 0;
-                dr0["RND compra"] = RNDDem0;
+                dr0["RND compra"] = RNDDem;
                 dr0["Demora Compra"] = demora;
                 dr0["Costo Compra"] = costoCompra;
                 dr0["Stock Gr"] = stockGr;
@@ -239,18 +230,16 @@ namespace WindowsFormsApplication1
 
             for (int i = 1; i <= cantDias; i++)
             {
+                Boolean sepide = i % cadaCuantoComprar == 0;
                 if (i == diaLlegadaPedido)
                 {
                     actualizarStock();
                 }
                 
-                double RNDDem = 0;
-                double RNDConMa = 0;
-                double RNDConTa = 0;
-
                 if (pol_Leng.Checked)
                 {
-                    RNDDem = Math.Round(RND.NextDouble(), 4);
+                    if (sepide)
+                        RNDDem = Math.Round(RND.NextDouble(), 4);
                     RNDConMa = Math.Round(RND.NextDouble(), 4);
                     RNDConTa = Math.Round(RND.NextDouble(), 4);
                 }
@@ -259,10 +248,13 @@ namespace WindowsFormsApplication1
                     if (aux == 0)
                     {
                         generador = new Generador(int.Parse(txtA.Text), int.Parse(txtC.Text), int.Parse(txtM.Text));
-                        rnd = generador.mixto(int.Parse(txtX.Text));
-                        rnd.Posicion = lst.Count + 1;
-                        lst.Add(rnd);
-                        RNDDem  = Math.Round(rnd.Random, 4);
+                        if (sepide)
+                        {
+                            rnd = generador.mixto(int.Parse(txtX.Text));
+                            rnd.Posicion = lst.Count + 1;
+                            lst.Add(rnd);
+                            RNDDem = Math.Round(rnd.Random, 4);
+                        }
                         rnd = generador.mixto(lst.Last().Siguiente);
                         rnd.Posicion = lst.Count + 1;
                         lst.Add(rnd);
@@ -275,10 +267,13 @@ namespace WindowsFormsApplication1
                     }
                     else
                     {
-                        rnd = generador.mixto(lst.Last().Siguiente);
-                        rnd.Posicion = lst.Count + 1;
-                        lst.Add(rnd);
-                        RNDDem = Math.Round(rnd.Random, 4);
+                        if (sepide)
+                        {
+                            rnd = generador.mixto(lst.Last().Siguiente);
+                            rnd.Posicion = lst.Count + 1;
+                            lst.Add(rnd);
+                            RNDDem = Math.Round(rnd.Random, 4);
+                        }
                         rnd = generador.mixto(lst.Last().Siguiente);
                         rnd.Posicion = lst.Count + 1;
                         lst.Add(rnd);
@@ -290,10 +285,8 @@ namespace WindowsFormsApplication1
                     }
 
                 }
-                Boolean sepide = false;
-                if (i % cadaCuantoComprar == 0)
+                if (sepide)
                 {
-                    sepide = true;
                     demoraEntregaPedido(RNDDem);
 
                     if (demora == 0)
@@ -385,7 +378,7 @@ namespace WindowsFormsApplication1
                 "-Promedio diario del beneficio del cafe vendido: $" + gananciaPromedio + "\n" +
                 "-Porcentaje dias con menos de 2 Frascos: " + Math.Round(cantdiasfrascos2 / cantDias, 6) * 100 + " %\n" +
                 "-Porcentaje dias con (5-8) de Frascos: " + Math.Round(cantdiasfrascos8 / cantDias, 6) * 100 + " %\n" +
-                "-Porcentaje de horas perdidas: " + porcHorasPerd + " hs\n" +
+                "-Promedio de horas perdidas: " + porcHorasPerd + " hs\n" +
                 "-Cantidad tirada por día: " + Math.Round(cantTirada / cantDias, 2) + " gr";
 
 
