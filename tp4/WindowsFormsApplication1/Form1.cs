@@ -219,7 +219,6 @@ namespace WindowsFormsApplication1
             if (demora == 0)
             {
                 actualizarStock();
-                costoCompra = 0;
             } else
             {
                 diaLlegadaPedido = demora;
@@ -235,6 +234,7 @@ namespace WindowsFormsApplication1
                 dr0["Stock Frasco"] = stockFrascos;
                 dt.Rows.Add(dr0);
             }
+            costoCompra = 0;
             // Fin de fila 0 y comienzo de las demas filas
 
             for (int i = 1; i <= cantDias; i++)
