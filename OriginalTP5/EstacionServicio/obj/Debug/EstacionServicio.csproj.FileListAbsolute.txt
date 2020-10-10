@@ -1,0 +1,9 @@
+D:\Users\usuario\Documents\SIM\Programas\Simulacion2017 Bajo Pablo Ej 25\EstacionServicio\bin\Debug\EstacionServicio.exe
+D:\Users\usuario\Documents\SIM\Programas\Simulacion2017 Bajo Pablo Ej 25\EstacionServicio\bin\Debug\EstacionServicio.pdb
+D:\Users\usuario\Documents\SIM\Programas\Simulacion2017 Bajo Pablo Ej 25\EstacionServicio\obj\Debug\EstacionServicio.frm_principal.resources
+D:\Users\usuario\Documents\SIM\Programas\Simulacion2017 Bajo Pablo Ej 25\EstacionServicio\obj\Debug\EstacionServicio.Properties.Resources.resources
+D:\Users\usuario\Documents\SIM\Programas\Simulacion2017 Bajo Pablo Ej 25\EstacionServicio\obj\Debug\EstacionServicio.csproj.GenerateResource.cache
+D:\Users\usuario\Documents\SIM\Programas\Simulacion2017 Bajo Pablo Ej 25\EstacionServicio\obj\Debug\EstacionServicio.csproj.CoreCompileInputs.cache
+D:\Users\usuario\Documents\SIM\Programas\Simulacion2017 Bajo Pablo Ej 25\EstacionServicio\obj\Debug\EstacionServicio.exe
+D:\Users\usuario\Documents\SIM\Programas\Simulacion2017 Bajo Pablo Ej 25\EstacionServicio\obj\Debug\EstacionServicio.pdb
+D:\Users\usuario\Documents\SIM\Programas\Simulacion2017 Bajo Pablo Ej 25\EstacionServicio\obj\Debug\EstacionServicio.csprojAssemblyReference.cache
