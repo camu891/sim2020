@@ -632,7 +632,6 @@
             this.gpbTiemposFin.TabIndex = 1;
             this.gpbTiemposFin.TabStop = false;
             this.gpbTiemposFin.Text = "Parametros de Finalizacion";
-            this.gpbTiemposFin.Enter += new System.EventHandler(this.gpbTiemposFin_Enter);
             // 
             // label17
             // 

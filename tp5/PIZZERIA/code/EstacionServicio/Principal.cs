@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using static Pizzeria.Estados;
 
@@ -9,22 +11,14 @@ namespace Pizzeria
     public partial class frm_principal : Form
     {
         //Servidores y Eventos del Sistema
-        private LlegadaVehiculosCombustible llegadaVehiculoCombustible;
-        private LlegadaVehiculosGas llegadaVehiculoGas;
-        private FinServicioCombustible finServicioCombustibleSurt1;
-        private FinServicioCombustible finServicioCombustibleSurt2;
-        private FinServicioCombustible finServicioCombustibleSurt3;
-        private FinServicioCombustible finServicioCombustibleSurt4;
-        private FinServicioGas finServicioGasSurt1;
-        private FinServicioGas finServicioGasSurt2;
-        private FinServicioGas finServicioGasSurt3;
-        private Surtidor SurtidorCombustible1;
-        private Surtidor SurtidorCombustible2;
-        private Surtidor SurtidorCombustible3;
-        private Surtidor SurtidorCombustible4;
-        private Surtidor SurtidorGas1;
-        private Surtidor SurtidorGas2;
-        private Surtidor SurtidorGas3;
+        private LlegadaPedido llegadaPedido;
+        private FinCoccionEmpleado finCoccionEmpleado1;
+        private FinCoccionEmpleado finCoccionEmpleado2;
+        private FinCoccionEmpleado finCoccionEmpleado3;
+        private FinDelivery finDelivery;
+        private Empleado empleado1;
+        private Empleado empleado2;
+        private Empleado empleado3;
 
         //Variables de Estadisticas
         private double ContVehiculosCombustibleIngresanAlSitema;
@@ -42,7 +36,7 @@ namespace Pizzeria
 
 
         //Parametros de Llega
-        private double mediaLlegadaCombustible;
+        private double mediaLlegadaPedidos;
         private double mediaLlegadaGas;
         private int colaMaxima;
 
@@ -61,27 +55,32 @@ namespace Pizzeria
 
         //Variables necesarias
         private double relojSimulacion;
-        private int identificadorVehiculo;
+        private int identificadorPedido;
         private int eventosYaSimuladosYMostrados;
         Random rand = new Random((int)DateTime.Now.Ticks);
         bool resul = true;
         TextBox invalido = null;
 
-        //Creacion de Variables Auxiliares
-        Vehiculo vehiculoActualSurtComb1 = null;
-        Vehiculo vehiculoActualSurtComb2 = null;
-        Vehiculo vehiculoActualSurtComb3 = null;
-        Vehiculo vehiculoActualSurtComb4 = null;
-        Vehiculo vehiculoActualSurtGas1 = null;
-        Vehiculo vehiculoActualSurtGas2 = null;
-        Vehiculo vehiculoActualSurtGas3 = null;
-
-
-
-
         public frm_principal()
         {
             InitializeComponent();
+        }
+
+        public double getFirstEvent(double n1, double n2, double n3, double n4, double n5)
+        {
+            List<double> list = new List<double>();
+            if (n1 > 0.0)
+                list.Add(n1);
+            if (n2 > 0.0)
+                list.Add(n2);
+            if (n3 > 0.0)
+                list.Add(n3);
+            if (n4 > 0.0)
+                list.Add(n4);
+            if (n5 > 0.0)
+                list.Add(n5);
+            list.Sort();
+            return list.FirstOrDefault<double>();
         }
 
         private void btnSimular_Click(object sender, EventArgs e)
@@ -89,62 +88,8 @@ namespace Pizzeria
             //Inicio Bloque Simulacion
             if (validarDatos())
             {
-                //Inicializacion de Variables
-                relojSimulacion = 0.00;
-                identificadorVehiculo = 0;
-                eventosYaSimuladosYMostrados = 0;
-
-
-
-                //Inicializacion de Estadisticas
-                ContVehiculosCombustibleIngresanAlSitema = 0;
-                ContVehiculosGasIngresanAlSitema = 0;
-                ContVehiculosCombustibleRechazados = 0;
-                ContVehiculosGasRechazados = 0;
-                ContVehiculosCombustibleAtendidos = 0;
-                ContVehiculosGasAtendidos = 0;
-                AcumTiempoEsperaVehiculosCombustible = 0.00;
-                AcumTiempoEsperaVehiculosGas = 0.00;
-                ContVehiConTiempoEsperaVehiculosCombustible = 0.00;
-                ContVehiConTiempoEsperaVehiculosGas = 0.00;
-                AcumTiempoOcioServidoresCombustible = 0.00;
-                AcumTiempoOcioServidoresGas = 0.00;
-
-                //Capturar Parametros de la Corrida
-                tiempoFinCorrida = Convert.ToDouble(txtTiempoSim.Text);
-                tiempoAPartirDeDondeMostrar = Convert.ToDouble(txtMinDesde.Text);
-                cantidadDeEventosAMostrar = Convert.ToInt32(txtNEventosMostrar.Text);
-
-                //Capturar Parametros de Llegadas
-                mediaLlegadaCombustible = Convert.ToDouble(txtLlegadaConbustible.Text);
-                mediaLlegadaGas = Convert.ToDouble(txtLlegadaGas.Text);
-                colaMaxima = Convert.ToInt32(txtColaMax.Text);
-
-                //Capturar Parametros de Finalizacion
-                valorAUniformeFinCombustible = Convert.ToDouble(txtFinCombustibleDesde.Text);
-                valorBUniformeFinCombustible = Convert.ToDouble(txtFinCombustibleHasta.Text);
-                valorAUniformeFinGas = Convert.ToDouble(txtFinGasDesde.Text);
-                valorBUniformeFinGas = Convert.ToDouble(txtFinGasHasta.Text);
-                cteSumadaAUniformeGas = Convert.ToDouble(txtFinGasCte.Text);
-
-                //Instanciar Objetos
-                llegadaVehiculoCombustible = new LlegadaVehiculosCombustible(mediaLlegadaCombustible);
-                llegadaVehiculoGas = new LlegadaVehiculosGas(mediaLlegadaGas);
-                finServicioCombustibleSurt1 = new FinServicioCombustible(valorAUniformeFinCombustible, valorBUniformeFinCombustible, 1);
-                finServicioCombustibleSurt2 = new FinServicioCombustible(valorAUniformeFinCombustible, valorBUniformeFinCombustible, 2);
-                finServicioCombustibleSurt3 = new FinServicioCombustible(valorAUniformeFinCombustible, valorBUniformeFinCombustible, 3);
-                finServicioCombustibleSurt4 = new FinServicioCombustible(valorAUniformeFinCombustible, valorBUniformeFinCombustible, 4);
-                finServicioGasSurt1 = new FinServicioGas(valorAUniformeFinGas, valorBUniformeFinGas, 1, cteSumadaAUniformeGas);
-                finServicioGasSurt2 = new FinServicioGas(valorAUniformeFinGas, valorBUniformeFinGas, 2, cteSumadaAUniformeGas);
-                finServicioGasSurt3 = new FinServicioGas(valorAUniformeFinGas, valorBUniformeFinGas, 3, cteSumadaAUniformeGas);
-                SurtidorCombustible1 = new Surtidor(1, _TipoServicio.Combustible, 0.00, "Libre");
-                SurtidorCombustible2 = new Surtidor(2, _TipoServicio.Combustible, 0.00, "Libre");
-                SurtidorCombustible3 = new Surtidor(3, _TipoServicio.Combustible, 0.00, "Libre");
-                SurtidorCombustible4 = new Surtidor(4, _TipoServicio.Combustible, 0.00, "Libre");
-                SurtidorGas1 = new Surtidor(1, _TipoServicio.Gas, 0.00, "Libre");
-                SurtidorGas2 = new Surtidor(2, _TipoServicio.Gas, 0.00, "Libre");
-                SurtidorGas3 = new Surtidor(3, _TipoServicio.Gas, 0.00, "Libre");
-
+                this.tomarDatosPatalla();
+                this.inicializarVariables();
 
                 //bloqueo el boton simular para obligar a resetear antes de una nueva simulacion
                 btnSimular.Enabled = false;
@@ -155,26 +100,19 @@ namespace Pizzeria
                 //Inicio de La Simulacion
                 if (relojSimulacion == 0.00)//Calculos los primeros eventos
                 {
-                    llegadaVehiculoCombustible.simular(relojSimulacion, rand.NextDouble());
-                    llegadaVehiculoGas.simular(relojSimulacion, rand.NextDouble());
+                    llegadaPedido.simular(relojSimulacion, rand.NextDouble());
 
                     if (tiempoAPartirDeDondeMostrar == 0.00 && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)//Veo si tengo que graficar
                     {
 
-                        int i = dgvResultados.Rows.Add();
-                        agregarEventoAGrilla(i, true, llegadaVehiculoCombustible, 0);
-                        agregarEventoAGrilla(i, true, llegadaVehiculoGas, 0);
-                        agregarDatosAGrila(i, "Inicio Simulacion");
-                        agregarSurtidoresAGrilla(i);
-                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                        eventosYaSimuladosYMostrados++;
+                        int i = this.dgvResultados.Rows.Add();
+                        this.agregarEventoAGrilla(i, true, this.llegadaPedido, 0);
+                        this.agregarDatosAGrila(i, "Inicio Simulacion");
+                        this.agregarSurtidoresAGrilla(i);
+                        this.agregarEventoAGrilla(i, false, this.finCoccionEmpleado1, this.finCoccionEmpleado1.getIdEmpleado());
+                        this.agregarEventoAGrilla(i, false, this.finCoccionEmpleado2, this.finCoccionEmpleado2.getIdEmpleado());
+                        this.agregarEventoAGrilla(i, false, this.finCoccionEmpleado3, this.finCoccionEmpleado3.getIdEmpleado());
+                        this.eventosYaSimuladosYMostrados++;
                     }
 
 
@@ -183,1575 +121,29 @@ namespace Pizzeria
                 //Bucle principal de Simulacion
                 while (relojSimulacion < tiempoFinCorrida)
                 {
-
-                    Evento siguienteEvento = llegadaVehiculoCombustible.getSiguienteEvento(llegadaVehiculoGas.getSiguienteEvento(finServicioCombustibleSurt1.getSiguienteEvento(finServicioCombustibleSurt2.getSiguienteEvento(finServicioCombustibleSurt3.getSiguienteEvento(finServicioCombustibleSurt4.getSiguienteEvento(finServicioGasSurt1.getSiguienteEvento(finServicioGasSurt2.getSiguienteEvento(finServicioGasSurt3))))))));
-
-                    relojSimulacion = siguienteEvento.getProximaLlegada();//Actualizo el reloj
-
-                    //Dependiendo del tipo de evento que sea sera lo que se simule
-
-                    if (siguienteEvento is LlegadaVehiculosCombustible)//Si el evento es una llegada de un vehiculo a cargar combustible
+                    double firstEvent = this.getFirstEvent(this.llegadaPedido.getProximaLlegada(), this.finCoccionEmpleado1.getProximaLlegada(), this.finCoccionEmpleado2.getProximaLlegada(), this.finCoccionEmpleado3.getProximaLlegada(), this.finDelivery.getProximaLlegada());
+                    this.relojSimulacion = firstEvent;
+                    if (this.llegadaPedido.getProximaLlegada() == firstEvent)
                     {
-                        int i = 0;
-                        identificadorVehiculo++;
-
-
-
-                        llegadaVehiculoCombustible.simular(relojSimulacion, rand.NextDouble());
-
-                        if (SurtidorCombustible1.Estado == _EstadoSurtidor.Libre || SurtidorCombustible2.Estado == _EstadoSurtidor.Libre || SurtidorCombustible3.Estado == _EstadoSurtidor.Libre || SurtidorCombustible4.Estado == _EstadoSurtidor.Libre)//Busco un surtidor libre
-                        {
-                            if (SurtidorCombustible1.Estado == _EstadoSurtidor.Libre)//Veo Si surtidor1 esta atendiendo a un vehiculos
-                            {
-                                SurtidorCombustible1.Estado = _EstadoSurtidor.Ocupado;//Actualizo el estado del Surtidor
-                                vehiculoActualSurtComb1 = new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Siendo_Atendido_Conbustible, _TipoServicio.Combustible, 0.00);
-                                finServicioCombustibleSurt1.simular(relojSimulacion, rand.NextDouble());
-
-                                AcumTiempoOcioServidoresCombustible += (relojSimulacion - SurtidorCombustible1.getHoraInicioOcio());
-                                SurtidorCombustible1.setHoraInicioOcio(-1.00);
-                                ContVehiConTiempoEsperaVehiculosCombustible++;
-                                ContVehiculosCombustibleIngresanAlSitema++;
-
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosCombustible)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, true, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGreen;
-
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaComb"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-                            }
-                            else if (SurtidorCombustible2.Estado == _EstadoSurtidor.Libre)//Veo Si surtidor2 esta atendiendo a un vehiculos
-                            {
-                                SurtidorCombustible2.Estado = _EstadoSurtidor.Ocupado;//Actualizo el estado del Surtidor
-                                vehiculoActualSurtComb2 = new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Siendo_Atendido_Conbustible, _TipoServicio.Combustible, 0.00);
-                                finServicioCombustibleSurt2.simular(relojSimulacion, rand.NextDouble());
-
-                                AcumTiempoOcioServidoresCombustible += (relojSimulacion - SurtidorCombustible2.getHoraInicioOcio());
-                                SurtidorCombustible2.setHoraInicioOcio(-1.00);
-                                ContVehiConTiempoEsperaVehiculosCombustible++;
-                                ContVehiculosCombustibleIngresanAlSitema++;
-
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosCombustible)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, true, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGreen;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaComb"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-
-                            }
-                            else if (SurtidorCombustible3.Estado == _EstadoSurtidor.Libre)//Veo Si surtidor 3 esta atendiendo a un vehiculos
-                            {
-                                SurtidorCombustible3.Estado = _EstadoSurtidor.Ocupado;//Actualizo el estado del Surtidor
-                                vehiculoActualSurtComb3 = new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Siendo_Atendido_Conbustible, _TipoServicio.Combustible, 0.00);
-                                finServicioCombustibleSurt3.simular(relojSimulacion, rand.NextDouble());
-
-                                AcumTiempoOcioServidoresCombustible += (relojSimulacion - SurtidorCombustible3.getHoraInicioOcio());
-                                SurtidorCombustible3.setHoraInicioOcio(-1.00);
-                                ContVehiConTiempoEsperaVehiculosCombustible++;
-                                ContVehiculosCombustibleIngresanAlSitema++;
-
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosCombustible)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, true, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGreen;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaComb"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-
-                            }
-                            else if (SurtidorCombustible4.Estado == _EstadoSurtidor.Libre)//Veo Si surtidor 4 esta atendiendo a un vehiculos
-                            {
-                                SurtidorCombustible4.Estado = _EstadoSurtidor.Ocupado;//Actualizo el estado del Surtidor
-                                vehiculoActualSurtComb4 = new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Siendo_Atendido_Conbustible, _TipoServicio.Combustible, 0.00);
-                                finServicioCombustibleSurt4.simular(relojSimulacion, rand.NextDouble());
-
-                                AcumTiempoOcioServidoresCombustible += (relojSimulacion - SurtidorCombustible4.getHoraInicioOcio());
-                                SurtidorCombustible4.setHoraInicioOcio(-1.00);
-                                ContVehiConTiempoEsperaVehiculosCombustible++;
-                                ContVehiculosCombustibleIngresanAlSitema++;
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosCombustible)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, true, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGreen;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaComb"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-                            }
-
-
-                        }
-                        else if (SurtidorCombustible1.tamañoCola() < colaMaxima || SurtidorCombustible2.tamañoCola() < colaMaxima || SurtidorCombustible3.tamañoCola() < colaMaxima || SurtidorCombustible4.tamañoCola() < colaMaxima)//Si no hay libre busco el primero con poca cola
-                        {
-                            //Veo cual surtidor de combustible tiene una cola menor al parametro cola max
-                            if (SurtidorCombustible1.tamañoCola() < colaMaxima)
-                            {
-                                //Hay Lugar en el surtidor 1
-
-                                SurtidorCombustible1.ponerEnCola(new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Esperando_Atencion_Conbustible, _TipoServicio.Combustible, relojSimulacion));
-                                ContVehiculosCombustibleIngresanAlSitema++;
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosCombustible)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.Khaki;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaComb"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-
-                            }
-                            else if (SurtidorCombustible2.tamañoCola() < colaMaxima)
-                            {
-                                //Hay Lugar en el surtidor 2
-
-                                SurtidorCombustible2.ponerEnCola(new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Esperando_Atencion_Conbustible, _TipoServicio.Combustible, relojSimulacion));
-                                ContVehiculosCombustibleIngresanAlSitema++;
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosCombustible)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.Khaki;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaComb"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-
-                            }
-                            else if (SurtidorCombustible3.tamañoCola() < colaMaxima)
-                            {
-                                //Hay Lugar en el surtidor 3
-
-
-                                SurtidorCombustible3.ponerEnCola(new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Esperando_Atencion_Conbustible, _TipoServicio.Combustible, relojSimulacion));
-                                ContVehiculosCombustibleIngresanAlSitema++;
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosCombustible)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.Khaki;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaComb"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-
-
-
-                            }
-                            else if (SurtidorCombustible4.tamañoCola() < colaMaxima)
-                            {
-                                //Hay Lugar en el surtidor 4
-
-
-                                SurtidorCombustible4.ponerEnCola(new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Esperando_Atencion_Conbustible, _TipoServicio.Combustible, relojSimulacion));
-                                ContVehiculosCombustibleIngresanAlSitema++;
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosCombustible)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.Khaki;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaComb"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-
-
-
-                            }
-
-                        }
-                        else //Estan todas las colas llenas
-                        {
-                            //No hay lugar en ningun surtidor de combustible
-                            ContVehiculosCombustibleRechazados++;
-                            identificadorVehiculo--;
-
-                            //Pregunto si tengo que mostrar en grilla
-                            if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                            {
-
-                                i = dgvResultados.Rows.Add();
-                                agregarEventoAGrilla(i, true, llegadaVehiculoCombustible, 0);
-                                agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                agregarDatosAGrila(i, ((LlegadaVehiculosCombustible)siguienteEvento).getNombreEvento());
-                                agregarSurtidoresAGrilla(i);
-                                agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-
-
-                                dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightCoral;
-
-                                try
-                                {
-                                    if ((i - 1) >= 0)
-                                    {
-                                        dgvResultados.Rows[i - 1].Cells["colProxLlegadaComb"].Style.BackColor = Color.LightBlue;
-                                    }
-                                }
-                                catch (ArgumentOutOfRangeException)
-                                {
-
-                                    
-                                }
-
-                                eventosYaSimuladosYMostrados++;
-                            }
-                        }
-
-                        if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                        {
-                            agregarColumnasAGrilla(identificadorVehiculo);//Agrego la Columna correspondiente
-                            agregarTodosLosVehiculos(i);
-                        }
+                        this.generarLlegadaPedido();
+                    }
+                    else if (this.finCoccionEmpleado1.getProximaLlegada() == firstEvent)
+                    {
+                      
+                    }
+                    else if (this.finCoccionEmpleado2.getProximaLlegada() == firstEvent)
+                    {
 
                     }
-                    else if (siguienteEvento is LlegadaVehiculosGas)//Si el evento es una llegada de un vehiculo a cargar gas
+                    else if (this.finCoccionEmpleado3.getProximaLlegada() == firstEvent)
                     {
-                        int i = 0;
-                        identificadorVehiculo++;
-
-
-
-                        llegadaVehiculoGas.simular(relojSimulacion, rand.NextDouble());
-
-                        if (SurtidorGas1.Estado == _EstadoSurtidor.Libre || SurtidorGas2.Estado == _EstadoSurtidor.Libre || SurtidorGas3.Estado == _EstadoSurtidor.Libre)
-                        {
-                            if (SurtidorGas1.Estado == _EstadoSurtidor.Libre)//Veo Si esta atendiendo a un vehiculos
-                            {
-                                SurtidorGas1.Estado = _EstadoSurtidor.Ocupado;
-                                vehiculoActualSurtGas1 = new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Siendo_Atendido_Gas, _TipoServicio.Gas, 0.00);
-                                finServicioGasSurt1.simular(relojSimulacion, rand.NextDouble());
-
-                                AcumTiempoOcioServidoresGas += (relojSimulacion - SurtidorGas1.getHoraInicioOcio());
-                                SurtidorGas1.setHoraInicioOcio(-1.00);
-                                ContVehiConTiempoEsperaVehiculosGas++;
-                                ContVehiculosGasIngresanAlSitema++;
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosGas)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, true, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                    
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGreen;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaGas"].Style.BackColor = Color.LightBlue;
-                                        }
-
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-                            }
-                            else if (SurtidorGas2.Estado == _EstadoSurtidor.Libre)//Veo Si esta atendiendo a un vehiculos
-                            {
-                                SurtidorGas2.Estado = _EstadoSurtidor.Ocupado;
-                                vehiculoActualSurtGas2 = new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Siendo_Atendido_Gas, _TipoServicio.Gas, 0.00);
-                                finServicioGasSurt2.simular(relojSimulacion, rand.NextDouble());
-
-                                AcumTiempoOcioServidoresGas += (relojSimulacion - SurtidorGas2.getHoraInicioOcio());
-                                SurtidorGas2.setHoraInicioOcio(-1.00);
-                                ContVehiConTiempoEsperaVehiculosGas++;
-                                ContVehiculosGasIngresanAlSitema++;
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosGas)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, true, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                    
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGreen;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaGas"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-                            }
-                            else if (SurtidorGas3.Estado == _EstadoSurtidor.Libre)//Veo Si esta atendiendo a un vehiculos
-                            {
-                                SurtidorGas3.Estado = _EstadoSurtidor.Ocupado;
-                                vehiculoActualSurtGas3 = new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Siendo_Atendido_Gas, _TipoServicio.Gas, 0.00);
-                                finServicioGasSurt3.simular(relojSimulacion, rand.NextDouble());
-
-                                AcumTiempoOcioServidoresGas += (relojSimulacion - SurtidorGas3.getHoraInicioOcio());
-                                SurtidorGas3.setHoraInicioOcio(-1.00);
-                                ContVehiConTiempoEsperaVehiculosGas++;
-                                ContVehiculosGasIngresanAlSitema++;
-
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosGas)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, true, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                   
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGreen;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaGas"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-                            }
-
-
-                        }
-                        else if (SurtidorGas1.tamañoCola() < colaMaxima || SurtidorGas2.tamañoCola() < colaMaxima || SurtidorGas3.tamañoCola() < colaMaxima)
-                        {
-                            if (SurtidorGas1.tamañoCola() < colaMaxima)
-                            {
-                                //Hay Lugar en el surtidor 1
-
-
-                                SurtidorGas1.ponerEnCola(new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Esperando_Atencion_Gas, _TipoServicio.Gas, relojSimulacion));
-                                ContVehiculosGasIngresanAlSitema++;
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosGas)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                    
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.Khaki;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaGas"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-
-
-
-                            }
-                            else if (SurtidorGas2.tamañoCola() < colaMaxima)
-                            {
-                                //Hay Lugar en el surtidor 2
-
-
-                                SurtidorGas2.ponerEnCola(new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Esperando_Atencion_Gas, _TipoServicio.Gas, relojSimulacion));
-                                ContVehiculosGasIngresanAlSitema++;
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosGas)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                    
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.Khaki;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaGas"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-
-
-
-                            }
-                            else if (SurtidorGas3.tamañoCola() < colaMaxima)
-                            {
-                                //Hay Lugar en el surtidor 3
-
-
-                                SurtidorGas3.ponerEnCola(new Vehiculo("EstadoVehi" + identificadorVehiculo, _EstadoVehiculo.Esperando_Atencion_Gas, _TipoServicio.Gas, relojSimulacion));
-                                ContVehiculosGasIngresanAlSitema++;
-
-                                //Pregunto si tengo que mostrar en grilla
-                                if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                {
-
-                                    i = dgvResultados.Rows.Add();
-
-
-                                    agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                    agregarEventoAGrilla(i, true, llegadaVehiculoGas, 0);
-                                    agregarDatosAGrila(i, ((LlegadaVehiculosGas)siguienteEvento).getNombreEvento());
-                                    agregarSurtidoresAGrilla(i);
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                    agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                   
-
-                                    dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.Khaki;
-
-                                    try
-                                    {
-                                        if ((i - 1) >= 0)
-                                        {
-                                            dgvResultados.Rows[i - 1].Cells["colProxLlegadaGas"].Style.BackColor = Color.LightBlue;
-                                        }
-                                    }
-                                    catch (ArgumentOutOfRangeException)
-                                    {
-
-                                        
-                                    }
-
-                                    eventosYaSimuladosYMostrados++;
-                                }
-
-
-
-                            }
-
-
-                        }
-                        else
-                        {
-                            //No hay lugar en ningun surtidor de combustible
-                            ContVehiculosGasRechazados++;
-                            identificadorVehiculo--;
-
-                            //Pregunto si tengo que mostrar en grilla
-                            if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                            {
-
-                                i = dgvResultados.Rows.Add();
-                                agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                agregarEventoAGrilla(i, true, llegadaVehiculoGas, 0);
-                                agregarDatosAGrila(i, ((LlegadaVehiculosGas)siguienteEvento).getNombreEvento());
-                                agregarSurtidoresAGrilla(i);
-                                agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                
-
-                                dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightCoral;
-
-                                try
-                                {
-                                    if ((i - 1) >= 0)
-                                    {
-                                        dgvResultados.Rows[i - 1].Cells["colProxLlegadaGas"].Style.BackColor = Color.LightBlue;
-                                    }
-                                }
-                                catch (ArgumentOutOfRangeException)
-                                {
-
-                                    
-                                }
-
-                                eventosYaSimuladosYMostrados++;
-                            }
-
-                        }
-                        if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                        {
-                            agregarColumnasAGrilla(identificadorVehiculo);//Agrego la Columna correspondiente
-                            agregarTodosLosVehiculos(i);
-                        }
-                    }
-                    else if (siguienteEvento is FinServicioGas)//Si el evento es un fin de atencion gas
-                    {
-                        int i = 0;
-
-                        switch (((FinServicioGas)siguienteEvento).getIdSurtidor())//Veo cual surtidor termino de cargar
-                        {
-                            case 1:
-                                vehiculoActualSurtGas1 = null;
-                                ContVehiculosGasAtendidos++;
-                                finServicioGasSurt1.setHoraFin(0.00);
-
-                                if (SurtidorGas1.tamañoCola() > 0)//Veo si hay vehiculos esperando en cola
-                                {
-                                    vehiculoActualSurtGas1 = SurtidorGas1.sacarDeCola(); //Saco uno de la cola
-                                    vehiculoActualSurtGas1.Estado = _EstadoVehiculo.Siendo_Atendido_Gas;
-                                    AcumTiempoEsperaVehiculosGas += (relojSimulacion - vehiculoActualSurtGas1.getInicioEspera());
-                                    ContVehiConTiempoEsperaVehiculosGas++;
-                                    vehiculoActualSurtGas1.setHoraInicioEspera(0.00);
-                                    finServicioGasSurt1.simular(relojSimulacion, rand.NextDouble());
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioGas)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, true, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                       
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinGasServ1"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                            
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-
-                                    }
-
-
-                                }
-                                else
-                                {
-                                    SurtidorGas1.Estado = _EstadoSurtidor.Libre;
-                                    SurtidorGas1.setHoraInicioOcio(relojSimulacion);
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioGas)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinGasServ1"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                           
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-
-                                    }
-                                }
-
-
-
-                                break;
-                            case 2:
-                                vehiculoActualSurtGas2 = null;
-                                ContVehiculosGasAtendidos++;
-                                finServicioGasSurt2.setHoraFin(0.00);
-
-                                if (SurtidorGas2.tamañoCola() > 0)//Veo si hay vehiculos esperando en cola
-                                {
-                                    vehiculoActualSurtGas2 = SurtidorGas2.sacarDeCola(); //Saco uno de la cola
-                                    vehiculoActualSurtGas2.Estado = _EstadoVehiculo.Siendo_Atendido_Gas;
-                                    AcumTiempoEsperaVehiculosGas += (relojSimulacion - vehiculoActualSurtGas2.getInicioEspera());
-                                    ContVehiConTiempoEsperaVehiculosGas++;
-                                    vehiculoActualSurtGas2.setHoraInicioEspera(0.00);
-                                    finServicioGasSurt2.simular(relojSimulacion, rand.NextDouble());
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioGas)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, true, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinGasServ2"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                            
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-                                    }
-
-
-                                }
-                                else
-                                {
-                                    SurtidorGas2.Estado = _EstadoSurtidor.Libre;
-                                    SurtidorGas2.setHoraInicioOcio(relojSimulacion);
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioGas)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-
-                                            dgvResultados.Rows[i - 1].Cells["colFinGasServ2"].Style.BackColor = Color.LightBlue;
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                            
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-                                    }
-                                }
-
-
-
-                                break;
-                            case 3:
-                                vehiculoActualSurtGas3 = null;
-                                ContVehiculosGasAtendidos++;
-                                finServicioGasSurt3.setHoraFin(0.00);
-
-                                if (SurtidorGas3.tamañoCola() > 0)//Veo si hay vehiculos esperando en cola
-                                {
-                                    vehiculoActualSurtGas3 = SurtidorGas3.sacarDeCola(); //Saco uno de la cola
-                                    vehiculoActualSurtGas3.Estado = _EstadoVehiculo.Siendo_Atendido_Gas;
-                                    AcumTiempoEsperaVehiculosGas += (relojSimulacion - vehiculoActualSurtGas3.getInicioEspera());
-                                    ContVehiConTiempoEsperaVehiculosGas++;
-                                    vehiculoActualSurtGas3.setHoraInicioEspera(0.00);
-                                    finServicioGasSurt3.simular(relojSimulacion, rand.NextDouble());
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioGas)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, true, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinGasServ3"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                           
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-                                    }
-
-
-                                }
-                                else
-                                {
-                                    SurtidorGas3.Estado = _EstadoSurtidor.Libre;
-                                    SurtidorGas3.setHoraInicioOcio(relojSimulacion);
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioGas)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinGasServ3"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                            
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-                                    }
-                                }
-
-
-
-                                break;
-
-
-                        }
-                        if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                        {
-                            //agregarColumnasAGrilla(identificadorVehiculo);//Agrego la Columna correspondiente
-                            agregarTodosLosVehiculos(i);
-                        }
 
                     }
-                    else if (siguienteEvento is FinServicioCombustible)//Si el evento es un fin de atencion combustible
+                    else if (this.finDelivery.getProximaLlegada() == firstEvent)
                     {
-                        int i = 0;
 
-                        switch (((FinServicioCombustible)siguienteEvento).getIdSurtidor())//Veo si hay vehiculos esperando en cola
-                        {
-                            case 1:
-                                vehiculoActualSurtComb1 = null;
-                                ContVehiculosCombustibleAtendidos++;
-                                finServicioCombustibleSurt1.setHoraFin(0.00);
-
-                                if (SurtidorCombustible1.tamañoCola() > 0)//Veo si hay vehiculos esperando en cola
-                                {
-                                    vehiculoActualSurtComb1 = SurtidorCombustible1.sacarDeCola(); //Saco uno de la cola
-                                    vehiculoActualSurtComb1.Estado = _EstadoVehiculo.Siendo_Atendido_Conbustible;
-                                    AcumTiempoEsperaVehiculosCombustible += (relojSimulacion - vehiculoActualSurtComb1.getInicioEspera());
-                                    ContVehiConTiempoEsperaVehiculosCombustible++;
-                                    vehiculoActualSurtComb1.setHoraInicioEspera(0.00);
-                                    finServicioCombustibleSurt1.simular(relojSimulacion, rand.NextDouble());
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioCombustible)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, true, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        agregarTodosLosVehiculos(i);
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinCombustibleServ1"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                            throw;
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-                                    }
-                                }
-                                else
-                                {
-                                    SurtidorCombustible1.Estado = _EstadoSurtidor.Libre;
-                                    SurtidorCombustible1.setHoraInicioOcio(relojSimulacion);
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioCombustible)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        agregarTodosLosVehiculos(i);
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinCombustibleServ1"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                            
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-                                    }
-                                }
-
-
-
-                                break;
-                            case 2:
-                                vehiculoActualSurtComb2 = null;
-                                ContVehiculosCombustibleAtendidos++;
-                                finServicioCombustibleSurt2.setHoraFin(0.00);
-
-                                if (SurtidorCombustible2.tamañoCola() > 0)//Veo si hay vehiculos esperando en cola
-                                {
-                                    vehiculoActualSurtComb2 = SurtidorCombustible2.sacarDeCola(); //Saco uno de la cola
-                                    vehiculoActualSurtComb2.Estado = _EstadoVehiculo.Siendo_Atendido_Conbustible;
-                                    AcumTiempoEsperaVehiculosCombustible += (relojSimulacion - vehiculoActualSurtComb2.getInicioEspera());
-                                    ContVehiConTiempoEsperaVehiculosCombustible++;
-                                    vehiculoActualSurtComb2.setHoraInicioEspera(0.00);
-                                    finServicioCombustibleSurt2.simular(relojSimulacion, rand.NextDouble());
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioCombustible)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, true, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        agregarTodosLosVehiculos(i);
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinCombustibleServ2"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                            
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-                                    }
-
-                                }
-                                else
-                                {
-                                    SurtidorCombustible2.Estado = _EstadoSurtidor.Libre;
-                                    SurtidorCombustible2.setHoraInicioOcio(relojSimulacion);
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioCombustible)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        agregarTodosLosVehiculos(i);
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinCombustibleServ2"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                            
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-                                    }
-                                }
-
-
-
-                                break;
-                            case 3:
-                                vehiculoActualSurtComb3 = null;
-                                ContVehiculosCombustibleAtendidos++;
-                                finServicioCombustibleSurt3.setHoraFin(0.00);
-
-                                if (SurtidorCombustible3.tamañoCola() > 0)//Veo si hay vehiculos esperando en cola
-                                {
-                                    vehiculoActualSurtComb3 = SurtidorCombustible3.sacarDeCola(); //Saco uno de la cola
-                                    vehiculoActualSurtComb3.Estado = _EstadoVehiculo.Siendo_Atendido_Conbustible;
-                                    AcumTiempoEsperaVehiculosCombustible += (relojSimulacion - vehiculoActualSurtComb3.getInicioEspera());
-                                    ContVehiConTiempoEsperaVehiculosCombustible++;
-                                    vehiculoActualSurtComb3.setHoraInicioEspera(0.00);
-                                    finServicioCombustibleSurt3.simular(relojSimulacion, rand.NextDouble());
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioCombustible)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, true, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        agregarTodosLosVehiculos(i);
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinCombustibleServ3"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                           
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-                                    }
-
-                                }
-                                else
-                                {
-                                    SurtidorCombustible3.Estado = _EstadoSurtidor.Libre;
-                                    SurtidorCombustible3.setHoraInicioOcio(relojSimulacion);
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioCombustible)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        agregarTodosLosVehiculos(i);
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinCombustibleServ3"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                            
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-                                    }
-
-                                }
-
-
-
-                                break;
-                            case 4:
-                                vehiculoActualSurtComb4 = null;
-                                ContVehiculosCombustibleAtendidos++;
-                                finServicioCombustibleSurt4.setHoraFin(0.00);
-
-                                if (SurtidorCombustible4.tamañoCola() > 0)//Veo si hay vehiculos esperando en cola
-                                {
-                                    vehiculoActualSurtComb4 = SurtidorCombustible4.sacarDeCola(); //Saco uno de la cola
-                                    vehiculoActualSurtComb4.Estado = _EstadoVehiculo.Siendo_Atendido_Conbustible;
-                                    AcumTiempoEsperaVehiculosCombustible += (relojSimulacion - vehiculoActualSurtComb4.getInicioEspera());
-                                    ContVehiConTiempoEsperaVehiculosCombustible++;
-                                    vehiculoActualSurtComb4.setHoraInicioEspera(0.00);
-                                    finServicioCombustibleSurt4.simular(relojSimulacion, rand.NextDouble());
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioCombustible)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, true, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        agregarTodosLosVehiculos(i);
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinCombustibleServ4"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                            
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-                                    }
-
-                                }
-                                else
-                                {
-                                    SurtidorCombustible4.Estado = _EstadoSurtidor.Libre;
-                                    SurtidorCombustible4.setHoraInicioOcio(relojSimulacion);
-
-                                    //Pregunto si tengo que mostrar en grilla
-                                    if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                                    {
-
-                                        i = dgvResultados.Rows.Add();
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoCombustible, 0);
-                                        agregarEventoAGrilla(i, false, llegadaVehiculoGas, 0);
-                                        agregarDatosAGrila(i, ((FinServicioCombustible)siguienteEvento).getNombreEvento());
-                                        agregarSurtidoresAGrilla(i);
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt1, finServicioCombustibleSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt2, finServicioCombustibleSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt3, finServicioCombustibleSurt3.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioCombustibleSurt4, finServicioCombustibleSurt4.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt1, finServicioGasSurt1.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt2, finServicioGasSurt2.getIdSurtidor());
-                                        agregarEventoAGrilla(i, false, finServicioGasSurt3, finServicioGasSurt3.getIdSurtidor());
-
-                                        agregarTodosLosVehiculos(i);
-
-                                        dgvResultados.Rows[i].Cells["colEvento"].Style.BackColor = Color.LightGray;
-
-                                        try
-                                        {
-                                            if ((i - 1) >= 0)
-                                            {
-                                                dgvResultados.Rows[i - 1].Cells["colFinCombustibleServ4"].Style.BackColor = Color.LightBlue;
-                                            }
-
-                                        }
-                                        catch (ArgumentOutOfRangeException)
-                                        {
-
-                                            
-                                        }
-
-                                        eventosYaSimuladosYMostrados++;
-                                    }
-                                }
-                                break;
-                        }
-                        if (tiempoAPartirDeDondeMostrar < relojSimulacion && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)
-                        {
-                           // agregarColumnasAGrilla(identificadorVehiculo);//Agrego la Columna correspondiente
-                            agregarTodosLosVehiculos(i);
-                        }
                     }
+
                 }
 
                 //Calcular y Mostrar Estadisticas
@@ -1807,186 +199,144 @@ namespace Pizzeria
             //Fin Bloque Simulacion
         }
 
+        public void generarLlegadaPedido()
+        {
+            int i = this.dgvResultados.Rows.Add();
+            this.llegadaPedido.simular(this.relojSimulacion, this.rand.NextDouble());
+            this.agregarEventoAGrilla(i, true, this.llegadaPedido, 0);
+            this.agregarDatosAGrila(i, this.llegadaPedido.getNombreEvento());
+            this.agregarSurtidoresAGrilla(i);
+        }
+
+        public void tomarDatosPatalla()
+        {
+            this.tiempoFinCorrida = Convert.ToDouble(this.txtTiempoSim.Text);
+            this.tiempoAPartirDeDondeMostrar = Convert.ToDouble(this.txtMinDesde.Text);
+            this.cantidadDeEventosAMostrar = Convert.ToInt32(this.txtNEventosMostrar.Text);
+            this.mediaLlegadaPedidos = Convert.ToDouble(this.txtLlegadaConbustible.Text);
+            this.mediaLlegadaGas = Convert.ToDouble(this.txtLlegadaGas.Text);
+            this.colaMaxima = Convert.ToInt32(this.txtColaMax.Text);
+            this.valorAUniformeFinCombustible = Convert.ToDouble(this.txtFinCombustibleDesde.Text);
+            this.valorBUniformeFinCombustible = Convert.ToDouble(this.txtFinCombustibleHasta.Text);
+            this.valorAUniformeFinGas = Convert.ToDouble(this.txtFinGasDesde.Text);
+            this.valorBUniformeFinGas = Convert.ToDouble(this.txtFinGasHasta.Text);
+            this.cteSumadaAUniformeGas = Convert.ToDouble(this.txtFinGasCte.Text);
+        }
+
+        public void inicializarVariables()
+        {
+            this.relojSimulacion = 0.0;
+            this.identificadorPedido = 0;
+            this.eventosYaSimuladosYMostrados = 0;
+            this.ContVehiculosCombustibleIngresanAlSitema = 0.0;
+            this.ContVehiculosGasIngresanAlSitema = 0.0;
+            this.ContVehiculosCombustibleRechazados = 0.0;
+            this.ContVehiculosGasRechazados = 0.0;
+            this.ContVehiculosCombustibleAtendidos = 0.0;
+            this.ContVehiculosGasAtendidos = 0.0;
+            this.AcumTiempoEsperaVehiculosCombustible = 0.0;
+            this.AcumTiempoEsperaVehiculosGas = 0.0;
+            this.ContVehiConTiempoEsperaVehiculosCombustible = 0.0;
+            this.ContVehiConTiempoEsperaVehiculosGas = 0.0;
+            this.AcumTiempoOcioServidoresCombustible = 0.0;
+            this.AcumTiempoOcioServidoresGas = 0.0;
+            this.llegadaPedido = new LlegadaPedido(this.mediaLlegadaPedidos);
+            this.finCoccionEmpleado1 = new FinCoccionEmpleado(this.valorAUniformeFinCombustible, this.valorBUniformeFinCombustible, 1);
+            this.finCoccionEmpleado2 = new FinCoccionEmpleado(this.valorAUniformeFinCombustible, this.valorBUniformeFinCombustible, 2);
+            this.finCoccionEmpleado3 = new FinCoccionEmpleado(this.valorAUniformeFinCombustible, this.valorBUniformeFinCombustible, 3);
+            this.finDelivery = new FinDelivery(this.valorAUniformeFinGas, this.valorBUniformeFinGas, 1, this.cteSumadaAUniformeGas);
+            this.empleado1 = new Empleado(1, Estados._TipoPedido.Pizza, 0.0, "Libre");
+            this.empleado2 = new Empleado(2, Estados._TipoPedido.Lomito, 0.0, "Libre");
+            this.empleado3 = new Empleado(3, Estados._TipoPedido.Hamburguesa, 0.0, "Libre");
+        }
 
         private void agregarEventoAGrilla(int i, bool conRandom, Evento evento, int idSurt)
         {
-            if (evento is LlegadaVehiculosCombustible)
+            if (evento is LlegadaPedido)
             {
                 dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = "-";
                 dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = "-";
 
                 if (conRandom)
                 {
-                    dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = ((LlegadaVehiculosCombustible)evento).getRandom();
-                    dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = ((LlegadaVehiculosCombustible)evento).getTiempoEntreLlegada();
+                    dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = ((LlegadaPedido)evento).getRandom();
+                    dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = ((LlegadaPedido)evento).getTiempoEntreLlegada();
                 }
 
-                dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = ((LlegadaVehiculosCombustible)evento).getProximaLlegada();
+                dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = ((LlegadaPedido)evento).getProximaLlegada();
 
             }
-            else if (evento is LlegadaVehiculosGas)
-            {
-                dgvResultados.Rows[i].Cells["colRNDLlegadaGas"].Value = "-";
-                dgvResultados.Rows[i].Cells["colTiempoLlegadaGas"].Value = "-";
-
-                if (conRandom)
-                {
-                    dgvResultados.Rows[i].Cells["colRNDLlegadaGas"].Value = ((LlegadaVehiculosGas)evento).getRandom();
-                    dgvResultados.Rows[i].Cells["colTiempoLlegadaGas"].Value = ((LlegadaVehiculosGas)evento).getTiempoEntreLlegada();
-                }
-                dgvResultados.Rows[i].Cells["colProxLlegadaGas"].Value = ((LlegadaVehiculosGas)evento).getProximaLlegada();
-
-            }
-            else if (evento is FinServicioGas)
+            else if (evento is FinDelivery)
             {
                 //dgvResultados.Rows[i].Cells["colRNDFinGas"].Value = "-";
                 //dgvResultados.Rows[i].Cells["colTiempoFinGas"].Value = "-";
 
                 if (conRandom)
                 {
-                    dgvResultados.Rows[i].Cells["colRNDFinGas"].Value = ((FinServicioGas)evento).getRandom();
-                    dgvResultados.Rows[i].Cells["colTiempoFinGas"].Value = ((FinServicioGas)evento).getTiempoEntreLlegada();
+                    dgvResultados.Rows[i].Cells["colRNDFinGas"].Value = ((FinDelivery)evento).getRandom();
+                    dgvResultados.Rows[i].Cells["colTiempoFinGas"].Value = ((FinDelivery)evento).getTiempoEntreLlegada();
 
                 }
                 switch (idSurt)
                 {
                     case 1:
                         dgvResultados.Rows[i].Cells["colFinGasServ1"].Value = "-";
-                        if (((FinServicioGas)evento).getProximaLlegada() != 0)
+                        if (((FinDelivery)evento).getProximaLlegada() != 0)
                         {
-                            dgvResultados.Rows[i].Cells["colFinGasServ1"].Value = ((FinServicioGas)evento).getProximaLlegada();
+                            dgvResultados.Rows[i].Cells["colFinGasServ1"].Value = ((FinDelivery)evento).getProximaLlegada();
                         }
                         break;
                     case 2:
                         dgvResultados.Rows[i].Cells["colFinGasServ2"].Value = "-";
-                        if (((FinServicioGas)evento).getProximaLlegada() != 0)
+                        if (((FinDelivery)evento).getProximaLlegada() != 0)
                         {
-                            dgvResultados.Rows[i].Cells["colFinGasServ2"].Value = ((FinServicioGas)evento).getProximaLlegada();
+                            dgvResultados.Rows[i].Cells["colFinGasServ2"].Value = ((FinDelivery)evento).getProximaLlegada();
                         }
 
                         break;
                     case 3:
                         dgvResultados.Rows[i].Cells["colFinGasServ3"].Value = "-";
-                        if (((FinServicioGas)evento).getProximaLlegada() != 0)
+                        if (((FinDelivery)evento).getProximaLlegada() != 0)
                         {
-                            dgvResultados.Rows[i].Cells["colFinGasServ3"].Value = ((FinServicioGas)evento).getProximaLlegada();
+                            dgvResultados.Rows[i].Cells["colFinGasServ3"].Value = ((FinDelivery)evento).getProximaLlegada();
                         }
 
                         break;
 
                 }
 
-
-            }
-            else if (evento is FinServicioCombustible)
-            {
-                //dgvResultados.Rows[i].Cells["colRNDFinCombustible"].Value = "-";
-                //dgvResultados.Rows[i].Cells["colTiempoFinCombustible"].Value = "-";
-
-                if (conRandom)
-                {
-                    dgvResultados.Rows[i].Cells["colRNDFinCombustible"].Value = ((FinServicioCombustible)evento).getRandom();
-                    dgvResultados.Rows[i].Cells["colTiempoFinCombustible"].Value = ((FinServicioCombustible)evento).getTiempoEntreLlegada();
-                }
-
-                switch (idSurt)
-                {
-                    case 1:
-                        dgvResultados.Rows[i].Cells["colFinCombustibleServ1"].Value = "-";
-                        if (((FinServicioCombustible)evento).getProximaLlegada() != 0)
-                        {
-                            dgvResultados.Rows[i].Cells["colFinCombustibleServ1"].Value = ((FinServicioCombustible)evento).getProximaLlegada();
-                        }
-                        break;
-                    case 2:
-                        dgvResultados.Rows[i].Cells["colFinCombustibleServ2"].Value = "-";
-                        if (((FinServicioCombustible)evento).getProximaLlegada() != 0)
-                        {
-                            dgvResultados.Rows[i].Cells["colFinCombustibleServ2"].Value = ((FinServicioCombustible)evento).getProximaLlegada();
-                        }
-
-                        break;
-                    case 3:
-                        dgvResultados.Rows[i].Cells["colFinCombustibleServ3"].Value = "-";
-                        if (((FinServicioCombustible)evento).getProximaLlegada() != 0)
-                        {
-                            dgvResultados.Rows[i].Cells["colFinCombustibleServ3"].Value = ((FinServicioCombustible)evento).getProximaLlegada();
-                        }
-
-                        break;
-                    case 4:
-                        dgvResultados.Rows[i].Cells["colFinCombustibleServ4"].Value = "-";
-                        if (((FinServicioCombustible)evento).getProximaLlegada() != 0)
-                        {
-                            dgvResultados.Rows[i].Cells["colFinCombustibleServ4"].Value = ((FinServicioCombustible)evento).getProximaLlegada();
-                        }
-
-                        break;
-                }
 
             }
 
         }
         private void agregarSurtidoresAGrilla(int i)//Graficar Los Surtidores
         {
-            //Surtidores Combustible
-            dgvResultados.Rows[i].Cells["colEstadoCombSurt1"].Value = SurtidorCombustible1.Estado.ToString();
-            dgvResultados.Rows[i].Cells["colEstadoCombSurt2"].Value = SurtidorCombustible2.Estado.ToString();
-            dgvResultados.Rows[i].Cells["colEstadoCombSurt3"].Value = SurtidorCombustible3.Estado.ToString();
-            dgvResultados.Rows[i].Cells["colEstadoCombSurt4"].Value = SurtidorCombustible4.Estado.ToString();
-            dgvResultados.Rows[i].Cells["colColaCombSurt1"].Value = SurtidorCombustible1.tamañoCola();
-            dgvResultados.Rows[i].Cells["colColaCombSurt2"].Value = SurtidorCombustible2.tamañoCola();
-            dgvResultados.Rows[i].Cells["colColaCombSurt3"].Value = SurtidorCombustible3.tamañoCola();
-            dgvResultados.Rows[i].Cells["colColaCombSurt4"].Value = SurtidorCombustible4.tamañoCola();
-
-            //Surtidores Gas
-            dgvResultados.Rows[i].Cells["colEstadoGasSurt1"].Value = SurtidorGas1.Estado.ToString();
-            dgvResultados.Rows[i].Cells["colEstadoGasSurt2"].Value = SurtidorGas2.Estado.ToString();
-            dgvResultados.Rows[i].Cells["colEstadoGasSurt3"].Value = SurtidorGas3.Estado.ToString();
-            dgvResultados.Rows[i].Cells["colColaGasSurt1"].Value = SurtidorGas1.tamañoCola();
-            dgvResultados.Rows[i].Cells["colColaGasSurt2"].Value = SurtidorGas2.tamañoCola();
-            dgvResultados.Rows[i].Cells["colColaGasSurt3"].Value = SurtidorGas3.tamañoCola();
+            this.dgvResultados.Rows[i].Cells["colEstadoCombSurt1"].Value = this.empleado1.Estado.ToString();
+            this.dgvResultados.Rows[i].Cells["colEstadoCombSurt2"].Value = this.empleado2.Estado.ToString();
+            this.dgvResultados.Rows[i].Cells["colEstadoCombSurt3"].Value = this.empleado3.Estado.ToString();
+            this.dgvResultados.Rows[i].Cells["colColaCombSurt1"].Value = this.empleado1.tamañoCola();
+            this.dgvResultados.Rows[i].Cells["colColaCombSurt2"].Value = this.empleado2.tamañoCola();
+            this.dgvResultados.Rows[i].Cells["colColaCombSurt3"].Value = this.empleado3.tamañoCola();
+            this.dgvResultados.Rows[i].Cells["colInicioOcioCombSurt1"].Value = "-";
 
             //Los tiempos de ocio de Combustible
 
             dgvResultados.Rows[i].Cells["colInicioOcioCombSurt1"].Value = "-";
-            if (SurtidorCombustible1.getHoraInicioOcio() != -1.00)
+            if (this.empleado1.getHoraInicioOcio() != -1.00)
             {
-                dgvResultados.Rows[i].Cells["colInicioOcioCombSurt1"].Value = SurtidorCombustible1.getHoraInicioOcio();
+                dgvResultados.Rows[i].Cells["colInicioOcioCombSurt1"].Value = this.empleado1.getHoraInicioOcio();
             }
             dgvResultados.Rows[i].Cells["colInicioOcioCombSurt2"].Value = "-";
-            if (SurtidorCombustible2.getHoraInicioOcio() != -1.00)
+            if (this.empleado2.getHoraInicioOcio() != -1.00)
             {
-                dgvResultados.Rows[i].Cells["colInicioOcioCombSurt2"].Value = SurtidorCombustible2.getHoraInicioOcio();
+                dgvResultados.Rows[i].Cells["colInicioOcioCombSurt2"].Value = this.empleado2.getHoraInicioOcio();
             }
             dgvResultados.Rows[i].Cells["colInicioOcioCombSurt3"].Value = "-";
-            if (SurtidorCombustible3.getHoraInicioOcio() != -1.00)
+            if (this.empleado3.getHoraInicioOcio() != -1.00)
             {
-                dgvResultados.Rows[i].Cells["colInicioOcioCombSurt3"].Value = SurtidorCombustible3.getHoraInicioOcio();
+                dgvResultados.Rows[i].Cells["colInicioOcioCombSurt3"].Value = this.empleado3.getHoraInicioOcio();
             }
             dgvResultados.Rows[i].Cells["colInicioOcioCombSurt4"].Value = "-";
-            if (SurtidorCombustible4.getHoraInicioOcio() != -1.00)
-            {
-                dgvResultados.Rows[i].Cells["colInicioOcioCombSurt4"].Value = SurtidorCombustible4.getHoraInicioOcio();
-            }
-
-            //Los tiempos de ocio de Gas
-
-            dgvResultados.Rows[i].Cells["colInicioOcioGasSurt1"].Value = "-";
-            if (SurtidorGas1.getHoraInicioOcio() != -1.00)
-            {
-                dgvResultados.Rows[i].Cells["colInicioOcioGasSurt1"].Value = SurtidorGas1.getHoraInicioOcio();
-            }
-            dgvResultados.Rows[i].Cells["colInicioOcioGasSurt2"].Value = "-";
-            if (SurtidorGas2.getHoraInicioOcio() != -1.00)
-            {
-                dgvResultados.Rows[i].Cells["colInicioOcioGasSurt2"].Value = SurtidorGas2.getHoraInicioOcio();
-            }
-            dgvResultados.Rows[i].Cells["colInicioOcioGasSurt3"].Value = "-";
-            if (SurtidorGas3.getHoraInicioOcio() != -1.00)
-            {
-                dgvResultados.Rows[i].Cells["colInicioOcioGasSurt3"].Value = SurtidorGas3.getHoraInicioOcio();
-            }
 
         }
 
@@ -2021,72 +371,28 @@ namespace Pizzeria
 
         }
         
-        private void agregarTodosLosVehiculos(int i)
+        private void agregarPedidoAGrilla(Pedido pedido, int i)
         {
-
-
-
-            agregarVehiculoAGrilla(vehiculoActualSurtComb1, i);
-            agregarVehiculoAGrilla(vehiculoActualSurtComb2, i);
-            agregarVehiculoAGrilla(vehiculoActualSurtComb3, i);
-            agregarVehiculoAGrilla(vehiculoActualSurtComb4, i);
-            agregarVehiculoAGrilla(vehiculoActualSurtGas1, i);
-            agregarVehiculoAGrilla(vehiculoActualSurtGas2, i);
-            agregarVehiculoAGrilla(vehiculoActualSurtGas3, i);
-
-            foreach (Vehiculo vehi in SurtidorCombustible1.getCola())
-            {
-                agregarVehiculoAGrilla(vehi, i);
-            }
-            foreach (Vehiculo vehi in SurtidorCombustible2.getCola())
-            {
-                agregarVehiculoAGrilla(vehi, i);
-            }
-            foreach (Vehiculo vehi in SurtidorCombustible3.getCola())
-            {
-                agregarVehiculoAGrilla(vehi, i);
-            }
-            foreach (Vehiculo vehi in SurtidorCombustible4.getCola())
-            {
-                agregarVehiculoAGrilla(vehi, i);
-            }
-            foreach (Vehiculo vehi in SurtidorGas1.getCola())
-            {
-                agregarVehiculoAGrilla(vehi, i);
-            }
-            foreach (Vehiculo vehi in SurtidorGas2.getCola())
-            {
-                agregarVehiculoAGrilla(vehi, i);
-            }
-            foreach (Vehiculo vehi in SurtidorGas3.getCola())
-            {
-                agregarVehiculoAGrilla(vehi, i);
-            }
-
-
-        }
-        private void agregarVehiculoAGrilla(Vehiculo vehiculo, int i)
-        {
-            if (vehiculo != null)
+            if (pedido != null)
             {
                 try
                 {
-                    dgvResultados.Rows[i].Cells[vehiculo.Id].Value = vehiculo.Estado;
-                    dgvResultados.Rows[i].Cells[vehiculo.Id.Replace("EstadoVehi", "colHoraInicioEsperaVehiculo")].Value = Math.Round(vehiculo.getInicioEspera(), 2);
-                    if (vehiculo.getInicioEspera() <= 0)
+                    dgvResultados.Rows[i].Cells[pedido.Id].Value = pedido.Estado;
+                    dgvResultados.Rows[i].Cells[pedido.Id.Replace("EstadoVehi", "colHoraInicioEsperaVehiculo")].Value = Math.Round(pedido.getInicioEspera(), 2);
+                    if (pedido.getInicioEspera() <= 0)
                     {
-                        dgvResultados.Rows[i].Cells[vehiculo.Id.Replace("EstadoVehi", "colHoraInicioEsperaVehiculo")].Value = "-";
+                        dgvResultados.Rows[i].Cells[pedido.Id.Replace("EstadoVehi", "colHoraInicioEsperaVehiculo")].Value = "-";
 
                     }
                 }
                 catch (Exception ex)
                 {
-                    agregarColumnasAGrilla(int.Parse(vehiculo.Id.Replace("EstadoVehi", "")));
-                    dgvResultados.Rows[i].Cells[vehiculo.Id].Value = vehiculo.Estado;
-                    dgvResultados.Rows[i].Cells[vehiculo.Id.Replace("EstadoVehi", "colHoraInicioEsperaVehiculo")].Value = Math.Round(vehiculo.getInicioEspera(), 2);
-                    if (vehiculo.getInicioEspera() <= 0)
+                    agregarColumnasAGrilla(int.Parse(pedido.Id.Replace("EstadoVehi", "")));
+                    dgvResultados.Rows[i].Cells[pedido.Id].Value = pedido.Estado;
+                    dgvResultados.Rows[i].Cells[pedido.Id.Replace("EstadoVehi", "colHoraInicioEsperaVehiculo")].Value = Math.Round(pedido.getInicioEspera(), 2);
+                    if (pedido.getInicioEspera() <= 0)
                     {
-                        dgvResultados.Rows[i].Cells[vehiculo.Id.Replace("EstadoVehi", "colHoraInicioEsperaVehiculo")].Value = "-";
+                        dgvResultados.Rows[i].Cells[pedido.Id.Replace("EstadoVehi", "colHoraInicioEsperaVehiculo")].Value = "-";
 
                     }
                 }
@@ -2211,7 +517,7 @@ namespace Pizzeria
             //Reset a variables
             resul = true;
             invalido = null;
-            identificadorVehiculo = 0;
+            identificadorPedido = 0;
             relojSimulacion = 0.00;
 
 
@@ -2257,9 +563,5 @@ namespace Pizzeria
             darFormato(txtTotalRechazados, formato);
         }
 
-        private void gpbTiemposFin_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

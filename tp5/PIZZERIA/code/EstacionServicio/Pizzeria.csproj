@@ -43,13 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Empleado.cs" />
     <Compile Include="Distribuciones.cs" />
     <Compile Include="Estados.cs" />
     <Compile Include="Evento.cs" />
-    <Compile Include="FinServicioCombustible.cs" />
-    <Compile Include="FinServicioGas.cs" />
-    <Compile Include="LlegadaVehiculosCombustible.cs" />
-    <Compile Include="LlegadaVehiculosGas.cs" />
+    <Compile Include="FinCoccionEmpleado.cs" />
+    <Compile Include="FinDelivery.cs" />
+    <Compile Include="LlegadaPedido.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,9 +58,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Surtidor.cs" />
+    <Compile Include="Delivery.cs" />
     <Compile Include="Validaciones.cs" />
-    <Compile Include="Vehiculo.cs" />
+    <Compile Include="Pedido.cs" />
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
