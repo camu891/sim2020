@@ -1,9 +1,0 @@
-D:\Sim2020\sim2020\tp5\EstacionServicio\bin\Debug\EstacionServicio.exe
-D:\Sim2020\sim2020\tp5\EstacionServicio\bin\Debug\EstacionServicio.pdb
-D:\Sim2020\sim2020\tp5\EstacionServicio\obj\Debug\Pizzeria.csprojAssemblyReference.cache
-D:\Sim2020\sim2020\tp5\EstacionServicio\obj\Debug\Pizzeria.frm_principal.resources
-D:\Sim2020\sim2020\tp5\EstacionServicio\obj\Debug\EstacionServicio.Properties.Resources.resources
-D:\Sim2020\sim2020\tp5\EstacionServicio\obj\Debug\Pizzeria.csproj.GenerateResource.cache
-D:\Sim2020\sim2020\tp5\EstacionServicio\obj\Debug\Pizzeria.csproj.CoreCompileInputs.cache
-D:\Sim2020\sim2020\tp5\EstacionServicio\obj\Debug\EstacionServicio.exe
-D:\Sim2020\sim2020\tp5\EstacionServicio\obj\Debug\EstacionServicio.pdb

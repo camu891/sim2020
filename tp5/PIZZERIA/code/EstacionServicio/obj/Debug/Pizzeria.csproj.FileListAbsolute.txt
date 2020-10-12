@@ -1,0 +1,9 @@
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\bin\Debug\EstacionServicio.exe
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\bin\Debug\EstacionServicio.pdb
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.csprojAssemblyReference.cache
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.frm_principal.resources
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.Properties.Resources.resources
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.csproj.GenerateResource.cache
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.csproj.CoreCompileInputs.cache
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.exe
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.pdb
