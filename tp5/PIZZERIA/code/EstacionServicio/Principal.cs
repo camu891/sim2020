@@ -100,7 +100,7 @@ namespace Pizzeria
                 //Inicio de La Simulacion
                 if (relojSimulacion == 0.00)//Calculos los primeros eventos
                 {
-                    llegadaPedido.simular(relojSimulacion, rand.NextDouble());
+                    llegadaPedido.simular(relojSimulacion, rand.NextDouble());//carga de llegada de pedido
 
                     if (tiempoAPartirDeDondeMostrar == 0.00 && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)//Veo si tengo que graficar
                     {
@@ -126,6 +126,7 @@ namespace Pizzeria
                     if (this.llegadaPedido.getProximaLlegada() == firstEvent)
                     {
                         this.generarLlegadaPedido();
+                        //
                     }
                     else if (this.finCoccionEmpleado1.getProximaLlegada() == firstEvent)
                     {
@@ -208,6 +209,10 @@ namespace Pizzeria
             this.agregarSurtidoresAGrilla(i);
         }
 
+        public void generarTipoPedido()
+        {
+            
+        }
         public void tomarDatosPatalla()
         {
             this.tiempoFinCorrida = Convert.ToDouble(this.txtTiempoSim.Text);
@@ -256,11 +261,18 @@ namespace Pizzeria
             {
                 dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = "-";
                 dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = "-";
+                dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = "-";
+                dgvResultados.Rows[i].Cells["colTipoPedido"].Value = "-";
+                dgvResultados.Rows[i].Cells["colCantidad"].Value = "-";
 
                 if (conRandom)
                 {
                     dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = ((LlegadaPedido)evento).getRandom();
                     dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = ((LlegadaPedido)evento).getTiempoEntreLlegada();
+                    //
+                    dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = ((LlegadaPedido)evento).getRandomTipoPed();
+                    dgvResultados.Rows[i].Cells["colTipoPedido"].Value = ((LlegadaPedido)evento).getTipoPedido();
+                    dgvResultados.Rows[i].Cells["colCantidad"].Value = ((LlegadaPedido)evento).getCantidad();
                 }
 
                 dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = ((LlegadaPedido)evento).getProximaLlegada();

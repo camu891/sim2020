@@ -16,3 +16,12 @@ D:\Sim\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.exe
 D:\Sim\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.pdb
 D:\Sim\sim2020\tp5\PIZZERIA\code\EstacionServicio\bin\Debug\EstacionServicio.exe
 D:\Sim\sim2020\tp5\PIZZERIA\code\EstacionServicio\bin\Debug\EstacionServicio.pdb
+C:\Users\note\Desktop\GRtp2\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.csprojAssemblyReference.cache
+C:\Users\note\Desktop\GRtp2\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.frm_principal.resources
+C:\Users\note\Desktop\GRtp2\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.Properties.Resources.resources
+C:\Users\note\Desktop\GRtp2\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.csproj.GenerateResource.cache
+C:\Users\note\Desktop\GRtp2\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.csproj.CoreCompileInputs.cache
+C:\Users\note\Desktop\GRtp2\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.exe
+C:\Users\note\Desktop\GRtp2\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.pdb
+C:\Users\note\Desktop\GRtp2\sim2020\tp5\PIZZERIA\code\EstacionServicio\bin\Debug\EstacionServicio.exe
+C:\Users\note\Desktop\GRtp2\sim2020\tp5\PIZZERIA\code\EstacionServicio\bin\Debug\EstacionServicio.pdb

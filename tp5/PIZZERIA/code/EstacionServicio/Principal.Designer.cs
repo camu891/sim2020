@@ -128,14 +128,26 @@
             this.gpbResultado = new System.Windows.Forms.GroupBox();
             this.gpbResult = new System.Windows.Forms.GroupBox();
             this.dgvResultados = new System.Windows.Forms.DataGridView();
+            this.gpbParametrosCorrida = new System.Windows.Forms.GroupBox();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnSimular = new System.Windows.Forms.Button();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtNEventosMostrar = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtMinDesde = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtTiempoSim = new System.Windows.Forms.TextBox();
+            this.lblTiempoSim = new System.Windows.Forms.Label();
             this.colEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRNDLlegadaComb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTiempoLlegadaComb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProxLlegadaComb = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRNDLlegadaGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTiempoLlegadaGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colProxLlegadaGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRNDTipoPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTipoPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRNDFinCombustible = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTiempoFinCombustible = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCombustibleServ1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -180,18 +192,6 @@
             this.colAcumTiempoEsperaGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colContVehiculosEsperaronComb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colContVehiculosEsperaronGas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gpbParametrosCorrida = new System.Windows.Forms.GroupBox();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnSimular = new System.Windows.Forms.Button();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtNEventosMostrar = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtMinDesde = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtTiempoSim = new System.Windows.Forms.TextBox();
-            this.lblTiempoSim = new System.Windows.Forms.Label();
             this.gpbParametros.SuspendLayout();
             this.grbEstadisticas.SuspendLayout();
             this.gpbTiemposFin.SuspendLayout();
@@ -968,9 +968,9 @@
             this.colRNDLlegadaComb,
             this.colTiempoLlegadaComb,
             this.colProxLlegadaComb,
-            this.colRNDLlegadaGas,
-            this.colTiempoLlegadaGas,
-            this.colProxLlegadaGas,
+            this.colRNDTipoPedido,
+            this.colTipoPedido,
+            this.colCantidad,
             this.colRNDFinCombustible,
             this.colTiempoFinCombustible,
             this.colFinCombustibleServ1,
@@ -1025,6 +1025,142 @@
             this.dgvResultados.Size = new System.Drawing.Size(1294, 373);
             this.dgvResultados.TabIndex = 0;
             // 
+            // gpbParametrosCorrida
+            // 
+            this.gpbParametrosCorrida.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gpbParametrosCorrida.Controls.Add(this.btnReset);
+            this.gpbParametrosCorrida.Controls.Add(this.btnSimular);
+            this.gpbParametrosCorrida.Controls.Add(this.label24);
+            this.gpbParametrosCorrida.Controls.Add(this.txtNEventosMostrar);
+            this.gpbParametrosCorrida.Controls.Add(this.label23);
+            this.gpbParametrosCorrida.Controls.Add(this.label22);
+            this.gpbParametrosCorrida.Controls.Add(this.txtMinDesde);
+            this.gpbParametrosCorrida.Controls.Add(this.label21);
+            this.gpbParametrosCorrida.Controls.Add(this.label20);
+            this.gpbParametrosCorrida.Controls.Add(this.txtTiempoSim);
+            this.gpbParametrosCorrida.Controls.Add(this.lblTiempoSim);
+            this.gpbParametrosCorrida.Location = new System.Drawing.Point(6, 19);
+            this.gpbParametrosCorrida.Name = "gpbParametrosCorrida";
+            this.gpbParametrosCorrida.Size = new System.Drawing.Size(1300, 52);
+            this.gpbParametrosCorrida.TabIndex = 0;
+            this.gpbParametrosCorrida.TabStop = false;
+            this.gpbParametrosCorrida.Text = "Parametros de la Corrida";
+            // 
+            // btnReset
+            // 
+            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReset.Location = new System.Drawing.Point(1203, 17);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 4;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnSimular
+            // 
+            this.btnSimular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSimular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSimular.ForeColor = System.Drawing.Color.Red;
+            this.btnSimular.Location = new System.Drawing.Point(1122, 17);
+            this.btnSimular.Name = "btnSimular";
+            this.btnSimular.Size = new System.Drawing.Size(75, 23);
+            this.btnSimular.TabIndex = 3;
+            this.btnSimular.Text = "Simular";
+            this.btnSimular.UseVisualStyleBackColor = true;
+            this.btnSimular.Click += new System.EventHandler(this.btnSimular_Click);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(563, 21);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(64, 15);
+            this.label24.TabIndex = 8;
+            this.label24.Text = "[eventos]";
+            // 
+            // txtNEventosMostrar
+            // 
+            this.txtNEventosMostrar.Location = new System.Drawing.Point(509, 18);
+            this.txtNEventosMostrar.MaxLength = 3;
+            this.txtNEventosMostrar.Name = "txtNEventosMostrar";
+            this.txtNEventosMostrar.Size = new System.Drawing.Size(48, 20);
+            this.txtNEventosMostrar.TabIndex = 2;
+            this.txtNEventosMostrar.Text = "10";
+            this.txtNEventosMostrar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNEventosMostrar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtColaMax_KeyDown);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(401, 22);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(102, 13);
+            this.label23.TabIndex = 6;
+            this.label23.Text = "n Eventos a Mostrar";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(338, 21);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(39, 15);
+            this.label22.TabIndex = 5;
+            this.label22.Text = "[min]";
+            // 
+            // txtMinDesde
+            // 
+            this.txtMinDesde.Location = new System.Drawing.Point(284, 18);
+            this.txtMinDesde.MaxLength = 6;
+            this.txtMinDesde.Name = "txtMinDesde";
+            this.txtMinDesde.Size = new System.Drawing.Size(48, 20);
+            this.txtMinDesde.TabIndex = 1;
+            this.txtMinDesde.Text = "0";
+            this.txtMinDesde.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMinDesde.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(223, 22);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(55, 13);
+            this.label21.TabIndex = 3;
+            this.label21.Text = "A partir de";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(163, 21);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(39, 15);
+            this.label20.TabIndex = 2;
+            this.label20.Text = "[min]";
+            // 
+            // txtTiempoSim
+            // 
+            this.txtTiempoSim.Location = new System.Drawing.Point(108, 18);
+            this.txtTiempoSim.MaxLength = 6;
+            this.txtTiempoSim.Name = "txtTiempoSim";
+            this.txtTiempoSim.Size = new System.Drawing.Size(48, 20);
+            this.txtTiempoSim.TabIndex = 0;
+            this.txtTiempoSim.Text = "60";
+            this.txtTiempoSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTiempoSim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
+            // 
+            // lblTiempoSim
+            // 
+            this.lblTiempoSim.AutoSize = true;
+            this.lblTiempoSim.Location = new System.Drawing.Point(6, 22);
+            this.lblTiempoSim.Name = "lblTiempoSim";
+            this.lblTiempoSim.Size = new System.Drawing.Size(96, 13);
+            this.lblTiempoSim.TabIndex = 0;
+            this.lblTiempoSim.Text = "Tiempo Simulación";
+            // 
             // colEvento
             // 
             this.colEvento.HeaderText = "Evento";
@@ -1076,35 +1212,35 @@
             this.colProxLlegadaComb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colProxLlegadaComb.Width = 136;
             // 
-            // colRNDLlegadaGas
+            // colRNDTipoPedido
             // 
             dataGridViewCellStyle5.Format = "N2";
-            this.colRNDLlegadaGas.DefaultCellStyle = dataGridViewCellStyle5;
-            this.colRNDLlegadaGas.HeaderText = "RND Llegada Gas";
-            this.colRNDLlegadaGas.Name = "colRNDLlegadaGas";
-            this.colRNDLlegadaGas.ReadOnly = true;
-            this.colRNDLlegadaGas.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colRNDLlegadaGas.Width = 73;
+            this.colRNDTipoPedido.DefaultCellStyle = dataGridViewCellStyle5;
+            this.colRNDTipoPedido.HeaderText = "RND Tipo Pedido";
+            this.colRNDTipoPedido.Name = "colRNDTipoPedido";
+            this.colRNDTipoPedido.ReadOnly = true;
+            this.colRNDTipoPedido.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colRNDTipoPedido.Width = 87;
             // 
-            // colTiempoLlegadaGas
+            // colTipoPedido
             // 
             dataGridViewCellStyle6.Format = "N2";
-            this.colTiempoLlegadaGas.DefaultCellStyle = dataGridViewCellStyle6;
-            this.colTiempoLlegadaGas.HeaderText = "Tiempo Llegada Gas";
-            this.colTiempoLlegadaGas.Name = "colTiempoLlegadaGas";
-            this.colTiempoLlegadaGas.ReadOnly = true;
-            this.colTiempoLlegadaGas.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTiempoLlegadaGas.Width = 83;
+            this.colTipoPedido.DefaultCellStyle = dataGridViewCellStyle6;
+            this.colTipoPedido.HeaderText = "Tipo de Pedido";
+            this.colTipoPedido.Name = "colTipoPedido";
+            this.colTipoPedido.ReadOnly = true;
+            this.colTipoPedido.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTipoPedido.Width = 77;
             // 
-            // colProxLlegadaGas
+            // colCantidad
             // 
             dataGridViewCellStyle7.Format = "N2";
-            this.colProxLlegadaGas.DefaultCellStyle = dataGridViewCellStyle7;
-            this.colProxLlegadaGas.HeaderText = "Próxima Llegada Gas";
-            this.colProxLlegadaGas.Name = "colProxLlegadaGas";
-            this.colProxLlegadaGas.ReadOnly = true;
-            this.colProxLlegadaGas.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colProxLlegadaGas.Width = 85;
+            this.colCantidad.DefaultCellStyle = dataGridViewCellStyle7;
+            this.colCantidad.HeaderText = "Cantidad";
+            this.colCantidad.Name = "colCantidad";
+            this.colCantidad.ReadOnly = true;
+            this.colCantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colCantidad.Width = 55;
             // 
             // colRNDFinCombustible
             // 
@@ -1499,142 +1635,6 @@
             this.colContVehiculosEsperaronGas.ReadOnly = true;
             this.colContVehiculosEsperaronGas.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // gpbParametrosCorrida
-            // 
-            this.gpbParametrosCorrida.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpbParametrosCorrida.Controls.Add(this.btnReset);
-            this.gpbParametrosCorrida.Controls.Add(this.btnSimular);
-            this.gpbParametrosCorrida.Controls.Add(this.label24);
-            this.gpbParametrosCorrida.Controls.Add(this.txtNEventosMostrar);
-            this.gpbParametrosCorrida.Controls.Add(this.label23);
-            this.gpbParametrosCorrida.Controls.Add(this.label22);
-            this.gpbParametrosCorrida.Controls.Add(this.txtMinDesde);
-            this.gpbParametrosCorrida.Controls.Add(this.label21);
-            this.gpbParametrosCorrida.Controls.Add(this.label20);
-            this.gpbParametrosCorrida.Controls.Add(this.txtTiempoSim);
-            this.gpbParametrosCorrida.Controls.Add(this.lblTiempoSim);
-            this.gpbParametrosCorrida.Location = new System.Drawing.Point(6, 19);
-            this.gpbParametrosCorrida.Name = "gpbParametrosCorrida";
-            this.gpbParametrosCorrida.Size = new System.Drawing.Size(1300, 52);
-            this.gpbParametrosCorrida.TabIndex = 0;
-            this.gpbParametrosCorrida.TabStop = false;
-            this.gpbParametrosCorrida.Text = "Parametros de la Corrida";
-            // 
-            // btnReset
-            // 
-            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReset.Location = new System.Drawing.Point(1203, 17);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 4;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // btnSimular
-            // 
-            this.btnSimular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSimular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSimular.ForeColor = System.Drawing.Color.Red;
-            this.btnSimular.Location = new System.Drawing.Point(1122, 17);
-            this.btnSimular.Name = "btnSimular";
-            this.btnSimular.Size = new System.Drawing.Size(75, 23);
-            this.btnSimular.TabIndex = 3;
-            this.btnSimular.Text = "Simular";
-            this.btnSimular.UseVisualStyleBackColor = true;
-            this.btnSimular.Click += new System.EventHandler(this.btnSimular_Click);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(563, 21);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(64, 15);
-            this.label24.TabIndex = 8;
-            this.label24.Text = "[eventos]";
-            // 
-            // txtNEventosMostrar
-            // 
-            this.txtNEventosMostrar.Location = new System.Drawing.Point(509, 18);
-            this.txtNEventosMostrar.MaxLength = 3;
-            this.txtNEventosMostrar.Name = "txtNEventosMostrar";
-            this.txtNEventosMostrar.Size = new System.Drawing.Size(48, 20);
-            this.txtNEventosMostrar.TabIndex = 2;
-            this.txtNEventosMostrar.Text = "10";
-            this.txtNEventosMostrar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtNEventosMostrar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtColaMax_KeyDown);
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(401, 22);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(102, 13);
-            this.label23.TabIndex = 6;
-            this.label23.Text = "n Eventos a Mostrar";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(338, 21);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(39, 15);
-            this.label22.TabIndex = 5;
-            this.label22.Text = "[min]";
-            // 
-            // txtMinDesde
-            // 
-            this.txtMinDesde.Location = new System.Drawing.Point(284, 18);
-            this.txtMinDesde.MaxLength = 6;
-            this.txtMinDesde.Name = "txtMinDesde";
-            this.txtMinDesde.Size = new System.Drawing.Size(48, 20);
-            this.txtMinDesde.TabIndex = 1;
-            this.txtMinDesde.Text = "0";
-            this.txtMinDesde.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtMinDesde.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(223, 22);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(55, 13);
-            this.label21.TabIndex = 3;
-            this.label21.Text = "A partir de";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(163, 21);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(39, 15);
-            this.label20.TabIndex = 2;
-            this.label20.Text = "[min]";
-            // 
-            // txtTiempoSim
-            // 
-            this.txtTiempoSim.Location = new System.Drawing.Point(108, 18);
-            this.txtTiempoSim.MaxLength = 6;
-            this.txtTiempoSim.Name = "txtTiempoSim";
-            this.txtTiempoSim.Size = new System.Drawing.Size(48, 20);
-            this.txtTiempoSim.TabIndex = 0;
-            this.txtTiempoSim.Text = "60";
-            this.txtTiempoSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtTiempoSim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
-            // 
-            // lblTiempoSim
-            // 
-            this.lblTiempoSim.AutoSize = true;
-            this.lblTiempoSim.Location = new System.Drawing.Point(6, 22);
-            this.lblTiempoSim.Name = "lblTiempoSim";
-            this.lblTiempoSim.Size = new System.Drawing.Size(96, 13);
-            this.lblTiempoSim.TabIndex = 0;
-            this.lblTiempoSim.Text = "Tiempo Simulación";
-            // 
             // frm_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1752,9 +1752,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colRNDLlegadaComb;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTiempoLlegadaComb;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProxLlegadaComb;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRNDLlegadaGas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTiempoLlegadaGas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colProxLlegadaGas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRNDTipoPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTipoPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRNDFinCombustible;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTiempoFinCombustible;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCombustibleServ1;
