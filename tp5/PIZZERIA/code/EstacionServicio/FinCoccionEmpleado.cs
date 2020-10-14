@@ -2,7 +2,7 @@
 
 namespace Pizzeria
 {
-	internal class FinCoccionEmpleado : Evento
+	public class FinCoccionEmpleado : Evento
 	{
 		private double rndTiempo;
 		private double demora;
@@ -11,7 +11,8 @@ namespace Pizzeria
 		private double desde;
 		private double hasta;
 		private int idEmpleado;
-
+		//private 
+		
 		public FinCoccionEmpleado(double a, double b, int id)
 		{
 			this.desde = a;

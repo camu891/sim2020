@@ -228,8 +228,8 @@ namespace Pizzeria
         public void generarDemoraEmpleado(int id, LlegadaPedido llegadaP)
         {
             int i = this.dgvResultados.Rows.Add();
-            string tipoPedido = llegadaP.getTipoPedido();
-            int cantidad = llegadaP.getCantidad();
+            string tipoPedido = llegadaP.getPedido().Tipo;
+            int cantidad = llegadaP.getPedido().Cantidad;
 
             switch (id) {
                 case 1:
@@ -312,8 +312,8 @@ namespace Pizzeria
                     //
                     if (i != 0) {
                         dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = ((LlegadaPedido)evento).getRandomTipoPed();
-                        dgvResultados.Rows[i].Cells["colTipoPedido"].Value = ((LlegadaPedido)evento).getTipoPedido();
-                        dgvResultados.Rows[i].Cells["colCantidad"].Value = ((LlegadaPedido)evento).getCantidad();
+                        dgvResultados.Rows[i].Cells["colTipoPedido"].Value = ((LlegadaPedido)evento).getPedido().Tipo;
+                        dgvResultados.Rows[i].Cells["colCantidad"].Value = ((LlegadaPedido)evento).getPedido().Cantidad;
                     }
 
                 }

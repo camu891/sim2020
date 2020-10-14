@@ -10,9 +10,12 @@ namespace Pizzeria
 		private double proximaLlegada;
 		private string nombreEvento = "llegada_Pedido";
 		private double mu;
+		private Pedido pedido;
 		private double rndTipoPedido;
+		/*
 		private string tipoPedido;
 		private int cantidad;
+		*/
 		private double precioVenta; // Agregar en grilla para calculo de Var est.
 
 		public LlegadaPedido(double mu)
@@ -48,17 +51,24 @@ namespace Pizzeria
 			return this.proximaLlegada;
 		}
 
+		public Pedido getPedido()
+		{
+			return pedido;
+		}
+
 		public override void simular(double reloj, double random)
 		{
 	
 			this.rndTiempoCombustible = random;
 			this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoCombustible);
 			this.proximaLlegada = this.tiempoEntreLlegadas + reloj;
-
 			Random rand = new Random();
 			this.setRandomTipoPed(rand.NextDouble());
-			this.tipoPedido = seleccionTipoPedido(rndTipoPedido);
-			this.cantidad = cantidadPedido(tipoPedido);	
+			string tipoPedido = seleccionTipoPedido(rndTipoPedido);
+			int cantidad = cantidadPedido(tipoPedido);
+			pedido = new Pedido("En preparacion", tipoPedido, cantidad, reloj);
+	
+			
 		}
 		
 		private string seleccionTipoPedido(double rnd)
@@ -115,24 +125,7 @@ namespace Pizzeria
 			return cant;
 		}
 
-		public string getTipoPedido()
-		{
-			return seleccionTipoPedido(rndTipoPedido);
-		}
-
-		public void setTipoPedido(string tP)
-		{
-			tipoPedido = tP;
-		}
-		public void setCantidad(int cant)
-		{
-			cantidad = cant;
-		}
-		public int getCantidad()
-		{
-			return cantidad;
-		}
-
+	
 		public override void simularDemora(double reloj, double random, string tipoPedido, int cantidad) { }
 
 	}

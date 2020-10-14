@@ -5,11 +5,12 @@ namespace Pizzeria
 	public class Pedido
 	{
 		private string id;
-		private Estados._EstadoPedido estado;
-		private Estados._TipoPedido tipoServicio;
+		private string  estado;
+		private string tipoServicio;
+		private int cantidad;
 		private double horaInicioEspera;
 
-		public Estados._TipoPedido Tipo
+		public string Tipo
 		{
 			get
 			{
@@ -21,7 +22,7 @@ namespace Pizzeria
 			}
 		}
 
-		public Estados._EstadoPedido Estado
+		public string Estado
 		{
 			get
 			{
@@ -45,11 +46,24 @@ namespace Pizzeria
 			}
 		}
 
-		public Pedido(string id, Estados._EstadoPedido estado, Estados._TipoPedido tipo, double horaInicioEspera)
+		public int Cantidad
 		{
-			this.id = id;
+			get
+			{
+				return this.cantidad;
+			}
+			set
+			{
+				this.cantidad = value;
+			}
+		}
+
+		public Pedido( string estado, string tipo,int cant, double horaInicioEspera)
+		{
+			//this.id = id;
 			this.estado = estado;
 			this.tipoServicio = tipo;
+			cantidad = cant;
 			this.horaInicioEspera = horaInicioEspera;
 		}
 
