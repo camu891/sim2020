@@ -11,7 +11,8 @@ namespace Pizzeria
 		private double desde;
 		private double hasta;
 		private int idEmpleado;
-		//private 
+		private Empleado e;
+
 		
 		public FinCoccionEmpleado(double a, double b, int id)
 		{
@@ -90,6 +91,7 @@ namespace Pizzeria
 			this.demora = demoraPedido;
 			this.proximoFin = this.demora + reloj;
 			//crear el objeto empleado para setear su valores
+			e = new Empleado("Ocupado", demora);
 		}
 
 		public override void simular(double reloj, double random) { }

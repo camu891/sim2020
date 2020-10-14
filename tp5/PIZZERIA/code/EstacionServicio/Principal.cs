@@ -128,11 +128,11 @@ namespace Pizzeria
                     {
                         this.generarLlegadaPedido();
 
-                        // hacer para los 3 empleados
+                        // hacer para los 3 empleados 
                         if (this.empleado1.Estado == Estados._EstadoEmpleado.Libre) {
                             this.generarDemoraEmpleado(this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
                         }
-                        
+                        //si estan todos ocupados mandar a cola 
                     }
                     else if (this.finCoccionEmpleado1.getProximaLlegada() == firstEvent)
                     {  

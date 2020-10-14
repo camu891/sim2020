@@ -5,12 +5,12 @@ namespace Pizzeria
 {
 	public class Empleado
 	{
-		private Estados._EstadoEmpleado estado;
+		private string estado;
 		//private Estados._TipoPedido tipoServicio;
 		public static Queue<Pedido> cola;
 		private double horaInicioOcio;
 		private double acumTiempoOcio;
-		private string nombreEstado;
+		//private string nombreEstado;
 		private double demora;
 		private double finCoccion;
 		private bool pierdeCliente;
@@ -23,12 +23,19 @@ namespace Pizzeria
 
 		public Empleado(int id, double horaInicioOcio)
 		{
-			this.estado = Estados._EstadoEmpleado.Libre;
+			this.estado = "Libre";
 			//this.tipoServicio = tipo;
 			//this.cola = new Queue<Pedido>();
 			this.horaInicioOcio = horaInicioOcio;
 			this.acumTiempoOcio = 0.0;
 			//this.nombreEstado = nombre;
+		}
+
+		public Empleado(string estado, double demora)
+		{
+			this.estado = estado;
+			this.demora = demora;
+						
 		}
 
 		//public string getNombreEstado()
@@ -51,7 +58,7 @@ namespace Pizzeria
 		//	return this.cola.Count;
 		//}
 
-		public void setEstado(Estados._EstadoEmpleado estado)
+		public void setEstado(string estado)
 		{
 			this.estado = estado;
 		}
