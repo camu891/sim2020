@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Pizzeria
 {
@@ -12,7 +13,7 @@ namespace Pizzeria
 		private double rndTipoPedido;
 		private string tipoPedido;
 		private int cantidad;
-		private double precioVenta;
+		private double precioVenta; // Agregar en grilla para calculo de Var est.
 
 		public LlegadaPedido(double mu)
 		{
@@ -95,7 +96,8 @@ namespace Pizzeria
 					}
 				case "Empanadas":
 					{
-						cant = new Random().Next(1,10);// Poisson 
+						Distribuciones dist = new Distribuciones();
+						cant = dist.GenerateCSharpRandomsPoisson(1, 3).First<int>();// Poisson 
 						break;
 					}
 				case "Hamburguesa":

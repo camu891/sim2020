@@ -61,13 +61,13 @@ namespace Pizzeria
 				case "DocSandwich":
 					{
 						//Nor(u 10, r 5)
-						demoraPedido = 1;
+						demoraPedido = 20;
 						break;
 					}
 				case "Pizza":
 					{
 						//Uni[15-18]
-						demoraPedido = 1;
+						demoraPedido = 15;
 						break;
 					}
 				case "Empanadas":
@@ -77,15 +77,10 @@ namespace Pizzeria
 						break;
 					}
 				case "Hamburguesa":
-					{
-						// 8
-						demoraPedido = 1;
-						break;
-					}
 				case "Lomito":
 					{
 						// 8
-						demoraPedido = 1;
+						demoraPedido = 8;
 						break;
 					}
 

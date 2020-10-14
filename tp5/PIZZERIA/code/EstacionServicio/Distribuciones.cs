@@ -9,7 +9,7 @@ namespace Pizzeria
     class Distribuciones
     {
 
-        public static double  Exponencial(double media, double rnd)
+        public static double Exponencial(double media, double rnd)
         {
             return (double) Math.Log(1 - rnd) * (-media);
             
@@ -19,8 +19,27 @@ namespace Pizzeria
             return (double)a + (b - a) * rnd;
             
         }
-       
 
+        public int[] GenerateCSharpRandomsPoisson(int cantidad, double lambda)
+        {
+            int[] lstRnd = new int[cantidad];
+            double a = Math.Exp(-lambda);
+            var rnd = new Random();
+            double aux = 0;
+            for (int i = 0; i < cantidad; i++)
+            {
+                double P = 1;
+                int X = -1;
+                do
+                {
+                    aux = rnd.NextDouble();
+                    P = P * aux;
+                    X++;
+                } while (P >= a);
+                lstRnd[i] = X;
+            }
+            return lstRnd;
+        }
 
     }
 }

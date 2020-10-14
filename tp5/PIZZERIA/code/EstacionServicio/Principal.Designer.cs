@@ -148,9 +148,16 @@
             this.colRNDTipoPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTipoPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colColaPreparacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEstadoEmpleado1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRndDemora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDemora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDemora1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRndDemora1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEstadoEmpleado2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRndDemora2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDemora2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEstadoEmpleado3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRndDemora3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDemora3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCombustibleServ2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCombustibleServ3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCombustibleServ4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -971,9 +978,16 @@
             this.colRNDTipoPedido,
             this.colTipoPedido,
             this.colCantidad,
+            this.colColaPreparacion,
             this.colEstadoEmpleado1,
-            this.colRndDemora,
-            this.colDemora,
+            this.colDemora1,
+            this.colRndDemora1,
+            this.colEstadoEmpleado2,
+            this.colRndDemora2,
+            this.colDemora2,
+            this.colEstadoEmpleado3,
+            this.colRndDemora3,
+            this.colDemora3,
             this.colFinCombustibleServ2,
             this.colFinCombustibleServ3,
             this.colFinCombustibleServ4,
@@ -1242,35 +1256,84 @@
             this.colCantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colCantidad.Width = 55;
             // 
+            // colColaPreparacion
+            // 
+            this.colColaPreparacion.HeaderText = "Cola Preparacion";
+            this.colColaPreparacion.Name = "colColaPreparacion";
+            this.colColaPreparacion.ReadOnly = true;
+            this.colColaPreparacion.Width = 104;
+            // 
             // colEstadoEmpleado1
             // 
             dataGridViewCellStyle8.Format = "N2";
             this.colEstadoEmpleado1.DefaultCellStyle = dataGridViewCellStyle8;
-            this.colEstadoEmpleado1.HeaderText = "Estado Empleado";
+            this.colEstadoEmpleado1.HeaderText = "Estado Empleado 1";
             this.colEstadoEmpleado1.Name = "colEstadoEmpleado1";
             this.colEstadoEmpleado1.ReadOnly = true;
             this.colEstadoEmpleado1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colEstadoEmpleado1.Width = 86;
+            this.colEstadoEmpleado1.Width = 95;
             // 
-            // colRndDemora
+            // colDemora1
             // 
             dataGridViewCellStyle9.Format = "N2";
-            this.colRndDemora.DefaultCellStyle = dataGridViewCellStyle9;
-            this.colRndDemora.HeaderText = "RND Demora";
-            this.colRndDemora.Name = "colRndDemora";
-            this.colRndDemora.ReadOnly = true;
-            this.colRndDemora.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colRndDemora.Width = 69;
+            this.colDemora1.DefaultCellStyle = dataGridViewCellStyle9;
+            this.colDemora1.HeaderText = "Demora 1";
+            this.colDemora1.Name = "colDemora1";
+            this.colDemora1.ReadOnly = true;
+            this.colDemora1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDemora1.Width = 53;
             // 
-            // colDemora
+            // colRndDemora1
             // 
             dataGridViewCellStyle10.Format = "N2";
-            this.colDemora.DefaultCellStyle = dataGridViewCellStyle10;
-            this.colDemora.HeaderText = "Demora";
-            this.colDemora.Name = "colDemora";
-            this.colDemora.ReadOnly = true;
-            this.colDemora.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colDemora.Width = 50;
+            this.colRndDemora1.DefaultCellStyle = dataGridViewCellStyle10;
+            this.colRndDemora1.HeaderText = "RND Demora 1";
+            this.colRndDemora1.Name = "colRndDemora1";
+            this.colRndDemora1.ReadOnly = true;
+            this.colRndDemora1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colRndDemora1.Width = 69;
+            // 
+            // colEstadoEmpleado2
+            // 
+            this.colEstadoEmpleado2.HeaderText = "Estado Empleado 2";
+            this.colEstadoEmpleado2.Name = "colEstadoEmpleado2";
+            this.colEstadoEmpleado2.ReadOnly = true;
+            this.colEstadoEmpleado2.Width = 114;
+            // 
+            // colRndDemora2
+            // 
+            this.colRndDemora2.HeaderText = "RND Demora 2";
+            this.colRndDemora2.Name = "colRndDemora2";
+            this.colRndDemora2.ReadOnly = true;
+            this.colRndDemora2.Width = 88;
+            // 
+            // colDemora2
+            // 
+            this.colDemora2.HeaderText = "Demora 2";
+            this.colDemora2.Name = "colDemora2";
+            this.colDemora2.ReadOnly = true;
+            this.colDemora2.Width = 72;
+            // 
+            // colEstadoEmpleado3
+            // 
+            this.colEstadoEmpleado3.HeaderText = "Estado Empleado 3";
+            this.colEstadoEmpleado3.Name = "colEstadoEmpleado3";
+            this.colEstadoEmpleado3.ReadOnly = true;
+            this.colEstadoEmpleado3.Width = 114;
+            // 
+            // colRndDemora3
+            // 
+            this.colRndDemora3.HeaderText = "RND Demora 3";
+            this.colRndDemora3.Name = "colRndDemora3";
+            this.colRndDemora3.ReadOnly = true;
+            this.colRndDemora3.Width = 88;
+            // 
+            // colDemora3
+            // 
+            this.colDemora3.HeaderText = "Demora 3";
+            this.colDemora3.Name = "colDemora3";
+            this.colDemora3.ReadOnly = true;
+            this.colDemora3.Width = 72;
             // 
             // colFinCombustibleServ2
             // 
@@ -1755,9 +1818,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colRNDTipoPedido;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipoPedido;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colColaPreparacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoEmpleado1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRndDemora;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDemora;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDemora1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRndDemora1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoEmpleado2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRndDemora2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDemora2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoEmpleado3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRndDemora3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDemora3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCombustibleServ2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCombustibleServ3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCombustibleServ4;
