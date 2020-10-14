@@ -54,42 +54,66 @@ namespace Pizzeria
 
 			// pregutar si hay stock para calcular o no la demora
 			this.rndTiempo = random;
+			double demoraPedido = 0.0;
 
 			switch (tipoPedido)
 			{
-				case "Sandwich":
+				case "DocSandwich":
 					{
 						//Nor(u 10, r 5)
+						demoraPedido = 1;
 						break;
 					}
 				case "Pizza":
 					{
 						//Uni[15-18]
+						demoraPedido = 1;
 						break;
 					}
 				case "Empanadas":
 					{
 						//2,5 o 3,5
+						demoraPedido = getDemoraEmpanadas(cantidad);
 						break;
 					}
 				case "Hamburguesa":
 					{
 						// 8
+						demoraPedido = 1;
 						break;
 					}
 				case "Lomito":
 					{
 						// 8
+						demoraPedido = 1;
 						break;
 					}
 
 			}
 
-			//this.demora = Distribuciones.Uniforme(this.desde, this.hasta, this.rndTiempo);
-			this.demora = 1;
+			this.demora = demoraPedido;
 			this.proximoFin = this.demora + reloj;
 		}
 
 		public override void simular(double reloj, double random) { }
+
+
+		private double getDemoraEmpanadas(int cantidad) {
+
+			double division = cantidad / 3;
+			double calculo = 0;
+			while (division > 0)
+			{
+				calculo += 3.5;
+				division--;
+			}
+			if (cantidad%3 != 0)
+			{
+				calculo += 2.5;
+			}
+
+			return calculo;
+
+		}
 	}
 }

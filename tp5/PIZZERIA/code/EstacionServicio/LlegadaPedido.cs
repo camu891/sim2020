@@ -2,7 +2,7 @@
 
 namespace Pizzeria
 {
-	internal class LlegadaPedido : Evento
+	public class LlegadaPedido : Evento
 	{
 		private double rndTiempoCombustible;
 		private double tiempoEntreLlegadas;
@@ -62,20 +62,20 @@ namespace Pizzeria
 		
 		private string seleccionTipoPedido(double rnd)
 		{
-			string tipo = "";
+			string tipoP = "";
 			double aux = (double) Math.Round(rnd,2);
 			if (aux >= 0 && aux <= 0.19)
-				tipo = "Sandwich";
+			tipoP = Enum.GetName(typeof(Estados._TipoPedido), Estados._TipoPedido.DocSandwich);
 			if (aux >= 0.20 && aux <= 0.59)
-				tipo = "Pizza";
-			if(aux >= 0.60 && aux <= 0.89)
-				tipo = "Empanadas";
+				tipoP = Enum.GetName(typeof(Estados._TipoPedido), Estados._TipoPedido.Pizza);
+			if (aux >= 0.60 && aux <= 0.89)
+				tipoP = Enum.GetName(typeof(Estados._TipoPedido), Estados._TipoPedido.Empanadas);
 			if (aux >= 0.90 && aux <= 0.94)
-				tipo = "Hamburguesa";
+				tipoP = Enum.GetName(typeof(Estados._TipoPedido), Estados._TipoPedido.Hamburguesa);
 			if (aux >= 0.95 && aux <= 0.99)
-				tipo = "Lomito";
+				tipoP = Enum.GetName(typeof(Estados._TipoPedido), Estados._TipoPedido.Lomito);
 
-			return tipo;
+			return tipoP;
 		}
 
 		private int cantidadPedido(string pedido)
@@ -83,7 +83,7 @@ namespace Pizzeria
 			int cant = 0;
 			switch (pedido)
 			{
-				case "Sandwich":
+				case "DocSandwich":
 					{ 
 						cant = 12;
 						break;
@@ -95,7 +95,7 @@ namespace Pizzeria
 					}
 				case "Empanadas":
 					{
-						cant = 3;// Poisson 
+						cant = new Random().Next(1,10);// Poisson 
 						break;
 					}
 				case "Hamburguesa":
