@@ -100,6 +100,7 @@ namespace Pizzeria
                 //Inicio de La Simulacion
                 if (relojSimulacion == 0.00)//Calculos los primeros eventos
                 {
+                  
                     llegadaPedido.simular(relojSimulacion, rand.NextDouble());//carga de llegada de pedido
 
                     if (tiempoAPartirDeDondeMostrar == 0.00 && eventosYaSimuladosYMostrados < cantidadDeEventosAMostrar)//Veo si tengo que graficar
@@ -130,15 +131,15 @@ namespace Pizzeria
                     }
                     else if (this.finCoccionEmpleado1.getProximaLlegada() == firstEvent)
                     {
-                      
+                        this.generarDemoraEmpleado(1);
                     }
                     else if (this.finCoccionEmpleado2.getProximaLlegada() == firstEvent)
                     {
-
+                        //this.generarDemoraEmpleado(2);
                     }
                     else if (this.finCoccionEmpleado3.getProximaLlegada() == firstEvent)
                     {
-
+                        //this.generarDemoraEmpleado(3);
                     }
                     else if (this.finDelivery.getProximaLlegada() == firstEvent)
                     {
@@ -209,10 +210,34 @@ namespace Pizzeria
             this.agregarSurtidoresAGrilla(i);
         }
 
-        public void generarTipoPedido()
+        public void generarDemoraEmpleado(int id)
         {
-            
+            int i = this.dgvResultados.Rows.Add();
+          
+            string tipoPedido = this.dgvResultados.Rows[i].Cells["colTipoPedido"].Value.ToString();
+            int cantidad = Convert.ToInt32(this.dgvResultados.Rows[i].Cells["colCantidad"].Value.ToString());
+
+            switch (id) {
+                case 1:
+                    string estado = this.dgvResultados.Rows[i].Cells["colEstadoEmpleado1"].Value.ToString();
+                    if (estado == "Libre") {
+                        this.finCoccionEmpleado1.simularDemora(this.relojSimulacion, this.rand.NextDouble(), tipoPedido, cantidad);
+                        this.agregarEventoAGrilla(i, true, this.finCoccionEmpleado1, 0);
+                        this.agregarDatosAGrila(i, this.finCoccionEmpleado1.getNombreEvento());
+                    }
+                   
+                    break;
+                case 2:
+                  
+                    break;
+                case 3:
+                   
+                    break;
+            }
+           
+            this.agregarSurtidoresAGrilla(i);
         }
+
         public void tomarDatosPatalla()
         {
             this.tiempoFinCorrida = Convert.ToDouble(this.txtTiempoSim.Text);
@@ -270,16 +295,32 @@ namespace Pizzeria
                     dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = ((LlegadaPedido)evento).getRandom();
                     dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = ((LlegadaPedido)evento).getTiempoEntreLlegada();
                     //
-                    dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = ((LlegadaPedido)evento).getRandomTipoPed();
-                    dgvResultados.Rows[i].Cells["colTipoPedido"].Value = ((LlegadaPedido)evento).getTipoPedido();
-                    dgvResultados.Rows[i].Cells["colCantidad"].Value = ((LlegadaPedido)evento).getCantidad();
+                    if (i != 0) {
+                        dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = ((LlegadaPedido)evento).getRandomTipoPed();
+                        dgvResultados.Rows[i].Cells["colTipoPedido"].Value = ((LlegadaPedido)evento).getTipoPedido();
+                        dgvResultados.Rows[i].Cells["colCantidad"].Value = ((LlegadaPedido)evento).getCantidad();
+                    }
+
                 }
 
                 dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = ((LlegadaPedido)evento).getProximaLlegada();
 
-            }
-            else if (evento is FinDelivery)
-            {
+            } else if (evento is FinCoccionEmpleado) {
+                // pasar id de empleado
+                dgvResultados.Rows[i].Cells["colEstadoEmpleado1"].Value = "-";
+                dgvResultados.Rows[i].Cells["colRndDemora"].Value = "-";
+                dgvResultados.Rows[i].Cells["colDemora"].Value = "-";
+
+
+                if (conRandom)
+                {
+                    dgvResultados.Rows[i].Cells["colEstadoEmpleado1"].Value = ((FinCoccionEmpleado)evento).getRandom();
+                    dgvResultados.Rows[i].Cells["colRndDemora"].Value = ((FinCoccionEmpleado)evento).getTiempoEntreLlegada();
+                    dgvResultados.Rows[i].Cells["colDemora"].Value = ((FinCoccionEmpleado)evento).getTiempoEntreLlegada();
+                }
+
+
+            } else if (evento is FinDelivery) {
                 //dgvResultados.Rows[i].Cells["colRNDFinGas"].Value = "-";
                 //dgvResultados.Rows[i].Cells["colTiempoFinGas"].Value = "-";
 
@@ -326,9 +367,9 @@ namespace Pizzeria
             this.dgvResultados.Rows[i].Cells["colEstadoCombSurt1"].Value = this.empleado1.Estado.ToString();
             this.dgvResultados.Rows[i].Cells["colEstadoCombSurt2"].Value = this.empleado2.Estado.ToString();
             this.dgvResultados.Rows[i].Cells["colEstadoCombSurt3"].Value = this.empleado3.Estado.ToString();
-            this.dgvResultados.Rows[i].Cells["colColaCombSurt1"].Value = this.empleado1.tamañoCola();
-            this.dgvResultados.Rows[i].Cells["colColaCombSurt2"].Value = this.empleado2.tamañoCola();
-            this.dgvResultados.Rows[i].Cells["colColaCombSurt3"].Value = this.empleado3.tamañoCola();
+            //this.dgvResultados.Rows[i].Cells["colColaCombSurt1"].Value = this.empleado1.tamañoCola();
+            //this.dgvResultados.Rows[i].Cells["colColaCombSurt2"].Value = this.empleado2.tamañoCola();
+            //this.dgvResultados.Rows[i].Cells["colColaCombSurt3"].Value = this.empleado3.tamañoCola();
             this.dgvResultados.Rows[i].Cells["colInicioOcioCombSurt1"].Value = "-";
 
             //Los tiempos de ocio de Combustible

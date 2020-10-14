@@ -50,5 +50,7 @@ namespace Pizzeria
 			this.demora = Distribuciones.Uniforme(this.desde, this.hasta, this.rndTiempo) + this.cteDemora;
 			this.proximoFin = this.demora + reloj;
 		}
+
+		public override void simularDemora(double reloj, double random, string tipoPedido, int cantidad) { }
 	}
 }

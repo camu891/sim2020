@@ -12,6 +12,7 @@ namespace Pizzeria
 		private double rndTipoPedido;
 		private string tipoPedido;
 		private int cantidad;
+		private double precioVenta;
 
 		public LlegadaPedido(double mu)
 		{
@@ -48,31 +49,33 @@ namespace Pizzeria
 
 		public override void simular(double reloj, double random)
 		{
+	
 			this.rndTiempoCombustible = random;
 			this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoCombustible);
 			this.proximaLlegada = this.tiempoEntreLlegadas + reloj;
+
 			Random rand = new Random();
 			this.setRandomTipoPed(rand.NextDouble());
 			this.tipoPedido = seleccionTipoPedido(rndTipoPedido);
-			this.cantidad = cantidadPedido(tipoPedido);
+			this.cantidad = cantidadPedido(tipoPedido);	
 		}
 		
 		private string seleccionTipoPedido(double rnd)
 		{
 			string tipo = "";
-			double aux =Math.Round(rnd,2);
-			if (aux >= 0 && aux < 0.19)
-				tipo = "Sanduwich";
-			if (aux >= 0.2 && aux < 0.59)
+			double aux = (double) Math.Round(rnd,2);
+			if (aux >= 0 && aux <= 0.19)
+				tipo = "Sandwich";
+			if (aux >= 0.20 && aux <= 0.59)
 				tipo = "Pizza";
-			if(aux >= 0.6 && aux < 0.89)
+			if(aux >= 0.60 && aux <= 0.89)
 				tipo = "Empanadas";
-			if (aux >= 0.9 && aux < 0.94)
-				tipo = "Amburguesa";
-			if (aux >= 0.95 && aux < 0.99)
+			if (aux >= 0.90 && aux <= 0.94)
+				tipo = "Hamburguesa";
+			if (aux >= 0.95 && aux <= 0.99)
 				tipo = "Lomito";
-			return tipo;
 
+			return tipo;
 		}
 
 		private int cantidadPedido(string pedido)
@@ -80,9 +83,9 @@ namespace Pizzeria
 			int cant = 0;
 			switch (pedido)
 			{
-				case "Sanduwich":
+				case "Sandwich":
 					{ 
-						cant= 12;
+						cant = 12;
 						break;
 					}
 				case "Pizza":
@@ -95,7 +98,7 @@ namespace Pizzeria
 						cant = 3;// Poisson 
 						break;
 					}
-				case "Amburguesa":
+				case "Hamburguesa":
 					{
 						cant = 1;
 						break;
@@ -105,7 +108,6 @@ namespace Pizzeria
 						cant = 1;
 						break;
 					}
-
 
 			}
 			return cant;
@@ -128,5 +130,8 @@ namespace Pizzeria
 		{
 			return cantidad;
 		}
+
+		public override void simularDemora(double reloj, double random, string tipoPedido, int cantidad) { }
+
 	}
 }

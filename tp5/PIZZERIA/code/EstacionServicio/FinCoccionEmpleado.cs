@@ -49,11 +49,47 @@ namespace Pizzeria
 			return this.proximoFin;
 		}
 
-		public override void simular(double reloj, double random)
+		public override void simularDemora(double reloj, double random, string tipoPedido, int cantidad)
 		{
+
+			// pregutar si hay stock para calcular o no la demora
 			this.rndTiempo = random;
-			this.demora = Distribuciones.Uniforme(this.desde, this.hasta, this.rndTiempo);
+
+			switch (tipoPedido)
+			{
+				case "Sandwich":
+					{
+						//Nor(u 10, r 5)
+						break;
+					}
+				case "Pizza":
+					{
+						//Uni[15-18]
+						break;
+					}
+				case "Empanadas":
+					{
+						//2,5 o 3,5
+						break;
+					}
+				case "Hamburguesa":
+					{
+						// 8
+						break;
+					}
+				case "Lomito":
+					{
+						// 8
+						break;
+					}
+
+			}
+
+			//this.demora = Distribuciones.Uniforme(this.desde, this.hasta, this.rndTiempo);
+			this.demora = 1;
 			this.proximoFin = this.demora + reloj;
 		}
+
+		public override void simular(double reloj, double random) { }
 	}
 }

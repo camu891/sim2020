@@ -148,9 +148,9 @@
             this.colRNDTipoPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTipoPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRNDFinCombustible = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTiempoFinCombustible = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFinCombustibleServ1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEstadoEmpleado1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRndDemora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDemora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCombustibleServ2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCombustibleServ3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCombustibleServ4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -971,9 +971,9 @@
             this.colRNDTipoPedido,
             this.colTipoPedido,
             this.colCantidad,
-            this.colRNDFinCombustible,
-            this.colTiempoFinCombustible,
-            this.colFinCombustibleServ1,
+            this.colEstadoEmpleado1,
+            this.colRndDemora,
+            this.colDemora,
             this.colFinCombustibleServ2,
             this.colFinCombustibleServ3,
             this.colFinCombustibleServ4,
@@ -1242,35 +1242,35 @@
             this.colCantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colCantidad.Width = 55;
             // 
-            // colRNDFinCombustible
+            // colEstadoEmpleado1
             // 
             dataGridViewCellStyle8.Format = "N2";
-            this.colRNDFinCombustible.DefaultCellStyle = dataGridViewCellStyle8;
-            this.colRNDFinCombustible.HeaderText = "RND Fin Atencion Combustible";
-            this.colRNDFinCombustible.Name = "colRNDFinCombustible";
-            this.colRNDFinCombustible.ReadOnly = true;
-            this.colRNDFinCombustible.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colRNDFinCombustible.Width = 143;
+            this.colEstadoEmpleado1.DefaultCellStyle = dataGridViewCellStyle8;
+            this.colEstadoEmpleado1.HeaderText = "Estado Empleado";
+            this.colEstadoEmpleado1.Name = "colEstadoEmpleado1";
+            this.colEstadoEmpleado1.ReadOnly = true;
+            this.colEstadoEmpleado1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colEstadoEmpleado1.Width = 86;
             // 
-            // colTiempoFinCombustible
+            // colRndDemora
             // 
             dataGridViewCellStyle9.Format = "N2";
-            this.colTiempoFinCombustible.DefaultCellStyle = dataGridViewCellStyle9;
-            this.colTiempoFinCombustible.HeaderText = "Tiempo Fin Atención Combustible";
-            this.colTiempoFinCombustible.Name = "colTiempoFinCombustible";
-            this.colTiempoFinCombustible.ReadOnly = true;
-            this.colTiempoFinCombustible.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTiempoFinCombustible.Width = 153;
+            this.colRndDemora.DefaultCellStyle = dataGridViewCellStyle9;
+            this.colRndDemora.HeaderText = "RND Demora";
+            this.colRndDemora.Name = "colRndDemora";
+            this.colRndDemora.ReadOnly = true;
+            this.colRndDemora.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colRndDemora.Width = 69;
             // 
-            // colFinCombustibleServ1
+            // colDemora
             // 
             dataGridViewCellStyle10.Format = "N2";
-            this.colFinCombustibleServ1.DefaultCellStyle = dataGridViewCellStyle10;
-            this.colFinCombustibleServ1.HeaderText = "Fin Atención Comb. Surt1";
-            this.colFinCombustibleServ1.Name = "colFinCombustibleServ1";
-            this.colFinCombustibleServ1.ReadOnly = true;
-            this.colFinCombustibleServ1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colFinCombustibleServ1.Width = 97;
+            this.colDemora.DefaultCellStyle = dataGridViewCellStyle10;
+            this.colDemora.HeaderText = "Demora";
+            this.colDemora.Name = "colDemora";
+            this.colDemora.ReadOnly = true;
+            this.colDemora.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDemora.Width = 50;
             // 
             // colFinCombustibleServ2
             // 
@@ -1755,9 +1755,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colRNDTipoPedido;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipoPedido;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRNDFinCombustible;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTiempoFinCombustible;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFinCombustibleServ1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoEmpleado1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRndDemora;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDemora;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCombustibleServ2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCombustibleServ3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCombustibleServ4;

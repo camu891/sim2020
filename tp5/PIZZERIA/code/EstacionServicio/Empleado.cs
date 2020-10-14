@@ -7,12 +7,13 @@ namespace Pizzeria
 	{
 		private Estados._EstadoEmpleado estado;
 		private Estados._TipoPedido tipoServicio;
-		private Queue<Pedido> cola;
+		public static Queue<Pedido> cola;
 		private double horaInicioOcio;
 		private double acumTiempoOcio;
 		private string nombreEstado;
 		private double demora;
 		private double finCoccion;
+		private bool pierdeCliente;
 
 		public Estados._EstadoEmpleado Estado
 		{
@@ -30,7 +31,7 @@ namespace Pizzeria
 		{
 			this.estado = Estados._EstadoEmpleado.Libre;
 			this.tipoServicio = tipo;
-			this.cola = new Queue<Pedido>();
+			//this.cola = new Queue<Pedido>();
 			this.horaInicioOcio = horaInicioOcio;
 			this.acumTiempoOcio = 0.0;
 			this.nombreEstado = nombre;
@@ -41,25 +42,25 @@ namespace Pizzeria
 			return this.nombreEstado;
 		}
 
-		public void ponerEnCola(Pedido vehiculo)
-		{
-			this.cola.Enqueue(vehiculo);
-		}
+		//public void ponerEnCola(Pedido vehiculo)
+		//{
+		//	this.cola.Enqueue(vehiculo);
+		//}
 
-		public Pedido sacarDeCola()
-		{
-			return this.cola.Dequeue();
-		}
+		//public Pedido sacarDeCola()
+		//{
+		//	return this.cola.Dequeue();
+		//}
 
 		public void setNombreEstado(string nombre)
 		{
 			this.nombreEstado = nombre;
 		}
 
-		public int tamañoCola()
-		{
-			return this.cola.Count;
-		}
+		//public int tamañoCola()
+		//{
+		//	return this.cola.Count;
+		//}
 
 		public void setHoraInicioOcio(double horaInicio)
 		{
@@ -76,9 +77,9 @@ namespace Pizzeria
 			this.acumTiempoOcio += tiempoOcio;
 		}
 
-		public Queue<Pedido> getCola()
-		{
-			return this.cola;
-		}
+		//public Queue<Pedido> getCola()
+		//{
+		//	return this.cola;
+		//}
 	}
 }
