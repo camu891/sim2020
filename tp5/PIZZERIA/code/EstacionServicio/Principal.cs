@@ -132,6 +132,14 @@ namespace Pizzeria
                         if (this.empleado1.Estado == Estados._EstadoEmpleado.Libre) {
                             this.generarDemoraEmpleado(this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
                         }
+                        if (this.empleado2.Estado == Estados._EstadoEmpleado.Libre)
+                        {
+                            this.generarDemoraEmpleado(this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
+                        }
+                        else
+                        {
+                            this.generarDemoraEmpleado(this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
+                        }
                         //si estan todos ocupados mandar a cola 
                     }
                     else if (this.finCoccionEmpleado1.getProximaLlegada() == firstEvent)
