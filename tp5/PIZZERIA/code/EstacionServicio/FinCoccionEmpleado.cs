@@ -13,12 +13,14 @@ namespace Pizzeria
 		private int idEmpleado;
 		private Empleado e;
 
-		
-		public FinCoccionEmpleado(double a, double b, int id)
+		public Empleado Empleado { get => e; set => e = value; }
+
+		public FinCoccionEmpleado(double a, double b, int id, Empleado empleado)
 		{
 			this.desde = a;
 			this.hasta = b;
 			this.idEmpleado = id;
+			this.e = empleado;
 		}
 
 		public override string getNombreEvento()
@@ -90,8 +92,10 @@ namespace Pizzeria
 
 			this.demora = demoraPedido;
 			this.proximoFin = this.demora + reloj;
-			//crear el objeto empleado para setear su valores
-			e = new Empleado("Ocupado", demora);
+			// actualiza empleado
+			e.setEstado("Ocupado");
+			e.setDemora(this.demora);
+			e.setgetFinCoccion(this.proximoFin);
 		}
 
 		public override void simular(double reloj, double random) { }

@@ -156,9 +156,11 @@
             this.colEstadoEmpleado2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRndDemora2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDemora2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFinCoccion2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEstadoEmpleado3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRndDemora3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDemora3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFinCoccion3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCombustibleServ2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCombustibleServ3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCombustibleServ4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -987,9 +989,11 @@
             this.colEstadoEmpleado2,
             this.colRndDemora2,
             this.colDemora2,
+            this.colFinCoccion2,
             this.colEstadoEmpleado3,
             this.colRndDemora3,
             this.colDemora3,
+            this.colFinCoccion3,
             this.colFinCombustibleServ2,
             this.colFinCombustibleServ3,
             this.colFinCombustibleServ4,
@@ -1323,6 +1327,13 @@
             this.colDemora2.ReadOnly = true;
             this.colDemora2.Width = 72;
             // 
+            // colFinCoccion2
+            // 
+            this.colFinCoccion2.HeaderText = "Fin Coccion 2";
+            this.colFinCoccion2.Name = "colFinCoccion2";
+            this.colFinCoccion2.ReadOnly = true;
+            this.colFinCoccion2.Width = 81;
+            // 
             // colEstadoEmpleado3
             // 
             this.colEstadoEmpleado3.HeaderText = "Estado Empleado 3";
@@ -1343,6 +1354,13 @@
             this.colDemora3.Name = "colDemora3";
             this.colDemora3.ReadOnly = true;
             this.colDemora3.Width = 72;
+            // 
+            // colFinCoccion3
+            // 
+            this.colFinCoccion3.HeaderText = "Fin Coccion 3";
+            this.colFinCoccion3.Name = "colFinCoccion3";
+            this.colFinCoccion3.ReadOnly = true;
+            this.colFinCoccion3.Width = 81;
             // 
             // colFinCombustibleServ2
             // 
@@ -1835,9 +1853,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoEmpleado2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRndDemora2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDemora2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFinCoccion2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoEmpleado3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRndDemora3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDemora3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFinCoccion3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCombustibleServ2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCombustibleServ3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCombustibleServ4;
