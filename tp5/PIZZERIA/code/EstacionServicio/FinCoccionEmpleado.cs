@@ -89,6 +89,7 @@ namespace Pizzeria
 
 			this.demora = demoraPedido;
 			this.proximoFin = this.demora + reloj;
+			//crear el objeto empleado para setear su valores
 		}
 
 		public override void simular(double reloj, double random) { }

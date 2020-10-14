@@ -223,11 +223,12 @@ namespace Pizzeria
             this.agregarEventoAGrilla(i, true, this.llegadaPedido, 0);
             this.agregarDatosAGrila(i, this.llegadaPedido.getNombreEvento());
             this.agregarSurtidoresAGrilla(i);
+
         }
 
         public void generarDemoraEmpleado(int id, LlegadaPedido llegadaP)
         {
-            int i = this.dgvResultados.Rows.Add();
+            int i = this.dgvResultados.RowCount;
             string tipoPedido = llegadaP.getPedido().Tipo;
             int cantidad = llegadaP.getPedido().Cantidad;
 

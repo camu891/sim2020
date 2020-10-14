@@ -150,8 +150,9 @@
             this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colColaPreparacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEstadoEmpleado1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDemora1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRndDemora1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDemora1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFinCoccion1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEstadoEmpleado2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRndDemora2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDemora2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -980,8 +981,9 @@
             this.colCantidad,
             this.colColaPreparacion,
             this.colEstadoEmpleado1,
-            this.colDemora1,
             this.colRndDemora1,
+            this.colDemora1,
+            this.colFinCoccion1,
             this.colEstadoEmpleado2,
             this.colRndDemora2,
             this.colDemora2,
@@ -1273,25 +1275,32 @@
             this.colEstadoEmpleado1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colEstadoEmpleado1.Width = 95;
             // 
-            // colDemora1
+            // colRndDemora1
             // 
             dataGridViewCellStyle9.Format = "N2";
-            this.colDemora1.DefaultCellStyle = dataGridViewCellStyle9;
+            this.colRndDemora1.DefaultCellStyle = dataGridViewCellStyle9;
+            this.colRndDemora1.HeaderText = "RND Demora 1";
+            this.colRndDemora1.Name = "colRndDemora1";
+            this.colRndDemora1.ReadOnly = true;
+            this.colRndDemora1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colRndDemora1.Width = 69;
+            // 
+            // colDemora1
+            // 
+            dataGridViewCellStyle10.Format = "N2";
+            this.colDemora1.DefaultCellStyle = dataGridViewCellStyle10;
             this.colDemora1.HeaderText = "Demora 1";
             this.colDemora1.Name = "colDemora1";
             this.colDemora1.ReadOnly = true;
             this.colDemora1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colDemora1.Width = 53;
             // 
-            // colRndDemora1
+            // colFinCoccion1
             // 
-            dataGridViewCellStyle10.Format = "N2";
-            this.colRndDemora1.DefaultCellStyle = dataGridViewCellStyle10;
-            this.colRndDemora1.HeaderText = "RND Demora 1";
-            this.colRndDemora1.Name = "colRndDemora1";
-            this.colRndDemora1.ReadOnly = true;
-            this.colRndDemora1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colRndDemora1.Width = 69;
+            this.colFinCoccion1.HeaderText = "Fin coccion 1";
+            this.colFinCoccion1.Name = "colFinCoccion1";
+            this.colFinCoccion1.ReadOnly = true;
+            this.colFinCoccion1.Width = 80;
             // 
             // colEstadoEmpleado2
             // 
@@ -1820,8 +1829,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn colColaPreparacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoEmpleado1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDemora1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRndDemora1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDemora1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFinCoccion1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoEmpleado2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRndDemora2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDemora2;
