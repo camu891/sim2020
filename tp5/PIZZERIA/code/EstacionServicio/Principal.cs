@@ -121,6 +121,7 @@ namespace Pizzeria
 
                 }
 
+                int j = 0;
                 //Bucle principal de Simulacion
                 while (relojSimulacion < tiempoFinCorrida)
                 {
@@ -128,18 +129,18 @@ namespace Pizzeria
                     this.relojSimulacion = firstEvent;
                     if (this.llegadaPedido.getProximaLlegada() == firstEvent)
                     {
-                       int i =  this.generarLlegadaPedido();
+                       j =  this.generarLlegadaPedido();
 
                         // hacer para los 3 empleados 
                         if (this.empleado1.getEstado() == "Libre") {
-                            this.generarDemoraEmpleado(i,this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
+                            this.generarDemoraEmpleado(j,this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
                         }
 
                         // mandar a cola
 
                         ponerColaPedido(llegadaPedido);
                         //int i = this.dgvResultados.Rows.Add();
-                        agregarColaAGrilla(i);
+                        agregarColaAGrilla(j);
 
                             //if (this.empleado2.getEstado() == "Libre")
                             //{
@@ -181,7 +182,7 @@ namespace Pizzeria
                     //}
 
                 }
-
+                /*
                 //Calcular y Mostrar Estadisticas
                 if (ContVehiculosCombustibleIngresanAlSitema != 0 || ContVehiculosGasIngresanAlSitema != 0)
                 {
@@ -222,7 +223,7 @@ namespace Pizzeria
 
                 darFormatoATodos(true);
 
-
+                */
             }
             else
             {
@@ -253,7 +254,7 @@ namespace Pizzeria
 
         public void generarDemoraEmpleado(int i, int id, LlegadaPedido llegadaP)
         {
-            int i = this.dgvResultados.Rows.Add();
+            //int i = this.dgvResultados.Rows.Add();
             string tipoPedido = llegadaP.getPedido().Tipo;
             int cantidad = llegadaP.getPedido().Cantidad;
 
@@ -261,7 +262,7 @@ namespace Pizzeria
                 case 1:
                     this.finCoccionEmpleado1.simularDemora(this.relojSimulacion, this.rand.NextDouble(), tipoPedido, cantidad);
                     this.agregarEventoAGrilla(i, true, this.finCoccionEmpleado1, 1);
-                    this.agregarDatosAGrila(i, this.finCoccionEmpleado1.getNombreEvento());
+                    //this.agregarDatosAGrila(i, this.finCoccionEmpleado1.getNombreEvento());
                     break;
                 case 2:
                     this.finCoccionEmpleado2.simularDemora(this.relojSimulacion, this.rand.NextDouble(), tipoPedido, cantidad);
@@ -276,7 +277,7 @@ namespace Pizzeria
                     break;
             }
            
-            this.agregarSurtidoresAGrilla(i);
+            //this.agregarSurtidoresAGrilla(i);
         }
 
         public void tomarDatosPatalla()
@@ -457,6 +458,7 @@ namespace Pizzeria
             //Mostrar datos de la simulacion y estadisticas
             dgvResultados.Rows[i].Cells["colEvento"].Value = evento;
             dgvResultados.Rows[i].Cells["colReloj"].Value = relojSimulacion;
+            
             dgvResultados.Rows[i].Cells["colAcumOcioCombSurt"].Value = AcumTiempoOcioServidoresCombustible;
             dgvResultados.Rows[i].Cells["colAcumOcioGasSurt"].Value = AcumTiempoOcioServidoresGas;
             dgvResultados.Rows[i].Cells["colAcumCombIngresados"].Value = ContVehiculosCombustibleIngresanAlSitema;
@@ -471,6 +473,7 @@ namespace Pizzeria
             dgvResultados.Rows[i].Cells["colAcumOcioGasSurt"].Value = AcumTiempoOcioServidoresGas;
             dgvResultados.Rows[i].Cells["colContVehiculosEsperaronComb"].Value = ContVehiConTiempoEsperaVehiculosCombustible;
             dgvResultados.Rows[i].Cells["colContVehiculosEsperaronGas"].Value = ContVehiConTiempoEsperaVehiculosGas;
+           
 
         }
         private void agregarColumnasAGrilla(int identificadorVehiculo)
