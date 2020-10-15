@@ -148,6 +148,8 @@ namespace Pizzeria
                             //repetir valores de fin de coccion
                             //pasar empleado correspondiente
                             repetirValoresDemora(empleado1, fila);
+                            repetirValoresDemora(empleado2, fila);
+                            repetirValoresDemora(empleado3, fila);
                         }
 
                         //if (this.empleado2.getEstado() == "Libre")
@@ -167,23 +169,16 @@ namespace Pizzeria
                         //nro = this.generarLlegadaPedido(); 
                         // no se actualiza el reloj por eso entra en un bucle
                         agregarEventoFinCoccion();
-                      
+
                         //nro = this.generarLlegadaPedido();
                         return;
+                        //relojSimulacion = llegadaPedido.getProximaLlegada();
+
                     }
 
-                    //else if (this.finCoccionEmpleado2.getProximaLlegada() == firstEvent)
-                    //{
-                    //    //this.generarDemoraEmpleado(2);
-                    //}
-                    //else if (this.finCoccionEmpleado3.getProximaLlegada() == firstEvent)
-                    //{
-                    //    //this.generarDemoraEmpleado(3);
-                    //}
-                    //else if (this.finDelivery.getProximaLlegada() == firstEvent)
-                    //{
+                    //hacer para otros empleados
 
-                    //}
+             
 
                 }
                 /*
