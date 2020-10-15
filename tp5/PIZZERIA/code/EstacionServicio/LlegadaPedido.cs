@@ -58,15 +58,23 @@ namespace Pizzeria
 
 		public override void simular(double reloj, double random)
 		{
-	
-			this.rndTiempoCombustible = random;
-			this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoCombustible);
-			this.proximaLlegada = this.tiempoEntreLlegadas + reloj;
-			Random rand = new Random();
-			this.setRandomTipoPed(rand.NextDouble());
-			string tipoPedido = seleccionTipoPedido(rndTipoPedido);
-			int cantidad = cantidadPedido(tipoPedido);
-			pedido = new Pedido("En preparacion", tipoPedido, cantidad, reloj);
+			if (reloj == 0.00)
+			{
+				this.rndTiempoCombustible = random;
+				this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoCombustible);
+				this.proximaLlegada = this.tiempoEntreLlegadas + reloj;
+			}
+			else
+			{
+				this.rndTiempoCombustible = random;
+				this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoCombustible);
+				this.proximaLlegada = this.tiempoEntreLlegadas + reloj;
+				Random rand = new Random();
+				this.setRandomTipoPed(rand.NextDouble());
+				string tipoPedido = seleccionTipoPedido(rndTipoPedido);
+				int cantidad = cantidadPedido(tipoPedido);
+				pedido = new Pedido("En preparacion", tipoPedido, cantidad, reloj);
+			}
 	
 			
 		}

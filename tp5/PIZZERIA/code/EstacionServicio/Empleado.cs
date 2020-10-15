@@ -37,20 +37,6 @@ namespace Pizzeria
 						
 		}
 
-		//public void ponerEnCola(Pedido vehiculo)
-		//{
-		//	this.cola.Enqueue(vehiculo);
-		//}
-
-		//public Pedido sacarDeCola()
-		//{
-		//	return this.cola.Dequeue();
-		//}
-
-		//public int tamañoCola()
-		//{
-		//	return this.cola.Count;
-		//}
 
 		public double getDemora()
 		{
