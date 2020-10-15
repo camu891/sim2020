@@ -84,15 +84,15 @@ namespace Pizzeria
 			string tipoP = "";
 			double aux = (double) Math.Round(rnd,2);
 			if (aux >= 0 && aux <= 0.19)
-			tipoP = Enum.GetName(typeof(Estados._TipoPedido), Estados._TipoPedido.DocSandwich);
+			tipoP = "DocSandwich";
 			if (aux >= 0.20 && aux <= 0.59)
-				tipoP = Enum.GetName(typeof(Estados._TipoPedido), Estados._TipoPedido.Pizza);
+				tipoP = "Pizza";
 			if (aux >= 0.60 && aux <= 0.89)
-				tipoP = Enum.GetName(typeof(Estados._TipoPedido), Estados._TipoPedido.Empanadas);
+				tipoP = "Empanadas";
 			if (aux >= 0.90 && aux <= 0.94)
-				tipoP = Enum.GetName(typeof(Estados._TipoPedido), Estados._TipoPedido.Hamburguesa);
+				tipoP = "Hamburguesa";
 			if (aux >= 0.95 && aux <= 0.99)
-				tipoP = Enum.GetName(typeof(Estados._TipoPedido), Estados._TipoPedido.Lomito);
+				tipoP = "Lomito";
 
 			return tipoP;
 		}

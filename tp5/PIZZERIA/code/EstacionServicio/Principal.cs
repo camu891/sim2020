@@ -122,30 +122,33 @@ namespace Pizzeria
 
                 }
 
-                int nro = 0;
+                int fila = 0;
 
                 //Bucle principal de Simulacion
                 while (relojSimulacion < tiempoFinCorrida)
                 {
                     double firstEvent = this.getFirstEvent(this.llegadaPedido.getProximaLlegada(), this.finCoccionEmpleado1.getProximaLlegada(), this.finCoccionEmpleado2.getProximaLlegada(), this.finCoccionEmpleado3.getProximaLlegada(), this.finDelivery.getProximaLlegada());
+                    
+
                     this.relojSimulacion = firstEvent;
                     if (this.llegadaPedido.getProximaLlegada() == firstEvent)
                     {
-                        nro = this.generarLlegadaPedido();
+                        fila = this.generarLlegadaPedido();
 
                         //hacer para los 3 empleados
                         if (this.empleado1.getEstado() == "Libre")
                         {
-                            //this.generarDemoraEmpleado(j, this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
-                            generarDemoraPedido(nro, 1);
+                            generarDemoraPedido(fila, 1);
                         }
+                        else {
+                            // mandar a cola
+                            ponerColaPedido(llegadaPedido);
+                            agregarColaAGrilla(fila);
 
-
-                        // mandar a cola
-
-                        //ponerColaPedido(llegadaPedido);
-                        //int i = this.dgvResultados.Rows.Add();
-                        //agregarColaAGrilla(j);
+                            //repetir valores de fin de coccion
+                            //pasar empleado correspondiente
+                            repetirValoresDemora(empleado1, fila);
+                        }
 
                         //if (this.empleado2.getEstado() == "Libre")
                         //{
@@ -164,9 +167,11 @@ namespace Pizzeria
                         //nro = this.generarLlegadaPedido(); 
                         // no se actualiza el reloj por eso entra en un bucle
                         agregarEventoFinCoccion();
+                      
+                        //nro = this.generarLlegadaPedido();
                         return;
                     }
-                    
+
                     //else if (this.finCoccionEmpleado2.getProximaLlegada() == firstEvent)
                     //{
                     //    //this.generarDemoraEmpleado(2);
@@ -233,6 +238,14 @@ namespace Pizzeria
             //Fin Bloque Simulacion
         }
 
+        private void repetirValoresDemora(Empleado empleado, int i) {
+            int id = empleado.getId();
+            dgvResultados.Rows[i].Cells["colEstadoEmpleado"+id].Value = empleado.getEstado();
+            dgvResultados.Rows[i].Cells["colRndDemora" + id].Value = "";
+            dgvResultados.Rows[i].Cells["colDemora" + id].Value = empleado.getDemora();
+            dgvResultados.Rows[i].Cells["colFinCoccion" + id].Value = empleado.getFinCoccion();
+        }
+
         private void ponerColaPedido(LlegadaPedido lp) {
             colaPreparacion.setCola(lp.getPedido());
         }
@@ -252,7 +265,7 @@ namespace Pizzeria
             return i;
         }
 
-        public void  generarDemoraPedido(int j, int idEmpleado)
+        public void generarDemoraPedido(int j, int idEmpleado)
         {
             this.generarDemoraEnEmpleado(j, this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
 
@@ -432,6 +445,7 @@ namespace Pizzeria
             int k = this.dgvResultados.Rows.Add();
             
             this.agregarEventoAGrilla(k, true, finCoccionEmpleado1, 1);
+         
         }
         private void agregarDemoraEnGrillaEmpleados(int id, int i, bool conRandom, Evento evento)
         {

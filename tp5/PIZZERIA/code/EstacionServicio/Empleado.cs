@@ -6,7 +6,7 @@ namespace Pizzeria
 	public class Empleado
 	{
 		private string estado;
-
+		private int id;
 		private double horaInicioOcio;
 		private double acumTiempoOcio;
 
@@ -22,6 +22,7 @@ namespace Pizzeria
 
 		public Empleado(int id, double horaInicioOcio)
 		{
+			this.id = id;
 			this.estado = "Libre";
 			this.horaInicioOcio = horaInicioOcio;
 			this.acumTiempoOcio = 0.0;
@@ -37,6 +38,14 @@ namespace Pizzeria
 						
 		}
 
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id)
+		{
+			this.id = id;
+		}
 
 		public double getDemora()
 		{

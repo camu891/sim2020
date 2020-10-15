@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pizzeria
 {
@@ -65,13 +67,13 @@ namespace Pizzeria
 				case "DocSandwich":
 					{
 						//Nor(u 10, r 5)
-						demoraPedido = 20;
+						demoraPedido = getDemoraSandwich(random);
 						break;
 					}
 				case "Pizza":
 					{
 						//Uni[15-18]
-						demoraPedido = 15;
+						demoraPedido = getDemoraPizza(random);
 						break;
 					}
 				case "Empanadas":
@@ -99,6 +101,15 @@ namespace Pizzeria
 		}
 
 		public override void simular(double reloj, double random) { }
+
+		private double getDemoraSandwich(double random) {
+			return Distribuciones.normal(10, 5).First();
+		}
+
+		private double getDemoraPizza(double random)
+		{
+			return Distribuciones.Uniforme(15, 8, random);
+		}
 
 
 		private double getDemoraEmpanadas(int cantidad) {
