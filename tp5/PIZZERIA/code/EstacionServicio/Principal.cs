@@ -111,7 +111,7 @@ namespace Pizzeria
                         int i = this.dgvResultados.Rows.Add();
                         this.agregarEventoAGrilla(i, true, this.llegadaPedido, 0);
                         this.agregarDatosAGrila(i, "Inicio Simulacion");
-                        this.agregarSurtidoresAGrilla(i);
+                        //this.agregarSurtidoresAGrilla(i);
                         this.agregarEventoAGrilla(i, false, this.finCoccionEmpleado1, this.finCoccionEmpleado1.getIdEmpleado());
                         this.agregarEventoAGrilla(i, false, this.finCoccionEmpleado2, this.finCoccionEmpleado2.getIdEmpleado());
                         this.agregarEventoAGrilla(i, false, this.finCoccionEmpleado3, this.finCoccionEmpleado3.getIdEmpleado());
@@ -129,45 +129,38 @@ namespace Pizzeria
                     this.relojSimulacion = firstEvent;
                     if (this.llegadaPedido.getProximaLlegada() == firstEvent)
                     {
-                       j =  this.generarLlegadaPedido();
+                        j = this.generarLlegadaPedido();
 
                         // hacer para los 3 empleados 
                         if (this.empleado1.getEstado() == "Libre") {
-                            this.generarDemoraEmpleado(j,this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
+                            this.generarDemoraEmpleado(j, this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
                         }
+
 
                         // mandar a cola
 
-                        ponerColaPedido(llegadaPedido);
+                        //ponerColaPedido(llegadaPedido);
                         //int i = this.dgvResultados.Rows.Add();
-                        agregarColaAGrilla(j);
+                        //agregarColaAGrilla(j);
 
-                            //if (this.empleado2.getEstado() == "Libre")
-                            //{
-                            //    this.generarDemoraEmpleado(this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
-                            //}
-                            //else
-                            //{
-                            //    this.generarDemoraEmpleado(this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
-                            //}
-                            //si estan todos ocupados mandar a cola 
+                        //if (this.empleado2.getEstado() == "Libre")
+                        //{
+                        //    this.generarDemoraEmpleado(this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
+                        //}
+                        //else
+                        //{
+                        //    this.generarDemoraEmpleado(this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
+                        //}
+                        //si estan todos ocupados mandar a cola 
                     }
-                    //else if (this.finCoccionEmpleado1.getProximaLlegada() == firstEvent)
-                    //{
-                    //    controlar si hay stock y si no hay cancelacion de pedido(mayor a una hora)
-                    //    if (this.empleado1.getEstado() == "Libre")
-                    //    {
-                    //        this.generarDemoraEmpleado(this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
-                    //    }
-                    //    else if (this.empleado2.getEstado() == "Libre")
-                    //    {
-                    //        this.generarDemoraEmpleado(this.finCoccionEmpleado2.getIdEmpleado(), llegadaPedido);
-                    //    }
-                    //    else
-                    //    {
-                    //        this.generarDemoraEmpleado(this.finCoccionEmpleado3.getIdEmpleado(), llegadaPedido);
-                    //    }
-                    //}
+
+                    else if (this.finCoccionEmpleado1.getProximaLlegada() == firstEvent){
+                        int k = this.dgvResultados.Rows.Add();
+                        this.agregarFinCoccion(k);
+
+
+
+                    }
                     //else if (this.finCoccionEmpleado2.getProximaLlegada() == firstEvent)
                     //{
                     //    //this.generarDemoraEmpleado(2);
@@ -248,7 +241,7 @@ namespace Pizzeria
             this.llegadaPedido.simular(this.relojSimulacion, this.rand.NextDouble());
             this.agregarEventoAGrilla(i, true, this.llegadaPedido, 0);
             this.agregarDatosAGrila(i, this.llegadaPedido.getNombreEvento());
-            this.agregarSurtidoresAGrilla(i);
+            //this.agregarSurtidoresAGrilla(i);
             return i;
         }
 
@@ -261,8 +254,11 @@ namespace Pizzeria
             switch (id) {
                 case 1:
                     this.finCoccionEmpleado1.simularDemora(this.relojSimulacion, this.rand.NextDouble(), tipoPedido, cantidad);
-                    this.agregarEventoAGrilla(i, true, this.finCoccionEmpleado1, 1);
+                   
+                    //this.agregarEventoAGrilla(i, true, this.finCoccionEmpleado1, 1);
                     //this.agregarDatosAGrila(i, this.finCoccionEmpleado1.getNombreEvento());
+                    setGrillaEmpleados(1, i, true, this.finCoccionEmpleado1);
+
                     break;
                 case 2:
                     this.finCoccionEmpleado2.simularDemora(this.relojSimulacion, this.rand.NextDouble(), tipoPedido, cantidad);
@@ -280,6 +276,7 @@ namespace Pizzeria
             //this.agregarSurtidoresAGrilla(i);
         }
 
+       
         public void tomarDatosPatalla()
         {
             this.tiempoFinCorrida = Convert.ToDouble(this.txtTiempoSim.Text);
@@ -349,8 +346,10 @@ namespace Pizzeria
 
                 dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = ((LlegadaPedido)evento).getProximaLlegada();
 
-            } else if (evento is FinCoccionEmpleado) {
-
+            } 
+            
+            else if (evento is FinCoccionEmpleado) {
+                /*
                 switch (idEmpleado) {
                     case 1:
                         setGrillaEmpleados(idEmpleado, i, conRandom, evento);
@@ -362,6 +361,10 @@ namespace Pizzeria
                         setGrillaEmpleados(idEmpleado, i, conRandom, evento);
                         break;
                 }
+                */
+                //int k = this.dgvResultados.Rows.Add();
+               
+
             }
             else if (evento is FinDelivery) {
                 //dgvResultados.Rows[i].Cells["colRNDFinGas"].Value = "-";
@@ -406,6 +409,11 @@ namespace Pizzeria
 
         }
 
+        private void agregarFinCoccion(int i)
+        {
+            //int k = this.dgvResultados.Rows.Add();
+            this.agregarDatosAGrila(i, finCoccionEmpleado1.getNombreEvento());
+        }
         private void setGrillaEmpleados(int id, int i, bool conRandom, Evento evento)
         {
             dgvResultados.Rows[i].Cells["colEstadoEmpleado"+id].Value = "Libre";
@@ -459,6 +467,7 @@ namespace Pizzeria
             dgvResultados.Rows[i].Cells["colEvento"].Value = evento;
             dgvResultados.Rows[i].Cells["colReloj"].Value = relojSimulacion;
             
+            /*
             dgvResultados.Rows[i].Cells["colAcumOcioCombSurt"].Value = AcumTiempoOcioServidoresCombustible;
             dgvResultados.Rows[i].Cells["colAcumOcioGasSurt"].Value = AcumTiempoOcioServidoresGas;
             dgvResultados.Rows[i].Cells["colAcumCombIngresados"].Value = ContVehiculosCombustibleIngresanAlSitema;
@@ -474,7 +483,7 @@ namespace Pizzeria
             dgvResultados.Rows[i].Cells["colContVehiculosEsperaronComb"].Value = ContVehiConTiempoEsperaVehiculosCombustible;
             dgvResultados.Rows[i].Cells["colContVehiculosEsperaronGas"].Value = ContVehiConTiempoEsperaVehiculosGas;
            
-
+            */
         }
         private void agregarColumnasAGrilla(int identificadorVehiculo)
         {
