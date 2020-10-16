@@ -171,8 +171,14 @@ namespace Pizzeria
                         agregarEventoFinCoccion();
 
                         //nro = this.generarLlegadaPedido();
-                        return;
-                        //relojSimulacion = llegadaPedido.getProximaLlegada();
+                        //return;
+                        finCoccionEmpleado1.setHoraFin(0);
+                        relojSimulacion = llegadaPedido.getProximaLlegada();
+
+                        //actualizar el pedido a preparado 
+                        //liberar el empleado 
+                        //si hay cola sacar de colar y calcular nueva demora 
+                        // hacer la parte del delivery
 
                     }
 
