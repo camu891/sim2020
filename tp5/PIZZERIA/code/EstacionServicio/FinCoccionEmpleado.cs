@@ -36,6 +36,8 @@ namespace Pizzeria
 			return llegadaP;
 		}
 
+	
+
 		public int getIdEmpleado()
 		{
 			return this.idEmpleado;

@@ -18,6 +18,11 @@ namespace Pizzeria
 		*/
 		private double precioVenta; // Agregar en grilla para calculo de Var est.
 
+		public LlegadaPedido()
+		{
+			
+		}
+
 		public LlegadaPedido(double mu)
 		{
 			this.mu = mu;
@@ -56,6 +61,10 @@ namespace Pizzeria
 			return pedido;
 		}
 
+		public void setPedido(Pedido p)
+		{
+			pedido= p;
+		}
 		public override void simular(double reloj, double random)
 		{
 			if (reloj == 0.00)

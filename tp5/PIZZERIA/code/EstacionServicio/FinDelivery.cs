@@ -11,12 +11,24 @@ namespace Pizzeria
 		private double desde;
 		private double hasta;
 		private double cteDemora;
+		private Delivery delivery;
+
 
 		public FinDelivery(double a, double b, int id, double cte)
 		{
 			this.desde = a;
 			this.hasta = b;
 			this.cteDemora = cte;
+		}
+
+		public void setDelivery(Delivery d)
+		{
+			delivery = d;
+		}
+
+		public Delivery GetDelivery()
+		{
+			return delivery;
 		}
 
 		public override string getNombreEvento()

@@ -16,6 +16,7 @@ namespace Pizzeria
         private FinCoccionEmpleado finCoccionEmpleado1;
         private FinCoccionEmpleado finCoccionEmpleado2;
         private FinCoccionEmpleado finCoccionEmpleado3;
+        private Delivery delivery;
         private FinDelivery finDelivery;
         private Empleado empleado1;
         private Empleado empleado2;
@@ -138,7 +139,7 @@ namespace Pizzeria
                         //hacer para los 3 empleados
                         if (this.empleado1.getEstado() == "Libre")
                         {
-                            generarDemoraPedido(fila, 1);
+                            generarDemoraPedido(fila, 1, llegadaPedido);
                         }
                         else
                         {
@@ -175,12 +176,16 @@ namespace Pizzeria
 
                         //actualizar el pedido a preparado 
                         cambiarEstadoPedido(llegadaPedido.getPedido());
-                        //liberar el empleado 
-
-                        
+                        //liberar el empleado si no hay cola
                         //si hay cola sacar de colar y calcular nueva demora 
+                        actualizarEstadoEmpleado(empleado1, fila);
                         // hacer la parte del delivery
-
+                        if (this.delivery.getEstado() == "Libre")
+                        {
+                            //aca me quede controlar bien xq se armo el bucle
+                            //this.generarDemoraDelivery(fila, relojSimulacion ,1 , finCoccionEmpleado1);
+                            // despues de esto actualizar el reloj
+                        }
                     }
 
                     //hacer para otros empleados
@@ -240,6 +245,33 @@ namespace Pizzeria
             //Fin Bloque Simulacion
         }
 
+        private void generarDemoraDelivery(int fila, double reloj ,int idDelivery, FinCoccionEmpleado fc)
+        {
+            // fijarse en la cola si hay pedidos 
+            //puede solo cargar tres pedidos 
+
+            Random r = new Random();
+            this.finDelivery.simular(reloj, r.NextDouble());
+            this.agregarDemoraEnGrillaDelivery(fila, true, finDelivery);
+
+        }
+
+        private void agregarDemoraEnGrillaDelivery( int i, bool conRandom, Evento evento)
+        {
+            dgvResultados.Rows[i].Cells["colEstadoMoto"].Value = "Libre";
+            dgvResultados.Rows[i].Cells["colRndDelivery"].Value = "-";
+            dgvResultados.Rows[i].Cells["colTiempoEntrega"].Value = "-";
+            dgvResultados.Rows[i].Cells["colFinEntregaDelivery"].Value = "-";
+
+            if (conRandom)
+            {
+                dgvResultados.Rows[i].Cells["colEstadoMoto"].Value = "Realizando entrega";
+                dgvResultados.Rows[i].Cells["colRndDelivery"].Value = ((FinDelivery)evento).getRandom();
+                dgvResultados.Rows[i].Cells["colTiempoEntrega"].Value = ((FinDelivery)evento).getTiempoEntreLlegada();
+                dgvResultados.Rows[i].Cells["colFinEntregaDelivery"].Value = ((FinDelivery)evento).getProximaLlegada();
+            }
+        }
+
         private bool cambiarEstadoPedido(Pedido ped)
         {
             return colaPreparacion.cambiarEstadoPedido(ped);
@@ -251,10 +283,12 @@ namespace Pizzeria
             {
                 //sacar de la cola y calcular nuevo tiempo de demora
                 Pedido enPreparacion = colaPreparacion.getCola().Dequeue();
-
-                generarDemoraPedido(fila, e.getId());
+                LlegadaPedido lp = new LlegadaPedido();
+                lp.setPedido(enPreparacion);
+                generarDemoraPedido(fila, e.getId(),lp);
             }
         }
+
         private void repetirValoresDemora(Empleado empleado, int i) {
             int id = empleado.getId();
             dgvResultados.Rows[i].Cells["colEstadoEmpleado"+id].Value = empleado.getEstado();
@@ -282,32 +316,30 @@ namespace Pizzeria
             return i;
         }
 
-        public void generarDemoraPedido(int j, int idEmpleado)
+        public void generarDemoraPedido(int j, int idEmpleado, LlegadaPedido lp)
         {
-            //hacer el if para cuando viene de cola 
-            
-            this.generarDemoraEnEmpleado(j, this.finCoccionEmpleado1.getIdEmpleado(), llegadaPedido);
-
-            this.agregarDemoraEnGrillaEmpleados(idEmpleado, j, true, finCoccionEmpleado1);
-            //this.agregarSurtidoresAGrilla(i);
+          
+                this.generarDemoraEnEmpleado(j, this.finCoccionEmpleado1.getIdEmpleado(), lp);
+                this.agregarDemoraEnGrillaEmpleados(idEmpleado, j, true, finCoccionEmpleado1);      
          
         }
-        public void generarDemoraEnEmpleado(int i, int id, LlegadaPedido llegadaP)
+        
+        public void generarDemoraEnEmpleado(int i, int id, LlegadaPedido p)
         {
             
 
             switch (id) {
                 case 1:
-                    this.finCoccionEmpleado1.simularDemora(this.relojSimulacion, this.rand.NextDouble(), llegadaP); 
+                    this.finCoccionEmpleado1.simularDemora(this.relojSimulacion, this.rand.NextDouble(), p); 
                     break;
                 case 2:
-                    this.finCoccionEmpleado2.simularDemora(this.relojSimulacion, this.rand.NextDouble(), llegadaP);
+                    this.finCoccionEmpleado2.simularDemora(this.relojSimulacion, this.rand.NextDouble(), p);
                     this.agregarEventoAGrilla(i, true, this.finCoccionEmpleado2, 2);
                     this.agregarDatosAGrila(i, this.finCoccionEmpleado2.getNombreEvento());
 
                     break;
                 case 3:
-                    this.finCoccionEmpleado3.simularDemora(this.relojSimulacion, this.rand.NextDouble(), llegadaP);
+                    this.finCoccionEmpleado3.simularDemora(this.relojSimulacion, this.rand.NextDouble(), p);
                     this.agregarEventoAGrilla(i, true, this.finCoccionEmpleado3, 3);
                     this.agregarDatosAGrila(i, this.finCoccionEmpleado3.getNombreEvento());
                     break;
@@ -353,10 +385,12 @@ namespace Pizzeria
             this.empleado1 = new Empleado(1, 0);
             this.empleado2 = new Empleado(2, 0);
             this.empleado3 = new Empleado(3, 0);
+            this.delivery= new Delivery (1,0);
             this.finCoccionEmpleado1 = new FinCoccionEmpleado(0, 0, 1, empleado1);
             this.finCoccionEmpleado2 = new FinCoccionEmpleado(0, 0, 2, empleado2);
             this.finCoccionEmpleado3 = new FinCoccionEmpleado(0, 0, 3, empleado3);
             this.colaPreparacion = new ColaPreparacion();
+
             this.finDelivery = new FinDelivery(this.valorAUniformeFinGas, this.valorBUniformeFinGas, 1, this.cteSumadaAUniformeGas);
            
         }

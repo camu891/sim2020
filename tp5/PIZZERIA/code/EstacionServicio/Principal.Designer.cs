@@ -142,6 +142,11 @@
             this.colRndDemora3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDemora3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCoccion3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEstadoMoto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRndDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTiempoEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFinEntregaDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gpbParametros.SuspendLayout();
             this.grbEstadisticas.SuspendLayout();
             this.gpbTiemposFin.SuspendLayout();
@@ -933,7 +938,12 @@
             this.colEstadoEmpleado3,
             this.colRndDemora3,
             this.colDemora3,
-            this.colFinCoccion3});
+            this.colFinCoccion3,
+            this.colDelivery,
+            this.colEstadoMoto,
+            this.colRndDelivery,
+            this.colTiempoEntrega,
+            this.colFinEntregaDelivery});
             this.dgvResultados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResultados.Location = new System.Drawing.Point(3, 16);
             this.dgvResultados.MultiSelect = false;
@@ -1261,6 +1271,41 @@
             this.colFinCoccion3.ReadOnly = true;
             this.colFinCoccion3.Width = 81;
             // 
+            // colDelivery
+            // 
+            this.colDelivery.HeaderText = "Cola delivery";
+            this.colDelivery.Name = "colDelivery";
+            this.colDelivery.ReadOnly = true;
+            this.colDelivery.Width = 85;
+            // 
+            // colEstadoMoto
+            // 
+            this.colEstadoMoto.HeaderText = "Estado moto";
+            this.colEstadoMoto.Name = "colEstadoMoto";
+            this.colEstadoMoto.ReadOnly = true;
+            this.colEstadoMoto.Width = 84;
+            // 
+            // colRndDelivery
+            // 
+            this.colRndDelivery.HeaderText = "RND Delivery";
+            this.colRndDelivery.Name = "colRndDelivery";
+            this.colRndDelivery.ReadOnly = true;
+            this.colRndDelivery.Width = 89;
+            // 
+            // colTiempoEntrega
+            // 
+            this.colTiempoEntrega.HeaderText = "Tiempo entrega delivery";
+            this.colTiempoEntrega.Name = "colTiempoEntrega";
+            this.colTiempoEntrega.ReadOnly = true;
+            this.colTiempoEntrega.Width = 132;
+            // 
+            // colFinEntregaDelivery
+            // 
+            this.colFinEntregaDelivery.HeaderText = "Fin de entrega delivery";
+            this.colFinEntregaDelivery.Name = "colFinEntregaDelivery";
+            this.colFinEntregaDelivery.ReadOnly = true;
+            this.colFinEntregaDelivery.Width = 127;
+            // 
             // frm_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1394,6 +1439,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colRndDemora3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDemora3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCoccion3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDelivery;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoMoto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRndDelivery;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTiempoEntrega;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFinEntregaDelivery;
     }
 }
 

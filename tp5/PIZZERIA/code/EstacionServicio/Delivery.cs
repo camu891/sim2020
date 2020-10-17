@@ -5,13 +5,11 @@ namespace Pizzeria
 {
 	public class Delivery
 	{
-		private Estados._EstadoEmpleado estado;
-		private Estados._TipoPedido tipoServicio;
-		private int idSurtidor;
+		private string estado;
 		private Queue<Pedido> cola;
 		private double horaInicioOcio;
 		private double acumTiempoOcio;
-		private string nombreEstado;
+		
 
 		public Estados._EstadoEmpleado Estado
 		{
@@ -25,21 +23,16 @@ namespace Pizzeria
 			set;
 		}
 
-		public Delivery(int id, Estados._TipoPedido tipo, double horaInicioOcio, string nombre)
+		public Delivery(int id, double horaInicioOcio)
 		{
-			this.estado = Estados._EstadoEmpleado.Libre;
-			this.tipoServicio = tipo;
+			this.estado = "Libre";
 			this.cola = new Queue<Pedido>();
-			this.idSurtidor = id;
 			this.horaInicioOcio = horaInicioOcio;
 			this.acumTiempoOcio = 0.0;
-			this.nombreEstado = nombre;
+		
 		}
 
-		public string getNombreEstado()
-		{
-			return this.nombreEstado;
-		}
+	
 
 		public void ponerEnCola(Pedido vehiculo)
 		{
@@ -51,25 +44,20 @@ namespace Pizzeria
 			return this.cola.Dequeue();
 		}
 
-		public void setNombreEstado(string nombre)
+		public void setEstado(string nombre)
 		{
-			this.nombreEstado = nombre;
+			estado = nombre;
 		}
 
+		public string getEstado()
+		{
+			return estado;
+		}
 		public int tamañoCola()
 		{
 			return this.cola.Count;
 		}
 
-		public void setIdSurtidor(int id)
-		{
-			this.idSurtidor = id;
-		}
-
-		public int getIdSurtidor()
-		{
-			return this.idSurtidor;
-		}
 
 		public void setHoraInicioOcio(double horaInicio)
 		{
