@@ -51,6 +51,6 @@ namespace Pizzeria
 			this.proximoFin = this.demora + reloj;
 		}
 
-		public override void simularDemora(double reloj, double random, string tipoPedido, int cantidad) { }
+		public override void simularDemora(double reloj, double random, LlegadaPedido llegP) { }
 	}
 }

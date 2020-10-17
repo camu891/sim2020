@@ -14,6 +14,7 @@ namespace Pizzeria
 		private double hasta;
 		private int idEmpleado;
 		private Empleado e;
+		private LlegadaPedido llegadaP;
 
 		public Empleado Empleado { get => e; set => e = value; }
 
@@ -28,6 +29,11 @@ namespace Pizzeria
 		public override string getNombreEvento()
 		{
 			return this.nombreEvento;
+		}
+
+		public LlegadaPedido getLlegada()
+		{
+			return llegadaP;
 		}
 
 		public int getIdEmpleado()
@@ -55,14 +61,14 @@ namespace Pizzeria
 			return this.proximoFin;
 		}
 
-		public override void simularDemora(double reloj, double random, string tipoPedido, int cantidad)
+		public override void simularDemora(double reloj, double random, LlegadaPedido llegP)
 		{
 
 			// pregutar si hay stock para calcular o no la demora
 			this.rndTiempo = random;
 			double demoraPedido = 0.0;
-
-			switch (tipoPedido)
+			llegadaP = llegP;
+			switch (llegP.getPedido().Tipo)
 			{
 				case "DocSandwich":
 					{
@@ -79,7 +85,7 @@ namespace Pizzeria
 				case "Empanadas":
 					{
 						//2,5 o 3,5
-						demoraPedido = getDemoraEmpanadas(cantidad);
+						demoraPedido = getDemoraEmpanadas(llegP.getPedido().Cantidad);
 						break;
 					}
 				case "Hamburguesa":

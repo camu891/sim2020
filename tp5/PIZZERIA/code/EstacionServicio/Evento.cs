@@ -10,6 +10,6 @@ namespace Pizzeria
 
 		public abstract void simular(double reloj, double random);
 
-		public abstract void simularDemora(double reloj, double random, string tipoPedido, int cantidad);
+		public abstract void simularDemora(double reloj, double random, LlegadaPedido llegPed);
 	}
 }
