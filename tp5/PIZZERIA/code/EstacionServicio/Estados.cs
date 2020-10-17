@@ -25,5 +25,11 @@ namespace Pizzeria
 			Hamburguesa,
 			Lomito
 		}
+
+		public enum _TipoTurno
+		{
+			Mañana,
+			Tarde
+		}
 	}
 }

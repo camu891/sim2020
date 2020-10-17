@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using static Pizzeria.Estados;
 
@@ -40,15 +41,15 @@ namespace Pizzeria
 
         //Parametros de Llega
         private double mediaLlegadaPedidos;
-        private double mediaLlegadaGas;
-        private int colaMaxima;
+        private double tiempoTopeGratis;
+        private int tiempoTopeEspera;
 
         //Parametros de Finalizacion
-        private double valorAUniformeFinCombustible;
-        private double valorBUniformeFinCombustible;
-        private double valorAUniformeFinGas;
-        private double valorBUniformeFinGas;
-        private double cteSumadaAUniformeGas;
+        private double promSandwich;
+        private double desvSandwich;
+        private double desdePizza;
+        private double hastaPizza;
+        private double precioPizza;
 
         //Parametros de la corrida
         private double tiempoFinCorrida;
@@ -58,6 +59,8 @@ namespace Pizzeria
 
         //Variables necesarias
         private double relojSimulacion;
+        private _TipoTurno turno;
+        private double dia;
         private int identificadorPedido;
         private int eventosYaSimuladosYMostrados;
         Random rand = new Random((int)DateTime.Now.Ticks);
@@ -129,8 +132,8 @@ namespace Pizzeria
                 {
                     double firstEvent = this.getFirstEvent(this.llegadaPedido.getProximaLlegada(), this.finCoccionEmpleado1.getProximaLlegada(), this.finCoccionEmpleado2.getProximaLlegada(), this.finCoccionEmpleado3.getProximaLlegada(), this.finDelivery.getProximaLlegada());
 
-
-                    this.relojSimulacion = firstEvent;
+                    setReloj(firstEvent);
+                    
                     if (this.llegadaPedido.getProximaLlegada() == firstEvent)
                     {
                         fila = this.generarLlegadaPedido();
@@ -192,48 +195,7 @@ namespace Pizzeria
 
 
                 }
-                /*
-                //Calcular y Mostrar Estadisticas
-                if (ContVehiculosCombustibleIngresanAlSitema != 0 || ContVehiculosGasIngresanAlSitema != 0)
-                {
-                    txtPorcenAutosAtendidos.Text = Math.Round((((ContVehiculosCombustibleAtendidos + ContVehiculosGasAtendidos) / (ContVehiculosCombustibleIngresanAlSitema + ContVehiculosGasIngresanAlSitema)) * 100), 2).ToString();//proporcio de atendido respecto a los que ingresaron al sistema 
-                }
 
-                if (ContVehiculosCombustibleIngresanAlSitema != 0)
-                {
-                    txtPorcenAutosCombAtendidos.Text = Math.Round(((ContVehiculosCombustibleAtendidos / ContVehiculosCombustibleIngresanAlSitema) * 100), 2).ToString();//proporcion de atendido respecto a los que ingresaron al sistema combustible 
-                }
-                //txtPorcenAutosCombAtendidos.Text = ((ContVehiculosCombustibleAtendidos / (ContVehiculosCombustibleIngresanAlSitema + ContVehiculosCombustibleRechazados)) * 100).ToString();//proporcion de en relacion al total, es decir ingresaron + rechazados
-                if (ContVehiculosGasIngresanAlSitema != 0)
-                {
-                    txtPorcenAutosGasAtendidos.Text = Math.Round(((ContVehiculosGasAtendidos / ContVehiculosGasIngresanAlSitema) * 100), 2).ToString();//proporcio de atendido respecto a los que ingresaron al sistema gas 
-                }
-                //txtPorcenAutosGasAtendidos.Text = ((ContVehiculosGasAtendidos / (ContVehiculosGasIngresanAlSitema + ContVehiculosGasRechazados)) * 100).ToString();
-                txtPromTiempoOcioSurt.Text = Math.Round(((AcumTiempoOcioServidoresCombustible + AcumTiempoOcioServidoresGas) / 7), 2).ToString();
-                txtPromTiempoOcioSurtComb.Text = Math.Round((AcumTiempoOcioServidoresCombustible / 4), 2).ToString();
-                txtPromTiempoOcioSurtGas.Text = Math.Round((AcumTiempoOcioServidoresGas / 3), 2).ToString();
-                if (ContVehiConTiempoEsperaVehiculosCombustible != 0 || ContVehiConTiempoEsperaVehiculosGas != 0)
-                {
-                    txtTiempoPromEsperaVehi.Text = Math.Round((((AcumTiempoEsperaVehiculosCombustible + AcumTiempoEsperaVehiculosGas) / (ContVehiConTiempoEsperaVehiculosCombustible + ContVehiConTiempoEsperaVehiculosGas))), 2).ToString();
-                }
-                if (ContVehiConTiempoEsperaVehiculosCombustible != 0)
-                {
-                    txtTiempoPromEsperaVehiComb.Text = Math.Round((AcumTiempoEsperaVehiculosCombustible / ContVehiConTiempoEsperaVehiculosCombustible), 2).ToString();
-                }
-                if (ContVehiConTiempoEsperaVehiculosGas != 0)
-                {
-                    txtTiempoPromEsperaVehiGas.Text = Math.Round((AcumTiempoEsperaVehiculosGas / ContVehiConTiempoEsperaVehiculosGas), 2).ToString();
-                }
-                txtTotalCombRechazados.Text = ContVehiculosCombustibleRechazados.ToString();
-                txtTotalCombustibleIngresados.Text = ContVehiculosCombustibleIngresanAlSitema.ToString();
-                txtTotalGasIngresados.Text = ContVehiculosGasIngresanAlSitema.ToString();
-                txtTotalGasRechazados.Text = ContVehiculosGasRechazados.ToString();
-                txtTotalIngresados.Text = (ContVehiculosGasIngresanAlSitema + ContVehiculosCombustibleIngresanAlSitema).ToString();
-                txtTotalRechazados.Text = (ContVehiculosCombustibleRechazados + ContVehiculosGasRechazados).ToString();
-
-                darFormatoATodos(true);
-
-                */
             }
             else
             {
@@ -242,6 +204,11 @@ namespace Pizzeria
             }
 
             //Fin Bloque Simulacion
+        }
+
+        public void setReloj(double firstEvent)
+        {
+            this.relojSimulacion = firstEvent;
         }
 
         private void generarDemoraDelivery(int fila, double reloj ,int idDelivery, FinCoccionEmpleado fc)
@@ -310,7 +277,6 @@ namespace Pizzeria
             this.llegadaPedido.simular(this.relojSimulacion, this.rand.NextDouble());
             this.agregarEventoAGrilla(i, true, this.llegadaPedido, 0);
             this.agregarDatosAGrila(i, this.llegadaPedido.getNombreEvento());
-            //this.agregarSurtidoresAGrilla(i);
 
             return i;
         }
@@ -353,18 +319,20 @@ namespace Pizzeria
             this.tiempoFinCorrida = Convert.ToDouble(this.txtTiempoSim.Text);
             this.tiempoAPartirDeDondeMostrar = Convert.ToDouble(this.txtMinDesde.Text);
             this.mediaLlegadaPedidos = Convert.ToDouble(this.txtLlegadaPedido.Text);
-            this.mediaLlegadaGas = Convert.ToDouble(this.txtTopeGratis.Text);
-            this.colaMaxima = Convert.ToInt32(this.txtTopeEspera.Text);
-            this.valorAUniformeFinCombustible = Convert.ToDouble(this.txtPromSandwich.Text);
-            this.valorBUniformeFinCombustible = Convert.ToDouble(this.txtdesvSandwich.Text);
-            this.valorAUniformeFinGas = Convert.ToDouble(this.txtDesdePizza.Text);
-            this.valorBUniformeFinGas = Convert.ToDouble(this.txtHastaPizza.Text);
-            this.cteSumadaAUniformeGas = Convert.ToDouble(this.txtPrecioPizza.Text);
+            this.tiempoTopeGratis = Convert.ToDouble(this.txtTopeGratis.Text);
+            this.tiempoTopeEspera = Convert.ToInt32(this.txtTopeEspera.Text);
+            this.promSandwich = Convert.ToDouble(this.txtPromSandwich.Text);
+            this.desvSandwich = Convert.ToDouble(this.txtdesvSandwich.Text);
+            this.desdePizza = Convert.ToDouble(this.txtDesdePizza.Text);
+            this.hastaPizza = Convert.ToDouble(this.txtHastaPizza.Text);
+            this.precioPizza = Convert.ToDouble(this.txtPrecioPizza.Text);
         }
 
         public void inicializarVariables()
         {
             this.relojSimulacion = 0.0;
+            this.turno = _TipoTurno.Mañana;
+            this.dia = 0;
             this.identificadorPedido = 0;
             this.eventosYaSimuladosYMostrados = 0;
             this.ContVehiculosCombustibleIngresanAlSitema = 0.0;
@@ -389,7 +357,7 @@ namespace Pizzeria
             this.finCoccionEmpleado3 = new FinCoccionEmpleado(0, 0, 3, empleado3);
             this.colaPreparacion = new ColaPreparacion();
 
-            this.finDelivery = new FinDelivery(this.valorAUniformeFinGas, this.valorBUniformeFinGas, 1, this.cteSumadaAUniformeGas);
+            this.finDelivery = new FinDelivery(this.desdePizza, this.hastaPizza, 1, this.precioPizza);
            
         }
 
@@ -426,6 +394,8 @@ namespace Pizzeria
                 {
                     dgvResultados.Rows[i].Cells["colEvento"].Value = evento.getNombreEvento();
                     dgvResultados.Rows[i].Cells["colReloj"].Value = relojSimulacion;
+                    dgvResultados.Rows[i].Cells["colDia"].Value = dia;
+                    dgvResultados.Rows[i].Cells["colTurno"].Value = turno;
                 }
 
 
@@ -447,43 +417,6 @@ namespace Pizzeria
 
             }
             else if (evento is FinDelivery) {
-                //dgvResultados.Rows[i].Cells["colRNDFinGas"].Value = "-";
-                //dgvResultados.Rows[i].Cells["colTiempoFinGas"].Value = "-";
-
-                //if (conRandom)
-                //{
-                //    dgvResultados.Rows[i].Cells["colRNDFinGas"].Value = ((FinDelivery)evento).getRandom();
-                //    dgvResultados.Rows[i].Cells["colTiempoFinGas"].Value = ((FinDelivery)evento).getTiempoEntreLlegada();
-
-                //}
-                //switch (idEmpleado)
-                //{
-                //    case 1:
-                //        dgvResultados.Rows[i].Cells["colFinGasServ1"].Value = "-";
-                //        if (((FinDelivery)evento).getProximaLlegada() != 0)
-                //        {
-                //            dgvResultados.Rows[i].Cells["colFinGasServ1"].Value = ((FinDelivery)evento).getProximaLlegada();
-                //        }
-                //        break;
-                //    case 2:
-                //        dgvResultados.Rows[i].Cells["colFinGasServ2"].Value = "-";
-                //        if (((FinDelivery)evento).getProximaLlegada() != 0)
-                //        {
-                //            dgvResultados.Rows[i].Cells["colFinGasServ2"].Value = ((FinDelivery)evento).getProximaLlegada();
-                //        }
-
-                //        break;
-                //    case 3:
-                //        dgvResultados.Rows[i].Cells["colFinGasServ3"].Value = "-";
-                //        if (((FinDelivery)evento).getProximaLlegada() != 0)
-                //        {
-                //            dgvResultados.Rows[i].Cells["colFinGasServ3"].Value = ((FinDelivery)evento).getProximaLlegada();
-                //        }
-
-                //        break;
-
-                //}
-
 
             }
 
@@ -512,60 +445,13 @@ namespace Pizzeria
             }
         }
 
-        private void agregarSurtidoresAGrilla(int i)//Graficar Los Surtidores
-        {
-            //this.dgvResultados.Rows[i].Cells["colEstadoCombSurt1"].Value = this.empleado1.Estado.ToString();
-            //this.dgvResultados.Rows[i].Cells["colEstadoCombSurt2"].Value = this.empleado2.Estado.ToString();
-            //this.dgvResultados.Rows[i].Cells["colEstadoCombSurt3"].Value = this.empleado3.Estado.ToString();
-            //this.dgvResultados.Rows[i].Cells["colColaCombSurt1"].Value = this.empleado1.tamañoCola();
-            //this.dgvResultados.Rows[i].Cells["colColaCombSurt2"].Value = this.empleado2.tamañoCola();
-            //this.dgvResultados.Rows[i].Cells["colColaCombSurt3"].Value = this.empleado3.tamañoCola();
-            this.dgvResultados.Rows[i].Cells["colInicioOcioCombSurt1"].Value = "-";
-
-            //Los tiempos de ocio de Combustible
-
-            dgvResultados.Rows[i].Cells["colInicioOcioCombSurt1"].Value = "-";
-            if (this.empleado1.getHoraInicioOcio() != -1.00)
-            {
-                dgvResultados.Rows[i].Cells["colInicioOcioCombSurt1"].Value = this.empleado1.getHoraInicioOcio();
-            }
-            dgvResultados.Rows[i].Cells["colInicioOcioCombSurt2"].Value = "-";
-            if (this.empleado2.getHoraInicioOcio() != -1.00)
-            {
-                dgvResultados.Rows[i].Cells["colInicioOcioCombSurt2"].Value = this.empleado2.getHoraInicioOcio();
-            }
-            dgvResultados.Rows[i].Cells["colInicioOcioCombSurt3"].Value = "-";
-            if (this.empleado3.getHoraInicioOcio() != -1.00)
-            {
-                dgvResultados.Rows[i].Cells["colInicioOcioCombSurt3"].Value = this.empleado3.getHoraInicioOcio();
-            }
-            dgvResultados.Rows[i].Cells["colInicioOcioCombSurt4"].Value = "-";
-
-        }
-
         private void agregarDatosAGrila(int i, string evento)
         {
             //Mostrar datos de la simulacion y estadisticas
             dgvResultados.Rows[i].Cells["colEvento"].Value = evento;
             dgvResultados.Rows[i].Cells["colReloj"].Value = relojSimulacion;
-            
-            /*
-            dgvResultados.Rows[i].Cells["colAcumOcioCombSurt"].Value = AcumTiempoOcioServidoresCombustible;
-            dgvResultados.Rows[i].Cells["colAcumOcioGasSurt"].Value = AcumTiempoOcioServidoresGas;
-            dgvResultados.Rows[i].Cells["colAcumCombIngresados"].Value = ContVehiculosCombustibleIngresanAlSitema;
-            dgvResultados.Rows[i].Cells["colAcumGasIngresaron"].Value = ContVehiculosGasIngresanAlSitema;
-            dgvResultados.Rows[i].Cells["colAcumCombRechazados"].Value = ContVehiculosCombustibleRechazados;
-            dgvResultados.Rows[i].Cells["colAcumGasRechazados"].Value = ContVehiculosGasRechazados;
-            dgvResultados.Rows[i].Cells["colAcumCombAtendidos"].Value = ContVehiculosCombustibleAtendidos;
-            dgvResultados.Rows[i].Cells["colAcumGasAtendidos"].Value = ContVehiculosGasAtendidos;
-            dgvResultados.Rows[i].Cells["colAcumTiempoEsperaComb"].Value = AcumTiempoEsperaVehiculosCombustible;
-            dgvResultados.Rows[i].Cells["colAcumTiempoEsperaGas"].Value = AcumTiempoEsperaVehiculosGas;
-            dgvResultados.Rows[i].Cells["colAcumOcioCombSurt"].Value = AcumTiempoOcioServidoresCombustible;
-            dgvResultados.Rows[i].Cells["colAcumOcioGasSurt"].Value = AcumTiempoOcioServidoresGas;
-            dgvResultados.Rows[i].Cells["colContVehiculosEsperaronComb"].Value = ContVehiConTiempoEsperaVehiculosCombustible;
-            dgvResultados.Rows[i].Cells["colContVehiculosEsperaronGas"].Value = ContVehiConTiempoEsperaVehiculosGas;
-           
-            */
+            dgvResultados.Rows[i].Cells["colDia"].Value = dia;
+            dgvResultados.Rows[i].Cells["colTurno"].Value = turno;
         }
         private void agregarColumnasAGrilla(int identificadorVehiculo)
         {
@@ -576,36 +462,6 @@ namespace Pizzeria
             dgvResultados.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
 
         }
-        
-        private void agregarPedidoAGrilla(Pedido pedido, int i)
-        {
-            if (pedido != null)
-            {
-                try
-                {
-                    dgvResultados.Rows[i].Cells[pedido.Id].Value = pedido.Estado;
-                    dgvResultados.Rows[i].Cells[pedido.Id.Replace("EstadoVehi", "colHoraInicioEsperaVehiculo")].Value = Math.Round(pedido.getInicioEspera(), 2);
-                    if (pedido.getInicioEspera() <= 0)
-                    {
-                        dgvResultados.Rows[i].Cells[pedido.Id.Replace("EstadoVehi", "colHoraInicioEsperaVehiculo")].Value = "-";
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    agregarColumnasAGrilla(int.Parse(pedido.Id.Replace("EstadoVehi", "")));
-                    dgvResultados.Rows[i].Cells[pedido.Id].Value = pedido.Estado;
-                    dgvResultados.Rows[i].Cells[pedido.Id.Replace("EstadoVehi", "colHoraInicioEsperaVehiculo")].Value = Math.Round(pedido.getInicioEspera(), 2);
-                    if (pedido.getInicioEspera() <= 0)
-                    {
-                        dgvResultados.Rows[i].Cells[pedido.Id.Replace("EstadoVehi", "colHoraInicioEsperaVehiculo")].Value = "-";
-
-                    }
-                }
-            }
-
-        }
-
 
         private void darFormato(TextBox txt, bool poner)//Da formato para resaltar los resultados estadisticos
         {
@@ -688,23 +544,13 @@ namespace Pizzeria
             //Limpiar la grilla
             dgvResultados.Rows.Clear();
 
-            //Poner Valores Originales en texbox
-            txtTopeEspera.Text = "2";
-            txtPromSandwich.Text = "3";
-            txtdesvSandwich.Text = "7";
-            txtPrecioPizza.Text = "5";
-            txtDesdePizza.Text = "3";
-            txtHastaPizza.Text = "7";
-            txtLlegadaPedido.Text = "3";
-            txtTopeGratis.Text = "7";
-            txtMinDesde.Text = "0";
-            txtTiempoSim.Text = "60";
-
             //Reset a variables
             resul = true;
             invalido = null;
             identificadorPedido = 0;
             relojSimulacion = 0.00;
+            turno = _TipoTurno.Mañana;
+            dia = 0;
 
 
             //Remover Columnas de Objetos Temporales
@@ -742,36 +588,6 @@ namespace Pizzeria
                 this.txtMinDesde.Enabled = true;
                 this.txtMinHasta.Enabled = true;
             }
-        }
-
-        private void label69_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label68_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTotalIngresados_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTotalCombustibleIngresados_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTotalGasIngresados_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label67_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
