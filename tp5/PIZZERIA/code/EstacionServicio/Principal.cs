@@ -88,14 +88,13 @@ namespace Pizzeria
 
         private void btnSimular_Click(object sender, EventArgs e)
         {
+            reset();
+
             //Inicio Bloque Simulacion
             if (validarDatos())
             {
                 this.tomarDatosPatalla();
                 this.inicializarVariables();
-
-                //bloqueo el boton simular para obligar a resetear antes de una nueva simulacion
-                btnSimular.Enabled = false;
 
                 //Limpiar Grilla 
                 dgvResultados.Rows.Clear();
@@ -353,7 +352,6 @@ namespace Pizzeria
         {
             this.tiempoFinCorrida = Convert.ToDouble(this.txtTiempoSim.Text);
             this.tiempoAPartirDeDondeMostrar = Convert.ToDouble(this.txtMinDesde.Text);
-            this.cantidadDeEventosAMostrar = Convert.ToInt32(this.txtNEventosMostrar.Text);
             this.mediaLlegadaPedidos = Convert.ToDouble(this.txtLlegadaPedido.Text);
             this.mediaLlegadaGas = Convert.ToDouble(this.txtTopeGratis.Text);
             this.colaMaxima = Convert.ToInt32(this.txtTopeEspera.Text);
@@ -700,27 +698,7 @@ namespace Pizzeria
             txtLlegadaPedido.Text = "3";
             txtTopeGratis.Text = "7";
             txtMinDesde.Text = "0";
-            txtNEventosMostrar.Text = "10";
-            txtPorcenAutosAtendidos.Text = "0.00";
-            txtPorcenAutosCombAtendidos.Text = "0.00";
-            txtPorcenAutosGasAtendidos.Text = "0.00";
-            txtPromTiempoOcioSurt.Text = "0.00";
-            txtPromTiempoOcioSurtComb.Text = "0.00";
-            txtPromTiempoOcioSurtGas.Text = "0.00";
-            txtTiempoPromEsperaVehi.Text = "0.00";
-            txtTiempoPromEsperaVehiComb.Text = "0.00";
-            txtTiempoPromEsperaVehiGas.Text = "0.00";
             txtTiempoSim.Text = "60";
-            txtTotalCombRechazados.Text = "0";
-            txtTotalCombustibleIngresados.Text = "0";
-            txtTotalGasIngresados.Text = "0";
-            txtTotalGasRechazados.Text = "0";
-            txtTotalIngresados.Text = "0";
-            txtTotalRechazados.Text = "0";
-
-
-            //Sacar Color A resultados
-            darFormatoATodos(false);
 
             //Reset a variables
             resul = true;
@@ -752,24 +730,48 @@ namespace Pizzeria
 
         }
 
-        private void darFormatoATodos(bool formato)
+        private void radioCada10mil_CheckedChanged(object sender, EventArgs e)
         {
-            darFormato(txtPorcenAutosAtendidos, formato);
-            darFormato(txtPorcenAutosCombAtendidos, formato);
-            darFormato(txtPorcenAutosGasAtendidos, formato);
-            darFormato(txtPromTiempoOcioSurt, formato);
-            darFormato(txtPromTiempoOcioSurtComb, formato);
-            darFormato(txtPromTiempoOcioSurtGas, formato);
-            darFormato(txtTiempoPromEsperaVehi, formato);
-            darFormato(txtTiempoPromEsperaVehiComb, formato);
-            darFormato(txtTiempoPromEsperaVehiGas, formato);
-            darFormato(txtTotalCombRechazados, formato);
-            darFormato(txtTotalCombustibleIngresados, formato);
-            darFormato(txtTotalGasIngresados, formato);
-            darFormato(txtTotalGasRechazados, formato);
-            darFormato(txtTotalIngresados, formato);
-            darFormato(txtTotalRechazados, formato);
+            if (radioCada10mil.Checked)
+            {
+                this.txtMinDesde.Enabled = false;
+                this.txtMinHasta.Enabled = false;
+            }
+            else
+            {
+                this.txtMinDesde.Enabled = true;
+                this.txtMinHasta.Enabled = true;
+            }
         }
 
+        private void label69_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label68_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTotalIngresados_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTotalCombustibleIngresados_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTotalGasIngresados_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label67_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
