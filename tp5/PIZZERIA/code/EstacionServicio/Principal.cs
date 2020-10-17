@@ -354,14 +354,14 @@ namespace Pizzeria
             this.tiempoFinCorrida = Convert.ToDouble(this.txtTiempoSim.Text);
             this.tiempoAPartirDeDondeMostrar = Convert.ToDouble(this.txtMinDesde.Text);
             this.cantidadDeEventosAMostrar = Convert.ToInt32(this.txtNEventosMostrar.Text);
-            this.mediaLlegadaPedidos = Convert.ToDouble(this.txtLlegadaConbustible.Text);
-            this.mediaLlegadaGas = Convert.ToDouble(this.txtLlegadaGas.Text);
-            this.colaMaxima = Convert.ToInt32(this.txtColaMax.Text);
-            this.valorAUniformeFinCombustible = Convert.ToDouble(this.txtFinCombustibleDesde.Text);
-            this.valorBUniformeFinCombustible = Convert.ToDouble(this.txtFinCombustibleHasta.Text);
-            this.valorAUniformeFinGas = Convert.ToDouble(this.txtFinGasDesde.Text);
-            this.valorBUniformeFinGas = Convert.ToDouble(this.txtFinGasHasta.Text);
-            this.cteSumadaAUniformeGas = Convert.ToDouble(this.txtFinGasCte.Text);
+            this.mediaLlegadaPedidos = Convert.ToDouble(this.txtLlegadaPedido.Text);
+            this.mediaLlegadaGas = Convert.ToDouble(this.txtTopeGratis.Text);
+            this.colaMaxima = Convert.ToInt32(this.txtTopeEspera.Text);
+            this.valorAUniformeFinCombustible = Convert.ToDouble(this.txtPromSandwich.Text);
+            this.valorBUniformeFinCombustible = Convert.ToDouble(this.txtdesvSandwich.Text);
+            this.valorAUniformeFinGas = Convert.ToDouble(this.txtDesdePizza.Text);
+            this.valorBUniformeFinGas = Convert.ToDouble(this.txtHastaPizza.Text);
+            this.cteSumadaAUniformeGas = Convert.ToDouble(this.txtPrecioPizza.Text);
         }
 
         public void inicializarVariables()
@@ -691,14 +691,14 @@ namespace Pizzeria
             dgvResultados.Rows.Clear();
 
             //Poner Valores Originales en texbox
-            txtColaMax.Text = "2";
-            txtFinCombustibleDesde.Text = "3";
-            txtFinCombustibleHasta.Text = "7";
-            txtFinGasCte.Text = "5";
-            txtFinGasDesde.Text = "3";
-            txtFinGasHasta.Text = "7";
-            txtLlegadaConbustible.Text = "3";
-            txtLlegadaGas.Text = "7";
+            txtTopeEspera.Text = "2";
+            txtPromSandwich.Text = "3";
+            txtdesvSandwich.Text = "7";
+            txtPrecioPizza.Text = "5";
+            txtDesdePizza.Text = "3";
+            txtHastaPizza.Text = "7";
+            txtLlegadaPedido.Text = "3";
+            txtTopeGratis.Text = "7";
             txtMinDesde.Text = "0";
             txtNEventosMostrar.Text = "10";
             txtPorcenAutosAtendidos.Text = "0.00";
