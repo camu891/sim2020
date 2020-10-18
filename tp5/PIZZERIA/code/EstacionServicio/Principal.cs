@@ -218,7 +218,7 @@ namespace Pizzeria
                 dgvResultados.Rows[i].Cells["colEstadoMoto"].Value = "Realizando entrega";
                 dgvResultados.Rows[i].Cells["colRndDelivery"].Value = ((FinDelivery)evento).getRandom();
                 dgvResultados.Rows[i].Cells["colTiempoEntrega"].Value = ((FinDelivery)evento).getTiempoEntreLlegada();
-                dgvResultados.Rows[i].Cells["colFinEntregaDelivery"].Value = ((FinDelivery)evento).getProximaLlegada();
+                dgvResultados.Rows[i].Cells["colFinEntregaDelivery"].Value = ((FinDelivery)evento).getProximaLlegada().getReloj();
             }
         }
 
@@ -244,7 +244,7 @@ namespace Pizzeria
             dgvResultados.Rows[i].Cells["colEstadoEmpleado"+id].Value = empleado.getEstado();
             dgvResultados.Rows[i].Cells["colRndDemora" + id].Value = "";
             dgvResultados.Rows[i].Cells["colDemora" + id].Value = empleado.getDemora();
-            dgvResultados.Rows[i].Cells["colFinCoccion" + id].Value = empleado.getFinCoccion();
+            dgvResultados.Rows[i].Cells["colFinCoccion" + id].Value = empleado.getFinCoccion().getReloj();
         }
 
         private void ponerColaPedido(LlegadaPedido lp) {
@@ -366,7 +366,7 @@ namespace Pizzeria
 
                 }
 
-                dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = ((LlegadaPedido)evento).getProximaLlegada();
+                dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = ((LlegadaPedido)evento).getProximaLlegada().getReloj();
 
             } 
             
@@ -423,7 +423,7 @@ namespace Pizzeria
                 dgvResultados.Rows[i].Cells["colEstadoEmpleado1"].Value = ((FinCoccionEmpleado)evento).Empleado.getEstado();
                 dgvResultados.Rows[i].Cells["colRndDemora1"].Value = ((FinCoccionEmpleado)evento).getRandom();
                 dgvResultados.Rows[i].Cells["colDemora1"].Value = ((FinCoccionEmpleado)evento).Empleado.getDemora();
-                dgvResultados.Rows[i].Cells["colFinCoccion1"].Value = ((FinCoccionEmpleado)evento).Empleado.getFinCoccion();
+                dgvResultados.Rows[i].Cells["colFinCoccion1"].Value = ((FinCoccionEmpleado)evento).Empleado.getFinCoccion().getReloj();
             }
         }
 
@@ -501,13 +501,6 @@ namespace Pizzeria
             }
         }
 
-        private void btnReset_Click(object sender, EventArgs e)//Advertencia de que se perderan los datos con el reset
-        {
-            if (MessageBox.Show("¿Está seguro que desea Reiniciar?\n\nSe Perderán los cambios realizados", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
-            {
-            reset();
-            }
-        }
         private void reset()
         {
             //Limpiar la grilla
