@@ -7,7 +7,7 @@ namespace Pizzeria
 	{
 		private double rndTiempoCombustible;
 		private double tiempoEntreLlegadas;
-		private double proximaLlegada;
+		private Reloj proximaLlegada;
 		private string nombreEvento = "llegada_Pedido";
 		private double mu;
 		private Pedido pedido;
@@ -26,6 +26,7 @@ namespace Pizzeria
 		public LlegadaPedido(double mu)
 		{
 			this.mu = mu;
+			proximaLlegada = new Reloj();
 		}
 
 		public override string getNombreEvento()
@@ -51,7 +52,7 @@ namespace Pizzeria
 			return this.tiempoEntreLlegadas;
 		}
 
-		public override double getProximaLlegada()
+		public override Reloj getProximaLlegada()
 		{
 			return this.proximaLlegada;
 		}
@@ -65,19 +66,19 @@ namespace Pizzeria
 		{
 			pedido= p;
 		}
-		public override void simular(double reloj, double random)
+		public override void simular(Reloj reloj, double random)
 		{
-			if (reloj == 0.00)
+			if (reloj.getReloj() == 0.00)
 			{
 				this.rndTiempoCombustible = random;
 				this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoCombustible);
-				this.proximaLlegada = this.tiempoEntreLlegadas + reloj;
+				setProximaLlegada(tiempoEntreLlegadas, reloj);
 			}
 			else
 			{
 				this.rndTiempoCombustible = random;
 				this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoCombustible);
-				this.proximaLlegada = this.tiempoEntreLlegadas + reloj;
+				setProximaLlegada(tiempoEntreLlegadas, reloj);
 				Random rand = new Random();
 				this.setRandomTipoPed(rand.NextDouble());
 				string tipoPedido = seleccionTipoPedido(rndTipoPedido);
@@ -86,6 +87,30 @@ namespace Pizzeria
 			}
 	
 			
+		}
+
+		public void setProximaLlegada(double entreLlegada, Reloj reloj)
+        {
+			/*
+			if ((this.tiempoEntreLlegadas + reloj.getReloj()) > 360)
+			{
+				double diff = this.tiempoEntreLlegadas + reloj.getReloj() - 6;
+				reloj.setReloj(diff);
+				if (reloj.getTurno() == Estados._TipoTurno.Tarde)
+                {
+					reloj.addDia();
+                }
+                else
+                {
+					reloj.cambioTurno();
+                }
+            } else
+            {
+				double sum = this.tiempoEntreLlegadas + reloj.getReloj();
+				reloj.setReloj(sum);
+			}
+			*/
+			proximaLlegada.setReloj(this.tiempoEntreLlegadas + reloj.getReloj());
 		}
 		
 		private string seleccionTipoPedido(double rnd)
@@ -143,7 +168,7 @@ namespace Pizzeria
 		}
 
 	
-		public override void simularDemora(double reloj, double random, LlegadaPedido llegP) { }
+		public override void simularDemora(Reloj reloj, double random, LlegadaPedido llegP) { }
 
 	}
 }

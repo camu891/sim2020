@@ -11,7 +11,7 @@ namespace Pizzeria
 		private double acumTiempoOcio;
 
 		private double demora;
-		private double finCoccion;
+		private Reloj finCoccion;
 		private bool pierdeCliente;
 
 		//public Estados._EstadoEmpleado Estado
@@ -26,6 +26,7 @@ namespace Pizzeria
 			this.estado = "Libre";
 			this.horaInicioOcio = horaInicioOcio;
 			this.acumTiempoOcio = 0.0;
+			finCoccion = new Reloj();
 			//this.tipoServicio = tipo;
 			//this.cola = new Queue<Pedido>();
 			//this.nombreEstado = nombre;
@@ -57,12 +58,12 @@ namespace Pizzeria
 			this.demora = demora;
 		}
 
-		public double getFinCoccion()
+		public Reloj getFinCoccion()
 		{
 			return this.finCoccion;
 		}
 
-		public void setgetFinCoccion(double finCoccion)
+		public void setgetFinCoccion(Reloj finCoccion)
 		{
 			this.finCoccion = finCoccion;
 		}

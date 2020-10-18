@@ -8,7 +8,7 @@ namespace Pizzeria
 	{
 		private double rndTiempo;
 		private double demora;
-		private double proximoFin;
+		private Reloj proximoFin;
 		private string nombreEvento = "fin_Coccion";
 		private double desde;
 		private double hasta;
@@ -24,6 +24,7 @@ namespace Pizzeria
 			this.hasta = b;
 			this.idEmpleado = id;
 			this.e = empleado;
+			proximoFin = new Reloj();
 		}
 
 		public override string getNombreEvento()
@@ -53,17 +54,17 @@ namespace Pizzeria
 			return this.demora;
 		}
 
-		public void setHoraFin(double horaFin)
+		public void setHoraFin(Reloj horaFin)
 		{
 			this.proximoFin = horaFin;
 		}
 
-		public override double getProximaLlegada()
+		public override Reloj getProximaLlegada()
 		{
 			return this.proximoFin;
 		}
 
-		public override void simularDemora(double reloj, double random, LlegadaPedido llegP)
+		public override void simularDemora(Reloj reloj, double random, LlegadaPedido llegP)
 		{
 
 			// pregutar si hay stock para calcular o no la demora
@@ -101,14 +102,14 @@ namespace Pizzeria
 			}
 
 			this.demora = demoraPedido;
-			this.proximoFin = this.demora + reloj;
+			this.proximoFin.setReloj(this.demora + reloj.getReloj());
 			// actualiza empleado
 			e.setEstado("Ocupado");
 			e.setDemora(this.demora);
 			e.setgetFinCoccion(this.proximoFin);
 		}
 
-		public override void simular(double reloj, double random) { }
+		public override void simular(Reloj reloj, double random) { }
 
 		private double getDemoraSandwich(double random) {
 			return Distribuciones.normal(10, 5).First();

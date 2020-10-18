@@ -1783,7 +1783,7 @@
             this.gpbParametrosCorrida.Controls.Add(this.lblTiempoSim);
             this.gpbParametrosCorrida.Location = new System.Drawing.Point(17, 19);
             this.gpbParametrosCorrida.Name = "gpbParametrosCorrida";
-            this.gpbParametrosCorrida.Size = new System.Drawing.Size(219, 174);
+            this.gpbParametrosCorrida.Size = new System.Drawing.Size(226, 174);
             this.gpbParametrosCorrida.TabIndex = 0;
             this.gpbParametrosCorrida.TabStop = false;
             this.gpbParametrosCorrida.Text = "Parametros de la Corrida";
@@ -1794,7 +1794,7 @@
             this.btnSimular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSimular.ForeColor = System.Drawing.Color.Blue;
             this.btnSimular.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSimular.Location = new System.Drawing.Point(10, 98);
+            this.btnSimular.Location = new System.Drawing.Point(17, 98);
             this.btnSimular.Name = "btnSimular";
             this.btnSimular.Size = new System.Drawing.Size(169, 35);
             this.btnSimular.TabIndex = 3;
@@ -1808,9 +1808,9 @@
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(175, 36);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(39, 15);
+            this.label20.Size = new System.Drawing.Size(42, 15);
             this.label20.TabIndex = 2;
-            this.label20.Text = "[min]";
+            this.label20.Text = "[días]";
             // 
             // txtTiempoSim
             // 
@@ -1856,9 +1856,9 @@
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.Location = new System.Drawing.Point(126, 67);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(39, 15);
+            this.label24.Size = new System.Drawing.Size(35, 15);
             this.label24.TabIndex = 21;
-            this.label24.Text = "[min]";
+            this.label24.Text = "[dia]";
             // 
             // label23
             // 
@@ -1866,9 +1866,9 @@
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.Location = new System.Drawing.Point(126, 38);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(39, 15);
+            this.label23.Size = new System.Drawing.Size(35, 15);
             this.label23.TabIndex = 5;
-            this.label23.Text = "[min]";
+            this.label23.Text = "[dia]";
             // 
             // radioButton1
             // 

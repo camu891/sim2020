@@ -8,7 +8,7 @@ namespace Pizzeria
 		private string  estado;
 		private string tipoServicio;
 		private int cantidad;
-		private double horaInicioEspera;
+		private Reloj horaInicioEspera;
 
 		public string Tipo
 		{
@@ -58,7 +58,7 @@ namespace Pizzeria
 			}
 		}
 
-		public Pedido( string estado, string tipo,int cant, double horaInicioEspera)
+		public Pedido( string estado, string tipo,int cant, Reloj horaInicioEspera)
 		{
 			//this.id = id;
 			this.estado = estado;
@@ -67,12 +67,12 @@ namespace Pizzeria
 			this.horaInicioEspera = horaInicioEspera;
 		}
 
-		public void setHoraInicioEspera(double horaInicioEspera)
+		public void setHoraInicioEspera(Reloj horaInicioEspera)
 		{
 			this.horaInicioEspera = horaInicioEspera;
 		}
 
-		public double getInicioEspera()
+		public Reloj getInicioEspera()
 		{
 			return this.horaInicioEspera;
 		}
