@@ -163,7 +163,7 @@ namespace Pizzeria
                         fila = agregarEventoFinCoccion();
 
                         finCoccionEmpleado1.setHoraFin(new Reloj());
-                        relojSimulacion = llegadaPedido.getProximaLlegada();
+                        //relojSimulacion = llegadaPedido.getProximaLlegada();
 
                         //actualizar el pedido a preparado 
                         cambiarEstadoPedido(llegadaPedido.getPedido());
