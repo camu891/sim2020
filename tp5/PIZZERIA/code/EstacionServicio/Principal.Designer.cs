@@ -225,6 +225,8 @@
             this.colRndDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTiempoEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinEntregaDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label74 = new System.Windows.Forms.Label();
+            this.label85 = new System.Windows.Forms.Label();
             this.gpbParametros.SuspendLayout();
             this.Integrantes.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -256,6 +258,8 @@
             // Integrantes
             // 
             this.Integrantes.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Integrantes.Controls.Add(this.label85);
+            this.Integrantes.Controls.Add(this.label74);
             this.Integrantes.Controls.Add(this.label25);
             this.Integrantes.Controls.Add(this.label27);
             this.Integrantes.Controls.Add(this.label31);
@@ -292,7 +296,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(182, 55);
+            this.label31.Location = new System.Drawing.Point(177, 53);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(145, 13);
             this.label31.TabIndex = 1;
@@ -2225,6 +2229,26 @@
             this.colFinEntregaDelivery.ReadOnly = true;
             this.colFinEntregaDelivery.Width = 127;
             // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label74.Location = new System.Drawing.Point(10, 81);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(128, 13);
+            this.label74.TabIndex = 4;
+            this.label74.Text = "Matías Primo - 72078";
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label85.Location = new System.Drawing.Point(182, 81);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(130, 13);
+            this.label85.TabIndex = 5;
+            this.label85.Text = "Carolina Brito - 73545";
+            // 
             // frm_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2447,6 +2471,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colRndDelivery;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTiempoEntrega;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinEntregaDelivery;
+        private System.Windows.Forms.Label label85;
+        private System.Windows.Forms.Label label74;
     }
 }
 
