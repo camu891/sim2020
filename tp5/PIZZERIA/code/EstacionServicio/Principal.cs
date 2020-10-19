@@ -132,16 +132,16 @@ namespace Pizzeria
                 int fila = 0;
 
                 //Bucle principal de Simulacion
-                while (relojSimulacion.getReloj() < tiempoFinCorrida)
+                while (relojSimulacion.getDia() < tiempoFinCorrida)
                 {
                     Reloj firstEvent = this.getFirstEvent(this.llegadaPedido.getProximaLlegada(), this.finCoccionEmpleado1.getProximaLlegada(), this.finCoccionEmpleado2.getProximaLlegada(), this.finCoccionEmpleado3.getProximaLlegada(), this.finDelivery.getProximaLlegada());
 
                     this.relojSimulacion.setReloj(firstEvent.getReloj());
-                    this.relojSimulacion.setDia(firstEvent.getDia());
-                    this.relojSimulacion.setTurno(firstEvent.getTurno());
 
                     if (this.llegadaPedido.getProximaLlegada().Equals(firstEvent))
                     {
+                        this.relojSimulacion.setDia(firstEvent.getDia());
+                        this.relojSimulacion.setTurno(firstEvent.getTurno());
                         fila = this.generarLlegadaPedido();
 
                         //hacer para los 3 empleados

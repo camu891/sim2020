@@ -100,7 +100,7 @@ namespace Pizzeria
 				{
 					proximaLlegada.cambioTurno();
 					proximaLlegada.addDia();
-					proximaLlegada.setReloj(prox - 720);
+					proximaLlegada.setReloj(prox - minutosDia);
 				}
 				else
 				{
