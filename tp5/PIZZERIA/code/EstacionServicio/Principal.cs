@@ -45,10 +45,19 @@ namespace Pizzeria
         private double desdePizza;
         private double hastaPizza;
         private double precioPizza;
+        private double filaHastaDondeMostrar;
+        private double precioSandwich;
+        private double demoraEmpax3;
+        private double demoraEmpax2;
+        private double precioEmpa;
+        private double demoraHamburguesa;
+        private double precioHamburguesa;
+        private double demoraLomo;
+        private double precioLomo;
 
         //Parametros de la corrida
         private double tiempoFinCorrida;
-        private double tiempoAPartirDeDondeMostrar;
+        private double filaAPartirDeDondeMostrar;
         private int cantidadDeEventosAMostrar;
 
 
@@ -113,7 +122,7 @@ namespace Pizzeria
                 dgvResultados.Rows.Clear();
 
                 //Inicio de La Simulacion
-                if (relojSimulacion.getReloj() == 0.00)//Calculos los primeros eventos
+                if (filaAPartirDeDondeMostrar == 0 )//Calculos los primeros eventos
                 {
 
                     llegadaPedido.simular(relojSimulacion, rand.NextDouble());//carga de llegada de pedido
@@ -350,16 +359,26 @@ namespace Pizzeria
         public void tomarDatosPatalla()
         {
             this.tiempoFinCorrida = Convert.ToDouble(this.txtTiempoSim.Text);
-            this.tiempoAPartirDeDondeMostrar = Convert.ToDouble(this.txtMinDesde.Text);
+            this.filaAPartirDeDondeMostrar = Convert.ToDouble(this.txtMinDesde.Text);
+            this.filaHastaDondeMostrar = Convert.ToDouble(this.txtMinHasta.Text);
             this.mediaLlegadaPedidos = Convert.ToDouble(this.txtLlegadaPedido.Text);
             this.tiempoTopeGratis = Convert.ToDouble(this.txtTopeGratis.Text);
             this.tiempoTopeEspera = Convert.ToInt32(this.txtTopeEspera.Text);
             this.promSandwich = Convert.ToDouble(this.txtPromSandwich.Text);
             this.desvSandwich = Convert.ToDouble(this.txtdesvSandwich.Text);
+            this.precioSandwich = Convert.ToDouble(this.textPrecioSandwich.Text);
             this.desdePizza = Convert.ToDouble(this.txtDesdePizza.Text);
             this.hastaPizza = Convert.ToDouble(this.txtHastaPizza.Text);
             this.precioPizza = Convert.ToDouble(this.txtPrecioPizza.Text);
+            this.demoraEmpax3 = Convert.ToDouble(this.textDemora3Empa.Text);
+            this.demoraEmpax2 = Convert.ToDouble(this.textDemora2Empa.Text);
+            this.precioEmpa = Convert.ToDouble(this.textPrecioEmpa.Text);
+            this.demoraHamburguesa = Convert.ToDouble(this.textDemoraHambur.Text);
+            this.precioHamburguesa = Convert.ToDouble(this.textPrecioHambur.Text);
+            this.demoraLomo = Convert.ToDouble(this.textDemoraLomo.Text);
+            this.precioLomo = Convert.ToDouble(this.textPrecioLomo.Text);
         }
+
 
         public void inicializarVariables()
         {
@@ -383,9 +402,9 @@ namespace Pizzeria
             this.empleado2 = new Empleado(2, 0); //TODO pasar valores tomados por parametros
             this.empleado3 = new Empleado(3, 0); //TODO pasar valores tomados por parametros
             this.delivery= new Delivery (1,0); //TODO pasar valores tomados por parametros
-            this.finCoccionEmpleado1 = new FinCoccionEmpleado(0, 0, 1, empleado1); //TODO pasar valores tomados por parametros
-            this.finCoccionEmpleado2 = new FinCoccionEmpleado(0, 0, 2, empleado2); //TODO pasar valores tomados por parametros
-            this.finCoccionEmpleado3 = new FinCoccionEmpleado(0, 0, 3, empleado3); //TODO pasar valores tomados por parametros
+            this.finCoccionEmpleado1 = new FinCoccionEmpleado(promSandwich, desvSandwich, desdePizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 1, empleado1);
+            this.finCoccionEmpleado2 = new FinCoccionEmpleado(promSandwich, desvSandwich, desdePizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 2, empleado2);
+            this.finCoccionEmpleado3 = new FinCoccionEmpleado(promSandwich, desvSandwich, desdePizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 3, empleado3);
             this.colaPreparacion = new ColaPreparacion();
 
             this.finDelivery = new FinDelivery(this.desdePizza, this.hastaPizza, 1, this.precioPizza);

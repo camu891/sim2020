@@ -183,11 +183,9 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
-            this.gpbParametrosCorrida = new System.Windows.Forms.GroupBox();
             this.btnSimular = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.txtTiempoSim = new System.Windows.Forms.TextBox();
-            this.lblTiempoSim = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -227,6 +225,8 @@
             this.colRndDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTiempoEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinEntregaDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gpbParametrosCorrida = new System.Windows.Forms.GroupBox();
+            this.lblTiempoSim = new System.Windows.Forms.Label();
             this.gpbParametros.SuspendLayout();
             this.Integrantes.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -234,10 +234,10 @@
             this.gpbTiemposLlegadas.SuspendLayout();
             this.gpbResultado.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.gpbParametrosCorrida.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gpbResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).BeginInit();
+            this.gpbParametrosCorrida.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpbParametros
@@ -1797,21 +1797,6 @@
             this.textBox13.Text = "0";
             this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // gpbParametrosCorrida
-            // 
-            this.gpbParametrosCorrida.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpbParametrosCorrida.Controls.Add(this.btnSimular);
-            this.gpbParametrosCorrida.Controls.Add(this.label20);
-            this.gpbParametrosCorrida.Controls.Add(this.txtTiempoSim);
-            this.gpbParametrosCorrida.Controls.Add(this.lblTiempoSim);
-            this.gpbParametrosCorrida.Location = new System.Drawing.Point(17, 19);
-            this.gpbParametrosCorrida.Name = "gpbParametrosCorrida";
-            this.gpbParametrosCorrida.Size = new System.Drawing.Size(239, 174);
-            this.gpbParametrosCorrida.TabIndex = 0;
-            this.gpbParametrosCorrida.TabStop = false;
-            this.gpbParametrosCorrida.Text = "Parametros de la Corrida";
-            // 
             // btnSimular
             // 
             this.btnSimular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1847,15 +1832,6 @@
             this.txtTiempoSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTiempoSim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
             // 
-            // lblTiempoSim
-            // 
-            this.lblTiempoSim.AutoSize = true;
-            this.lblTiempoSim.Location = new System.Drawing.Point(18, 37);
-            this.lblTiempoSim.Name = "lblTiempoSim";
-            this.lblTiempoSim.Size = new System.Drawing.Size(96, 13);
-            this.lblTiempoSim.TabIndex = 0;
-            this.lblTiempoSim.Text = "Tiempo Simulación";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label24);
@@ -1882,7 +1858,7 @@
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(35, 15);
             this.label24.TabIndex = 21;
-            this.label24.Text = "[dia]";
+            this.label24.Text = "[fila]";
             // 
             // label23
             // 
@@ -1892,7 +1868,7 @@
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(35, 15);
             this.label23.TabIndex = 5;
-            this.label23.Text = "[dia]";
+            this.label23.Text = "[fila]";
             // 
             // radioButton1
             // 
@@ -1914,9 +1890,9 @@
             this.radioCada10mil.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioCada10mil.Location = new System.Drawing.Point(11, 97);
             this.radioCada10mil.Name = "radioCada10mil";
-            this.radioCada10mil.Size = new System.Drawing.Size(127, 17);
+            this.radioCada10mil.Size = new System.Drawing.Size(151, 17);
             this.radioCada10mil.TabIndex = 19;
-            this.radioCada10mil.Text = "Mostrar Cada 10 mil";
+            this.radioCada10mil.Text = "Mostrar Cada 10 mil filas";
             this.radioCada10mil.UseVisualStyleBackColor = true;
             this.radioCada10mil.CheckedChanged += new System.EventHandler(this.radioCada10mil_CheckedChanged);
             // 
@@ -2249,6 +2225,30 @@
             this.colFinEntregaDelivery.ReadOnly = true;
             this.colFinEntregaDelivery.Width = 127;
             // 
+            // gpbParametrosCorrida
+            // 
+            this.gpbParametrosCorrida.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gpbParametrosCorrida.Controls.Add(this.btnSimular);
+            this.gpbParametrosCorrida.Controls.Add(this.label20);
+            this.gpbParametrosCorrida.Controls.Add(this.txtTiempoSim);
+            this.gpbParametrosCorrida.Controls.Add(this.lblTiempoSim);
+            this.gpbParametrosCorrida.Location = new System.Drawing.Point(17, 19);
+            this.gpbParametrosCorrida.Name = "gpbParametrosCorrida";
+            this.gpbParametrosCorrida.Size = new System.Drawing.Size(239, 174);
+            this.gpbParametrosCorrida.TabIndex = 0;
+            this.gpbParametrosCorrida.TabStop = false;
+            this.gpbParametrosCorrida.Text = "Parametros de la Corrida";
+            // 
+            // lblTiempoSim
+            // 
+            this.lblTiempoSim.AutoSize = true;
+            this.lblTiempoSim.Location = new System.Drawing.Point(18, 37);
+            this.lblTiempoSim.Name = "lblTiempoSim";
+            this.lblTiempoSim.Size = new System.Drawing.Size(96, 13);
+            this.lblTiempoSim.TabIndex = 0;
+            this.lblTiempoSim.Text = "Tiempo Simulación";
+            // 
             // frm_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2273,12 +2273,12 @@
             this.gpbResultado.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.gpbParametrosCorrida.ResumeLayout(false);
-            this.gpbParametrosCorrida.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.gpbResult.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).EndInit();
+            this.gpbParametrosCorrida.ResumeLayout(false);
+            this.gpbParametrosCorrida.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2289,7 +2289,6 @@
         private System.Windows.Forms.GroupBox gpbResultado;
         private System.Windows.Forms.GroupBox gpbTiemposLlegadas;
         private System.Windows.Forms.GroupBox gpbTiemposFin;
-        private System.Windows.Forms.GroupBox gpbParametrosCorrida;
         private System.Windows.Forms.GroupBox gpbResult;
         private System.Windows.Forms.TextBox txtTopeGratis;
         private System.Windows.Forms.TextBox txtLlegadaPedido;
@@ -2317,7 +2316,6 @@
         private System.Windows.Forms.TextBox txtTopeEspera;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtTiempoSim;
-        private System.Windows.Forms.Label lblTiempoSim;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button btnSimular;
         private System.Windows.Forms.DataGridView dgvResultados;
@@ -2473,6 +2471,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinEntregaDelivery;
         private System.Windows.Forms.Label label85;
         private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.GroupBox gpbParametrosCorrida;
+        private System.Windows.Forms.Label lblTiempoSim;
     }
 }
 

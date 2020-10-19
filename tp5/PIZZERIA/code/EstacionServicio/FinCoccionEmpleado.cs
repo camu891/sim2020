@@ -10,22 +10,34 @@ namespace Pizzeria
 		private double demora;
 		private Reloj proximoFin;
 		private string nombreEvento = "fin_Coccion";
-		private double desde;
-		private double hasta;
+		private double promSandwich;
+		private double desvSandwich;
+		private double desdePizza;
+		private double hastaPizza;
+		private double demoraEmpanadax3;
+		private double demoraEmpanadax2;
+		private double demoraHamburguesa;
+		private double demoraLomo;
 		private int idEmpleado;
 		private Empleado e;
 		private LlegadaPedido llegadaP;
 
-		public Empleado Empleado { get => e; set => e = value; }
-
-		public FinCoccionEmpleado(double a, double b, int id, Empleado empleado)
-		{
-			this.desde = a;
-			this.hasta = b;
-			this.idEmpleado = id;
-			this.e = empleado;
+        public FinCoccionEmpleado(double promSandwich, double desvSandwich, double desdePizza, double hastaPizza, double demoraEmpanadax3, double demoraEmpanadax2, double demoraHamburguesa, double demoraLomo, int idEmpleado, Empleado empleado)
+        {
+            this.promSandwich = promSandwich;
+            this.desvSandwich = desvSandwich;
+            this.desdePizza = desdePizza;
+            this.hastaPizza = hastaPizza;
+            this.demoraEmpanadax3 = demoraEmpanadax3;
+            this.demoraEmpanadax2 = demoraEmpanadax2;
+            this.demoraHamburguesa = demoraHamburguesa;
+            this.demoraLomo = demoraLomo;
+            this.idEmpleado = idEmpleado;
+            this.e = empleado;
 			proximoFin = new Reloj();
 		}
+
+        public Empleado Empleado { get => e; set => e = value; }
 
 		public override string getNombreEvento()
 		{
@@ -112,12 +124,12 @@ namespace Pizzeria
 		public override void simular(Reloj reloj, double random) { }
 
 		private double getDemoraSandwich(double random) {
-			return Distribuciones.normal(10, 5).First();
+			return Distribuciones.normal(this.promSandwich, this.desvSandwich, random);
 		}
 
 		private double getDemoraPizza(double random)
 		{
-			return Distribuciones.Uniforme(15, 8, random);
+			return Distribuciones.Uniforme(this.desdePizza, this.hastaPizza, random);
 		}
 
 

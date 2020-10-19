@@ -73,13 +73,13 @@ namespace Pizzeria
 			if (reloj.getReloj() == 0.00)
 			{
 				this.rndTiempoLlegada = random;
-				this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoLlegada);
+				this.tiempoEntreLlegadas = Distribuciones.poisson(this.mu, this.rndTiempoLlegada);
 				setProximaLlegada(tiempoEntreLlegadas, reloj);
 			}
 			else
 			{
 				this.rndTiempoLlegada = random;
-				this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoLlegada);
+				this.tiempoEntreLlegadas = Distribuciones.poisson(this.mu, this.rndTiempoLlegada);
 				setProximaLlegada(tiempoEntreLlegadas, reloj);
 				Random rand = new Random();
 				this.setRandomTipoPed(rand.NextDouble());
@@ -123,20 +123,18 @@ namespace Pizzeria
 		
 		private string seleccionTipoPedido(double rnd)
 		{
-			string tipoP = "";
 			double aux = (double) Math.Round(rnd,2);
 			if (aux >= 0 && aux <= 0.19)
-			tipoP = "DocSandwich";
+				return "DocSandwich";
 			if (aux >= 0.20 && aux <= 0.59)
-				tipoP = "Pizza";
+				return "Pizza";
 			if (aux >= 0.60 && aux <= 0.89)
-				tipoP = "Empanadas";
+				return "Empanadas";
 			if (aux >= 0.90 && aux <= 0.94)
-				tipoP = "Hamburguesa";
+				return "Hamburguesa";
 			if (aux >= 0.95 && aux <= 0.99)
-				tipoP = "Lomito";
-
-			return tipoP;
+				return "Lomito";
+			return "";
 		}
 
 		private int cantidadPedido(string pedido)
@@ -144,28 +142,13 @@ namespace Pizzeria
 			int cant = 0;
 			switch (pedido)
 			{
-				case "DocSandwich":
-					{ 
-						cant = 12;
-						break;
-					}
-				case "Pizza":
-					{
-						cant = 1;
-						break;
-					}
 				case "Empanadas":
 					{
-						Distribuciones dist = new Distribuciones();
-						cant = dist.GenerateCSharpRandomsPoisson(1, 3).First<int>();// Poisson 
+						Random rand = new Random();
+						cant = Distribuciones.poisson(3, rand.NextDouble());
 						break;
 					}
-				case "Hamburguesa":
-					{
-						cant = 1;
-						break;
-					}
-				case "Lomito":
+				default:
 					{
 						cant = 1;
 						break;
@@ -174,7 +157,6 @@ namespace Pizzeria
 			}
 			return cant;
 		}
-
 	
 		public override void simularDemora(Reloj reloj, double random, LlegadaPedido llegP) { }
 
