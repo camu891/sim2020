@@ -41,6 +41,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_principal));
             this.gpbParametros = new System.Windows.Forms.GroupBox();
             this.Integrantes = new System.Windows.Forms.GroupBox();
+            this.label85 = new System.Windows.Forms.Label();
+            this.label74 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
@@ -225,8 +227,6 @@
             this.colRndDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTiempoEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinEntregaDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label74 = new System.Windows.Forms.Label();
-            this.label85 = new System.Windows.Forms.Label();
             this.gpbParametros.SuspendLayout();
             this.Integrantes.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -250,7 +250,7 @@
             this.gpbParametros.Controls.Add(this.gpbTiemposLlegadas);
             this.gpbParametros.Location = new System.Drawing.Point(12, 12);
             this.gpbParametros.Name = "gpbParametros";
-            this.gpbParametros.Size = new System.Drawing.Size(1786, 151);
+            this.gpbParametros.Size = new System.Drawing.Size(1251, 151);
             this.gpbParametros.TabIndex = 0;
             this.gpbParametros.TabStop = false;
             this.gpbParametros.Text = "Parámetros Simulación";
@@ -271,6 +271,26 @@
             this.Integrantes.TabIndex = 109;
             this.Integrantes.TabStop = false;
             this.Integrantes.Text = "Grupo R";
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label85.Location = new System.Drawing.Point(182, 81);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(130, 13);
+            this.label85.TabIndex = 5;
+            this.label85.Text = "Carolina Brito - 73545";
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label74.Location = new System.Drawing.Point(10, 81);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(128, 13);
+            this.label74.TabIndex = 4;
+            this.label74.Text = "Matías Primo - 72078";
             // 
             // label25
             // 
@@ -979,7 +999,7 @@
             this.gpbResultado.Controls.Add(this.gpbResult);
             this.gpbResultado.Location = new System.Drawing.Point(12, 169);
             this.gpbResultado.Name = "gpbResultado";
-            this.gpbResultado.Size = new System.Drawing.Size(1786, 475);
+            this.gpbResultado.Size = new System.Drawing.Size(1251, 475);
             this.gpbResultado.TabIndex = 1;
             this.gpbResultado.TabStop = false;
             this.gpbResultado.Text = "Simulación";
@@ -1787,7 +1807,7 @@
             this.gpbParametrosCorrida.Controls.Add(this.lblTiempoSim);
             this.gpbParametrosCorrida.Location = new System.Drawing.Point(17, 19);
             this.gpbParametrosCorrida.Name = "gpbParametrosCorrida";
-            this.gpbParametrosCorrida.Size = new System.Drawing.Size(226, 174);
+            this.gpbParametrosCorrida.Size = new System.Drawing.Size(239, 174);
             this.gpbParametrosCorrida.TabIndex = 0;
             this.gpbParametrosCorrida.TabStop = false;
             this.gpbParametrosCorrida.Text = "Parametros de la Corrida";
@@ -1798,7 +1818,7 @@
             this.btnSimular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSimular.ForeColor = System.Drawing.Color.Blue;
             this.btnSimular.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSimular.Location = new System.Drawing.Point(17, 98);
+            this.btnSimular.Location = new System.Drawing.Point(30, 98);
             this.btnSimular.Name = "btnSimular";
             this.btnSimular.Size = new System.Drawing.Size(169, 35);
             this.btnSimular.TabIndex = 3;
@@ -1948,7 +1968,7 @@
             this.gpbResult.Controls.Add(this.dgvResultados);
             this.gpbResult.Location = new System.Drawing.Point(6, 199);
             this.gpbResult.Name = "gpbResult";
-            this.gpbResult.Size = new System.Drawing.Size(1774, 270);
+            this.gpbResult.Size = new System.Drawing.Size(1239, 270);
             this.gpbResult.TabIndex = 1;
             this.gpbResult.TabStop = false;
             this.gpbResult.Text = "Resultado";
@@ -1996,7 +2016,7 @@
             this.dgvResultados.ReadOnly = true;
             this.dgvResultados.RowHeadersVisible = false;
             this.dgvResultados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvResultados.Size = new System.Drawing.Size(1768, 251);
+            this.dgvResultados.Size = new System.Drawing.Size(1233, 251);
             this.dgvResultados.TabIndex = 0;
             // 
             // colEvento
@@ -2229,31 +2249,11 @@
             this.colFinEntregaDelivery.ReadOnly = true;
             this.colFinEntregaDelivery.Width = 127;
             // 
-            // label74
-            // 
-            this.label74.AutoSize = true;
-            this.label74.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label74.Location = new System.Drawing.Point(10, 81);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(128, 13);
-            this.label74.TabIndex = 4;
-            this.label74.Text = "Matías Primo - 72078";
-            // 
-            // label85
-            // 
-            this.label85.AutoSize = true;
-            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label85.Location = new System.Drawing.Point(182, 81);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(130, 13);
-            this.label85.TabIndex = 5;
-            this.label85.Text = "Carolina Brito - 73545";
-            // 
             // frm_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1905, 656);
+            this.ClientSize = new System.Drawing.Size(1370, 656);
             this.Controls.Add(this.gpbResultado);
             this.Controls.Add(this.gpbParametros);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

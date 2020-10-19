@@ -60,7 +60,7 @@ namespace Pizzeria
 		public override void simular(Reloj reloj, double random)
 		{
 			this.rndTiempo = random;
-			this.demora = Distribuciones.Uniforme(this.desde, this.hasta, this.rndTiempo) + this.cteDemora;
+			this.demora = Distribuciones.Exponencial(3, new Random().NextDouble());
 			this.proximoFin.setReloj(this.demora + reloj.getReloj());
 		}
 

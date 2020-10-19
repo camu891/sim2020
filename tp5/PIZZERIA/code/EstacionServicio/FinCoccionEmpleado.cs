@@ -106,7 +106,7 @@ namespace Pizzeria
 			// actualiza empleado
 			e.setEstado("Ocupado");
 			e.setDemora(this.demora);
-			e.setgetFinCoccion(this.proximoFin);
+			e.setFinCoccion(this.proximoFin);
 		}
 
 		public override void simular(Reloj reloj, double random) { }

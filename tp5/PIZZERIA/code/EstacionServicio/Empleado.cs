@@ -63,7 +63,7 @@ namespace Pizzeria
 			return this.finCoccion;
 		}
 
-		public void setgetFinCoccion(Reloj finCoccion)
+		public void setFinCoccion(Reloj finCoccion)
 		{
 			this.finCoccion = finCoccion;
 		}
