@@ -5,13 +5,15 @@ namespace Pizzeria
 {
 	public class LlegadaPedido : Evento
 	{
-		private double rndTiempoCombustible;
+		private double rndTiempoLlegada;
 		private double tiempoEntreLlegadas;
 		private Reloj proximaLlegada;
 		private string nombreEvento = "llegada_Pedido";
 		private double mu;
 		private Pedido pedido;
 		private double rndTipoPedido;
+		private double minutosDia = 720;
+		private double minutosTurno = 360;
 		/*
 		private string tipoPedido;
 		private int cantidad;
@@ -36,12 +38,12 @@ namespace Pizzeria
 
 		public double getRandom()
 		{
-			return this.rndTiempoCombustible;
+			return this.rndTiempoLlegada;
 		}
 
 		public double getRandomTipoPed()
 		{
-			return this.rndTiempoCombustible;
+			return this.rndTiempoLlegada;
 		}
 		public void setRandomTipoPed(double rnd)
 		{
@@ -70,14 +72,14 @@ namespace Pizzeria
 		{
 			if (reloj.getReloj() == 0.00)
 			{
-				this.rndTiempoCombustible = random;
-				this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoCombustible);
+				this.rndTiempoLlegada = random;
+				this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoLlegada);
 				setProximaLlegada(tiempoEntreLlegadas, reloj);
 			}
 			else
 			{
-				this.rndTiempoCombustible = random;
-				this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoCombustible);
+				this.rndTiempoLlegada = random;
+				this.tiempoEntreLlegadas = Distribuciones.Exponencial(this.mu, this.rndTiempoLlegada);
 				setProximaLlegada(tiempoEntreLlegadas, reloj);
 				Random rand = new Random();
 				this.setRandomTipoPed(rand.NextDouble());
@@ -91,26 +93,32 @@ namespace Pizzeria
 
 		public void setProximaLlegada(double entreLlegada, Reloj reloj)
         {
-			/*
-			if ((this.tiempoEntreLlegadas + reloj.getReloj()) > 360)
+			double prox = this.tiempoEntreLlegadas + reloj.getReloj();
+			if (prox > minutosTurno)
 			{
-				double diff = this.tiempoEntreLlegadas + reloj.getReloj() - 6;
-				reloj.setReloj(diff);
-				if (reloj.getTurno() == Estados._TipoTurno.Tarde)
-                {
-					reloj.addDia();
-                }
-                else
-                {
-					reloj.cambioTurno();
-                }
-            } else
-            {
-				double sum = this.tiempoEntreLlegadas + reloj.getReloj();
-				reloj.setReloj(sum);
+				if (prox > minutosDia)
+				{
+					proximaLlegada.cambioTurno();
+					proximaLlegada.addDia();
+					proximaLlegada.setReloj(prox - 720);
+				}
+				else
+				{
+					if (reloj.getTurno().Equals(Estados._TipoTurno.Tarde))
+					{
+						proximaLlegada.setReloj(prox);
+					}
+					else
+					{
+						proximaLlegada.cambioTurno();
+						proximaLlegada.setReloj(prox);
+					}
+				}
 			}
-			*/
-			proximaLlegada.setReloj(this.tiempoEntreLlegadas + reloj.getReloj());
+			else
+			{
+				proximaLlegada.setReloj(prox);
+			}
 		}
 		
 		private string seleccionTipoPedido(double rnd)

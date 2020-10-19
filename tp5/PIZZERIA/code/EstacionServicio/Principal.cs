@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using static Pizzeria.Estados;
 
 namespace Pizzeria
 {
@@ -84,6 +82,23 @@ namespace Pizzeria
             return list.FirstOrDefault<double>();
         }
 
+        public Reloj getFirstEvent(Reloj n1, Reloj n2, Reloj n3, Reloj n4, Reloj n5)
+        {
+            List<Reloj> list = new List<Reloj>();
+            if (n1.getReloj() > 0.0)
+                list.Add(n1);
+            if (n2.getReloj() > 0.0)
+                list.Add(n2);
+            if (n3.getReloj() > 0.0)
+                list.Add(n3);
+            if (n4.getReloj() > 0.0)
+                list.Add(n4);
+            if (n5.getReloj() > 0.0)
+                list.Add(n5);
+            list.Sort();
+            return list.FirstOrDefault<Reloj>();
+        }
+
         private void btnSimular_Click(object sender, EventArgs e)
         {
             //reset();
@@ -119,11 +134,13 @@ namespace Pizzeria
                 //Bucle principal de Simulacion
                 while (relojSimulacion.getReloj() < tiempoFinCorrida)
                 {
-                    double firstEvent = this.getFirstEvent(this.llegadaPedido.getProximaLlegada().getReloj(), this.finCoccionEmpleado1.getProximaLlegada().getReloj(), this.finCoccionEmpleado2.getProximaLlegada().getReloj(), this.finCoccionEmpleado3.getProximaLlegada().getReloj(), this.finDelivery.getProximaLlegada().getReloj());
+                    Reloj firstEvent = this.getFirstEvent(this.llegadaPedido.getProximaLlegada(), this.finCoccionEmpleado1.getProximaLlegada(), this.finCoccionEmpleado2.getProximaLlegada(), this.finCoccionEmpleado3.getProximaLlegada(), this.finDelivery.getProximaLlegada());
 
-                    this.relojSimulacion.setReloj(firstEvent);
+                    this.relojSimulacion.setReloj(firstEvent.getReloj());
+                    this.relojSimulacion.setDia(firstEvent.getDia());
+                    this.relojSimulacion.setTurno(firstEvent.getTurno());
 
-                    if (this.llegadaPedido.getProximaLlegada().getReloj() == firstEvent)
+                    if (this.llegadaPedido.getProximaLlegada().Equals(firstEvent))
                     {
                         fila = this.generarLlegadaPedido();
 
@@ -156,7 +173,7 @@ namespace Pizzeria
                         //si estan todos ocupados mandar a cola 
                     }
  
-                    if (this.finCoccionEmpleado1.getProximaLlegada().getReloj() == firstEvent) 
+                    if (this.finCoccionEmpleado1.getProximaLlegada().Equals(firstEvent)) 
                     {
 
 
@@ -183,7 +200,7 @@ namespace Pizzeria
                         
                     }
 
-                    if (this.finDelivery.getProximaLlegada().getReloj() == firstEvent)
+                    if (this.finDelivery.getProximaLlegada().Equals(firstEvent))
                     {
                         
                         fila=agregarEventoFinDelivery();
