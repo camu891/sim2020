@@ -95,7 +95,8 @@ namespace Pizzeria
 
         public bool Equals(Reloj other)
         {
-            return this.dia.Equals(other.dia) && this.reloj.Equals(other.reloj);
+            // return this.dia.Equals(other.dia) && this.reloj.Equals(other.reloj);
+            return this.reloj.Equals(other.reloj);
         }
     }
 }

@@ -1843,7 +1843,7 @@
             this.txtTiempoSim.Name = "txtTiempoSim";
             this.txtTiempoSim.Size = new System.Drawing.Size(48, 20);
             this.txtTiempoSim.TabIndex = 0;
-            this.txtTiempoSim.Text = "60";
+            this.txtTiempoSim.Text = "2";
             this.txtTiempoSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTiempoSim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
             // 
