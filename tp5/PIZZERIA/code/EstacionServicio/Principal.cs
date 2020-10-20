@@ -130,31 +130,27 @@ namespace Pizzeria
                         }
                         else
                         {
+                            repetirValoresDemora(empleado1, finCoccionEmpleado1, fila);
                             if (this.empleado2.getEstado() == "Libre")
                             {
                                 generarDemoraPedido(fila, 2, llegadaPedido);
                             }
                             else
                             {
+                                repetirValoresDemora(empleado2, finCoccionEmpleado2, fila);
                                 if (this.empleado3.getEstado() == "Libre")
                                 {
                                     generarDemoraPedido(fila, 3, llegadaPedido);
                                 }
                                 else
                                 {
+                                    repetirValoresDemora(empleado3, finCoccionEmpleado3, fila);
                                     // mandar a cola
                                     ponerColaPedido(llegadaPedido);
                                     agregarColaAGrilla(fila);
-
-                                    //repetir valores de fin de coccion
-                                    //pasar empleado correspondiente
-                                    repetirValoresDemora(empleado1, finCoccionEmpleado1, fila);
-                                    repetirValoresDemora(empleado2, finCoccionEmpleado2, fila);
-                                    repetirValoresDemora(empleado3, finCoccionEmpleado3, fila);
+                  
                                 }
-                            }
-
-                            //si estan todos ocupados mandar a cola 
+                            }           
 
                         }
 
@@ -302,10 +298,31 @@ namespace Pizzeria
             else
             {
                 //libero los datos de empleado
-                empleado1.setEstado("Libre");
-                empleado1.setDemora(0);
-                empleado1.setFinCoccion(new Reloj());
-                repetirValoresDemora(empleado1, finCoccionEmpleado1,  fila);
+             
+                switch (e.getId())
+                {
+                    case 1:
+                        empleado1.setEstado("Libre");
+                        empleado1.setDemora(0);
+                        empleado1.setFinCoccion(new Reloj());
+                        agregarDemoraEnGrillaEmpleados(e.getId(), fila, false, finCoccionEmpleado1);
+                        break;
+                    case 2:
+                        empleado2.setEstado("Libre");
+                        empleado2.setDemora(0);
+                        empleado2.setFinCoccion(new Reloj());
+                        agregarDemoraEnGrillaEmpleados(e.getId(), fila, false, finCoccionEmpleado2);
+                        break;
+                    case 3:
+                        empleado3.setEstado("Libre");
+                        empleado3.setDemora(0);
+                        empleado3.setFinCoccion(new Reloj());
+                        agregarDemoraEnGrillaEmpleados(e.getId(), fila, false, finCoccionEmpleado3);
+
+                        break;
+                }
+                agregarColaAGrilla(fila);
+                
             }
         }
 
@@ -466,7 +483,14 @@ namespace Pizzeria
                     dgvResultados.Rows[i].Cells["colDia"].Value = relojSimulacion.getDia();
                     dgvResultados.Rows[i].Cells["colTurno"].Value = relojSimulacion.getTurno().ToString();
                 }
+                else
+                {
+                    agregarColaAGrilla(i);
+                    dgvResultados.Rows[i].Cells["colEstadoEmpleado1"].Value = "Libre";
+                    dgvResultados.Rows[i].Cells["colEstadoEmpleado2"].Value = "Libre";
+                    dgvResultados.Rows[i].Cells["colEstadoEmpleado3"].Value = "Libre";
 
+                }
 
 
             }
