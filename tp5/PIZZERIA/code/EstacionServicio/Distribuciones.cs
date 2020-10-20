@@ -71,12 +71,14 @@ namespace Pizzeria
         }
         public static int poisson(double media, double rnd)
         {
+            int seed = Convert.ToInt32(rnd * 100);
+            var rndm = new Random(seed);
             double p = 1.0, L = Math.Exp(-media);
             int k = 0;
             do
             {
                 k++;
-                p *= rnd;
+                p *= rndm.NextDouble();
             }
             while (p > L);
             return k - 1;
