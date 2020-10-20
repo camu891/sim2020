@@ -183,9 +183,11 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
+            this.gpbParametrosCorrida = new System.Windows.Forms.GroupBox();
             this.btnSimular = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.txtTiempoSim = new System.Windows.Forms.TextBox();
+            this.lblTiempoSim = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -225,8 +227,6 @@
             this.colRndDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTiempoEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinEntregaDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gpbParametrosCorrida = new System.Windows.Forms.GroupBox();
-            this.lblTiempoSim = new System.Windows.Forms.Label();
             this.gpbParametros.SuspendLayout();
             this.Integrantes.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -234,10 +234,10 @@
             this.gpbTiemposLlegadas.SuspendLayout();
             this.gpbResultado.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.gpbParametrosCorrida.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gpbResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).BeginInit();
-            this.gpbParametrosCorrida.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpbParametros
@@ -250,7 +250,7 @@
             this.gpbParametros.Controls.Add(this.gpbTiemposLlegadas);
             this.gpbParametros.Location = new System.Drawing.Point(12, 12);
             this.gpbParametros.Name = "gpbParametros";
-            this.gpbParametros.Size = new System.Drawing.Size(1251, 151);
+            this.gpbParametros.Size = new System.Drawing.Size(1814, 151);
             this.gpbParametros.TabIndex = 0;
             this.gpbParametros.TabStop = false;
             this.gpbParametros.Text = "Parámetros Simulación";
@@ -267,7 +267,7 @@
             this.Integrantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Integrantes.Location = new System.Drawing.Point(1365, 17);
             this.Integrantes.Name = "Integrantes";
-            this.Integrantes.Size = new System.Drawing.Size(367, 128);
+            this.Integrantes.Size = new System.Drawing.Size(369, 128);
             this.Integrantes.TabIndex = 109;
             this.Integrantes.TabStop = false;
             this.Integrantes.Text = "Grupo R";
@@ -276,7 +276,7 @@
             // 
             this.label85.AutoSize = true;
             this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label85.Location = new System.Drawing.Point(182, 81);
+            this.label85.Location = new System.Drawing.Point(194, 81);
             this.label85.Name = "label85";
             this.label85.Size = new System.Drawing.Size(130, 13);
             this.label85.TabIndex = 5;
@@ -296,7 +296,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(177, 27);
+            this.label25.Location = new System.Drawing.Point(194, 27);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(148, 13);
             this.label25.TabIndex = 3;
@@ -316,7 +316,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(177, 53);
+            this.label31.Location = new System.Drawing.Point(194, 53);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(145, 13);
             this.label31.TabIndex = 1;
@@ -326,7 +326,7 @@
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(7, 27);
+            this.label32.Location = new System.Drawing.Point(13, 27);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(145, 13);
             this.label32.TabIndex = 0;
@@ -342,7 +342,7 @@
             this.groupBox1.Controls.Add(this.textMediaDelivery);
             this.groupBox1.Location = new System.Drawing.Point(1113, 20);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(220, 126);
+            this.groupBox1.Size = new System.Drawing.Size(246, 126);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parametros Delivery";
@@ -999,7 +999,7 @@
             this.gpbResultado.Controls.Add(this.gpbResult);
             this.gpbResultado.Location = new System.Drawing.Point(12, 169);
             this.gpbResultado.Name = "gpbResultado";
-            this.gpbResultado.Size = new System.Drawing.Size(1251, 475);
+            this.gpbResultado.Size = new System.Drawing.Size(1814, 533);
             this.gpbResultado.TabIndex = 1;
             this.gpbResultado.TabStop = false;
             this.gpbResultado.Text = "Simulación";
@@ -1080,7 +1080,7 @@
             this.groupBox3.Controls.Add(this.textBox13);
             this.groupBox3.Location = new System.Drawing.Point(471, 19);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1301, 174);
+            this.groupBox3.Size = new System.Drawing.Size(1334, 174);
             this.groupBox3.TabIndex = 56;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Resultados";
@@ -1797,15 +1797,28 @@
             this.textBox13.Text = "0";
             this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // gpbParametrosCorrida
+            // 
+            this.gpbParametrosCorrida.Controls.Add(this.btnSimular);
+            this.gpbParametrosCorrida.Controls.Add(this.label20);
+            this.gpbParametrosCorrida.Controls.Add(this.txtTiempoSim);
+            this.gpbParametrosCorrida.Controls.Add(this.lblTiempoSim);
+            this.gpbParametrosCorrida.Location = new System.Drawing.Point(9, 19);
+            this.gpbParametrosCorrida.Name = "gpbParametrosCorrida";
+            this.gpbParametrosCorrida.Size = new System.Drawing.Size(239, 174);
+            this.gpbParametrosCorrida.TabIndex = 0;
+            this.gpbParametrosCorrida.TabStop = false;
+            this.gpbParametrosCorrida.Text = "Parametros de la Corrida";
+            // 
             // btnSimular
             // 
             this.btnSimular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSimular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSimular.ForeColor = System.Drawing.Color.Blue;
             this.btnSimular.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSimular.Location = new System.Drawing.Point(30, 98);
+            this.btnSimular.Location = new System.Drawing.Point(13, 76);
             this.btnSimular.Name = "btnSimular";
-            this.btnSimular.Size = new System.Drawing.Size(169, 35);
+            this.btnSimular.Size = new System.Drawing.Size(206, 84);
             this.btnSimular.TabIndex = 3;
             this.btnSimular.Text = "Simular";
             this.btnSimular.UseVisualStyleBackColor = true;
@@ -1832,6 +1845,15 @@
             this.txtTiempoSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTiempoSim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
             // 
+            // lblTiempoSim
+            // 
+            this.lblTiempoSim.AutoSize = true;
+            this.lblTiempoSim.Location = new System.Drawing.Point(18, 37);
+            this.lblTiempoSim.Name = "lblTiempoSim";
+            this.lblTiempoSim.Size = new System.Drawing.Size(96, 13);
+            this.lblTiempoSim.TabIndex = 0;
+            this.lblTiempoSim.Text = "Tiempo Simulación";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label24);
@@ -1843,9 +1865,9 @@
             this.groupBox2.Controls.Add(this.txtMinDesde);
             this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(262, 19);
+            this.groupBox2.Location = new System.Drawing.Point(254, 19);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(177, 174);
+            this.groupBox2.Size = new System.Drawing.Size(203, 174);
             this.groupBox2.TabIndex = 52;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rango a mostrar";
@@ -1944,7 +1966,7 @@
             this.gpbResult.Controls.Add(this.dgvResultados);
             this.gpbResult.Location = new System.Drawing.Point(6, 199);
             this.gpbResult.Name = "gpbResult";
-            this.gpbResult.Size = new System.Drawing.Size(1239, 270);
+            this.gpbResult.Size = new System.Drawing.Size(1802, 328);
             this.gpbResult.TabIndex = 1;
             this.gpbResult.TabStop = false;
             this.gpbResult.Text = "Resultado";
@@ -1992,7 +2014,7 @@
             this.dgvResultados.ReadOnly = true;
             this.dgvResultados.RowHeadersVisible = false;
             this.dgvResultados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvResultados.Size = new System.Drawing.Size(1233, 251);
+            this.dgvResultados.Size = new System.Drawing.Size(1796, 309);
             this.dgvResultados.TabIndex = 0;
             // 
             // colEvento
@@ -2225,35 +2247,11 @@
             this.colFinEntregaDelivery.ReadOnly = true;
             this.colFinEntregaDelivery.Width = 127;
             // 
-            // gpbParametrosCorrida
-            // 
-            this.gpbParametrosCorrida.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpbParametrosCorrida.Controls.Add(this.btnSimular);
-            this.gpbParametrosCorrida.Controls.Add(this.label20);
-            this.gpbParametrosCorrida.Controls.Add(this.txtTiempoSim);
-            this.gpbParametrosCorrida.Controls.Add(this.lblTiempoSim);
-            this.gpbParametrosCorrida.Location = new System.Drawing.Point(17, 19);
-            this.gpbParametrosCorrida.Name = "gpbParametrosCorrida";
-            this.gpbParametrosCorrida.Size = new System.Drawing.Size(239, 174);
-            this.gpbParametrosCorrida.TabIndex = 0;
-            this.gpbParametrosCorrida.TabStop = false;
-            this.gpbParametrosCorrida.Text = "Parametros de la Corrida";
-            // 
-            // lblTiempoSim
-            // 
-            this.lblTiempoSim.AutoSize = true;
-            this.lblTiempoSim.Location = new System.Drawing.Point(18, 37);
-            this.lblTiempoSim.Name = "lblTiempoSim";
-            this.lblTiempoSim.Size = new System.Drawing.Size(96, 13);
-            this.lblTiempoSim.TabIndex = 0;
-            this.lblTiempoSim.Text = "Tiempo Simulación";
-            // 
             // frm_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 656);
+            this.ClientSize = new System.Drawing.Size(1831, 714);
             this.Controls.Add(this.gpbResultado);
             this.Controls.Add(this.gpbParametros);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2273,12 +2271,12 @@
             this.gpbResultado.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.gpbParametrosCorrida.ResumeLayout(false);
+            this.gpbParametrosCorrida.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.gpbResult.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).EndInit();
-            this.gpbParametrosCorrida.ResumeLayout(false);
-            this.gpbParametrosCorrida.PerformLayout();
             this.ResumeLayout(false);
 
         }
