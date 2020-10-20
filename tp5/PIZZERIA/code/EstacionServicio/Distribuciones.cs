@@ -20,16 +20,17 @@ namespace Pizzeria
 
         public static int poisson(double media, double rnd)
         {
-            int seed = (int)(rnd * 100);
+            int seed = (int)(rnd * 1000);
             if (seed == 0)
                 seed = 1;
             Random rndm = new Random(seed);
-            double p = 1.0, L = Math.Exp(-media);
+            double p = 1.0, L = Math.Exp(-media), r = rnd;
             int k = 0;
             do
             {
                 k++;
-                p *= rndm.NextDouble();
+                p *= r;
+                r = rndm.NextDouble();
             }
             while (p > L);
             return k - 1;
@@ -37,7 +38,7 @@ namespace Pizzeria
 
         public static double normal(double media, double desv, double rnd)
         {
-            int seed = (int)(rnd * 100);
+            int seed = (int)(rnd * 1000);
             if (seed == 0)
                 seed = 1;
             Random rndm = new Random(seed);

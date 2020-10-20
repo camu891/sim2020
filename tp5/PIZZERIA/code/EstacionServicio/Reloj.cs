@@ -11,6 +11,7 @@ namespace Pizzeria
         private _TipoTurno turno;
         private int dia;
         private double comparable;
+        private int minutosXDia = 1440;
 
         public Reloj(double reloj, _TipoTurno turno, int dia)
         {
@@ -79,7 +80,7 @@ namespace Pizzeria
         {
             if (this.dia > 0)
             {
-                this.comparable = (dia * 720) + hora;
+                this.comparable = (dia * minutosXDia) + hora;
             } else
             {
                 this.comparable = hora;
