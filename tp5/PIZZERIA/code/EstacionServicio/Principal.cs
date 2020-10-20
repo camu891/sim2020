@@ -81,7 +81,7 @@ namespace Pizzeria
         private void btnSimular_Click(object sender, EventArgs e)
         {
             //reset();
-
+            int fila = 0;
             //Inicio Bloque Simulacion
             if (validarDatos())
             {
@@ -97,21 +97,20 @@ namespace Pizzeria
 
                     llegadaPedido.simular(relojSimulacion, rand.NextDouble());//carga de llegada de pedido
 
-                    int i = this.dgvResultados.Rows.Add();
-                    this.agregarDatosAGrila(i, "Inicio Simulacion");
-                    this.agregarEventoAGrilla(i, true, this.llegadaPedido, 0);
+                    fila = this.dgvResultados.Rows.Add();
+                    this.agregarDatosAGrila(fila, "Inicio Simulacion");
+                    this.agregarEventoAGrilla(fila, true, this.llegadaPedido, 0);
 ;
-                    this.agregarEventoAGrilla(i, false, this.finCoccionEmpleado1, this.finCoccionEmpleado1.getIdEmpleado());
-                    this.agregarEventoAGrilla(i, false, this.finCoccionEmpleado2, this.finCoccionEmpleado2.getIdEmpleado());
-                    this.agregarEventoAGrilla(i, false, this.finCoccionEmpleado3, this.finCoccionEmpleado3.getIdEmpleado());
+                    this.agregarEventoAGrilla(fila, false, this.finCoccionEmpleado1, this.finCoccionEmpleado1.getIdEmpleado());
+                    this.agregarEventoAGrilla(fila, false, this.finCoccionEmpleado2, this.finCoccionEmpleado2.getIdEmpleado());
+                    this.agregarEventoAGrilla(fila, false, this.finCoccionEmpleado3, this.finCoccionEmpleado3.getIdEmpleado());
                     this.eventosYaSimuladosYMostrados++;
 
                 }
 
-                int fila = 0;
-
                 //Bucle principal de Simulacion
-                while (relojSimulacion.getDia() < tiempoFinCorrida)
+                while (relojSimulacion.getDia() < tiempoFinCorrida
+                    && (fila < filaHastaDondeMostrar || radioCada10mil.Checked))
                 {
                     Reloj firstEvent = this.getFirstEvent(this.llegadaPedido.getProximaLlegada(), this.finCoccionEmpleado1.getProximaLlegada(), this.finCoccionEmpleado2.getProximaLlegada(), this.finCoccionEmpleado3.getProximaLlegada(), this.finDelivery.getProximaLlegada());
 

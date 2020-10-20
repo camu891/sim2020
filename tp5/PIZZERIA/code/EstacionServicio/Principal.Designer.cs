@@ -1914,9 +1914,9 @@
             this.radioCada10mil.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioCada10mil.Location = new System.Drawing.Point(11, 97);
             this.radioCada10mil.Name = "radioCada10mil";
-            this.radioCada10mil.Size = new System.Drawing.Size(151, 17);
+            this.radioCada10mil.Size = new System.Drawing.Size(94, 17);
             this.radioCada10mil.TabIndex = 19;
-            this.radioCada10mil.Text = "Mostrar Cada 10 mil filas";
+            this.radioCada10mil.Text = "Mostrar Todo";
             this.radioCada10mil.UseVisualStyleBackColor = true;
             this.radioCada10mil.CheckedChanged += new System.EventHandler(this.radioCada10mil_CheckedChanged);
             // 
@@ -1927,7 +1927,7 @@
             this.txtMinHasta.Name = "txtMinHasta";
             this.txtMinHasta.Size = new System.Drawing.Size(49, 22);
             this.txtMinHasta.TabIndex = 3;
-            this.txtMinHasta.Text = "60";
+            this.txtMinHasta.Text = "50";
             this.txtMinHasta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label21
