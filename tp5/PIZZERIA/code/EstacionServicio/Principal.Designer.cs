@@ -183,9 +183,11 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
+            this.gpbParametrosCorrida = new System.Windows.Forms.GroupBox();
             this.btnSimular = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.txtTiempoSim = new System.Windows.Forms.TextBox();
+            this.lblTiempoSim = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -225,8 +227,6 @@
             this.colRndDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTiempoEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinEntregaDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gpbParametrosCorrida = new System.Windows.Forms.GroupBox();
-            this.lblTiempoSim = new System.Windows.Forms.Label();
             this.gpbParametros.SuspendLayout();
             this.Integrantes.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -234,10 +234,10 @@
             this.gpbTiemposLlegadas.SuspendLayout();
             this.gpbResultado.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.gpbParametrosCorrida.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gpbResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).BeginInit();
-            this.gpbParametrosCorrida.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpbParametros
@@ -1797,6 +1797,19 @@
             this.textBox13.Text = "0";
             this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // gpbParametrosCorrida
+            // 
+            this.gpbParametrosCorrida.Controls.Add(this.btnSimular);
+            this.gpbParametrosCorrida.Controls.Add(this.label20);
+            this.gpbParametrosCorrida.Controls.Add(this.txtTiempoSim);
+            this.gpbParametrosCorrida.Controls.Add(this.lblTiempoSim);
+            this.gpbParametrosCorrida.Location = new System.Drawing.Point(17, 19);
+            this.gpbParametrosCorrida.Name = "gpbParametrosCorrida";
+            this.gpbParametrosCorrida.Size = new System.Drawing.Size(239, 174);
+            this.gpbParametrosCorrida.TabIndex = 0;
+            this.gpbParametrosCorrida.TabStop = false;
+            this.gpbParametrosCorrida.Text = "Parametros de la Corrida";
+            // 
             // btnSimular
             // 
             this.btnSimular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1831,6 +1844,15 @@
             this.txtTiempoSim.Text = "2";
             this.txtTiempoSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTiempoSim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
+            // 
+            // lblTiempoSim
+            // 
+            this.lblTiempoSim.AutoSize = true;
+            this.lblTiempoSim.Location = new System.Drawing.Point(18, 37);
+            this.lblTiempoSim.Name = "lblTiempoSim";
+            this.lblTiempoSim.Size = new System.Drawing.Size(96, 13);
+            this.lblTiempoSim.TabIndex = 0;
+            this.lblTiempoSim.Text = "Tiempo Simulación";
             // 
             // groupBox2
             // 
@@ -2019,14 +2041,16 @@
             this.colDia.HeaderText = "Dia";
             this.colDia.Name = "colDia";
             this.colDia.ReadOnly = true;
-            this.colDia.Width = 48;
+            this.colDia.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDia.Width = 29;
             // 
             // colTurno
             // 
             this.colTurno.HeaderText = "Turno";
             this.colTurno.Name = "colTurno";
             this.colTurno.ReadOnly = true;
-            this.colTurno.Width = 60;
+            this.colTurno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTurno.Width = 41;
             // 
             // colRNDLlegadaComb
             // 
@@ -2095,7 +2119,8 @@
             this.colColaPreparacion.HeaderText = "Cola Preparacion";
             this.colColaPreparacion.Name = "colColaPreparacion";
             this.colColaPreparacion.ReadOnly = true;
-            this.colColaPreparacion.Width = 104;
+            this.colColaPreparacion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colColaPreparacion.Width = 85;
             // 
             // colEstadoEmpleado1
             // 
@@ -2132,122 +2157,112 @@
             this.colFinCoccion1.HeaderText = "Fin coccion 1";
             this.colFinCoccion1.Name = "colFinCoccion1";
             this.colFinCoccion1.ReadOnly = true;
-            this.colFinCoccion1.Width = 80;
+            this.colFinCoccion1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colFinCoccion1.Width = 61;
             // 
             // colEstadoEmpleado2
             // 
             this.colEstadoEmpleado2.HeaderText = "Estado Empleado 2";
             this.colEstadoEmpleado2.Name = "colEstadoEmpleado2";
             this.colEstadoEmpleado2.ReadOnly = true;
-            this.colEstadoEmpleado2.Width = 114;
+            this.colEstadoEmpleado2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colEstadoEmpleado2.Width = 95;
             // 
             // colRndDemora2
             // 
             this.colRndDemora2.HeaderText = "RND Demora 2";
             this.colRndDemora2.Name = "colRndDemora2";
             this.colRndDemora2.ReadOnly = true;
-            this.colRndDemora2.Width = 88;
+            this.colRndDemora2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colRndDemora2.Width = 69;
             // 
             // colDemora2
             // 
             this.colDemora2.HeaderText = "Demora 2";
             this.colDemora2.Name = "colDemora2";
             this.colDemora2.ReadOnly = true;
-            this.colDemora2.Width = 72;
+            this.colDemora2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDemora2.Width = 53;
             // 
             // colFinCoccion2
             // 
             this.colFinCoccion2.HeaderText = "Fin Coccion 2";
             this.colFinCoccion2.Name = "colFinCoccion2";
             this.colFinCoccion2.ReadOnly = true;
-            this.colFinCoccion2.Width = 81;
+            this.colFinCoccion2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colFinCoccion2.Width = 62;
             // 
             // colEstadoEmpleado3
             // 
             this.colEstadoEmpleado3.HeaderText = "Estado Empleado 3";
             this.colEstadoEmpleado3.Name = "colEstadoEmpleado3";
             this.colEstadoEmpleado3.ReadOnly = true;
-            this.colEstadoEmpleado3.Width = 114;
+            this.colEstadoEmpleado3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colEstadoEmpleado3.Width = 95;
             // 
             // colRndDemora3
             // 
             this.colRndDemora3.HeaderText = "RND Demora 3";
             this.colRndDemora3.Name = "colRndDemora3";
             this.colRndDemora3.ReadOnly = true;
-            this.colRndDemora3.Width = 88;
+            this.colRndDemora3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colRndDemora3.Width = 69;
             // 
             // colDemora3
             // 
             this.colDemora3.HeaderText = "Demora 3";
             this.colDemora3.Name = "colDemora3";
             this.colDemora3.ReadOnly = true;
-            this.colDemora3.Width = 72;
+            this.colDemora3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDemora3.Width = 53;
             // 
             // colFinCoccion3
             // 
             this.colFinCoccion3.HeaderText = "Fin Coccion 3";
             this.colFinCoccion3.Name = "colFinCoccion3";
             this.colFinCoccion3.ReadOnly = true;
-            this.colFinCoccion3.Width = 81;
+            this.colFinCoccion3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colFinCoccion3.Width = 62;
             // 
             // colDelivery
             // 
             this.colDelivery.HeaderText = "Cola delivery";
             this.colDelivery.Name = "colDelivery";
             this.colDelivery.ReadOnly = true;
-            this.colDelivery.Width = 85;
+            this.colDelivery.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDelivery.Width = 66;
             // 
             // colEstadoMoto
             // 
             this.colEstadoMoto.HeaderText = "Estado moto";
             this.colEstadoMoto.Name = "colEstadoMoto";
             this.colEstadoMoto.ReadOnly = true;
-            this.colEstadoMoto.Width = 84;
+            this.colEstadoMoto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colEstadoMoto.Width = 65;
             // 
             // colRndDelivery
             // 
             this.colRndDelivery.HeaderText = "RND Delivery";
             this.colRndDelivery.Name = "colRndDelivery";
             this.colRndDelivery.ReadOnly = true;
-            this.colRndDelivery.Width = 89;
+            this.colRndDelivery.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colRndDelivery.Width = 70;
             // 
             // colTiempoEntrega
             // 
             this.colTiempoEntrega.HeaderText = "Tiempo entrega delivery";
             this.colTiempoEntrega.Name = "colTiempoEntrega";
             this.colTiempoEntrega.ReadOnly = true;
-            this.colTiempoEntrega.Width = 132;
+            this.colTiempoEntrega.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTiempoEntrega.Width = 113;
             // 
             // colFinEntregaDelivery
             // 
             this.colFinEntregaDelivery.HeaderText = "Fin de entrega delivery";
             this.colFinEntregaDelivery.Name = "colFinEntregaDelivery";
             this.colFinEntregaDelivery.ReadOnly = true;
-            this.colFinEntregaDelivery.Width = 127;
-            // 
-            // gpbParametrosCorrida
-            // 
-            this.gpbParametrosCorrida.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpbParametrosCorrida.Controls.Add(this.btnSimular);
-            this.gpbParametrosCorrida.Controls.Add(this.label20);
-            this.gpbParametrosCorrida.Controls.Add(this.txtTiempoSim);
-            this.gpbParametrosCorrida.Controls.Add(this.lblTiempoSim);
-            this.gpbParametrosCorrida.Location = new System.Drawing.Point(17, 19);
-            this.gpbParametrosCorrida.Name = "gpbParametrosCorrida";
-            this.gpbParametrosCorrida.Size = new System.Drawing.Size(239, 174);
-            this.gpbParametrosCorrida.TabIndex = 0;
-            this.gpbParametrosCorrida.TabStop = false;
-            this.gpbParametrosCorrida.Text = "Parametros de la Corrida";
-            // 
-            // lblTiempoSim
-            // 
-            this.lblTiempoSim.AutoSize = true;
-            this.lblTiempoSim.Location = new System.Drawing.Point(18, 37);
-            this.lblTiempoSim.Name = "lblTiempoSim";
-            this.lblTiempoSim.Size = new System.Drawing.Size(96, 13);
-            this.lblTiempoSim.TabIndex = 0;
-            this.lblTiempoSim.Text = "Tiempo Simulación";
+            this.colFinEntregaDelivery.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colFinEntregaDelivery.Width = 108;
             // 
             // frm_principal
             // 
@@ -2273,12 +2288,12 @@
             this.gpbResultado.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.gpbParametrosCorrida.ResumeLayout(false);
+            this.gpbParametrosCorrida.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.gpbResult.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).EndInit();
-            this.gpbParametrosCorrida.ResumeLayout(false);
-            this.gpbParametrosCorrida.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2441,6 +2456,10 @@
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.Label label70;
         private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Label label85;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.GroupBox gpbParametrosCorrida;
+        private System.Windows.Forms.Label lblTiempoSim;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn colReloj;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDia;
@@ -2469,10 +2488,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colRndDelivery;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTiempoEntrega;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinEntregaDelivery;
-        private System.Windows.Forms.Label label85;
-        private System.Windows.Forms.Label label74;
-        private System.Windows.Forms.GroupBox gpbParametrosCorrida;
-        private System.Windows.Forms.Label lblTiempoSim;
     }
 }
 
