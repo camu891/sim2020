@@ -20,8 +20,10 @@ namespace Pizzeria
 
         public static int poisson(double media, double rnd)
         {
-            int seed = Convert.ToInt32(rnd * 100);
-            var rndm = new Random(seed);
+            int seed = (int)(rnd * 100);
+            if (seed == 0)
+                seed = 1;
+            Random rndm = new Random(seed);
             double p = 1.0, L = Math.Exp(-media);
             int k = 0;
             do
@@ -35,8 +37,10 @@ namespace Pizzeria
 
         public static double normal(double media, double desv, double rnd)
         {
-            int seed = Convert.ToInt32(rnd * 100);
-            var rndm = new Random(seed);
+            int seed = (int)(rnd * 100);
+            if (seed == 0)
+                seed = 1;
+            Random rndm = new Random(seed);
             double rnd1 = rndm.NextDouble(); //uniform(0,1] random doubles
             double randStdNormal = Math.Sqrt(-2.0 * Math.Log(rnd)) *
                          Math.Sin(2.0 * Math.PI * rnd1); //random normal(0,1)

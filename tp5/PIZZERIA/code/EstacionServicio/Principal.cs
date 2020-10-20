@@ -433,6 +433,7 @@ namespace Pizzeria
                 dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = "-";
                 dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = "-";
                 dgvResultados.Rows[i].Cells["colTipoPedido"].Value = "-";
+                dgvResultados.Rows[i].Cells["colRNDCant"].Value = "-";
                 dgvResultados.Rows[i].Cells["colCantidad"].Value = "-";
 
                 if (conRandom)
@@ -443,6 +444,8 @@ namespace Pizzeria
                     if (i != 0) {
                         dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = ((LlegadaPedido)evento).getRandomTipoPed();
                         dgvResultados.Rows[i].Cells["colTipoPedido"].Value = ((LlegadaPedido)evento).getPedido().Tipo;
+                        if (((LlegadaPedido)evento).getPedido().Tipo.Equals("Empanadas"))
+                            dgvResultados.Rows[i].Cells["colRNDCant"].Value = ((LlegadaPedido)evento).getPedido().RndCantidad;
                         dgvResultados.Rows[i].Cells["colCantidad"].Value = ((LlegadaPedido)evento).getPedido().Cantidad;
                     }
 
@@ -457,6 +460,7 @@ namespace Pizzeria
 
                 if (relojSimulacion.getReloj() != 0.00)
                 {
+                    dgvResultados.Rows[i].Cells["colFila"].Value = i;
                     dgvResultados.Rows[i].Cells["colEvento"].Value = evento.getNombreEvento();
                     dgvResultados.Rows[i].Cells["colReloj"].Value = relojSimulacion.getReloj();
                     dgvResultados.Rows[i].Cells["colDia"].Value = relojSimulacion.getDia();
@@ -468,6 +472,7 @@ namespace Pizzeria
             }
             else if (evento is FinDelivery) 
             {
+                dgvResultados.Rows[i].Cells["colFila"].Value = i;
                 dgvResultados.Rows[i].Cells["colEvento"].Value = evento.getNombreEvento();
                 dgvResultados.Rows[i].Cells["colReloj"].Value = relojSimulacion.getReloj();
                 dgvResultados.Rows[i].Cells["colDia"].Value = relojSimulacion.getDia();

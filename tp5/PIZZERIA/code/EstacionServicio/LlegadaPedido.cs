@@ -84,8 +84,11 @@ namespace Pizzeria
 				Random rand = new Random();
 				this.setRandomTipoPed(rand.NextDouble());
 				string tipoPedido = seleccionTipoPedido(rndTipoPedido);
-				int cantidad = cantidadPedido(tipoPedido);
-				pedido = new Pedido("En preparacion", tipoPedido, cantidad, reloj);
+				double rndCant = 0.0;
+				if (tipoPedido.Equals("Empanadas"))
+					rndCant = rand.NextDouble();
+				int cantidad = cantidadPedido(tipoPedido, rndCant);
+				pedido = new Pedido("En preparacion", tipoPedido, cantidad, reloj, rndCant);
 			}
 	
 			
@@ -137,15 +140,14 @@ namespace Pizzeria
 			return "";
 		}
 
-		private int cantidadPedido(string pedido)
+		private int cantidadPedido(string pedido, double rnd)
 		{
 			int cant = 0;
 			switch (pedido)
 			{
 				case "Empanadas":
 					{
-						Random rand = new Random();
-						cant = Distribuciones.poisson(3, rand.NextDouble());
+						cant = Distribuciones.poisson(3, rnd);
 						break;
 					}
 				default:

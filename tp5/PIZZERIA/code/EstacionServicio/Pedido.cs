@@ -8,6 +8,7 @@ namespace Pizzeria
 		private string  estado;
 		private string tipoServicio;
 		private int cantidad;
+		private double rndCantidad;
 		private Reloj horaInicioEspera;
 
 		public string Tipo
@@ -19,6 +20,18 @@ namespace Pizzeria
 			set
 			{
 				this.tipoServicio = value;
+			}
+		}
+
+		public double RndCantidad
+		{
+			get
+			{
+				return this.rndCantidad;
+			}
+			set
+			{
+				this.rndCantidad = value;
 			}
 		}
 
@@ -58,13 +71,14 @@ namespace Pizzeria
 			}
 		}
 
-		public Pedido( string estado, string tipo,int cant, Reloj horaInicioEspera)
+		public Pedido( string estado, string tipo,int cant, Reloj horaInicioEspera, double rndCant)
 		{
 			//this.id = id;
 			this.estado = estado;
 			this.tipoServicio = tipo;
 			cantidad = cant;
 			this.horaInicioEspera = horaInicioEspera;
+			this.rndCantidad = rndCant;
 		}
 
 		public void setHoraInicioEspera(Reloj horaInicioEspera)

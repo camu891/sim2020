@@ -199,6 +199,7 @@
             this.label22 = new System.Windows.Forms.Label();
             this.gpbResult = new System.Windows.Forms.GroupBox();
             this.dgvResultados = new System.Windows.Forms.DataGridView();
+            this.ColFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDia = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -208,6 +209,7 @@
             this.colProxLlegadaComb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRNDTipoPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTipoPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRNDCant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colColaPreparacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEstadoEmpleado1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1979,6 +1981,7 @@
             this.dgvResultados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvResultados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColFila,
             this.colEvento,
             this.colReloj,
             this.colDia,
@@ -1988,6 +1991,7 @@
             this.colProxLlegadaComb,
             this.colRNDTipoPedido,
             this.colTipoPedido,
+            this.colRNDCant,
             this.colCantidad,
             this.colColaPreparacion,
             this.colEstadoEmpleado1,
@@ -2016,6 +2020,13 @@
             this.dgvResultados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvResultados.Size = new System.Drawing.Size(1233, 251);
             this.dgvResultados.TabIndex = 0;
+            // 
+            // ColFila
+            // 
+            this.ColFila.HeaderText = "Fila";
+            this.ColFila.Name = "ColFila";
+            this.ColFila.ReadOnly = true;
+            this.ColFila.Width = 48;
             // 
             // colEvento
             // 
@@ -2103,6 +2114,13 @@
             this.colTipoPedido.ReadOnly = true;
             this.colTipoPedido.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colTipoPedido.Width = 77;
+            // 
+            // colRNDCant
+            // 
+            this.colRNDCant.HeaderText = "RND cant";
+            this.colRNDCant.Name = "colRNDCant";
+            this.colRNDCant.ReadOnly = true;
+            this.colRNDCant.Width = 74;
             // 
             // colCantidad
             // 
@@ -2460,6 +2478,7 @@
         private System.Windows.Forms.Label label74;
         private System.Windows.Forms.GroupBox gpbParametrosCorrida;
         private System.Windows.Forms.Label lblTiempoSim;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColFila;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn colReloj;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDia;
@@ -2469,6 +2488,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colProxLlegadaComb;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRNDTipoPedido;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipoPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRNDCant;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn colColaPreparacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoEmpleado1;
