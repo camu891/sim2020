@@ -104,10 +104,15 @@ namespace Pizzeria
 						break;
 					}
 				case "Hamburguesa":
+					{
+						// 8
+						demoraPedido = demoraHamburguesa;
+						break;
+					}
 				case "Lomito":
 					{
 						// 8
-						demoraPedido = 8;
+						demoraPedido = demoraLomo;
 						break;
 					}
 
@@ -139,12 +144,12 @@ namespace Pizzeria
 			double calculo = 0;
 			while (division > 0)
 			{
-				calculo += 3.5;
+				calculo += demoraEmpanadax3;
 				division--;
 			}
 			if (cantidad%3 != 0)
 			{
-				calculo += 2.5;
+				calculo += demoraEmpanadax2;
 			}
 
 			return calculo;

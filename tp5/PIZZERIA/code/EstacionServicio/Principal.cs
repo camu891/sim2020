@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -17,22 +18,8 @@ namespace Pizzeria
         private Empleado empleado1;
         private Empleado empleado2;
         private Empleado empleado3;
+        private List<Empleado> empleados;
         private ColaPreparacion colaPreparacion;
-
-        //Variables de Estadisticas
-        private double ContVehiculosCombustibleIngresanAlSitema;
-        private double ContVehiculosGasIngresanAlSitema;
-        private double ContVehiculosCombustibleRechazados;
-        private double ContVehiculosGasRechazados;
-        private double ContVehiculosCombustibleAtendidos;
-        private double ContVehiculosGasAtendidos;
-        private double AcumTiempoEsperaVehiculosCombustible;
-        private double AcumTiempoEsperaVehiculosGas;
-        private double ContVehiConTiempoEsperaVehiculosCombustible;
-        private double ContVehiConTiempoEsperaVehiculosGas;
-        private double AcumTiempoOcioServidoresCombustible;
-        private double AcumTiempoOcioServidoresGas;
-
 
         //Parametros de Llega
         private double mediaLlegadaPedidos;
@@ -72,23 +59,6 @@ namespace Pizzeria
         public frm_principal()
         {
             InitializeComponent();
-        }
-
-        public double getFirstEvent(double n1, double n2, double n3, double n4, double n5)
-        {
-            List<double> list = new List<double>();
-            if (n1 > 0.0)
-                list.Add(n1);
-            if (n2 > 0.0)
-                list.Add(n2);
-            if (n3 > 0.0)
-                list.Add(n3);
-            if (n4 > 0.0)
-                list.Add(n4);
-            if (n5 > 0.0)
-                list.Add(n5);
-            list.Sort();
-            return list.FirstOrDefault<double>();
         }
 
         public Reloj getFirstEvent(Reloj n1, Reloj n2, Reloj n3, Reloj n4, Reloj n5)
@@ -166,9 +136,9 @@ namespace Pizzeria
 
                             //repetir valores de fin de coccion
                             //pasar empleado correspondiente
-                            repetirValoresDemora(empleado1, fila);
-                            repetirValoresDemora(empleado2, fila);
-                            repetirValoresDemora(empleado3, fila);
+                            repetirValoresDemora(empleado1, finCoccionEmpleado1, fila);
+                            repetirValoresDemora(empleado2, finCoccionEmpleado2, fila);
+                            repetirValoresDemora(empleado3, finCoccionEmpleado3, fila);
                         }
 
                         //if (this.empleado2.getEstado() == "Libre")
@@ -184,8 +154,6 @@ namespace Pizzeria
  
                     if (this.finCoccionEmpleado1.getProximaLlegada().Equals(firstEvent)) 
                     {
-
-
                         fila = agregarEventoFinCoccion();
 
                         finCoccionEmpleado1.setHoraFin(new Reloj());
@@ -200,10 +168,7 @@ namespace Pizzeria
                         if (this.delivery.getEstado() == "Libre")
                         {
                             //aca me quede controlar bien xq se armo el bucle
-                            this.generarDemoraDelivery(fila, relojSimulacion ,1 , finCoccionEmpleado1);
-                            // despues de esto actualizar el reloj
-                            finCoccionEmpleado1.setHoraFin(new Reloj());
-
+                            this.generarDemoraDelivery(fila, relojSimulacion ,1);
                                                        
                         }
                         
@@ -237,7 +202,7 @@ namespace Pizzeria
 
             return k;
         }
-        private void generarDemoraDelivery(int fila, Reloj reloj ,int idDelivery, FinCoccionEmpleado fc)
+        private void generarDemoraDelivery(int fila, Reloj reloj ,int idDelivery)
         {
             // fijarse en la cola si hay pedidos 
             Random r = new Random();
@@ -293,16 +258,16 @@ namespace Pizzeria
                 empleado1.setEstado("Libre");
                 empleado1.setDemora(0);
                 empleado1.setFinCoccion(new Reloj());
-                repetirValoresDemora(empleado1, fila);
+                repetirValoresDemora(empleado1, finCoccionEmpleado1,  fila);
             }
         }
 
-        private void repetirValoresDemora(Empleado empleado, int i) {
+        private void repetirValoresDemora(Empleado empleado, FinCoccionEmpleado finCoccion, int i) {
             int id = empleado.getId();
             dgvResultados.Rows[i].Cells["colEstadoEmpleado"+id].Value = empleado.getEstado();
             dgvResultados.Rows[i].Cells["colRndDemora" + id].Value = "";
-            dgvResultados.Rows[i].Cells["colDemora" + id].Value = empleado.getDemora();
-            dgvResultados.Rows[i].Cells["colFinCoccion" + id].Value = empleado.getFinCoccion().getReloj();
+            dgvResultados.Rows[i].Cells["colDemora" + id].Value = finCoccion.getTiempoEntreLlegada();
+            dgvResultados.Rows[i].Cells["colFinCoccion" + id].Value = finCoccion.getProximaLlegada().getReloj();
         }
 
         private void ponerColaPedido(LlegadaPedido lp) {
@@ -385,18 +350,6 @@ namespace Pizzeria
             this.relojSimulacion = new Reloj();
             this.identificadorPedido = 0;
             this.eventosYaSimuladosYMostrados = 0;
-            this.ContVehiculosCombustibleIngresanAlSitema = 0.0;
-            this.ContVehiculosGasIngresanAlSitema = 0.0;
-            this.ContVehiculosCombustibleRechazados = 0.0;
-            this.ContVehiculosGasRechazados = 0.0;
-            this.ContVehiculosCombustibleAtendidos = 0.0;
-            this.ContVehiculosGasAtendidos = 0.0;
-            this.AcumTiempoEsperaVehiculosCombustible = 0.0;
-            this.AcumTiempoEsperaVehiculosGas = 0.0;
-            this.ContVehiConTiempoEsperaVehiculosCombustible = 0.0;
-            this.ContVehiConTiempoEsperaVehiculosGas = 0.0;
-            this.AcumTiempoOcioServidoresCombustible = 0.0;
-            this.AcumTiempoOcioServidoresGas = 0.0;
             this.llegadaPedido = new LlegadaPedido(this.mediaLlegadaPedidos);
             this.empleado1 = new Empleado(1, 0); //TODO pasar valores tomados por parametros
             this.empleado2 = new Empleado(2, 0); //TODO pasar valores tomados por parametros
@@ -407,7 +360,8 @@ namespace Pizzeria
             this.finCoccionEmpleado3 = new FinCoccionEmpleado(promSandwich, desvSandwich, desdePizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 3, empleado3);
             this.colaPreparacion = new ColaPreparacion();
 
-            this.finDelivery = new FinDelivery(this.desdePizza, this.hastaPizza, 1, this.precioPizza);
+            this.finDelivery = new FinDelivery(this.desdePizza, this.hastaPizza, 1, this.precioPizza);//TODO pasar parametros 
+            this.empleados = new List<Empleado>() { empleado1, empleado2, empleado3 };
            
         }
 
@@ -470,6 +424,7 @@ namespace Pizzeria
 
             return k;
         }
+
         private void agregarDemoraEnGrillaEmpleados(int id, int i, bool conRandom, Evento evento)
         {
             dgvResultados.Rows[i].Cells["colEstadoEmpleado1"].Value = "Libre";
@@ -494,6 +449,7 @@ namespace Pizzeria
             dgvResultados.Rows[i].Cells["colDia"].Value = relojSimulacion.getDia();
             dgvResultados.Rows[i].Cells["colTurno"].Value = relojSimulacion.getTurno();
         }
+
         private void agregarColumnasAGrilla(int identificadorVehiculo)
         {
             int i;
@@ -558,40 +514,6 @@ namespace Pizzeria
             {
                 e.SuppressKeyPress = true;
             }
-        }
-
-        private void reset()
-        {
-            //Limpiar la grilla
-            dgvResultados.Rows.Clear();
-
-            //Reset a variables
-            resul = true;
-            invalido = null;
-            identificadorPedido = 0;
-            relojSimulacion = new Reloj();
-
-            //Remover Columnas de Objetos Temporales
-
-            int columnas = dgvResultados.Columns.Count-1;
-
-            for (int i = columnas; i >= 52; i--)
-            {
-                try
-                {
-                    dgvResultados.Columns.RemoveAt(i);
-
-                }
-                catch (Exception)
-                {
-
-
-                }
-            }
-
-            //Habilitar Boton Simular
-            btnSimular.Enabled = true;
-
         }
 
         private void radioCada10mil_CheckedChanged(object sender, EventArgs e)
