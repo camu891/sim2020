@@ -703,7 +703,7 @@
             this.textDemora2Empa.Name = "textDemora2Empa";
             this.textDemora2Empa.Size = new System.Drawing.Size(34, 20);
             this.textDemora2Empa.TabIndex = 24;
-            this.textDemora2Empa.Text = "2.5";
+            this.textDemora2Empa.Text = "2,5";
             this.textDemora2Empa.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textDemora3Empa
@@ -712,7 +712,7 @@
             this.textDemora3Empa.Name = "textDemora3Empa";
             this.textDemora3Empa.Size = new System.Drawing.Size(34, 20);
             this.textDemora3Empa.TabIndex = 23;
-            this.textDemora3Empa.Text = "3.5";
+            this.textDemora3Empa.Text = "3,5";
             this.textDemora3Empa.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label17
