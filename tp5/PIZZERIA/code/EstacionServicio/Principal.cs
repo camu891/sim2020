@@ -88,7 +88,7 @@ namespace Pizzeria
                 //Limpiar Grilla 
                 dgvResultados.Rows.Clear();
 
-                //Genero Evento Llegada Pedido
+                //Genero Evento Llegada Pedido 0
                 int fila = 0;
                 llegadaPedido.simular(relojSimulacion, rand.NextDouble());
 
@@ -253,8 +253,6 @@ namespace Pizzeria
 
             //      sacar de a tres, actualizar el estado de los pedidos, actualizar el estado del delivery
             //}
-
-
         }
 
         private bool cambiarEstadoPedido(Pedido ped)
@@ -274,7 +272,6 @@ namespace Pizzeria
             else
             {
                 //libero los datos de empleado
-             
                 switch (e.getId())
                 {
                     case 1:
@@ -302,25 +299,18 @@ namespace Pizzeria
 
         public void generarDemoraEnEmpleado(int i, int id, LlegadaPedido p)
         {
-            
-
             switch (id) {
                 case 1:
                     this.finCoccionEmpleado1.simularDemora(this.relojSimulacion, this.rand.NextDouble(), p); 
                     break;
                 case 2:
                     this.finCoccionEmpleado2.simularDemora(this.relojSimulacion, this.rand.NextDouble(), p);
-                    
                     break;
                 case 3:
                     this.finCoccionEmpleado3.simularDemora(this.relojSimulacion, this.rand.NextDouble(), p);
-
                     break;
             }
-           
- 
         }
-
        
         public void tomarDatosPatalla()
         {
@@ -382,8 +372,6 @@ namespace Pizzeria
         {
             foreach (Control con in grupo.Controls)
             {
-
-
                 if (con is GroupBox)
                 {
                     validar((GroupBox)con);
@@ -397,8 +385,8 @@ namespace Pizzeria
                     }
                 }
             }
-
         }
+
         private void indicarErrorYPonerFocus()//Informa de datos invalidos y pone el foco en el ultimo control que fue invalido
         {
             MessageBox.Show("Parametro Vacío o Incorrecto", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
@@ -434,6 +422,7 @@ namespace Pizzeria
                 this.txtMinHasta.Enabled = true;
             }
         }
+
         private void agregarEventoInicio()
         {
             Console.WriteLine("Imprimiendo: " + 0);
@@ -455,39 +444,67 @@ namespace Pizzeria
         private void agregarEventoAGrilla(int i, Evento evento, int fila)
         {
             Console.WriteLine("Imprimiendo: " + fila);
+
+            //Columnas que se muestran siempre
             dgvResultados.Rows[i].Cells["colFila"].Value = fila;
             dgvResultados.Rows[i].Cells["colEvento"].Value = evento.getNombreEvento();
             dgvResultados.Rows[i].Cells["colReloj"].Value = relojSimulacion.getReloj();
             dgvResultados.Rows[i].Cells["colDia"].Value = relojSimulacion.getDia();
             dgvResultados.Rows[i].Cells["colTurno"].Value = relojSimulacion.getTurno().ToString();
-            dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = llegadaPedido.getRandom(); ;
-            dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = llegadaPedido.getTiempoEntreLlegada();
-            dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = llegadaPedido.getRandomTipoPed();
-            if (llegadaPedido.getPedido() != null)
-            {
-                dgvResultados.Rows[i].Cells["colTipoPedido"].Value = llegadaPedido.getPedido().Tipo;
-                dgvResultados.Rows[i].Cells["colCantidad"].Value = llegadaPedido.getPedido().Cantidad;
-                if (llegadaPedido.getPedido().Tipo.Equals("Empanadas"))
-                    dgvResultados.Rows[i].Cells["colRNDCant"].Value = llegadaPedido.getPedido().RndCantidad;
-            }     
-            dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = llegadaPedido.getProximaLlegada().getReloj();
             dgvResultados.Rows[i].Cells["colColaPreparacion"].Value = colaPreparacion.getCola().Count();
             dgvResultados.Rows[i].Cells["colEstadoEmpleado1"].Value = empleado1.getEstado();
             dgvResultados.Rows[i].Cells["colEstadoEmpleado2"].Value = empleado2.getEstado();
             dgvResultados.Rows[i].Cells["colEstadoEmpleado3"].Value = empleado3.getEstado();
-            dgvResultados.Rows[i].Cells["colRndDemora1"].Value = finCoccionEmpleado1.getRandom();
-            dgvResultados.Rows[i].Cells["colDemora1"].Value = finCoccionEmpleado1.getTiempoEntreLlegada();
-            dgvResultados.Rows[i].Cells["colFinCoccion1"].Value = finCoccionEmpleado1.getProximaLlegada().getReloj();
-            dgvResultados.Rows[i].Cells["colRndDemora2"].Value = finCoccionEmpleado2.getRandom();
-            dgvResultados.Rows[i].Cells["colDemora2"].Value = finCoccionEmpleado2.getProximaLlegada();
-            dgvResultados.Rows[i].Cells["colFinCoccion2"].Value = finCoccionEmpleado2.getProximaLlegada().getReloj();
-            dgvResultados.Rows[i].Cells["colRndDemora3"].Value = finCoccionEmpleado3.getRandom();
-            dgvResultados.Rows[i].Cells["colDemora3"].Value = finCoccionEmpleado3.getTiempoEntreLlegada();
-            dgvResultados.Rows[i].Cells["colFinCoccion3"].Value = finCoccionEmpleado3.getProximaLlegada().getReloj();
             dgvResultados.Rows[i].Cells["colEstadoMoto"].Value = delivery.getEstado();
-            dgvResultados.Rows[i].Cells["colRndDelivery"].Value = this.finDelivery.getRandom();
-            dgvResultados.Rows[i].Cells["colTiempoEntrega"].Value = this.finDelivery.getTiempoEntreLlegada();
-            dgvResultados.Rows[i].Cells["colFinEntregaDelivery"].Value = this.finDelivery.getProximaLlegada().getReloj();
+
+            //Estos se muestran solo en caso de que el evento sea una llegada de Pedido
+            if (evento.getNombreEvento().Equals("llegada_Pedido")){
+                dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = llegadaPedido.getRandom(); ;
+                dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = llegadaPedido.getTiempoEntreLlegada();
+                dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = llegadaPedido.getRandomTipoPed();
+                dgvResultados.Rows[i].Cells["colTipoPedido"].Value = llegadaPedido.getPedido().Tipo;
+                dgvResultados.Rows[i].Cells["colCantidad"].Value = llegadaPedido.getPedido().Cantidad;
+                if (llegadaPedido.getPedido().Tipo.Equals("Empanadas"))
+                    dgvResultados.Rows[i].Cells["colRNDCant"].Value = llegadaPedido.getPedido().RndCantidad;
+            }
+
+            //Estos se muestra si hay una proxima llegada pendiente
+            if (llegadaPedido.getProximaLlegada().getReloj() > 0)
+            {
+                dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = llegadaPedido.getProximaLlegada().getReloj();
+            }
+
+            //Estos se muestra si hay un proximo fin de coccion del empleado 1 pendiente
+            if (finCoccionEmpleado1.getProximaLlegada().getReloj() > 0 )
+            {
+                dgvResultados.Rows[i].Cells["colRndDemora1"].Value = finCoccionEmpleado1.getRandom();
+                dgvResultados.Rows[i].Cells["colDemora1"].Value = finCoccionEmpleado1.getTiempoEntreLlegada();
+                dgvResultados.Rows[i].Cells["colFinCoccion1"].Value = finCoccionEmpleado1.getProximaLlegada().getReloj();
+            }
+
+            //Estos se muestra si hay un proximo fin de coccion del empleado 2 pendiente
+            if (finCoccionEmpleado2.getProximaLlegada().getReloj() > 0)
+            {
+                dgvResultados.Rows[i].Cells["colRndDemora2"].Value = finCoccionEmpleado2.getRandom();
+                dgvResultados.Rows[i].Cells["colDemora2"].Value = finCoccionEmpleado2.getTiempoEntreLlegada();
+                dgvResultados.Rows[i].Cells["colFinCoccion2"].Value = finCoccionEmpleado2.getProximaLlegada().getReloj();
+            }
+
+            //Estos se muestra si hay un proximo fin de coccion del empleado 2 pendiente
+            if (finCoccionEmpleado3.getProximaLlegada().getReloj() > 0)
+            {
+                dgvResultados.Rows[i].Cells["colRndDemora3"].Value = finCoccionEmpleado3.getRandom();
+                dgvResultados.Rows[i].Cells["colDemora3"].Value = finCoccionEmpleado3.getTiempoEntreLlegada();
+                dgvResultados.Rows[i].Cells["colFinCoccion3"].Value = finCoccionEmpleado3.getProximaLlegada().getReloj();
+            }
+
+            //Estos se muestra si hay un proximo fin de delivery pendiente
+            if (this.finDelivery.getProximaLlegada().getReloj() > 0)
+            {
+                dgvResultados.Rows[i].Cells["colRndDelivery"].Value = this.finDelivery.getRandom();
+                dgvResultados.Rows[i].Cells["colTiempoEntrega"].Value = this.finDelivery.getTiempoEntreLlegada();
+                dgvResultados.Rows[i].Cells["colFinEntregaDelivery"].Value = this.finDelivery.getProximaLlegada().getReloj();
+            }
         }
     }
 }
