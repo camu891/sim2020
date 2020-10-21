@@ -51,7 +51,6 @@ namespace Pizzeria
         //Variables necesarias
         private Reloj relojSimulacion;
         private int identificadorPedido;
-        private int eventosYaSimuladosYMostrados;
         Random rand = new Random((int)DateTime.Now.Ticks);
         bool resul = true;
         TextBox invalido = null;
@@ -80,8 +79,6 @@ namespace Pizzeria
 
         private void btnSimular_Click(object sender, EventArgs e)
         {
-            //reset();
-            int fila = 0;
             //Inicio Bloque Simulacion
             if (validarDatos())
             {
@@ -91,77 +88,64 @@ namespace Pizzeria
                 //Limpiar Grilla 
                 dgvResultados.Rows.Clear();
 
-                //Inicio de La Simulacion
-                if (filaAPartirDeDondeMostrar == 0 )//Calculos los primeros eventos
+                //Genero Evento Llegada Pedido
+                int fila = 0;
+                llegadaPedido.simular(relojSimulacion, rand.NextDouble());
+
+                //Imprimo fila 0
+                if (this.filaAPartirDeDondeMostrar == 0 || radioCada10mil.Checked)
                 {
-
-                    llegadaPedido.simular(relojSimulacion, rand.NextDouble());//carga de llegada de pedido
-
-                    fila = this.dgvResultados.Rows.Add();
-                    this.agregarDatosAGrila(fila, "Inicio Simulacion");
-                    this.agregarEventoAGrilla(fila, true, this.llegadaPedido, 0);
-;
-                    this.agregarEventoAGrilla(fila, false, this.finCoccionEmpleado1, this.finCoccionEmpleado1.getIdEmpleado());
-                    this.agregarEventoAGrilla(fila, false, this.finCoccionEmpleado2, this.finCoccionEmpleado2.getIdEmpleado());
-                    this.agregarEventoAGrilla(fila, false, this.finCoccionEmpleado3, this.finCoccionEmpleado3.getIdEmpleado());
-                    this.eventosYaSimuladosYMostrados++;
-
+                    this.dgvResultados.Rows.Add();
+                    agregarEventoInicio();
                 }
 
                 //Bucle principal de Simulacion
-                while (relojSimulacion.getDia() < tiempoFinCorrida
-                    && (fila < filaHastaDondeMostrar || radioCada10mil.Checked))
+                while (relojSimulacion.getDia() < tiempoFinCorrida)
                 {
+                    //Selecciono el siguiente evento
                     Reloj firstEvent = this.getFirstEvent(this.llegadaPedido.getProximaLlegada(), this.finCoccionEmpleado1.getProximaLlegada(), this.finCoccionEmpleado2.getProximaLlegada(), this.finCoccionEmpleado3.getProximaLlegada(), this.finDelivery.getProximaLlegada());
-
+                    //Cargo el reloj y genero una nueva fila
                     this.relojSimulacion.setReloj(firstEvent.getReloj());
+                    fila++;
 
+                    //Evento Llegada Pedido
                     if (this.llegadaPedido.getProximaLlegada().Equals(firstEvent))
                     {
                         this.relojSimulacion.setDia(firstEvent.getDia());
                         this.relojSimulacion.setTurno(firstEvent.getTurno());
-                        fila = this.generarLlegadaPedido();
+                        this.llegadaPedido.simular(this.relojSimulacion, this.rand.NextDouble());
 
-                        //hacer para los 3 empleados
                         if (this.empleado1.getEstado() == "Libre")
                         {
                             generarDemoraPedido(fila, 1, llegadaPedido);
                         }
                         else
                         {
-                            repetirValoresDemora(empleado1, finCoccionEmpleado1, fila);
                             if (this.empleado2.getEstado() == "Libre")
                             {
                                 generarDemoraPedido(fila, 2, llegadaPedido);
                             }
                             else
                             {
-                                repetirValoresDemora(empleado2, finCoccionEmpleado2, fila);
                                 if (this.empleado3.getEstado() == "Libre")
                                 {
                                     generarDemoraPedido(fila, 3, llegadaPedido);
                                 }
                                 else
                                 {
-                                    repetirValoresDemora(empleado3, finCoccionEmpleado3, fila);
                                     // mandar a cola
                                     ponerColaPedido(llegadaPedido);
-                                    agregarColaAGrilla(fila);
-                  
                                 }
                             }           
 
                         }
-
+                        imprimirFila(llegadaPedido, fila);
                     }
+                    //Evento Fin coccion empleado 1
                     if (this.finCoccionEmpleado1.getProximaLlegada().Equals(firstEvent)) 
                     {
-                        fila = agregarEventoFinCoccion(1);
-
-                        finCoccionEmpleado1.setHoraFin(new Reloj());
-                        
-                        //actualizar el pedido a preparado 
-                        cambiarEstadoPedido(llegadaPedido.getPedido());
+                        finCoccionEmpleado1.setHoraFin(new Reloj());         
+                        //actualizar el pedido a preparado
                         //liberar el empleado si no hay cola
                         //si hay cola sacar de colar y calcular nueva demora 
                         actualizarEstadoEmpleado(empleado1, fila);
@@ -172,15 +156,13 @@ namespace Pizzeria
                             //aca me quede controlar bien xq se armo el bucle
                             this.generarDemoraDelivery(fila, relojSimulacion ,1);
                                                        
-                        }  
+                        }
+                        imprimirFila(finCoccionEmpleado1, fila);
                     }
+                    //Evento Fin coccion empleado 2
                     if (this.finCoccionEmpleado2.getProximaLlegada().Equals(firstEvent))
                     {
-                        
-                        fila = agregarEventoFinCoccion(2);
-
                         finCoccionEmpleado2.setHoraFin(new Reloj());
-
                         //actualizar el pedido a preparado 
                         cambiarEstadoPedido(llegadaPedido.getPedido());
                         //liberar el empleado si no hay cola
@@ -192,15 +174,13 @@ namespace Pizzeria
                         {
                             //aca me quede controlar bien xq se armo el bucle
                             this.generarDemoraDelivery(fila, relojSimulacion, 1);
-
                         }
+                        imprimirFila(finCoccionEmpleado2, fila);
                     }
+                    //Evento Fin coccion empleado 3
                     if (this.finCoccionEmpleado3.getProximaLlegada().Equals(firstEvent))
                     {
-                        fila = agregarEventoFinCoccion(3);
-
                         finCoccionEmpleado3.setHoraFin(new Reloj());
-
                         //actualizar el pedido a preparado 
                         cambiarEstadoPedido(llegadaPedido.getPedido());
                         //liberar el empleado si no hay cola
@@ -214,19 +194,17 @@ namespace Pizzeria
                             this.generarDemoraDelivery(fila, relojSimulacion, 1);
 
                         }
+                        imprimirFila(finCoccionEmpleado3, fila);
                     }
-
+                    //Evento Fin Delivery
                     if (this.finDelivery.getProximaLlegada().Equals(firstEvent))
                     {
-                        
-                        fila=agregarEventoFinDelivery();
                         finDelivery.setHoraFin(new Reloj());
                         //fijarse en la cola si hay pedidos 
-                        //actuallizar su estado 
+                        //actuallizar su estado
+                        imprimirFila(finDelivery, fila);
                     }
-                    
                 }
-
             }
             else
             {
@@ -237,19 +215,37 @@ namespace Pizzeria
             //Fin Bloque Simulacion
         }
 
-        private int agregarEventoFinDelivery()
+        public void imprimirFila(Evento evento, int fila)
         {
-            int k = this.dgvResultados.Rows.Add();
-            this.agregarEventoAGrilla(k, true, finDelivery, 1);
-
-            return k;
+            if ((fila>= this.filaAPartirDeDondeMostrar && fila <= filaHastaDondeMostrar) 
+                || radioCada10mil.Checked)
+            {
+                int i = this.dgvResultados.Rows.Add();
+                agregarEventoAGrilla(i, evento, fila);
+            }
         }
+
+        public void generarDemoraPedido(int j, int idEmpleado, LlegadaPedido lp)
+        {
+            switch (idEmpleado)
+            {
+                case 1:
+                    this.generarDemoraEnEmpleado(j, this.finCoccionEmpleado1.getIdEmpleado(), lp);
+                    break;
+                case 2:
+                    this.generarDemoraEnEmpleado(j, this.finCoccionEmpleado2.getIdEmpleado(), lp);
+                    break;
+                case 3:
+                    this.generarDemoraEnEmpleado(j, this.finCoccionEmpleado3.getIdEmpleado(), lp);
+                    break;
+            }
+        }
+
         private void generarDemoraDelivery(int fila, Reloj reloj ,int idDelivery)
         {
             // fijarse en la cola si hay pedidos 
             Random r = new Random();
             this.finDelivery.simular(reloj, r.NextDouble());
-            this.agregarDemoraEnGrillaDelivery(fila, true, finDelivery);
             //if (delivery.getCola().Count != 0)
             //{ //puede solo cargar tres pedidos 
             //    aca me quede
@@ -259,22 +255,6 @@ namespace Pizzeria
             //}
 
 
-        }
-
-        private void agregarDemoraEnGrillaDelivery( int i, bool conRandom, Evento evento)
-        {
-            dgvResultados.Rows[i].Cells["colEstadoMoto"].Value = "Libre";
-            dgvResultados.Rows[i].Cells["colRndDelivery"].Value = "-";
-            dgvResultados.Rows[i].Cells["colTiempoEntrega"].Value = "-";
-            dgvResultados.Rows[i].Cells["colFinEntregaDelivery"].Value = "-";
-
-            if (conRandom)
-            {
-                dgvResultados.Rows[i].Cells["colEstadoMoto"].Value = "Realizando entrega";
-                dgvResultados.Rows[i].Cells["colRndDelivery"].Value = ((FinDelivery)evento).getRandom();
-                dgvResultados.Rows[i].Cells["colTiempoEntrega"].Value = ((FinDelivery)evento).getTiempoEntreLlegada();
-                dgvResultados.Rows[i].Cells["colFinEntregaDelivery"].Value = ((FinDelivery)evento).getProximaLlegada().getReloj();
-            }
         }
 
         private bool cambiarEstadoPedido(Pedido ped)
@@ -290,9 +270,6 @@ namespace Pizzeria
                 Pedido enPreparacion = colaPreparacion.getCola().Dequeue();
                 LlegadaPedido lp = new LlegadaPedido();
                 lp.setPedido(enPreparacion);
-                generarDemoraPedido(fila, e.getId(), lp);
-                //actulizar la cola de pedidos en la grilla
-                agregarColaAGrilla(fila);
             }
             else
             {
@@ -304,75 +281,23 @@ namespace Pizzeria
                         empleado1.setEstado("Libre");
                         empleado1.setDemora(0);
                         empleado1.setFinCoccion(new Reloj());
-                        agregarDemoraEnGrillaEmpleados(e.getId(), fila, false, finCoccionEmpleado1);
                         break;
                     case 2:
                         empleado2.setEstado("Libre");
                         empleado2.setDemora(0);
                         empleado2.setFinCoccion(new Reloj());
-                        agregarDemoraEnGrillaEmpleados(e.getId(), fila, false, finCoccionEmpleado2);
                         break;
                     case 3:
                         empleado3.setEstado("Libre");
                         empleado3.setDemora(0);
                         empleado3.setFinCoccion(new Reloj());
-                        agregarDemoraEnGrillaEmpleados(e.getId(), fila, false, finCoccionEmpleado3);
-
                         break;
                 }
-                agregarColaAGrilla(fila);
-                
             }
-        }
-
-        private void repetirValoresDemora(Empleado empleado, FinCoccionEmpleado finCoccion, int i) {
-            int id = empleado.getId();
-            dgvResultados.Rows[i].Cells["colEstadoEmpleado"+id].Value = empleado.getEstado();
-            dgvResultados.Rows[i].Cells["colRndDemora" + id].Value = "";
-            dgvResultados.Rows[i].Cells["colDemora" + id].Value = finCoccion.getTiempoEntreLlegada();
-            dgvResultados.Rows[i].Cells["colFinCoccion" + id].Value = finCoccion.getProximaLlegada().getReloj();
         }
 
         private void ponerColaPedido(LlegadaPedido lp) {
             colaPreparacion.setCola(lp.getPedido());
-        }
-
-        private void agregarColaAGrilla(int i) {
-            dgvResultados.Rows[i].Cells["colColaPreparacion"].Value = colaPreparacion.getCola().Count();
-        }
-
-        public int generarLlegadaPedido()
-        {
-            int i = this.dgvResultados.Rows.Add();
-            this.llegadaPedido.simular(this.relojSimulacion, this.rand.NextDouble());
-            this.agregarEventoAGrilla(i, true, this.llegadaPedido, 0);
-            this.agregarDatosAGrila(i, this.llegadaPedido.getNombreEvento());
-
-            return i;
-        }
-
-        public void generarDemoraPedido(int j, int idEmpleado, LlegadaPedido lp)
-        {
-
-            switch (idEmpleado)
-            {
-                case 1:
-                    this.generarDemoraEnEmpleado(j, this.finCoccionEmpleado1.getIdEmpleado(), lp);
-                    this.agregarDemoraEnGrillaEmpleados(idEmpleado, j, true, finCoccionEmpleado1);
-                    break;
-                case 2:
-                    this.generarDemoraEnEmpleado(j, this.finCoccionEmpleado2.getIdEmpleado(), lp);
-                    this.agregarDemoraEnGrillaEmpleados(idEmpleado, j, true, finCoccionEmpleado2);
-
-                    break;
-                case 3:
-                    this.generarDemoraEnEmpleado(j, this.finCoccionEmpleado3.getIdEmpleado(), lp);
-                    this.agregarDemoraEnGrillaEmpleados(idEmpleado, j, true, finCoccionEmpleado3);
-
-                    break;
-            }
-            
-
         }
 
         public void generarDemoraEnEmpleado(int i, int id, LlegadaPedido p)
@@ -425,7 +350,6 @@ namespace Pizzeria
         {
             this.relojSimulacion = new Reloj();
             this.identificadorPedido = 0;
-            this.eventosYaSimuladosYMostrados = 0;
             this.llegadaPedido = new LlegadaPedido(this.mediaLlegadaPedidos);
             this.empleado1 = new Empleado(1, 0); //TODO pasar valores tomados por parametros
             this.empleado2 = new Empleado(2, 0); //TODO pasar valores tomados por parametros
@@ -439,126 +363,6 @@ namespace Pizzeria
             this.finDelivery = new FinDelivery(this.desdePizza, this.hastaPizza, 1, this.precioPizza);//TODO pasar parametros 
             this.empleados = new List<Empleado>() { empleado1, empleado2, empleado3 };
            
-        }
-
-        private void agregarEventoAGrilla(int i, bool conRandom, Evento evento, int idEmpleado)
-        {
-            if (evento is LlegadaPedido)
-            {
-                dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = "-";
-                dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = "-";
-                dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = "-";
-                dgvResultados.Rows[i].Cells["colTipoPedido"].Value = "-";
-                dgvResultados.Rows[i].Cells["colRNDCant"].Value = "-";
-                dgvResultados.Rows[i].Cells["colCantidad"].Value = "-";
-
-                if (conRandom)
-                {
-                    dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = ((LlegadaPedido)evento).getRandom();
-                    dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = ((LlegadaPedido)evento).getTiempoEntreLlegada();
-                    //
-                    if (i != 0) {
-                        dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = ((LlegadaPedido)evento).getRandomTipoPed();
-                        dgvResultados.Rows[i].Cells["colTipoPedido"].Value = ((LlegadaPedido)evento).getPedido().Tipo;
-                        if (((LlegadaPedido)evento).getPedido().Tipo.Equals("Empanadas"))
-                            dgvResultados.Rows[i].Cells["colRNDCant"].Value = ((LlegadaPedido)evento).getPedido().RndCantidad;
-                        dgvResultados.Rows[i].Cells["colCantidad"].Value = ((LlegadaPedido)evento).getPedido().Cantidad;
-                    }
-
-                }
-
-                dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = ((LlegadaPedido)evento).getProximaLlegada().getReloj();
-
-            } 
-            
-            if (evento is FinCoccionEmpleado) 
-            {
-
-                if (relojSimulacion.getReloj() != 0.00)
-                {
-                    dgvResultados.Rows[i].Cells["colFila"].Value = i;
-                    dgvResultados.Rows[i].Cells["colEvento"].Value = evento.getNombreEvento();
-                    dgvResultados.Rows[i].Cells["colReloj"].Value = relojSimulacion.getReloj();
-                    dgvResultados.Rows[i].Cells["colDia"].Value = relojSimulacion.getDia();
-                    dgvResultados.Rows[i].Cells["colTurno"].Value = relojSimulacion.getTurno().ToString();
-                }
-                else
-                {
-                    agregarColaAGrilla(i);
-                    dgvResultados.Rows[i].Cells["colEstadoEmpleado1"].Value = "Libre";
-                    dgvResultados.Rows[i].Cells["colEstadoEmpleado2"].Value = "Libre";
-                    dgvResultados.Rows[i].Cells["colEstadoEmpleado3"].Value = "Libre";
-
-                }
-
-
-            }
-            else if (evento is FinDelivery) 
-            {
-                dgvResultados.Rows[i].Cells["colFila"].Value = i;
-                dgvResultados.Rows[i].Cells["colEvento"].Value = evento.getNombreEvento();
-                dgvResultados.Rows[i].Cells["colReloj"].Value = relojSimulacion.getReloj();
-                dgvResultados.Rows[i].Cells["colDia"].Value = relojSimulacion.getDia();
-                dgvResultados.Rows[i].Cells["colTurno"].Value = relojSimulacion.getTurno().ToString();
-
-            }
-
-        }
-
-        private int  agregarEventoFinCoccion(int idEmpleado)
-        {
-            int k = this.dgvResultados.Rows.Add();
-            switch (idEmpleado)
-            {
-                case 1:
-                    this.agregarEventoAGrilla(k, true, finCoccionEmpleado1, 1);
-                    break;
-                case 2:
-                    this.agregarEventoAGrilla(k, true, finCoccionEmpleado2, 2);
-
-                    break;
-                case 3:
-                    this.agregarEventoAGrilla(k, true, finCoccionEmpleado3, 3);
-
-                    break;
-            }
-
-            return k;
-        }
-
-        private void agregarDemoraEnGrillaEmpleados(int id, int i, bool conRandom, Evento evento)
-        {
-            dgvResultados.Rows[i].Cells["colEstadoEmpleado"+id].Value = "Libre";
-            dgvResultados.Rows[i].Cells["colRndDemora"+id].Value = "-";
-            dgvResultados.Rows[i].Cells["colDemora"+id].Value = "-";
-            dgvResultados.Rows[i].Cells["colFinCoccion"+id].Value = "-";
-
-            if (conRandom)
-            {
-                dgvResultados.Rows[i].Cells["colEstadoEmpleado"+id].Value = ((FinCoccionEmpleado)evento).Empleado.getEstado();
-                dgvResultados.Rows[i].Cells["colRndDemora"+id].Value = ((FinCoccionEmpleado)evento).getRandom();
-                dgvResultados.Rows[i].Cells["colDemora"+id].Value = ((FinCoccionEmpleado)evento).Empleado.getDemora();
-                dgvResultados.Rows[i].Cells["colFinCoccion"+id].Value = ((FinCoccionEmpleado)evento).Empleado.getFinCoccion().getReloj();
-            }
-        }
-
-        private void agregarDatosAGrila(int i, string evento)
-        {
-            //Mostrar datos de la simulacion y estadisticas
-            dgvResultados.Rows[i].Cells["colEvento"].Value = evento;
-            dgvResultados.Rows[i].Cells["colReloj"].Value = relojSimulacion.getReloj();
-            dgvResultados.Rows[i].Cells["colDia"].Value = relojSimulacion.getDia();
-            dgvResultados.Rows[i].Cells["colTurno"].Value = relojSimulacion.getTurno();
-        }
-
-        private void agregarColumnasAGrilla(int identificadorVehiculo)
-        {
-            int i;
-            i = dgvResultados.Columns.Add("EstadoVehi" + identificadorVehiculo, "Estado Vehiculos" + identificadorVehiculo);
-            dgvResultados.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-            i = dgvResultados.Columns.Add("colHoraInicioEsperaVehiculo" + identificadorVehiculo, "Hora Inicio Espera Vehiculo" + identificadorVehiculo);
-            dgvResultados.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-
         }
 
         private bool validarDatos()//Punto de partida para validar la completitud y tipo de datos
@@ -629,6 +433,61 @@ namespace Pizzeria
                 this.txtMinDesde.Enabled = true;
                 this.txtMinHasta.Enabled = true;
             }
+        }
+        private void agregarEventoInicio()
+        {
+            Console.WriteLine("Imprimiendo: " + 0);
+            dgvResultados.Rows[0].Cells["colFila"].Value = 0;
+            dgvResultados.Rows[0].Cells["colEvento"].Value = "Inicio Simulacion";
+            dgvResultados.Rows[0].Cells["colReloj"].Value = relojSimulacion.getReloj();
+            dgvResultados.Rows[0].Cells["colDia"].Value = relojSimulacion.getDia();
+            dgvResultados.Rows[0].Cells["colTurno"].Value = relojSimulacion.getTurno();
+            dgvResultados.Rows[0].Cells["colRNDLlegadaComb"].Value = llegadaPedido.getRandom(); ;
+            dgvResultados.Rows[0].Cells["colTiempoLlegadaComb"].Value = llegadaPedido.getTiempoEntreLlegada();
+            dgvResultados.Rows[0].Cells["colProxLlegadaComb"].Value = llegadaPedido.getProximaLlegada().getReloj();
+            dgvResultados.Rows[0].Cells["colColaPreparacion"].Value = colaPreparacion.getCola().Count();
+            dgvResultados.Rows[0].Cells["colEstadoEmpleado1"].Value = empleado1.getEstado();
+            dgvResultados.Rows[0].Cells["colEstadoEmpleado2"].Value = empleado2.getEstado();
+            dgvResultados.Rows[0].Cells["colEstadoEmpleado3"].Value = empleado3.getEstado();
+            dgvResultados.Rows[0].Cells["colEstadoMoto"].Value = delivery.getEstado();
+        }
+
+        private void agregarEventoAGrilla(int i, Evento evento, int fila)
+        {
+            Console.WriteLine("Imprimiendo: " + fila);
+            dgvResultados.Rows[i].Cells["colFila"].Value = fila;
+            dgvResultados.Rows[i].Cells["colEvento"].Value = evento.getNombreEvento();
+            dgvResultados.Rows[i].Cells["colReloj"].Value = relojSimulacion.getReloj();
+            dgvResultados.Rows[i].Cells["colDia"].Value = relojSimulacion.getDia();
+            dgvResultados.Rows[i].Cells["colTurno"].Value = relojSimulacion.getTurno().ToString();
+            dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = llegadaPedido.getRandom(); ;
+            dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = llegadaPedido.getTiempoEntreLlegada();
+            dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = llegadaPedido.getRandomTipoPed();
+            if (llegadaPedido.getPedido() != null)
+            {
+                dgvResultados.Rows[i].Cells["colTipoPedido"].Value = llegadaPedido.getPedido().Tipo;
+                dgvResultados.Rows[i].Cells["colCantidad"].Value = llegadaPedido.getPedido().Cantidad;
+                if (llegadaPedido.getPedido().Tipo.Equals("Empanadas"))
+                    dgvResultados.Rows[i].Cells["colRNDCant"].Value = llegadaPedido.getPedido().RndCantidad;
+            }     
+            dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = llegadaPedido.getProximaLlegada().getReloj();
+            dgvResultados.Rows[i].Cells["colColaPreparacion"].Value = colaPreparacion.getCola().Count();
+            dgvResultados.Rows[i].Cells["colEstadoEmpleado1"].Value = empleado1.getEstado();
+            dgvResultados.Rows[i].Cells["colEstadoEmpleado2"].Value = empleado2.getEstado();
+            dgvResultados.Rows[i].Cells["colEstadoEmpleado3"].Value = empleado3.getEstado();
+            dgvResultados.Rows[i].Cells["colRndDemora1"].Value = finCoccionEmpleado1.getRandom();
+            dgvResultados.Rows[i].Cells["colDemora1"].Value = finCoccionEmpleado1.getTiempoEntreLlegada();
+            dgvResultados.Rows[i].Cells["colFinCoccion1"].Value = finCoccionEmpleado1.getProximaLlegada().getReloj();
+            dgvResultados.Rows[i].Cells["colRndDemora2"].Value = finCoccionEmpleado2.getRandom();
+            dgvResultados.Rows[i].Cells["colDemora2"].Value = finCoccionEmpleado2.getProximaLlegada();
+            dgvResultados.Rows[i].Cells["colFinCoccion2"].Value = finCoccionEmpleado2.getProximaLlegada().getReloj();
+            dgvResultados.Rows[i].Cells["colRndDemora3"].Value = finCoccionEmpleado3.getRandom();
+            dgvResultados.Rows[i].Cells["colDemora3"].Value = finCoccionEmpleado3.getTiempoEntreLlegada();
+            dgvResultados.Rows[i].Cells["colFinCoccion3"].Value = finCoccionEmpleado3.getProximaLlegada().getReloj();
+            dgvResultados.Rows[i].Cells["colEstadoMoto"].Value = delivery.getEstado();
+            dgvResultados.Rows[i].Cells["colRndDelivery"].Value = this.finDelivery.getRandom();
+            dgvResultados.Rows[i].Cells["colTiempoEntrega"].Value = this.finDelivery.getTiempoEntreLlegada();
+            dgvResultados.Rows[i].Cells["colFinEntregaDelivery"].Value = this.finDelivery.getProximaLlegada().getReloj();
         }
     }
 }
