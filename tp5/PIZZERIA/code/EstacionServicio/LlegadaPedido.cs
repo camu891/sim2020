@@ -43,7 +43,7 @@ namespace Pizzeria
 
 		public double getRandomTipoPed()
 		{
-			return this.rndTiempoLlegada;
+			return this.rndTipoPedido;
 		}
 		public void setRandomTipoPed(double rnd)
 		{

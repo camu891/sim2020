@@ -144,8 +144,9 @@ namespace Pizzeria
                     //Evento Fin coccion empleado 1
                     if (this.finCoccionEmpleado1.getProximaLlegada().Equals(firstEvent)) 
                     {
-                        finCoccionEmpleado1.setHoraFin(new Reloj());         
+                        finCoccionEmpleado1.setHoraFin(new Reloj());
                         //actualizar el pedido a preparado
+                        cambiarEstadoPedido(llegadaPedido.getPedido());
                         //liberar el empleado si no hay cola
                         //si hay cola sacar de colar y calcular nueva demora 
                         actualizarEstadoEmpleado(empleado1, fila);
@@ -268,10 +269,10 @@ namespace Pizzeria
                 Pedido enPreparacion = colaPreparacion.getCola().Dequeue();
                 LlegadaPedido lp = new LlegadaPedido();
                 lp.setPedido(enPreparacion);
+                generarDemoraPedido(fila, e.getId(), lp);
             }
             else
-            {
-                //libero los datos de empleado
+            { //libero los datos de empleado
                 switch (e.getId())
                 {
                     case 1:
