@@ -48,6 +48,13 @@ namespace Pizzeria
         private double filaAPartirDeDondeMostrar;
         private int cantidadDeEventosAMostrar;
         private int tope_delivery;
+        private int numeropedido;
+        private int w_stkpizza;
+        private int w_stklomo;
+        private int w_stkhamb;
+        private int w_stksand;
+        private int w_stkemp;
+        private Boolean w_haystock;
 
         //Variables necesarias
         private Reloj relojSimulacion;
@@ -91,6 +98,7 @@ namespace Pizzeria
 
                 //Genero Evento Llegada Pedido 0
                 int fila = 0;
+                numeropedido = 1;
                 llegadaPedido.simular(relojSimulacion, rand.NextDouble());
 
                 //Imprimo fila 0
@@ -99,6 +107,12 @@ namespace Pizzeria
                     this.dgvResultados.Rows.Add();
                     agregarEventoInicio();
                 }
+
+               w_stkpizza=0;
+               w_stklomo=0;
+               w_stkhamb=0;
+               w_stksand=0;
+               w_stkemp=0;
 
                 //Bucle principal de Simulacion
                 while (relojSimulacion.getDia() < tiempoFinCorrida)
@@ -112,39 +126,99 @@ namespace Pizzeria
                     //Evento Llegada Pedido
                     if (this.llegadaPedido.getProximaLlegada().Equals(firstEvent))
                     {
+                        numeropedido++;
                         this.relojSimulacion.setDia(firstEvent.getDia());
                         this.relojSimulacion.setTurno(firstEvent.getTurno());
                         this.llegadaPedido.simular(this.relojSimulacion, this.rand.NextDouble());
-
-                        if (this.empleado1.getEstado() == "Libre")
+             // GG agrego control de stock
+                        w_haystock = false;
+                        switch (llegadaPedido.getPedido().Tipo)
                         {
-                            generarDemoraPedido(fila, 1, llegadaPedido);
+                            case "Empanadas":
+                                if (w_stkemp >= llegadaPedido.getPedido().Cantidad)
+                                {
+                                    w_stkemp = w_stkemp - llegadaPedido.getPedido().Cantidad;
+                                    w_haystock = true;
+                                }
+                                break;
+                            case "Pizza":
+                                if (w_stkpizza >= llegadaPedido.getPedido().Cantidad)
+                                {
+                                    w_stkpizza = w_stkpizza - llegadaPedido.getPedido().Cantidad;
+                                    w_haystock=true;
+                                }
+                                break;
+                            case "DocSandwich":
+                                if (w_stksand >= llegadaPedido.getPedido().Cantidad)
+                                {
+                                    w_stksand = w_stksand - llegadaPedido.getPedido().Cantidad;
+                                    w_haystock = true;
+                                }
+                                break;
+                            case "Lomito":
+                                if (w_stklomo >= llegadaPedido.getPedido().Cantidad)
+                                {
+                                    w_stklomo = w_stklomo - llegadaPedido.getPedido().Cantidad;
+                                    w_haystock = true;
+                                }
+                                break;
+                            case "Hamburguesa":
+                                if (w_stkhamb >= llegadaPedido.getPedido().Cantidad)
+                                {
+                                    w_stkhamb = w_stklomo - llegadaPedido.getPedido().Cantidad;
+                                    w_haystock = true;
+                                }
+                                break;
                         }
-                        else
+                        if (w_haystock)
                         {
-                            if (this.empleado2.getEstado() == "Libre")
+                            if (this.delivery.getEstado() == "Libre")
                             {
-                                generarDemoraPedido(fila, 2, llegadaPedido);
+                                //aca me quede controlar bien xq se armo el bucle
+                                this.generarDemoraDelivery(fila, relojSimulacion, 1);
+                                delivery.setEstado("Reparto");
                             }
                             else
                             {
-                                if (this.empleado3.getEstado() == "Libre")
+                                // mandar a cola
+                                delivery.ponerEnCola(llegadaPedido.getPedido());
+                            }
+                            imprimirFila(llegadaPedido, fila);
+                        }
+                // GG Fin de control stock
+                        else
+                        {
+                            if (this.empleado1.getEstado() == "Libre")
+                            {
+                                generarDemoraPedido(fila, 1, llegadaPedido);
+                            }
+                            else
+                            {
+                                if (this.empleado2.getEstado() == "Libre")
                                 {
-                                    generarDemoraPedido(fila, 3, llegadaPedido);
+                                    generarDemoraPedido(fila, 2, llegadaPedido);
                                 }
                                 else
                                 {
-                                    // mandar a cola
-                                    ponerColaPedido(llegadaPedido);
+                                    if (this.empleado3.getEstado() == "Libre")
+                                    {
+                                        generarDemoraPedido(fila, 3, llegadaPedido);
+                                    }
+                                    else
+                                    {
+                                        // mandar a cola
+                                        ponerColaPedido(llegadaPedido);
+                                    }
                                 }
-                            }
 
+                            }
+                            imprimirFila(llegadaPedido, fila);
                         }
-                        imprimirFila(llegadaPedido, fila);
                     }
                     //Evento Fin coccion empleado 1
                     if (this.finCoccionEmpleado1.getProximaLlegada().Equals(firstEvent))
                     {
+      
                         finCoccionEmpleado1.setHoraFin(new Reloj());
                         //actualizar el pedido a preparado
                         cambiarEstadoPedido(llegadaPedido.getPedido());
@@ -152,6 +226,32 @@ namespace Pizzeria
                         //si hay cola sacar de colar y calcular nueva demora 
                         actualizarEstadoEmpleado(empleado1, fila);
                         // hacer la parte del delivery
+
+                        Pedido verTpoPed = llegadaPedido.getPedido();
+                        double a = relojSimulacion.getReloj() - verTpoPed.getInicioEspera().getReloj();
+
+                        if (a > tiempoTopeEspera)
+                        {
+                            switch (verTpoPed.Tipo)
+                            {
+                                case "Empanadas":
+                                    w_stkemp = w_stkemp + verTpoPed.Cantidad;                                    
+                                    break;
+                                case "Pizza":
+                                    w_stkpizza = w_stkpizza + verTpoPed.Cantidad;
+                                    break;
+                                case "DocSandwich":
+                                    w_stksand = w_stksand + verTpoPed.Cantidad;
+                                    break;
+                                case "Lomito":
+                                    w_stklomo = w_stklomo + verTpoPed.Cantidad;
+                                    break;
+                                case "Hamburguesa":
+                                    w_stkhamb = w_stkhamb + verTpoPed.Cantidad;
+                                    break;
+                            }
+                        }
+
 
                         if (this.delivery.getEstado() == "Libre")
                         {
@@ -472,6 +572,7 @@ namespace Pizzeria
             Console.WriteLine("Imprimiendo: " + 0);
             dgvResultados.Rows[0].Cells["colFila"].Value = 0;
             dgvResultados.Rows[0].Cells["colEvento"].Value = "Inicio Simulacion";
+            dgvResultados.Rows[0].Cells["NroPed"].Value = 0;
             dgvResultados.Rows[0].Cells["colReloj"].Value = relojSimulacion.getReloj();
             dgvResultados.Rows[0].Cells["colDia"].Value = relojSimulacion.getDia();
             dgvResultados.Rows[0].Cells["colTurno"].Value = relojSimulacion.getTurno();
@@ -483,6 +584,13 @@ namespace Pizzeria
             dgvResultados.Rows[0].Cells["colEstadoEmpleado2"].Value = empleado2.getEstado();
             dgvResultados.Rows[0].Cells["colEstadoEmpleado3"].Value = empleado3.getEstado();
             dgvResultados.Rows[0].Cells["colEstadoMoto"].Value = delivery.getEstado();
+            dgvResultados.Rows[0].Cells["DejaPed"].Value = "";
+            dgvResultados.Rows[0].Cells["StkPizza"].Value = 0;
+            dgvResultados.Rows[0].Cells["StkEmp"].Value = 0;
+            dgvResultados.Rows[0].Cells["StkSand"].Value = 0;
+            dgvResultados.Rows[0].Cells["StkLomo"].Value = 0;
+            dgvResultados.Rows[0].Cells["StkHamb"].Value = 0;
+            
         }
 
         private void agregarEventoAGrilla(int i, Evento evento, int fila)
@@ -501,10 +609,16 @@ namespace Pizzeria
             dgvResultados.Rows[i].Cells["colEstadoEmpleado3"].Value = empleado3.getEstado();
             dgvResultados.Rows[i].Cells["colDelivery"].Value = delivery.getCola().Count();
             dgvResultados.Rows[i].Cells["colEstadoMoto"].Value = delivery.getEstado();
+            dgvResultados.Rows[i].Cells["StkPizza"].Value =w_stkpizza;
+            dgvResultados.Rows[i].Cells["StkEmp"].Value = w_stkemp;
+            dgvResultados.Rows[i].Cells["StkSand"].Value = w_stksand;
+            dgvResultados.Rows[i].Cells["StkLomo"].Value = w_stklomo;
+            dgvResultados.Rows[i].Cells["StkHamb"].Value = w_stkhamb;
 
             //Estos se muestran solo en caso de que el evento sea una llegada de Pedido
             if (evento.getNombreEvento().Equals("llegada_Pedido"))
             {
+                dgvResultados.Rows[i].Cells["NroPed"].Value = llegadaPedido.getPedido().Id;
                 dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = llegadaPedido.getRandom(); ;
                 dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = llegadaPedido.getTiempoEntreLlegada();
                 dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = llegadaPedido.getRandomTipoPed();
@@ -512,6 +626,11 @@ namespace Pizzeria
                 dgvResultados.Rows[i].Cells["colCantidad"].Value = llegadaPedido.getPedido().Cantidad;
                 if (llegadaPedido.getPedido().Tipo.Equals("Empanadas"))
                     dgvResultados.Rows[i].Cells["colRNDCant"].Value = llegadaPedido.getPedido().RndCantidad;
+                dgvResultados.Rows[i].Cells["StkPizza"].Value = w_stkpizza;
+                dgvResultados.Rows[i].Cells["StkEmp"].Value = w_stkemp;
+                dgvResultados.Rows[i].Cells["StkSand"].Value = w_stksand;
+                dgvResultados.Rows[i].Cells["StkLomo"].Value = w_stklomo;
+                dgvResultados.Rows[i].Cells["StkHamb"].Value = w_stkhamb;
             }
 
             //Estos se muestra si hay una proxima llegada pendiente
@@ -554,6 +673,11 @@ namespace Pizzeria
         }
 
         private void dgvResultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvResultados_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }

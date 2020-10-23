@@ -201,6 +201,7 @@
             this.dgvResultados = new System.Windows.Forms.DataGridView();
             this.ColFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NroPed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTurno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -229,6 +230,12 @@
             this.colRndDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTiempoEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinEntregaDelivery = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StkPizza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StkSand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StkLomo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StkHamb = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StkEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DejaPed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gpbParametros.SuspendLayout();
             this.Integrantes.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -251,9 +258,9 @@
             this.gpbParametros.Controls.Add(this.gpbTiemposFin);
             this.gpbParametros.Controls.Add(this.gpbTiemposLlegadas);
             this.gpbParametros.Location = new System.Drawing.Point(16, 15);
-            this.gpbParametros.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbParametros.Margin = new System.Windows.Forms.Padding(4);
             this.gpbParametros.Name = "gpbParametros";
-            this.gpbParametros.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbParametros.Padding = new System.Windows.Forms.Padding(4);
             this.gpbParametros.Size = new System.Drawing.Size(1668, 186);
             this.gpbParametros.TabIndex = 0;
             this.gpbParametros.TabStop = false;
@@ -270,9 +277,9 @@
             this.Integrantes.Controls.Add(this.label32);
             this.Integrantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Integrantes.Location = new System.Drawing.Point(1820, 21);
-            this.Integrantes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Integrantes.Margin = new System.Windows.Forms.Padding(4);
             this.Integrantes.Name = "Integrantes";
-            this.Integrantes.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Integrantes.Padding = new System.Windows.Forms.Padding(4);
             this.Integrantes.Size = new System.Drawing.Size(489, 158);
             this.Integrantes.TabIndex = 109;
             this.Integrantes.TabStop = false;
@@ -353,9 +360,9 @@
             this.groupBox1.Controls.Add(this.textCantPedidos);
             this.groupBox1.Controls.Add(this.textMediaDelivery);
             this.groupBox1.Location = new System.Drawing.Point(1484, 25);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(293, 155);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
@@ -406,7 +413,7 @@
             // textCantPedidos
             // 
             this.textCantPedidos.Location = new System.Drawing.Point(156, 59);
-            this.textCantPedidos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCantPedidos.Margin = new System.Windows.Forms.Padding(4);
             this.textCantPedidos.Name = "textCantPedidos";
             this.textCantPedidos.Size = new System.Drawing.Size(47, 22);
             this.textCantPedidos.TabIndex = 1;
@@ -416,7 +423,7 @@
             // textMediaDelivery
             // 
             this.textMediaDelivery.Location = new System.Drawing.Point(156, 27);
-            this.textMediaDelivery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textMediaDelivery.Margin = new System.Windows.Forms.Padding(4);
             this.textMediaDelivery.Name = "textMediaDelivery";
             this.textMediaDelivery.Size = new System.Drawing.Size(47, 22);
             this.textMediaDelivery.TabIndex = 0;
@@ -470,9 +477,9 @@
             this.gpbTiemposFin.Controls.Add(this.txtdesvSandwich);
             this.gpbTiemposFin.Controls.Add(this.txtPromSandwich);
             this.gpbTiemposFin.Location = new System.Drawing.Point(309, 23);
-            this.gpbTiemposFin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbTiemposFin.Margin = new System.Windows.Forms.Padding(4);
             this.gpbTiemposFin.Name = "gpbTiemposFin";
-            this.gpbTiemposFin.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbTiemposFin.Padding = new System.Windows.Forms.Padding(4);
             this.gpbTiemposFin.Size = new System.Drawing.Size(1160, 155);
             this.gpbTiemposFin.TabIndex = 1;
             this.gpbTiemposFin.TabStop = false;
@@ -503,7 +510,7 @@
             // textPrecioSandwich
             // 
             this.textPrecioSandwich.Location = new System.Drawing.Point(85, 116);
-            this.textPrecioSandwich.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textPrecioSandwich.Margin = new System.Windows.Forms.Padding(4);
             this.textPrecioSandwich.Name = "textPrecioSandwich";
             this.textPrecioSandwich.Size = new System.Drawing.Size(48, 22);
             this.textPrecioSandwich.TabIndex = 53;
@@ -567,7 +574,7 @@
             // textPrecioLomo
             // 
             this.textPrecioLomo.Location = new System.Drawing.Point(1029, 86);
-            this.textPrecioLomo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textPrecioLomo.Margin = new System.Windows.Forms.Padding(4);
             this.textPrecioLomo.Name = "textPrecioLomo";
             this.textPrecioLomo.Size = new System.Drawing.Size(43, 22);
             this.textPrecioLomo.TabIndex = 44;
@@ -577,7 +584,7 @@
             // textDemoraLomo
             // 
             this.textDemoraLomo.Location = new System.Drawing.Point(1029, 54);
-            this.textDemoraLomo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textDemoraLomo.Margin = new System.Windows.Forms.Padding(4);
             this.textDemoraLomo.Name = "textDemoraLomo";
             this.textDemoraLomo.Size = new System.Drawing.Size(43, 22);
             this.textDemoraLomo.TabIndex = 43;
@@ -641,7 +648,7 @@
             // textPrecioHambur
             // 
             this.textPrecioHambur.Location = new System.Drawing.Point(804, 87);
-            this.textPrecioHambur.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textPrecioHambur.Margin = new System.Windows.Forms.Padding(4);
             this.textPrecioHambur.Name = "textPrecioHambur";
             this.textPrecioHambur.Size = new System.Drawing.Size(45, 22);
             this.textPrecioHambur.TabIndex = 34;
@@ -651,7 +658,7 @@
             // textDemoraHambur
             // 
             this.textDemoraHambur.Location = new System.Drawing.Point(804, 55);
-            this.textDemoraHambur.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textDemoraHambur.Margin = new System.Windows.Forms.Padding(4);
             this.textDemoraHambur.Name = "textDemoraHambur";
             this.textDemoraHambur.Size = new System.Drawing.Size(45, 22);
             this.textDemoraHambur.TabIndex = 33;
@@ -705,7 +712,7 @@
             // textPrecioEmpa
             // 
             this.textPrecioEmpa.Location = new System.Drawing.Point(567, 117);
-            this.textPrecioEmpa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textPrecioEmpa.Margin = new System.Windows.Forms.Padding(4);
             this.textPrecioEmpa.Name = "textPrecioEmpa";
             this.textPrecioEmpa.Size = new System.Drawing.Size(44, 22);
             this.textPrecioEmpa.TabIndex = 25;
@@ -747,7 +754,7 @@
             // textDemora2Empa
             // 
             this.textDemora2Empa.Location = new System.Drawing.Point(567, 85);
-            this.textDemora2Empa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textDemora2Empa.Margin = new System.Windows.Forms.Padding(4);
             this.textDemora2Empa.Name = "textDemora2Empa";
             this.textDemora2Empa.Size = new System.Drawing.Size(44, 22);
             this.textDemora2Empa.TabIndex = 24;
@@ -757,7 +764,7 @@
             // textDemora3Empa
             // 
             this.textDemora3Empa.Location = new System.Drawing.Point(567, 53);
-            this.textDemora3Empa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textDemora3Empa.Margin = new System.Windows.Forms.Padding(4);
             this.textDemora3Empa.Name = "textDemora3Empa";
             this.textDemora3Empa.Size = new System.Drawing.Size(44, 22);
             this.textDemora3Empa.TabIndex = 23;
@@ -833,7 +840,7 @@
             // txtPrecioPizza
             // 
             this.txtPrecioPizza.Location = new System.Drawing.Point(292, 116);
-            this.txtPrecioPizza.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPrecioPizza.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrecioPizza.Name = "txtPrecioPizza";
             this.txtPrecioPizza.Size = new System.Drawing.Size(49, 22);
             this.txtPrecioPizza.TabIndex = 4;
@@ -886,7 +893,7 @@
             // txtHastaPizza
             // 
             this.txtHastaPizza.Location = new System.Drawing.Point(292, 84);
-            this.txtHastaPizza.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtHastaPizza.Margin = new System.Windows.Forms.Padding(4);
             this.txtHastaPizza.Name = "txtHastaPizza";
             this.txtHastaPizza.Size = new System.Drawing.Size(49, 22);
             this.txtHastaPizza.TabIndex = 3;
@@ -897,7 +904,7 @@
             // txtDesdePizza
             // 
             this.txtDesdePizza.Location = new System.Drawing.Point(292, 52);
-            this.txtDesdePizza.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDesdePizza.Margin = new System.Windows.Forms.Padding(4);
             this.txtDesdePizza.Name = "txtDesdePizza";
             this.txtDesdePizza.Size = new System.Drawing.Size(49, 22);
             this.txtDesdePizza.TabIndex = 2;
@@ -930,7 +937,7 @@
             // txtdesvSandwich
             // 
             this.txtdesvSandwich.Location = new System.Drawing.Point(85, 84);
-            this.txtdesvSandwich.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtdesvSandwich.Margin = new System.Windows.Forms.Padding(4);
             this.txtdesvSandwich.Name = "txtdesvSandwich";
             this.txtdesvSandwich.Size = new System.Drawing.Size(48, 22);
             this.txtdesvSandwich.TabIndex = 1;
@@ -941,7 +948,7 @@
             // txtPromSandwich
             // 
             this.txtPromSandwich.Location = new System.Drawing.Point(85, 52);
-            this.txtPromSandwich.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPromSandwich.Margin = new System.Windows.Forms.Padding(4);
             this.txtPromSandwich.Name = "txtPromSandwich";
             this.txtPromSandwich.Size = new System.Drawing.Size(48, 22);
             this.txtPromSandwich.TabIndex = 0;
@@ -961,9 +968,9 @@
             this.gpbTiemposLlegadas.Controls.Add(this.txtTopeGratis);
             this.gpbTiemposLlegadas.Controls.Add(this.txtLlegadaPedido);
             this.gpbTiemposLlegadas.Location = new System.Drawing.Point(8, 23);
-            this.gpbTiemposLlegadas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbTiemposLlegadas.Margin = new System.Windows.Forms.Padding(4);
             this.gpbTiemposLlegadas.Name = "gpbTiemposLlegadas";
-            this.gpbTiemposLlegadas.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbTiemposLlegadas.Padding = new System.Windows.Forms.Padding(4);
             this.gpbTiemposLlegadas.Size = new System.Drawing.Size(293, 155);
             this.gpbTiemposLlegadas.TabIndex = 0;
             this.gpbTiemposLlegadas.TabStop = false;
@@ -983,7 +990,7 @@
             // txtTopeEspera
             // 
             this.txtTopeEspera.Location = new System.Drawing.Point(165, 89);
-            this.txtTopeEspera.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTopeEspera.Margin = new System.Windows.Forms.Padding(4);
             this.txtTopeEspera.Name = "txtTopeEspera";
             this.txtTopeEspera.Size = new System.Drawing.Size(59, 22);
             this.txtTopeEspera.TabIndex = 2;
@@ -1046,7 +1053,7 @@
             // txtTopeGratis
             // 
             this.txtTopeGratis.Location = new System.Drawing.Point(165, 59);
-            this.txtTopeGratis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTopeGratis.Margin = new System.Windows.Forms.Padding(4);
             this.txtTopeGratis.Name = "txtTopeGratis";
             this.txtTopeGratis.Size = new System.Drawing.Size(59, 22);
             this.txtTopeGratis.TabIndex = 1;
@@ -1057,7 +1064,7 @@
             // txtLlegadaPedido
             // 
             this.txtLlegadaPedido.Location = new System.Drawing.Point(165, 27);
-            this.txtLlegadaPedido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLlegadaPedido.Margin = new System.Windows.Forms.Padding(4);
             this.txtLlegadaPedido.Name = "txtLlegadaPedido";
             this.txtLlegadaPedido.Size = new System.Drawing.Size(59, 22);
             this.txtLlegadaPedido.TabIndex = 0;
@@ -1075,9 +1082,9 @@
             this.gpbResultado.Controls.Add(this.groupBox2);
             this.gpbResultado.Controls.Add(this.gpbResult);
             this.gpbResultado.Location = new System.Drawing.Point(16, 208);
-            this.gpbResultado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbResultado.Margin = new System.Windows.Forms.Padding(4);
             this.gpbResultado.Name = "gpbResultado";
-            this.gpbResultado.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbResultado.Padding = new System.Windows.Forms.Padding(4);
             this.gpbResultado.Size = new System.Drawing.Size(1668, 585);
             this.gpbResultado.TabIndex = 1;
             this.gpbResultado.TabStop = false;
@@ -1158,9 +1165,9 @@
             this.groupBox3.Controls.Add(this.textBox12);
             this.groupBox3.Controls.Add(this.textBox13);
             this.groupBox3.Location = new System.Drawing.Point(628, 23);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(1735, 214);
             this.groupBox3.TabIndex = 56;
             this.groupBox3.TabStop = false;
@@ -1246,7 +1253,7 @@
             // textCantVentasGratisDesv
             // 
             this.textCantVentasGratisDesv.Location = new System.Drawing.Point(260, 176);
-            this.textCantVentasGratisDesv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCantVentasGratisDesv.Margin = new System.Windows.Forms.Padding(4);
             this.textCantVentasGratisDesv.Name = "textCantVentasGratisDesv";
             this.textCantVentasGratisDesv.ReadOnly = true;
             this.textCantVentasGratisDesv.Size = new System.Drawing.Size(49, 22);
@@ -1257,7 +1264,7 @@
             // textCantVentasGratisProm
             // 
             this.textCantVentasGratisProm.Location = new System.Drawing.Point(203, 176);
-            this.textCantVentasGratisProm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCantVentasGratisProm.Margin = new System.Windows.Forms.Padding(4);
             this.textCantVentasGratisProm.Name = "textCantVentasGratisProm";
             this.textCantVentasGratisProm.ReadOnly = true;
             this.textCantVentasGratisProm.Size = new System.Drawing.Size(49, 22);
@@ -1301,7 +1308,7 @@
             // textCantEmpDesv
             // 
             this.textCantEmpDesv.Location = new System.Drawing.Point(260, 114);
-            this.textCantEmpDesv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCantEmpDesv.Margin = new System.Windows.Forms.Padding(4);
             this.textCantEmpDesv.Name = "textCantEmpDesv";
             this.textCantEmpDesv.ReadOnly = true;
             this.textCantEmpDesv.Size = new System.Drawing.Size(48, 22);
@@ -1334,7 +1341,7 @@
             // textCantVentasPerdidasDesv
             // 
             this.textCantVentasPerdidasDesv.Location = new System.Drawing.Point(260, 146);
-            this.textCantVentasPerdidasDesv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCantVentasPerdidasDesv.Margin = new System.Windows.Forms.Padding(4);
             this.textCantVentasPerdidasDesv.Name = "textCantVentasPerdidasDesv";
             this.textCantVentasPerdidasDesv.ReadOnly = true;
             this.textCantVentasPerdidasDesv.Size = new System.Drawing.Size(49, 22);
@@ -1345,7 +1352,7 @@
             // textBox26
             // 
             this.textBox26.Location = new System.Drawing.Point(1281, 180);
-            this.textBox26.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox26.Margin = new System.Windows.Forms.Padding(4);
             this.textBox26.Name = "textBox26";
             this.textBox26.ReadOnly = true;
             this.textBox26.Size = new System.Drawing.Size(49, 22);
@@ -1367,7 +1374,7 @@
             // textBox27
             // 
             this.textBox27.Location = new System.Drawing.Point(1636, 90);
-            this.textBox27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox27.Margin = new System.Windows.Forms.Padding(4);
             this.textBox27.Name = "textBox27";
             this.textBox27.ReadOnly = true;
             this.textBox27.Size = new System.Drawing.Size(48, 22);
@@ -1378,7 +1385,7 @@
             // textCantPedxHoraDesv
             // 
             this.textCantPedxHoraDesv.Location = new System.Drawing.Point(260, 82);
-            this.textCantPedxHoraDesv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCantPedxHoraDesv.Margin = new System.Windows.Forms.Padding(4);
             this.textCantPedxHoraDesv.Name = "textCantPedxHoraDesv";
             this.textCantPedxHoraDesv.ReadOnly = true;
             this.textCantPedxHoraDesv.Size = new System.Drawing.Size(48, 22);
@@ -1389,7 +1396,7 @@
             // textBox28
             // 
             this.textBox28.Location = new System.Drawing.Point(1635, 58);
-            this.textBox28.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox28.Margin = new System.Windows.Forms.Padding(4);
             this.textBox28.Name = "textBox28";
             this.textBox28.ReadOnly = true;
             this.textBox28.Size = new System.Drawing.Size(48, 22);
@@ -1422,7 +1429,7 @@
             // textCantPedDesv
             // 
             this.textCantPedDesv.Location = new System.Drawing.Point(260, 50);
-            this.textCantPedDesv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCantPedDesv.Margin = new System.Windows.Forms.Padding(4);
             this.textCantPedDesv.Name = "textCantPedDesv";
             this.textCantPedDesv.ReadOnly = true;
             this.textCantPedDesv.Size = new System.Drawing.Size(48, 22);
@@ -1444,7 +1451,7 @@
             // textCantEmpaProm
             // 
             this.textCantEmpaProm.Location = new System.Drawing.Point(203, 114);
-            this.textCantEmpaProm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCantEmpaProm.Margin = new System.Windows.Forms.Padding(4);
             this.textCantEmpaProm.Name = "textCantEmpaProm";
             this.textCantEmpaProm.ReadOnly = true;
             this.textCantEmpaProm.Size = new System.Drawing.Size(48, 22);
@@ -1466,7 +1473,7 @@
             // textCantPedProm
             // 
             this.textCantPedProm.Location = new System.Drawing.Point(203, 50);
-            this.textCantPedProm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCantPedProm.Margin = new System.Windows.Forms.Padding(4);
             this.textCantPedProm.Name = "textCantPedProm";
             this.textCantPedProm.ReadOnly = true;
             this.textCantPedProm.Size = new System.Drawing.Size(48, 22);
@@ -1477,7 +1484,7 @@
             // textCantPedxHoraProm
             // 
             this.textCantPedxHoraProm.Location = new System.Drawing.Point(203, 82);
-            this.textCantPedxHoraProm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCantPedxHoraProm.Margin = new System.Windows.Forms.Padding(4);
             this.textCantPedxHoraProm.Name = "textCantPedxHoraProm";
             this.textCantPedxHoraProm.ReadOnly = true;
             this.textCantPedxHoraProm.Size = new System.Drawing.Size(48, 22);
@@ -1498,7 +1505,7 @@
             // textBox30
             // 
             this.textBox30.Location = new System.Drawing.Point(1224, 180);
-            this.textBox30.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox30.Margin = new System.Windows.Forms.Padding(4);
             this.textBox30.Name = "textBox30";
             this.textBox30.ReadOnly = true;
             this.textBox30.Size = new System.Drawing.Size(49, 22);
@@ -1509,7 +1516,7 @@
             // textCantVentasPerdidasProm
             // 
             this.textCantVentasPerdidasProm.Location = new System.Drawing.Point(203, 146);
-            this.textCantVentasPerdidasProm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCantVentasPerdidasProm.Margin = new System.Windows.Forms.Padding(4);
             this.textCantVentasPerdidasProm.Name = "textCantVentasPerdidasProm";
             this.textCantVentasPerdidasProm.ReadOnly = true;
             this.textCantVentasPerdidasProm.Size = new System.Drawing.Size(49, 22);
@@ -1541,7 +1548,7 @@
             // textBox10
             // 
             this.textBox10.Location = new System.Drawing.Point(1280, 117);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(4);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(48, 22);
@@ -1552,7 +1559,7 @@
             // textBox18
             // 
             this.textBox18.Location = new System.Drawing.Point(1280, 149);
-            this.textBox18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox18.Margin = new System.Windows.Forms.Padding(4);
             this.textBox18.Name = "textBox18";
             this.textBox18.ReadOnly = true;
             this.textBox18.Size = new System.Drawing.Size(49, 22);
@@ -1563,7 +1570,7 @@
             // textBox19
             // 
             this.textBox19.Location = new System.Drawing.Point(1280, 85);
-            this.textBox19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox19.Margin = new System.Windows.Forms.Padding(4);
             this.textBox19.Name = "textBox19";
             this.textBox19.ReadOnly = true;
             this.textBox19.Size = new System.Drawing.Size(48, 22);
@@ -1574,7 +1581,7 @@
             // textBox20
             // 
             this.textBox20.Location = new System.Drawing.Point(1280, 53);
-            this.textBox20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox20.Margin = new System.Windows.Forms.Padding(4);
             this.textBox20.Name = "textBox20";
             this.textBox20.ReadOnly = true;
             this.textBox20.Size = new System.Drawing.Size(48, 22);
@@ -1596,7 +1603,7 @@
             // textBox21
             // 
             this.textBox21.Location = new System.Drawing.Point(1223, 117);
-            this.textBox21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox21.Margin = new System.Windows.Forms.Padding(4);
             this.textBox21.Name = "textBox21";
             this.textBox21.ReadOnly = true;
             this.textBox21.Size = new System.Drawing.Size(48, 22);
@@ -1649,7 +1656,7 @@
             // textBox22
             // 
             this.textBox22.Location = new System.Drawing.Point(1223, 149);
-            this.textBox22.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox22.Margin = new System.Windows.Forms.Padding(4);
             this.textBox22.Name = "textBox22";
             this.textBox22.ReadOnly = true;
             this.textBox22.Size = new System.Drawing.Size(49, 22);
@@ -1660,7 +1667,7 @@
             // textBox23
             // 
             this.textBox23.Location = new System.Drawing.Point(1223, 85);
-            this.textBox23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox23.Margin = new System.Windows.Forms.Padding(4);
             this.textBox23.Name = "textBox23";
             this.textBox23.ReadOnly = true;
             this.textBox23.Size = new System.Drawing.Size(48, 22);
@@ -1671,7 +1678,7 @@
             // textBox24
             // 
             this.textBox24.Location = new System.Drawing.Point(1223, 53);
-            this.textBox24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox24.Margin = new System.Windows.Forms.Padding(4);
             this.textBox24.Name = "textBox24";
             this.textBox24.ReadOnly = true;
             this.textBox24.Size = new System.Drawing.Size(48, 22);
@@ -1693,7 +1700,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(944, 114);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(48, 22);
@@ -1704,7 +1711,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(944, 146);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(49, 22);
@@ -1715,7 +1722,7 @@
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(944, 82);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(48, 22);
@@ -1726,7 +1733,7 @@
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(944, 50);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(48, 22);
@@ -1748,7 +1755,7 @@
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(887, 114);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(4);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(48, 22);
@@ -1801,7 +1808,7 @@
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(887, 146);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(49, 22);
@@ -1812,7 +1819,7 @@
             // textBox8
             // 
             this.textBox8.Location = new System.Drawing.Point(887, 82);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(4);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(48, 22);
@@ -1823,7 +1830,7 @@
             // textBox9
             // 
             this.textBox9.Location = new System.Drawing.Point(887, 50);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(4);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(48, 22);
@@ -1834,7 +1841,7 @@
             // textBox14
             // 
             this.textBox14.Location = new System.Drawing.Point(615, 117);
-            this.textBox14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox14.Margin = new System.Windows.Forms.Padding(4);
             this.textBox14.Name = "textBox14";
             this.textBox14.ReadOnly = true;
             this.textBox14.Size = new System.Drawing.Size(48, 22);
@@ -1845,7 +1852,7 @@
             // textBox15
             // 
             this.textBox15.Location = new System.Drawing.Point(615, 149);
-            this.textBox15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox15.Margin = new System.Windows.Forms.Padding(4);
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
             this.textBox15.Size = new System.Drawing.Size(49, 22);
@@ -1856,7 +1863,7 @@
             // textBox16
             // 
             this.textBox16.Location = new System.Drawing.Point(615, 85);
-            this.textBox16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox16.Margin = new System.Windows.Forms.Padding(4);
             this.textBox16.Name = "textBox16";
             this.textBox16.ReadOnly = true;
             this.textBox16.Size = new System.Drawing.Size(48, 22);
@@ -1867,7 +1874,7 @@
             // textBox17
             // 
             this.textBox17.Location = new System.Drawing.Point(615, 53);
-            this.textBox17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox17.Margin = new System.Windows.Forms.Padding(4);
             this.textBox17.Name = "textBox17";
             this.textBox17.ReadOnly = true;
             this.textBox17.Size = new System.Drawing.Size(48, 22);
@@ -1878,7 +1885,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(557, 117);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(48, 22);
@@ -1920,7 +1927,7 @@
             // textBox11
             // 
             this.textBox11.Location = new System.Drawing.Point(557, 149);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(4);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(49, 22);
@@ -1931,7 +1938,7 @@
             // textBox12
             // 
             this.textBox12.Location = new System.Drawing.Point(557, 85);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox12.Margin = new System.Windows.Forms.Padding(4);
             this.textBox12.Name = "textBox12";
             this.textBox12.ReadOnly = true;
             this.textBox12.Size = new System.Drawing.Size(48, 22);
@@ -1942,7 +1949,7 @@
             // textBox13
             // 
             this.textBox13.Location = new System.Drawing.Point(557, 53);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox13.Margin = new System.Windows.Forms.Padding(4);
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
             this.textBox13.Size = new System.Drawing.Size(48, 22);
@@ -1957,9 +1964,9 @@
             this.gpbParametrosCorrida.Controls.Add(this.txtTiempoSim);
             this.gpbParametrosCorrida.Controls.Add(this.lblTiempoSim);
             this.gpbParametrosCorrida.Location = new System.Drawing.Point(23, 23);
-            this.gpbParametrosCorrida.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbParametrosCorrida.Margin = new System.Windows.Forms.Padding(4);
             this.gpbParametrosCorrida.Name = "gpbParametrosCorrida";
-            this.gpbParametrosCorrida.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbParametrosCorrida.Padding = new System.Windows.Forms.Padding(4);
             this.gpbParametrosCorrida.Size = new System.Drawing.Size(319, 214);
             this.gpbParametrosCorrida.TabIndex = 0;
             this.gpbParametrosCorrida.TabStop = false;
@@ -1972,7 +1979,7 @@
             this.btnSimular.ForeColor = System.Drawing.Color.Blue;
             this.btnSimular.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSimular.Location = new System.Drawing.Point(40, 121);
-            this.btnSimular.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSimular.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimular.Name = "btnSimular";
             this.btnSimular.Size = new System.Drawing.Size(225, 43);
             this.btnSimular.TabIndex = 3;
@@ -1994,7 +2001,7 @@
             // txtTiempoSim
             // 
             this.txtTiempoSim.Location = new System.Drawing.Point(160, 41);
-            this.txtTiempoSim.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTiempoSim.Margin = new System.Windows.Forms.Padding(4);
             this.txtTiempoSim.MaxLength = 6;
             this.txtTiempoSim.Name = "txtTiempoSim";
             this.txtTiempoSim.Size = new System.Drawing.Size(63, 22);
@@ -2025,9 +2032,9 @@
             this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(349, 23);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(236, 214);
             this.groupBox2.TabIndex = 52;
             this.groupBox2.TabStop = false;
@@ -2062,7 +2069,7 @@
             this.radioButton1.Checked = true;
             this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton1.Location = new System.Drawing.Point(15, 64);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(17, 16);
             this.radioButton1.TabIndex = 20;
@@ -2075,7 +2082,7 @@
             this.radioCada10mil.AutoSize = true;
             this.radioCada10mil.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioCada10mil.Location = new System.Drawing.Point(15, 119);
-            this.radioCada10mil.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioCada10mil.Margin = new System.Windows.Forms.Padding(4);
             this.radioCada10mil.Name = "radioCada10mil";
             this.radioCada10mil.Size = new System.Drawing.Size(113, 23);
             this.radioCada10mil.TabIndex = 19;
@@ -2087,7 +2094,7 @@
             // 
             this.txtMinHasta.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMinHasta.Location = new System.Drawing.Point(95, 82);
-            this.txtMinHasta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMinHasta.Margin = new System.Windows.Forms.Padding(4);
             this.txtMinHasta.Name = "txtMinHasta";
             this.txtMinHasta.Size = new System.Drawing.Size(64, 26);
             this.txtMinHasta.TabIndex = 3;
@@ -2109,7 +2116,7 @@
             // 
             this.txtMinDesde.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMinDesde.Location = new System.Drawing.Point(95, 44);
-            this.txtMinDesde.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMinDesde.Margin = new System.Windows.Forms.Padding(4);
             this.txtMinDesde.Name = "txtMinDesde";
             this.txtMinDesde.Size = new System.Drawing.Size(64, 26);
             this.txtMinDesde.TabIndex = 1;
@@ -2134,9 +2141,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gpbResult.Controls.Add(this.dgvResultados);
             this.gpbResult.Location = new System.Drawing.Point(8, 245);
-            this.gpbResult.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbResult.Margin = new System.Windows.Forms.Padding(4);
             this.gpbResult.Name = "gpbResult";
-            this.gpbResult.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbResult.Padding = new System.Windows.Forms.Padding(4);
             this.gpbResult.Size = new System.Drawing.Size(1652, 332);
             this.gpbResult.TabIndex = 1;
             this.gpbResult.TabStop = false;
@@ -2152,6 +2159,7 @@
             this.dgvResultados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColFila,
             this.colEvento,
+            this.NroPed,
             this.colReloj,
             this.colDia,
             this.colTurno,
@@ -2179,10 +2187,16 @@
             this.colEstadoMoto,
             this.colRndDelivery,
             this.colTiempoEntrega,
-            this.colFinEntregaDelivery});
+            this.colFinEntregaDelivery,
+            this.StkPizza,
+            this.StkSand,
+            this.StkLomo,
+            this.StkHamb,
+            this.StkEmp,
+            this.DejaPed});
             this.dgvResultados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResultados.Location = new System.Drawing.Point(4, 19);
-            this.dgvResultados.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvResultados.Margin = new System.Windows.Forms.Padding(4);
             this.dgvResultados.MultiSelect = false;
             this.dgvResultados.Name = "dgvResultados";
             this.dgvResultados.ReadOnly = true;
@@ -2191,6 +2205,7 @@
             this.dgvResultados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvResultados.Size = new System.Drawing.Size(1644, 309);
             this.dgvResultados.TabIndex = 0;
+            this.dgvResultados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvResultados_CellContentClick_1);
             // 
             // ColFila
             // 
@@ -2208,6 +2223,15 @@
             this.colEvento.ReadOnly = true;
             this.colEvento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colEvento.Width = 58;
+            // 
+            // NroPed
+            // 
+            this.NroPed.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.NroPed.HeaderText = "Nro Ped";
+            this.NroPed.MinimumWidth = 6;
+            this.NroPed.Name = "NroPed";
+            this.NroPed.ReadOnly = true;
+            this.NroPed.Width = 50;
             // 
             // colReloj
             // 
@@ -2298,11 +2322,12 @@
             // 
             // colRNDCant
             // 
+            this.colRNDCant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colRNDCant.HeaderText = "RND cant";
             this.colRNDCant.MinimumWidth = 6;
             this.colRNDCant.Name = "colRNDCant";
             this.colRNDCant.ReadOnly = true;
-            this.colRNDCant.Width = 91;
+            this.colRNDCant.Width = 50;
             // 
             // colCantidad
             // 
@@ -2337,6 +2362,7 @@
             // 
             // colRndDemora1
             // 
+            this.colRndDemora1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle9.Format = "N2";
             this.colRndDemora1.DefaultCellStyle = dataGridViewCellStyle9;
             this.colRndDemora1.HeaderText = "RND Demora 1";
@@ -2344,10 +2370,11 @@
             this.colRndDemora1.Name = "colRndDemora1";
             this.colRndDemora1.ReadOnly = true;
             this.colRndDemora1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colRndDemora1.Width = 88;
+            this.colRndDemora1.Width = 50;
             // 
             // colDemora1
             // 
+            this.colDemora1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle10.Format = "N2";
             this.colDemora1.DefaultCellStyle = dataGridViewCellStyle10;
             this.colDemora1.HeaderText = "Demora 1";
@@ -2355,16 +2382,17 @@
             this.colDemora1.Name = "colDemora1";
             this.colDemora1.ReadOnly = true;
             this.colDemora1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colDemora1.Width = 68;
+            this.colDemora1.Width = 50;
             // 
             // colFinCoccion1
             // 
+            this.colFinCoccion1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colFinCoccion1.HeaderText = "Fin coccion 1";
             this.colFinCoccion1.MinimumWidth = 6;
             this.colFinCoccion1.Name = "colFinCoccion1";
             this.colFinCoccion1.ReadOnly = true;
             this.colFinCoccion1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colFinCoccion1.Width = 77;
+            this.colFinCoccion1.Width = 50;
             // 
             // colEstadoEmpleado2
             // 
@@ -2377,30 +2405,33 @@
             // 
             // colRndDemora2
             // 
+            this.colRndDemora2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colRndDemora2.HeaderText = "RND Demora 2";
             this.colRndDemora2.MinimumWidth = 6;
             this.colRndDemora2.Name = "colRndDemora2";
             this.colRndDemora2.ReadOnly = true;
             this.colRndDemora2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colRndDemora2.Width = 88;
+            this.colRndDemora2.Width = 50;
             // 
             // colDemora2
             // 
+            this.colDemora2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colDemora2.HeaderText = "Demora 2";
             this.colDemora2.MinimumWidth = 6;
             this.colDemora2.Name = "colDemora2";
             this.colDemora2.ReadOnly = true;
             this.colDemora2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colDemora2.Width = 68;
+            this.colDemora2.Width = 50;
             // 
             // colFinCoccion2
             // 
+            this.colFinCoccion2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colFinCoccion2.HeaderText = "Fin Coccion 2";
             this.colFinCoccion2.MinimumWidth = 6;
             this.colFinCoccion2.Name = "colFinCoccion2";
             this.colFinCoccion2.ReadOnly = true;
             this.colFinCoccion2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colFinCoccion2.Width = 78;
+            this.colFinCoccion2.Width = 50;
             // 
             // colEstadoEmpleado3
             // 
@@ -2413,30 +2444,33 @@
             // 
             // colRndDemora3
             // 
+            this.colRndDemora3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colRndDemora3.HeaderText = "RND Demora 3";
             this.colRndDemora3.MinimumWidth = 6;
             this.colRndDemora3.Name = "colRndDemora3";
             this.colRndDemora3.ReadOnly = true;
             this.colRndDemora3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colRndDemora3.Width = 88;
+            this.colRndDemora3.Width = 50;
             // 
             // colDemora3
             // 
+            this.colDemora3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colDemora3.HeaderText = "Demora 3";
             this.colDemora3.MinimumWidth = 6;
             this.colDemora3.Name = "colDemora3";
             this.colDemora3.ReadOnly = true;
             this.colDemora3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colDemora3.Width = 68;
+            this.colDemora3.Width = 50;
             // 
             // colFinCoccion3
             // 
+            this.colFinCoccion3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colFinCoccion3.HeaderText = "Fin Coccion 3";
             this.colFinCoccion3.MinimumWidth = 6;
             this.colFinCoccion3.Name = "colFinCoccion3";
             this.colFinCoccion3.ReadOnly = true;
             this.colFinCoccion3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colFinCoccion3.Width = 78;
+            this.colFinCoccion3.Width = 50;
             // 
             // colDelivery
             // 
@@ -2458,30 +2492,81 @@
             // 
             // colRndDelivery
             // 
+            this.colRndDelivery.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colRndDelivery.HeaderText = "RND Delivery";
             this.colRndDelivery.MinimumWidth = 6;
             this.colRndDelivery.Name = "colRndDelivery";
             this.colRndDelivery.ReadOnly = true;
             this.colRndDelivery.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colRndDelivery.Width = 89;
+            this.colRndDelivery.Width = 50;
             // 
             // colTiempoEntrega
             // 
+            this.colTiempoEntrega.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colTiempoEntrega.HeaderText = "Tiempo entrega delivery";
             this.colTiempoEntrega.MinimumWidth = 6;
             this.colTiempoEntrega.Name = "colTiempoEntrega";
             this.colTiempoEntrega.ReadOnly = true;
             this.colTiempoEntrega.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTiempoEntrega.Width = 150;
+            this.colTiempoEntrega.Width = 50;
             // 
             // colFinEntregaDelivery
             // 
+            this.colFinEntregaDelivery.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colFinEntregaDelivery.HeaderText = "Fin de entrega delivery";
             this.colFinEntregaDelivery.MinimumWidth = 6;
             this.colFinEntregaDelivery.Name = "colFinEntregaDelivery";
             this.colFinEntregaDelivery.ReadOnly = true;
             this.colFinEntregaDelivery.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colFinEntregaDelivery.Width = 143;
+            this.colFinEntregaDelivery.Width = 50;
+            // 
+            // StkPizza
+            // 
+            this.StkPizza.HeaderText = "Stk Pizza";
+            this.StkPizza.MinimumWidth = 6;
+            this.StkPizza.Name = "StkPizza";
+            this.StkPizza.ReadOnly = true;
+            this.StkPizza.Width = 88;
+            // 
+            // StkSand
+            // 
+            this.StkSand.HeaderText = "Stk Sand";
+            this.StkSand.MinimumWidth = 6;
+            this.StkSand.Name = "StkSand";
+            this.StkSand.ReadOnly = true;
+            this.StkSand.Width = 87;
+            // 
+            // StkLomo
+            // 
+            this.StkLomo.HeaderText = "Stk Lomo";
+            this.StkLomo.MinimumWidth = 6;
+            this.StkLomo.Name = "StkLomo";
+            this.StkLomo.ReadOnly = true;
+            this.StkLomo.Width = 89;
+            // 
+            // StkHamb
+            // 
+            this.StkHamb.HeaderText = "Stk Hamb";
+            this.StkHamb.MinimumWidth = 6;
+            this.StkHamb.Name = "StkHamb";
+            this.StkHamb.ReadOnly = true;
+            this.StkHamb.Width = 91;
+            // 
+            // StkEmp
+            // 
+            this.StkEmp.HeaderText = "Stk Emp";
+            this.StkEmp.MinimumWidth = 6;
+            this.StkEmp.Name = "StkEmp";
+            this.StkEmp.ReadOnly = true;
+            this.StkEmp.Width = 82;
+            // 
+            // DejaPed
+            // 
+            this.DejaPed.HeaderText = "Deja Ped";
+            this.DejaPed.MinimumWidth = 6;
+            this.DejaPed.Name = "DejaPed";
+            this.DejaPed.ReadOnly = true;
+            this.DejaPed.Width = 88;
             // 
             // frm_principal
             // 
@@ -2491,7 +2576,7 @@
             this.Controls.Add(this.gpbResultado);
             this.Controls.Add(this.gpbParametros);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frm_principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pizzeria - Grupo R";
@@ -2682,6 +2767,7 @@
         private System.Windows.Forms.Label lblTiempoSim;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFila;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEvento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NroPed;
         private System.Windows.Forms.DataGridViewTextBoxColumn colReloj;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDia;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTurno;
@@ -2710,6 +2796,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colRndDelivery;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTiempoEntrega;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinEntregaDelivery;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StkPizza;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StkSand;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StkLomo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StkHamb;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StkEmp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DejaPed;
     }
 }
 

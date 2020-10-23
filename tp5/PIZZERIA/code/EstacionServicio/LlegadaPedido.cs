@@ -22,7 +22,7 @@ namespace Pizzeria
 
 		public LlegadaPedido()
 		{
-			
+
 		}
 
 		public LlegadaPedido(double mu)
@@ -47,7 +47,7 @@ namespace Pizzeria
 		}
 		public void setRandomTipoPed(double rnd)
 		{
-			this.rndTipoPedido=rnd ;
+			this.rndTipoPedido = rnd;
 		}
 		public double getTiempoEntreLlegada()
 		{
@@ -66,7 +66,7 @@ namespace Pizzeria
 
 		public void setPedido(Pedido p)
 		{
-			pedido= p;
+			pedido = p;
 		}
 		public override void simular(Reloj reloj, double random)
 		{
@@ -90,12 +90,12 @@ namespace Pizzeria
 				int cantidad = cantidadPedido(tipoPedido, rndCant);
 				pedido = new Pedido("En preparacion", tipoPedido, cantidad, reloj, rndCant);
 			}
-	
-			
+
+
 		}
 
 		public void setProximaLlegada(double entreLlegada, Reloj reloj)
-        {
+		{
 			double prox = this.tiempoEntreLlegadas + reloj.getReloj();
 			if (prox > minutosTurno)
 			{
@@ -123,10 +123,10 @@ namespace Pizzeria
 				proximaLlegada.setReloj(prox);
 			}
 		}
-		
+
 		private string seleccionTipoPedido(double rnd)
 		{
-			double aux = (double) Math.Round(rnd,2);
+			double aux = (double)Math.Round(rnd, 2);
 			if (aux >= 0 && aux <= 0.19)
 				return "DocSandwich";
 			if (aux >= 0.20 && aux <= 0.59)
@@ -159,7 +159,7 @@ namespace Pizzeria
 			}
 			return cant;
 		}
-	
+
 		public override void simularDemora(Reloj reloj, double random, LlegadaPedido llegP) { }
 
 	}
