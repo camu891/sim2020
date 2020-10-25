@@ -27,7 +27,7 @@ namespace Pizzeria
 			this.horaInicioOcio = horaInicioOcio;
 			this.acumTiempoOcio = 0.0;
 			finCoccion = new Reloj();
-			//this.tipoServicio = tipo;
+		    //this.tipoServicio = tipo;
 			//this.cola = new Queue<Pedido>();
 			//this.nombreEstado = nombre;
 		}
@@ -67,7 +67,6 @@ namespace Pizzeria
 		{
 			this.finCoccion = finCoccion;
 		}
-
 		public string getEstado()
 		{
 			return this.estado;

@@ -18,7 +18,9 @@ namespace Pizzeria
 		private double demoraEmpanadax2;
 		private double demoraHamburguesa;
 		private double demoraLomo;
+		private double demora_acu;
 		private int idEmpleado;
+		private Reloj entroped;
 		private Empleado e;
 		private LlegadaPedido llegadaP;
 
@@ -35,7 +37,7 @@ namespace Pizzeria
             this.idEmpleado = idEmpleado;
             this.e = empleado;
 			proximoFin = new Reloj();
-		}
+					}
 
         public Empleado Empleado { get => e; set => e = value; }
 
@@ -43,13 +45,14 @@ namespace Pizzeria
 		{
 			return this.nombreEvento;
 		}
-
+		public Reloj getEntPed()
+		{
+			return entroped;
+		}
 		public LlegadaPedido getLlegada()
 		{
 			return llegadaP;
 		}
-
-	
 
 		public int getIdEmpleado()
 		{
@@ -59,6 +62,11 @@ namespace Pizzeria
 		public double getRandom()
 		{
 			return this.rndTiempo;
+		}
+
+		public double getDemora_Acu()
+		{
+			return this.demora_acu;
 		}
 
 		public double getTiempoEntreLlegada()
@@ -120,11 +128,16 @@ namespace Pizzeria
 
 			this.demora = demoraPedido;
 			this.proximoFin.setReloj(this.demora + reloj.getReloj());
+			this.entroped = llegP.getPedido().getInicioEspera();
+			this.demora_acu=demoraPedido + (reloj.getReloj() - llegP.getPedido().getInicioEspera().getReloj());
+
+
 			// actualiza empleado
 			e.setEstado("Ocupado");
 			e.setDemora(this.demora);
 			e.setFinCoccion(this.proximoFin);
-		}
+			
+			}
 
 		public override void simular(Reloj reloj, double random) { }
 

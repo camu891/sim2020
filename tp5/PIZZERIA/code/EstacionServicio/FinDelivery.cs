@@ -41,7 +41,10 @@ namespace Pizzeria
 		{
 			return this.rndTiempo;
 		}
-
+		public double getDemoraDel()
+		{
+			return this.demora;
+		}
 		public double getTiempoEntreLlegada()
 		{
 			return this.demora;

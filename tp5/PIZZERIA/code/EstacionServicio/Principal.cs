@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -20,6 +20,7 @@ namespace Pizzeria
         private Empleado empleado3;
         private List<Empleado> empleados;
         private ColaPreparacion colaPreparacion;
+        
 
 
         //Parametros de Llega
@@ -42,6 +43,40 @@ namespace Pizzeria
         private double precioHamburguesa;
         private double demoraLomo;
         private double precioLomo;
+        private double t_acutot_ventas;
+        private double t_acutot_hamblomo;
+        private int t_contped_dejados;
+        private double t_acuimporte_dejados;
+        private int t_contped_gratis;
+        private double t_acuimporte_gratis;
+        private int t_contentregas;
+        private int t_contpedpizza;
+        private int t_contpedemp;
+        private int t_contpedsand;
+        private int t_contpedlomo;
+        private int t_contpedhamb;
+        private int t_cantpizza;
+        private int t_cantemp;
+        private int t_cantsand;
+        private int t_cantlom;
+        private int t_canthamb;
+        private double t_tpopizza;
+        private double t_tpoemp;
+        private double t_tposand;
+        private double t_tpolomo;
+        private double t_tpohamb;
+        private double TpoCoccion;
+        private double t_tpodelivery;
+        private Reloj  t_tpolibDel;
+        private double t_acutpoLibDel;
+        private Reloj t_tpolibEmp1;
+        private double t_acutpolibEmp1;
+        private Reloj t_tpolibEmp2;
+        private double t_acutpolibEmp2;
+        private Reloj t_tpolibEmp3;
+        private double t_acutpolibEmp3;
+        private double t_acutpolleped;
+        private double audito;
 
         //Parametros de la corrida
         private double tiempoFinCorrida;
@@ -54,7 +89,11 @@ namespace Pizzeria
         private int w_stkhamb;
         private int w_stksand;
         private int w_stkemp;
+        private string queTipoPed;
+        private int cantped;
+        private double precioven;
         private Boolean w_haystock;
+        private Boolean w_pasa_a_stock;
 
         //Variables necesarias
         private Reloj relojSimulacion;
@@ -98,8 +137,14 @@ namespace Pizzeria
 
                 //Genero Evento Llegada Pedido 0
                 int fila = 0;
-                numeropedido = 1;
+                numeropedido = 0;
                 llegadaPedido.simular(relojSimulacion, rand.NextDouble());
+                t_tpolibDel = llegadaPedido.getProximaLlegada(); //GG Se parametrizan con el tiempo inicial las variables para el ocio.
+                t_tpolibEmp1 = t_tpolibDel;
+                t_tpolibEmp2 = t_tpolibDel;
+                t_tpolibEmp3 = t_tpolibDel;
+                t_acutpolleped = llegadaPedido.getProximaLlegada().getReloj();
+
 
                 //Imprimo fila 0
                 if (this.filaAPartirDeDondeMostrar == 0 || radioCada10mil.Checked)
@@ -108,13 +153,41 @@ namespace Pizzeria
                     agregarEventoInicio();
                 }
 
-               w_stkpizza=0;
-               w_stklomo=0;
-               w_stkhamb=0;
-               w_stksand=0;
-               w_stkemp=0;
+                t_acutot_ventas=0;
+                t_acutot_hamblomo=0;
+                t_contped_gratis=0;
+                t_acuimporte_gratis=0;
 
-                //Bucle principal de Simulacion
+                t_contentregas = 0;
+                t_contped_dejados=0;
+                t_acuimporte_dejados=0;
+                t_acutpoLibDel = 0;
+                t_acutpolibEmp1 = 0;
+                t_acutpolibEmp2 = 0;
+                t_acutpolibEmp3 = 0;
+                t_contpedpizza= 0;
+                t_contpedemp= 0;
+                t_contpedsand= 0;
+                t_contpedlomo= 0;
+                t_contpedhamb= 0;
+                t_cantemp = 0;
+                t_canthamb = 0;
+                t_cantlom = 0;
+                t_cantsand = 0;
+                t_cantpizza = 0;
+                t_tpoemp = 0;
+                t_tpohamb = 0;
+                t_tpolomo = 0;
+                t_tposand = 0;
+                t_tpopizza = 0;
+                w_stkpizza = 0;
+                w_stklomo = 0;
+                w_stkhamb = 0;
+                w_stksand = 0;
+                w_stkemp = 0;
+
+                //Bucle principal de SimulacionrelojSimulacion.getDia() < tiempoFinCorrida |
+
                 while (relojSimulacion.getDia() < tiempoFinCorrida)
                 {
                     //Selecciono el siguiente evento
@@ -130,54 +203,69 @@ namespace Pizzeria
                         this.relojSimulacion.setDia(firstEvent.getDia());
                         this.relojSimulacion.setTurno(firstEvent.getTurno());
                         this.llegadaPedido.simular(this.relojSimulacion, this.rand.NextDouble());
-             // GG agrego control de stock
+
+                        t_acutpolleped += llegadaPedido.getTiempoEntreLlegada();
+                        // GG Acumulo los tiempos de llegada para calcular el tiempo entre pedidos
+                        // GG agrego control de stock, se verifique el stock y se acumulan acumuladores y contadores.
                         w_haystock = false;
                         switch (llegadaPedido.getPedido().Tipo)
                         {
                             case "Empanadas":
                                 if (w_stkemp >= llegadaPedido.getPedido().Cantidad)
                                 {
-                                    w_stkemp = w_stkemp - llegadaPedido.getPedido().Cantidad;
+                                    w_stkemp -= llegadaPedido.getPedido().Cantidad;
                                     w_haystock = true;
                                 }
+                                t_cantemp += llegadaPedido.getPedido().Cantidad;
+                                t_contpedemp++;
                                 break;
                             case "Pizza":
                                 if (w_stkpizza >= llegadaPedido.getPedido().Cantidad)
                                 {
-                                    w_stkpizza = w_stkpizza - llegadaPedido.getPedido().Cantidad;
-                                    w_haystock=true;
+                                    w_stkpizza -= llegadaPedido.getPedido().Cantidad;
+                                    w_haystock = true;
                                 }
+                                t_cantpizza +=llegadaPedido.getPedido().Cantidad;
+                                t_contpedpizza++;
                                 break;
                             case "DocSandwich":
                                 if (w_stksand >= llegadaPedido.getPedido().Cantidad)
                                 {
-                                    w_stksand = w_stksand - llegadaPedido.getPedido().Cantidad;
+                                    w_stksand -= llegadaPedido.getPedido().Cantidad;
                                     w_haystock = true;
                                 }
+                                t_cantsand +=llegadaPedido.getPedido().Cantidad;
+                                t_contpedsand++;
                                 break;
                             case "Lomito":
                                 if (w_stklomo >= llegadaPedido.getPedido().Cantidad)
                                 {
-                                    w_stklomo = w_stklomo - llegadaPedido.getPedido().Cantidad;
+                                    w_stklomo -= llegadaPedido.getPedido().Cantidad;
                                     w_haystock = true;
                                 }
+                                t_cantlom +=llegadaPedido.getPedido().Cantidad;
+                                t_contpedlomo++;
                                 break;
                             case "Hamburguesa":
                                 if (w_stkhamb >= llegadaPedido.getPedido().Cantidad)
                                 {
-                                    w_stkhamb = w_stklomo - llegadaPedido.getPedido().Cantidad;
+                                    w_stkhamb -= llegadaPedido.getPedido().Cantidad;
                                     w_haystock = true;
                                 }
+                                t_canthamb +=llegadaPedido.getPedido().Cantidad;
+                                t_contpedhamb++;
                                 break;
                         }
-                        if (w_haystock)
+                        if (w_haystock) //GG Se entrega directo sin pasar por coccion
                         {
                             if (this.delivery.getEstado() == "Libre")
                             {
                                 //aca me quede controlar bien xq se armo el bucle
+                                //GG Se utiliza para acumular el tiepo libre del libery, en este bucle es cuando hay stock y pasa directamente.
+                                t_acutpoLibDel += this.llegadaPedido.getProximaLlegada().getReloj() - t_tpolibDel.getReloj();
                                 this.generarDemoraDelivery(fila, relojSimulacion, 1);
                                 delivery.setEstado("Reparto");
-                            }
+                                                            }
                             else
                             {
                                 // mandar a cola
@@ -185,24 +273,35 @@ namespace Pizzeria
                             }
                             imprimirFila(llegadaPedido, fila);
                         }
-                // GG Fin de control stock
+                        // GG Fin de control stock
                         else
                         {
+                            ponerColaPedido(llegadaPedido); //GG Se fuerza a la cola al primer pedido, con el objetivo de obtener los tiempos de llegadas de ese pedido
                             if (this.empleado1.getEstado() == "Libre")
                             {
+                                // GG Se utiliza para acumular el tiempo libre del empleado 1
+                                t_acutpolibEmp1 += firstEvent.getReloj() - t_tpolibEmp1.getReloj();
+                                // GG se quito este metodo porque se fuerza a poner en cola. generarDemoraPedido(fila, 1, llegadaPedido);
                                 generarDemoraPedido(fila, 1, llegadaPedido);
-                            }
+                             }
                             else
                             {
                                 if (this.empleado2.getEstado() == "Libre")
                                 {
+                                    // GG Se utiliza para acumular el tiempo libre del empleado 2
+                                    t_acutpolibEmp2 += firstEvent.getReloj() - t_tpolibEmp2.getReloj();
+                                    // GG se quito este metodo porque se fuerza a poner en cola. generarDemoraPedido(fila, 2, llegadaPedido);
                                     generarDemoraPedido(fila, 2, llegadaPedido);
+
                                 }
                                 else
                                 {
                                     if (this.empleado3.getEstado() == "Libre")
                                     {
-                                        generarDemoraPedido(fila, 3, llegadaPedido);
+                                        // GG Se utiliza para acumular el tiempo libre del empleado 3
+                                        t_acutpolibEmp3 += firstEvent.getReloj() - t_tpolibEmp3.getReloj();
+                                        // GG se quito este metodo porque se fuerza a poner en cola. generarDemoraPedido(fila, 3, llegadaPedido);
+                                        generarDemoraPedido(fila, 2, llegadaPedido);
                                     }
                                     else
                                     {
@@ -215,135 +314,382 @@ namespace Pizzeria
                             imprimirFila(llegadaPedido, fila);
                         }
                     }
-                    //Evento Fin coccion empleado 1
-                    if (this.finCoccionEmpleado1.getProximaLlegada().Equals(firstEvent))
+                    else
                     {
-      
-                        finCoccionEmpleado1.setHoraFin(new Reloj());
-                        //actualizar el pedido a preparado
-                        cambiarEstadoPedido(llegadaPedido.getPedido());
-                        //liberar el empleado si no hay cola
-                        //si hay cola sacar de colar y calcular nueva demora 
-                        actualizarEstadoEmpleado(empleado1, fila);
-                        // hacer la parte del delivery
-
-                        Pedido verTpoPed = llegadaPedido.getPedido();
-                        double a = relojSimulacion.getReloj() - verTpoPed.getInicioEspera().getReloj();
-
-                        if (a > tiempoTopeEspera)
+                        //Evento Fin coccion empleado 1
+                        if (this.finCoccionEmpleado1.getProximaLlegada().Equals(firstEvent))
                         {
-                            switch (verTpoPed.Tipo)
+                            //GG Se obtienen los datos del pedido que finaliza su coccion para acumular tiempo de coccion y ver si no pasa a stock
+                            //por superar el tiempo de espera. AUNQUE NO ANDA TODO
+                            queTipoPed = finCoccionEmpleado1.getLlegada().getPedido().Tipo;
+                            cantped = finCoccionEmpleado1.getLlegada().getPedido().Cantidad;
+                            TpoCoccion = finCoccionEmpleado1.getDemora_Acu();
+                            precioven = 0;
+
+                            w_pasa_a_stock = false;
+                            switch (queTipoPed)
                             {
-                                case "Empanadas":
-                                    w_stkemp = w_stkemp + verTpoPed.Cantidad;                                    
+                                    case "Empanadas":
+                                    t_tpoemp += TpoCoccion;
+                                    precioven = precioEmpa;
+                                    if (TpoCoccion > tiempoTopeEspera) //GG Si es mayor el tiempo debería pasar a stock
+                                     {
+                                        w_stkemp += cantped;
+                                        w_pasa_a_stock = true;                                      
+                                      }
                                     break;
-                                case "Pizza":
-                                    w_stkpizza = w_stkpizza + verTpoPed.Cantidad;
+                                    case "Pizza":
+                                    t_tpopizza += TpoCoccion;
+                                    precioven = precioPizza;
+                                    if (TpoCoccion > tiempoTopeEspera)
+                                    {
+                                        w_stkpizza += cantped;
+                                        w_pasa_a_stock = true;
+                                        precioven = precioPizza;
+                                    }
                                     break;
-                                case "DocSandwich":
-                                    w_stksand = w_stksand + verTpoPed.Cantidad;
+                                    case "DocSandwich":
+                                    t_tposand += TpoCoccion;
+                                    precioven = precioSandwich;
+                                    if (TpoCoccion > tiempoTopeEspera)
+                                    {
+                                        w_stksand += cantped;
+                                        w_pasa_a_stock = true;
+                                    }
                                     break;
-                                case "Lomito":
-                                    w_stklomo = w_stklomo + verTpoPed.Cantidad;
+                                    case "Lomito":
+                                    t_tpolomo += TpoCoccion;
+                                    precioven = precioLomo;
+                                    if (TpoCoccion > tiempoTopeEspera)
+                                    {
+                                        w_stklomo += cantped;
+                                        w_pasa_a_stock = true;
+                                    }
                                     break;
-                                case "Hamburguesa":
-                                    w_stkhamb = w_stkhamb + verTpoPed.Cantidad;
+                                    case "Hamburguesa":
+                                    t_tpohamb += TpoCoccion;
+                                    precioven = precioHamburguesa;
+                                    if (TpoCoccion > tiempoTopeEspera)
+                                    {
+                                        w_stkhamb += cantped;
+                                        w_pasa_a_stock = true;
+                                    }
                                     break;
                             }
-                        }
-
-
-                        if (this.delivery.getEstado() == "Libre")
-                        {
-                            //aca me quede controlar bien xq se armo el bucle
-                            this.generarDemoraDelivery(fila, relojSimulacion, 1);
-                            delivery.setEstado("Reparto");
-                        }
-                        else
-                        {
-                            // mandar a cola
-                            delivery.ponerEnCola(llegadaPedido.getPedido());
-                        }
-                        imprimirFila(finCoccionEmpleado1, fila);
-                    }
-                    //Evento Fin coccion empleado 2
-                    if (this.finCoccionEmpleado2.getProximaLlegada().Equals(firstEvent))
-                    {
-                        finCoccionEmpleado2.setHoraFin(new Reloj());
-                        //actualizar el pedido a preparado 
-                        cambiarEstadoPedido(llegadaPedido.getPedido());
-                        //liberar el empleado si no hay cola
-                        //si hay cola sacar de colar y calcular nueva demora 
-                        actualizarEstadoEmpleado(empleado2, fila);
-                        // hacer la parte del delivery
-
-                        if (this.delivery.getEstado() == "Libre")
-                        {
-                            //aca me quede controlar bien xq se armo el bucle
-                            this.generarDemoraDelivery(fila, relojSimulacion, 1);
-                            delivery.setEstado("Reparto");
-                        }
-                        else
-                        {
-                            // mandar a cola
-                            delivery.ponerEnCola(llegadaPedido.getPedido());
-                        }
-                        imprimirFila(finCoccionEmpleado2, fila);
-                    }
-                    //Evento Fin coccion empleado 3
-                    if (this.finCoccionEmpleado3.getProximaLlegada().Equals(firstEvent))
-                    {
-                        finCoccionEmpleado3.setHoraFin(new Reloj());
-                        //actualizar el pedido a preparado 
-                        cambiarEstadoPedido(llegadaPedido.getPedido());
-                        //liberar el empleado si no hay cola
-                        //si hay cola sacar de colar y calcular nueva demora 
-                        actualizarEstadoEmpleado(empleado3, fila);
-                        // hacer la parte del delivery
-
-                        if (this.delivery.getEstado() == "Libre")
-                        {
-                            //aca me quede controlar bien xq se armo el bucle
-                            this.generarDemoraDelivery(fila, relojSimulacion, 1);
-                            delivery.setEstado("Reparto");
-
-                        }
-                        else
-                        {
-                            // mandar a cola
-                            delivery.ponerEnCola(llegadaPedido.getPedido());
-                        }
-                        imprimirFila(finCoccionEmpleado3, fila);
-                    }
-                    //Evento Fin Delivery
-                    if (this.finDelivery.getProximaLlegada().Equals(firstEvent))
-                    {
-                        finDelivery.setHoraFin(new Reloj());
-
-                        tope_delivery = 0;
-                        while (delivery.getCola().Count != 0)
-                        {
-                            tope_delivery = tope_delivery + 1;
-                            delivery.sacarDeCola();
-                            // Pedido aEntregar = delivery.getCola().Dequeue();
-                            if (tope_delivery == 3)
-                            {
-                                break;
+                            if (w_pasa_a_stock) //GG Si supero el tiempo, no hay delivery
+                            { 
+                                t_contped_dejados++;
+                                t_acuimporte_dejados += precioven * cantped;
                             }
+                            else
+                            {
+                                if (TpoCoccion > tiempoTopeGratis) //GG si supera el tiempo gratis
+                                {
+                                    t_contped_gratis++;
+                                    t_acuimporte_gratis += precioven * cantped;
 
-                        }
-                        if (tope_delivery > 0)
-                        {
-                            this.generarDemoraDelivery(fila, relojSimulacion, 1);
+                                }
+                                else
+                                {
+                                    t_acutot_ventas += precioven * cantped; //GG Acumulo venta total
+                                    if (queTipoPed == "Lomitos" | queTipoPed == "Hamburguesa") // GG Acumulo venta Lom/Hamb
+                                     {
+                                        t_acutot_hamblomo += precioven * cantped;
+                                    }
+                                }
+                                if (this.delivery.getEstado() == "Libre")
+                                {
+                                    //aca me quede controlar bien xq se armo el bucle
+                                    //GG Calculo y acumulo el tiempo libre del delibery, cuando paso a Libre se fija la fecha
+                                    t_acutpoLibDel += firstEvent.getReloj() - t_tpolibDel.getReloj();
+                                    this.generarDemoraDelivery(fila, relojSimulacion, 1);
+                                    delivery.setEstado("Reparto");
+                                }
+                                else
+                                {
+                                    // mandar a cola
+                                    delivery.ponerEnCola(llegadaPedido.getPedido());
+                                } 
+                            }
+                            finCoccionEmpleado1.setHoraFin(new Reloj());
+                     
+                            //actualizar el pedido a preparado
+                            cambiarEstadoPedido(llegadaPedido.getPedido());
+                            //liberar el empleado si no hay cola
+                            //si hay cola sacar de colar y calcular nueva demora 
+                            actualizarEstadoEmpleado(empleado1, fila);
+                            // hacer la parte del delivery
+                            imprimirFila(finCoccionEmpleado1, fila);
+
+                            if (this.empleado1.getEstado() == "Libre")
+                            {
+                              t_tpolibEmp1 = this.finCoccionEmpleado1.getProximaLlegada(); //GG En caso de quedar libre, se fija la hora para calcular el ocio
+                            }
                         }
                         else
                         {
-                            delivery.setEstado("Libre");
-                        }
+                            //Evento Fin coccion empleado 2
+                            if (this.finCoccionEmpleado2.getProximaLlegada().Equals(firstEvent))
+                            {
+                                //GG Se obtienen los datos del pedido que finaliza su coccion para acumular tiempo de coccion y ver si no pasa a stock
+                                //por superar el tiempo de espera. AUNQUE NO ANDA TODO
 
-                        //fijarse en la cola si hay pedidos 
-                        //actuallizar su estado
-                        imprimirFila(finDelivery, fila);
+                                queTipoPed = finCoccionEmpleado2.getLlegada().getPedido().Tipo;
+                                cantped = finCoccionEmpleado2.getLlegada().getPedido().Cantidad;
+                                TpoCoccion = finCoccionEmpleado2.getDemora_Acu();
+                                precioven = 0;
+
+                                w_pasa_a_stock = false;
+                                switch (queTipoPed)
+                                {
+                                    case "Empanadas":
+                                        t_tpoemp += TpoCoccion;
+                                        precioven = precioEmpa;
+                                        if (TpoCoccion > tiempoTopeEspera) //GG Si es mayor el tiempo debería pasar a stock
+                                        {
+                                            w_stkemp += cantped;
+                                            w_pasa_a_stock = true;
+                                        }
+                                        break;
+                                    case "Pizza":
+                                        t_tpopizza += TpoCoccion;
+                                        precioven = precioPizza;
+                                        if (TpoCoccion > tiempoTopeEspera)
+                                        {
+                                            w_stkpizza += cantped;
+                                            w_pasa_a_stock = true;
+                                            precioven = precioPizza;
+                                        }
+                                        break;
+                                    case "DocSandwich":
+                                        t_tposand += TpoCoccion;
+                                        precioven = precioSandwich;
+                                        if (TpoCoccion > tiempoTopeEspera)
+                                        {
+                                            w_stksand += cantped;
+                                            w_pasa_a_stock = true;
+                                        }
+                                        break;
+                                    case "Lomito":
+                                        t_tpolomo += TpoCoccion;
+                                        precioven = precioLomo;
+                                        if (TpoCoccion > tiempoTopeEspera)
+                                        {
+                                            w_stklomo += cantped;
+                                            w_pasa_a_stock = true;
+                                        }
+                                        break;
+                                    case "Hamburguesa":
+                                        t_tpohamb += TpoCoccion;
+                                        precioven = precioHamburguesa;
+                                        if (TpoCoccion > tiempoTopeEspera)
+                                        {
+                                            w_stkhamb += cantped;
+                                            w_pasa_a_stock = true;
+                                        }
+                                        break;
+                                }
+                                
+                                if (w_pasa_a_stock) //GG Si supero el tiempo, no hay delivery
+                                {
+                                    t_contped_dejados++;
+                                    t_acuimporte_dejados += precioven * cantped;
+                                }
+                                else
+                                {
+                                    if (TpoCoccion > tiempoTopeGratis) //GG si supera el tiempo gratis
+                                    {
+                                        t_contped_gratis++;
+                                        t_acuimporte_gratis += precioven * cantped;
+
+                                    }
+                                    else
+                                    {
+                                        t_acutot_ventas += precioven * cantped; //GG Acumulo venta total
+                                        if (queTipoPed == "Lomitos" | queTipoPed == "Hamburguesa") // GG Acumulo venta Lom/Hamb
+                                        {
+                                            t_acutot_hamblomo += precioven * cantped;
+                                        }
+                                    }
+                                    if (this.delivery.getEstado() == "Libre")
+                                    {
+                                        //aca me quede controlar bien xq se armo el bucle
+                                        //GG Calculo y acumulo el tiempo libre del delibery, cuando paso a Libre se fija la fecha
+                                        t_acutpoLibDel += firstEvent.getReloj() - t_tpolibDel.getReloj();
+                                        this.generarDemoraDelivery(fila, relojSimulacion, 1);
+                                        delivery.setEstado("Reparto");
+                                    }
+                                    else
+                                    {
+                                        // mandar a cola
+                                        delivery.ponerEnCola(llegadaPedido.getPedido());
+                                    }
+                                }
+                                finCoccionEmpleado2.setHoraFin(new Reloj());
+
+                                //actualizar el pedido a preparado
+                                cambiarEstadoPedido(llegadaPedido.getPedido());
+                                //liberar el empleado si no hay cola
+                                //si hay cola sacar de colar y calcular nueva demora 
+                                actualizarEstadoEmpleado(empleado2, fila);
+                                // hacer la parte del delivery
+                                imprimirFila(finCoccionEmpleado2, fila);
+
+                                if (this.empleado2.getEstado() == "Libre")
+                                {
+                                    t_tpolibEmp2 = this.finCoccionEmpleado2.getProximaLlegada(); //GG En caso de quedar libre, se fija la hora para calcular el ocio
+                                }
+                            }
+                            else
+                            {
+                                //Evento Fin coccion empleado 3
+                                if (this.finCoccionEmpleado3.getProximaLlegada().Equals(firstEvent))
+                                {
+                                    //GG Se obtienen los datos del pedido que finaliza su coccion para acumular tiempo de coccion y ver si no pasa a stock
+                                    //por superar el tiempo de espera. AUNQUE NO ANDA TODO
+
+                                    queTipoPed = finCoccionEmpleado3.getLlegada().getPedido().Tipo;
+                                    cantped = finCoccionEmpleado3.getLlegada().getPedido().Cantidad;
+                                    TpoCoccion = finCoccionEmpleado3.getDemora_Acu();
+                                    precioven = 0;
+
+                                    w_pasa_a_stock = false;
+                                    switch (queTipoPed)
+                                    {
+                                        case "Empanadas":
+                                            t_tpoemp += TpoCoccion;
+                                            precioven = precioEmpa;
+                                            if (TpoCoccion > tiempoTopeEspera) //GG Si es mayor el tiempo debería pasar a stock
+                                            {
+                                                w_stkemp += cantped;
+                                                w_pasa_a_stock = true;
+                                            }
+                                            break;
+                                        case "Pizza":
+                                            t_tpopizza += TpoCoccion;
+                                            precioven = precioPizza;
+                                            if (TpoCoccion > tiempoTopeEspera)
+                                            {
+                                                w_stkpizza += cantped;
+                                                w_pasa_a_stock = true;
+                                                precioven = precioPizza;
+                                            }
+                                            break;
+                                        case "DocSandwich":
+                                            t_tposand += TpoCoccion;
+                                            precioven = precioSandwich;
+                                            if (TpoCoccion > tiempoTopeEspera)
+                                            {
+                                                w_stksand += cantped;
+                                                w_pasa_a_stock = true;
+                                            }
+                                            break;
+                                        case "Lomito":
+                                            t_tpolomo += TpoCoccion;
+                                            precioven = precioLomo;
+                                            if (TpoCoccion > tiempoTopeEspera)
+                                            {
+                                                w_stklomo += cantped;
+                                                w_pasa_a_stock = true;
+                                            }
+                                            break;
+                                        case "Hamburguesa":
+                                            t_tpohamb += TpoCoccion;
+                                            precioven = precioHamburguesa;
+                                            if (TpoCoccion > tiempoTopeEspera)
+                                            {
+                                                w_stkhamb += cantped;
+                                                w_pasa_a_stock = true;
+                                            }
+                                            break;
+                                    }
+                                    if (w_pasa_a_stock) //GG Si supero el tiempo, no hay delivery
+                                    {
+                                        t_contped_dejados++;
+                                        t_acuimporte_dejados += precioven * cantped;
+                                    }
+                                    else
+                                    {
+                                        if (TpoCoccion > tiempoTopeGratis) //GG si supera el tiempo gratis
+                                        {
+                                            t_contped_gratis++;
+                                            t_acuimporte_gratis += precioven * cantped;
+
+                                        }
+                                        else
+                                        {
+                                            t_acutot_ventas += precioven * cantped; //GG Acumulo venta total
+                                            if (queTipoPed == "Lomitos" | queTipoPed == "Hamburguesa") // GG Acumulo venta Lom/Hamb
+                                            {
+                                                t_acutot_hamblomo += precioven * cantped;
+                                            }
+                                        }
+                                        if (this.delivery.getEstado() == "Libre")
+                                        {
+                                            //aca me quede controlar bien xq se armo el bucle
+                                            //GG Calculo y acumulo el tiempo libre del delibery, cuando paso a Libre se fija la fecha
+                                            t_acutpoLibDel += firstEvent.getReloj() - t_tpolibDel.getReloj();
+                                            this.generarDemoraDelivery(fila, relojSimulacion, 1);
+                                            delivery.setEstado("Reparto");
+                                        }
+                                        else
+                                        {
+                                            // mandar a cola
+                                            delivery.ponerEnCola(llegadaPedido.getPedido());
+                                        }
+                                    }
+                                    finCoccionEmpleado3.setHoraFin(new Reloj());
+
+                                    //actualizar el pedido a preparado
+                                    cambiarEstadoPedido(llegadaPedido.getPedido());
+                                    //liberar el empleado si no hay cola
+                                    //si hay cola sacar de colar y calcular nueva demora 
+                                    actualizarEstadoEmpleado(empleado3, fila);
+                                    // hacer la parte del delivery
+                                    imprimirFila(finCoccionEmpleado3, fila);
+
+                                    if (this.empleado3.getEstado() == "Libre")
+                                    {
+                                        t_tpolibEmp3 = this.finCoccionEmpleado2.getProximaLlegada(); //GG En caso de quedar libre, se fija la hora para calcular el ocio
+                                    }
+                                }
+                                else
+                                {
+                                    //Evento Fin Delivery
+                                    if (this.finDelivery.getProximaLlegada().Equals(firstEvent))
+                                    {
+                                        t_tpodelivery += finDelivery.getDemoraDel();
+                                        t_contentregas++;
+
+                                        finDelivery.setHoraFin(new Reloj());
+                                        tope_delivery = 0;
+                                        while (delivery.getCola().Count != 0)
+                                        {
+                                            tope_delivery = tope_delivery + 1;
+                                            delivery.sacarDeCola();
+                                            // Pedido aEntregar = delivery.getCola().Dequeue();
+                                            if (tope_delivery == 3)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                        if (tope_delivery > 0)
+                                        {
+                                            this.generarDemoraDelivery(fila, relojSimulacion, 1);
+                                        }
+                                        else
+                                        {
+                                            t_tpolibDel = firstEvent; //GG Se setea el parametro de tiempo de ocio del delivery
+                                            delivery.setEstado("Libre");
+                                        }
+
+                                        //fijarse en la cola si hay pedidos 
+                                        //actuallizar su estado
+                                        imprimirFila(finDelivery, fila);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -352,9 +698,29 @@ namespace Pizzeria
                 indicarErrorYPonerFocus();
                 resul = true;
             }
+            this.textCantEmpaProm.Text = Convert.ToString(t_cantemp);
+            this.textCantPedProm.Text = Convert.ToString(numeropedido);
+            this.textTpoEmp.Text = Convert.ToString(t_tpoemp/t_contpedemp);
+            this.textTpoPizza.Text = Convert.ToString(t_tpopizza/t_contpedpizza);
+            this.textTpoSand.Text = Convert.ToString(t_tposand/t_contpedsand);
+            this.textTpoLibEmp.Text = Convert.ToString((t_acutpolibEmp1 + t_acutpolibEmp2 + t_acutpolibEmp3)/numeropedido);
+            this.textTpoLibDely.Text = Convert.ToString(t_acutpoLibDel/numeropedido);
+            this.textTpoEntrega.Text = Convert.ToString(t_tpodelivery/t_contentregas);
+            this.textTotVentas.Text = Convert.ToString(t_acutot_ventas);
+            this.textTotIngHambLomo.Text = Convert.ToString(t_acutot_hamblomo);
+            this.textCantPedGratis.Text = Convert.ToString(t_contped_gratis);
+            this.textVentaGratis.Text = Convert.ToString(t_acuimporte_gratis);
+            this.textVentaPerdida.Text = Convert.ToString(t_acuimporte_dejados);
+            this.textCantPedPerdidos.Text = Convert.ToString(t_contped_dejados);
+            this.textTpoEntrePed.Text = Convert.ToString(t_acutpolleped / numeropedido);
+         
+
 
             //Fin Bloque Simulacion
+
+
         }
+        
 
         public void imprimirFila(Evento evento, int fila)
         {
@@ -476,6 +842,7 @@ namespace Pizzeria
             this.precioHamburguesa = Convert.ToDouble(this.textPrecioHambur.Text);
             this.demoraLomo = Convert.ToDouble(this.textDemoraLomo.Text);
             this.precioLomo = Convert.ToDouble(this.textPrecioLomo.Text);
+          
         }
 
 
@@ -572,7 +939,6 @@ namespace Pizzeria
             Console.WriteLine("Imprimiendo: " + 0);
             dgvResultados.Rows[0].Cells["colFila"].Value = 0;
             dgvResultados.Rows[0].Cells["colEvento"].Value = "Inicio Simulacion";
-            dgvResultados.Rows[0].Cells["NroPed"].Value = 0;
             dgvResultados.Rows[0].Cells["colReloj"].Value = relojSimulacion.getReloj();
             dgvResultados.Rows[0].Cells["colDia"].Value = relojSimulacion.getDia();
             dgvResultados.Rows[0].Cells["colTurno"].Value = relojSimulacion.getTurno();
@@ -597,6 +963,9 @@ namespace Pizzeria
         {
             Console.WriteLine("Imprimiendo: " + fila);
 
+            dgvResultados.Rows[i].Cells["DejaPed"].Value = t_tpolibDel.getReloj();
+            dgvResultados.Rows[i].Cells["DejaPed"].Value = t_acutpoLibDel;
+
             //Columnas que se muestran siempre
             dgvResultados.Rows[i].Cells["colFila"].Value = fila;
             dgvResultados.Rows[i].Cells["colEvento"].Value = evento.getNombreEvento();
@@ -618,7 +987,6 @@ namespace Pizzeria
             //Estos se muestran solo en caso de que el evento sea una llegada de Pedido
             if (evento.getNombreEvento().Equals("llegada_Pedido"))
             {
-                dgvResultados.Rows[i].Cells["NroPed"].Value = llegadaPedido.getPedido().Id;
                 dgvResultados.Rows[i].Cells["colRNDLlegadaComb"].Value = llegadaPedido.getRandom(); ;
                 dgvResultados.Rows[i].Cells["colTiempoLlegadaComb"].Value = llegadaPedido.getTiempoEntreLlegada();
                 dgvResultados.Rows[i].Cells["colRNDTipoPedido"].Value = llegadaPedido.getRandomTipoPed();
@@ -638,14 +1006,14 @@ namespace Pizzeria
             {
                 dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = llegadaPedido.getProximaLlegada().getReloj();
             }
-
+     
             //Estos se muestra si hay un proximo fin de coccion del empleado 1 pendiente
             if (finCoccionEmpleado1.getProximaLlegada().getReloj() > 0)
             {
                 dgvResultados.Rows[i].Cells["colRndDemora1"].Value = finCoccionEmpleado1.getRandom();
                 dgvResultados.Rows[i].Cells["colDemora1"].Value = finCoccionEmpleado1.getTiempoEntreLlegada();
                 dgvResultados.Rows[i].Cells["colFinCoccion1"].Value = finCoccionEmpleado1.getProximaLlegada().getReloj();
-            }
+                     }
 
             //Estos se muestra si hay un proximo fin de coccion del empleado 2 pendiente
             if (finCoccionEmpleado2.getProximaLlegada().getReloj() > 0)
@@ -678,6 +1046,41 @@ namespace Pizzeria
         }
 
         private void dgvResultados_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textCantPedDesv_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textCantEmpaProm_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMinDesde_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frm_principal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox24_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox23_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textVentaGratis_TextChanged(object sender, EventArgs e)
         {
 
         }

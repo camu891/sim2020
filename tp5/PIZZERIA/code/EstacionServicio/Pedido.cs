@@ -71,15 +71,15 @@ namespace Pizzeria
 			}
 		}
 
-		public Pedido( string estado, string tipo,int cant, Reloj horaInicioEspera, double rndCant)
+		public Pedido(string estado, string tipo,int cant, Reloj horaInicioEspera, double rndCant)
 		{
-			//this.id = id;
+		//	this.id = id;
 			this.estado = estado;
 			this.tipoServicio = tipo;
 			cantidad = cant;
 			this.horaInicioEspera = horaInicioEspera;
 			this.rndCantidad = rndCant;
-		}
+					}
 
 		public void setHoraInicioEspera(Reloj horaInicioEspera)
 		{
