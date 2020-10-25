@@ -301,7 +301,7 @@ namespace Pizzeria
                                         // GG Se utiliza para acumular el tiempo libre del empleado 3
                                         t_acutpolibEmp3 += firstEvent.getReloj() - t_tpolibEmp3.getReloj();
                                         // GG se quito este metodo porque se fuerza a poner en cola. generarDemoraPedido(fila, 3, llegadaPedido);
-                                        generarDemoraPedido(fila, 2, llegadaPedido);
+                                        generarDemoraPedido(fila, 3, llegadaPedido);
                                     }
                                     else
                                     {
