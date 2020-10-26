@@ -1,11 +1,6 @@
-C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\bin\Debug\EstacionServicio.exe
-C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\bin\Debug\EstacionServicio.pdb
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.frm_principal.resources
-C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.Properties.Resources.resources
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.csproj.GenerateResource.cache
 C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.csproj.CoreCompileInputs.cache
-C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.exe
-C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.pdb
 D:\Sim\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.csprojAssemblyReference.cache
 D:\Sim\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.frm_principal.resources
 D:\Sim\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.Properties.Resources.resources
@@ -43,3 +38,9 @@ C:\Users\note\Desktop\tpSim\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug
 C:\Users\note\Desktop\tpSim\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\Pizzeria.csproj.CoreCompileInputs.cache
 C:\Users\note\Desktop\tpSim\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.exe
 C:\Users\note\Desktop\tpSim\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\EstacionServicio.pdb
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\bin\Debug\PizzeriaTP5.exe.config
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\bin\Debug\PizzeriaTP5.exe
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\bin\Debug\PizzeriaTP5.pdb
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\PizzeriaTP5.Properties.Resources.resources
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\PizzeriaTP5.exe
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\PizzeriaTP5.pdb

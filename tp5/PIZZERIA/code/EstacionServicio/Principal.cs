@@ -392,8 +392,8 @@ namespace Pizzeria
                                 else
                                 {
                                     t_acutot_ventas += precioven * cantped; //GG Acumulo venta total
-                                    if (queTipoPed == "Lomitos" | queTipoPed == "Hamburguesa") // GG Acumulo venta Lom/Hamb
-                                     {
+                                    if (queTipoPed == "Lomito" || queTipoPed == "Hamburguesa") // GG Acumulo venta Lom/Hamb
+                                    {
                                         t_acutot_hamblomo += precioven * cantped;
                                     }
                                 }
@@ -698,27 +698,25 @@ namespace Pizzeria
                 indicarErrorYPonerFocus();
                 resul = true;
             }
-            this.textCantEmpaProm.Text = Convert.ToString(t_cantemp);
-            this.textCantPedProm.Text = Convert.ToString(numeropedido);
-            this.textTpoEmp.Text = Convert.ToString(t_tpoemp/t_contpedemp);
-            this.textTpoPizza.Text = Convert.ToString(t_tpopizza/t_contpedpizza);
-            this.textTpoSand.Text = Convert.ToString(t_tposand/t_contpedsand);
-            this.textTpoLibEmp.Text = Convert.ToString((t_acutpolibEmp1 + t_acutpolibEmp2 + t_acutpolibEmp3)/numeropedido);
-            this.textTpoLibDely.Text = Convert.ToString(t_acutpoLibDel/numeropedido);
-            this.textTpoEntrega.Text = Convert.ToString(t_tpodelivery/t_contentregas);
-            this.textTotVentas.Text = Convert.ToString(t_acutot_ventas);
-            this.textTotIngHambLomo.Text = Convert.ToString(t_acutot_hamblomo);
-            this.textCantPedGratis.Text = Convert.ToString(t_contped_gratis);
-            this.textVentaGratis.Text = Convert.ToString(t_acuimporte_gratis);
-            this.textVentaPerdida.Text = Convert.ToString(t_acuimporte_dejados);
-            this.textCantPedPerdidos.Text = Convert.ToString(t_contped_dejados);
-            this.textTpoEntrePed.Text = Convert.ToString(t_acutpolleped / numeropedido);
-         
+            this.textCantEmpaProm.Text = formatearResultado(t_cantemp);
+            this.textCantPedProm.Text = formatearResultado(numeropedido);
+            this.textTpoEmp.Text = formatearResultado(t_tpoemp/t_contpedemp);
+            this.textTpoPizza.Text = formatearResultado(t_tpopizza/t_contpedpizza);
+            this.textTpoSand.Text = formatearResultado(t_tposand.TruncateDouble(2)/ t_contpedsand);
+            this.textTpoLibEmp.Text = formatearResultado((t_acutpolibEmp1 + t_acutpolibEmp2 + t_acutpolibEmp3)/numeropedido);
+            this.textTpoLibDely.Text = formatearResultado(t_acutpoLibDel/numeropedido);
+            this.textTpoEntrega.Text = formatearResultado(t_tpodelivery/t_contentregas);
+            this.textTotVentas.Text = formatearResultado(t_acutot_ventas);
+            this.textTotIngHambLomo.Text = formatearResultado(t_acutot_hamblomo);
+            this.textCantPedGratis.Text = formatearResultado(t_contped_gratis);
+            this.textVentaGratis.Text = formatearResultado(t_acuimporte_gratis);
+            this.textVentaPerdida.Text = formatearResultado(t_acuimporte_dejados);
+            this.textCantPedPerdidos.Text = formatearResultado(t_contped_dejados);
+            this.textTpoEntrePed.Text = formatearResultado(t_acutpolleped / numeropedido);
+            //this.txtProbObtener250Omenos.Text = 
 
 
             //Fin Bloque Simulacion
-
-
         }
         
 
@@ -1040,49 +1038,10 @@ namespace Pizzeria
             }
         }
 
-        private void dgvResultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public static string formatearResultado(double value)
         {
-
+            return Convert.ToString(Math.Round(value, 2));
         }
 
-        private void dgvResultados_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void textCantPedDesv_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textCantEmpaProm_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtMinDesde_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frm_principal_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox24_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox23_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textVentaGratis_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
