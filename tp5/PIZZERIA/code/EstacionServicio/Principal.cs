@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Windows.Forms;
+using static Pizzeria.Estados;
 
 namespace Pizzeria
 {
@@ -94,6 +95,7 @@ namespace Pizzeria
         private double precioven;
         private Boolean w_haystock;
         private Boolean w_pasa_a_stock;
+        private _TipoTurno cambioTurno;
 
         //Variables necesarias
         private Reloj relojSimulacion;
@@ -185,6 +187,7 @@ namespace Pizzeria
                 w_stkhamb = 0;
                 w_stksand = 0;
                 w_stkemp = 0;
+                cambioTurno = _TipoTurno.Mañana;
 
                 //Bucle principal de SimulacionrelojSimulacion.getDia() < tiempoFinCorrida |
 
@@ -192,10 +195,20 @@ namespace Pizzeria
                 {
                     //Selecciono el siguiente evento
                     Reloj firstEvent = this.getFirstEvent(this.llegadaPedido.getProximaLlegada(), this.finCoccionEmpleado1.getProximaLlegada(), this.finCoccionEmpleado2.getProximaLlegada(), this.finCoccionEmpleado3.getProximaLlegada(), this.finDelivery.getProximaLlegada());
+
                     //Cargo el reloj y genero una nueva fila
                     this.relojSimulacion.setReloj(firstEvent.getReloj());
                     fila++;
 
+                    if (!firstEvent.getTurno().Equals(cambioTurno))
+                    {
+                        cambioTurno = firstEvent.getTurno();
+                        w_stkpizza = 0;
+                        w_stklomo = 0;
+                        w_stkhamb = 0;
+                        w_stksand = 0;
+                        w_stkemp = 0;
+                    }
                     //Evento Llegada Pedido
                     if (this.llegadaPedido.getProximaLlegada().Equals(firstEvent))
                     {
@@ -276,7 +289,6 @@ namespace Pizzeria
                         // GG Fin de control stock
                         else
                         {
-                            ponerColaPedido(llegadaPedido); //GG Se fuerza a la cola al primer pedido, con el objetivo de obtener los tiempos de llegadas de ese pedido
                             if (this.empleado1.getEstado() == "Libre")
                             {
                                 // GG Se utiliza para acumular el tiempo libre del empleado 1

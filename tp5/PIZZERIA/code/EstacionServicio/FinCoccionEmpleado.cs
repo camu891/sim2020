@@ -127,6 +127,8 @@ namespace Pizzeria
 			}
 
 			this.demora = demoraPedido;
+			this.proximoFin.setDia(reloj.getDia());
+			this.proximoFin.setTurno(reloj.getTurno());
 			this.proximoFin.setReloj(this.demora + reloj.getReloj());
 			this.entroped = llegP.getPedido().getInicioEspera();
 			this.demora_acu=demoraPedido + (reloj.getReloj() - llegP.getPedido().getInicioEspera().getReloj());

@@ -64,6 +64,8 @@ namespace Pizzeria
 		{
 			this.rndTiempo = random;
 			this.demora = Distribuciones.Exponencial(3, new Random().NextDouble());
+			this.proximoFin.setDia(reloj.getDia());
+			this.proximoFin.setTurno(reloj.getTurno());
 			this.proximoFin.setReloj(this.demora + reloj.getReloj());
 		}
 
