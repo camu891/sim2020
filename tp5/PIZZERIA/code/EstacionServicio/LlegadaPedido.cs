@@ -12,8 +12,7 @@ namespace Pizzeria
 		private double mu;
 		private Pedido pedido;
 		private double rndTipoPedido;
-		private double minutosDia = 720;
-		private double minutosTurno = 360;
+		private double minutosTurno = 6*60;
 		/*
 		private string tipoPedido;
 		private int cantidad;
@@ -99,23 +98,16 @@ namespace Pizzeria
 			double prox = this.tiempoEntreLlegadas + reloj.getReloj();
 			if (prox > minutosTurno)
 			{
-				if (prox > minutosDia)
+				if (reloj.getTurno().Equals(Estados._TipoTurno.Tarde))
 				{
 					proximaLlegada.cambioTurno();
 					proximaLlegada.addDia();
-					proximaLlegada.setReloj(prox - minutosDia);
+					proximaLlegada.setReloj(prox - minutosTurno);
 				}
 				else
 				{
-					if (reloj.getTurno().Equals(Estados._TipoTurno.Tarde))
-					{
-						proximaLlegada.setReloj(prox);
-					}
-					else
-					{
-						proximaLlegada.cambioTurno();
-						proximaLlegada.setReloj(prox);
-					}
+					proximaLlegada.cambioTurno();
+					proximaLlegada.setReloj(prox - minutosTurno);
 				}
 			}
 			else

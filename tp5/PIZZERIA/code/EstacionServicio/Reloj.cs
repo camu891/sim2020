@@ -11,7 +11,7 @@ namespace Pizzeria
         private _TipoTurno turno;
         private int dia;
         private double comparable;
-        private int minutosXDia = 1440;
+        private int minutosXDia = 24*60;
 
         public Reloj(double reloj, _TipoTurno turno, int dia)
         {
@@ -80,10 +80,23 @@ namespace Pizzeria
         {
             if (this.dia > 0)
             {
-                this.comparable = (dia * minutosXDia) + hora;
+                if (this.turno.Equals(_TipoTurno.Tarde))
+                {
+                    this.comparable = (dia * minutosXDia) + (minutosXDia/2) + hora;
+                } else
+                {
+                    this.comparable = (dia * minutosXDia) + hora;
+                }
             } else
             {
-                this.comparable = hora;
+                if (this.turno.Equals(_TipoTurno.Tarde))
+                {
+                    this.comparable = (minutosXDia / 2) + hora;
+                }
+                else
+                {
+                    this.comparable = hora;
+                }
             }
               
         }
