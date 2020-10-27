@@ -103,6 +103,8 @@ namespace Pizzeria
         Random rand = new Random((int)DateTime.Now.Ticks);
         bool resul = true;
         TextBox invalido = null;
+        private int idPedidoAAtender;
+        private int idPedidoFila;
 
         public frm_principal()
         {
@@ -331,8 +333,10 @@ namespace Pizzeria
                         //Evento Fin coccion empleado 1
                         if (this.finCoccionEmpleado1.getProximaLlegada().Equals(firstEvent))
                         {
+
                             //GG Se obtienen los datos del pedido que finaliza su coccion para acumular tiempo de coccion y ver si no pasa a stock
                             //por superar el tiempo de espera. AUNQUE NO ANDA TODO
+                            idPedidoFila = finCoccionEmpleado1.getLlegada().getPedido().getId();
                             queTipoPed = finCoccionEmpleado1.getLlegada().getPedido().Tipo;
                             cantped = finCoccionEmpleado1.getLlegada().getPedido().Cantidad;
                             TpoCoccion = finCoccionEmpleado1.getDemora_Acu();
@@ -445,7 +449,7 @@ namespace Pizzeria
                             {
                                 //GG Se obtienen los datos del pedido que finaliza su coccion para acumular tiempo de coccion y ver si no pasa a stock
                                 //por superar el tiempo de espera. AUNQUE NO ANDA TODO
-
+                                idPedidoFila = finCoccionEmpleado2.getLlegada().getPedido().getId();
                                 queTipoPed = finCoccionEmpleado2.getLlegada().getPedido().Tipo;
                                 cantped = finCoccionEmpleado2.getLlegada().getPedido().Cantidad;
                                 TpoCoccion = finCoccionEmpleado2.getDemora_Acu();
@@ -559,7 +563,7 @@ namespace Pizzeria
                                 {
                                     //GG Se obtienen los datos del pedido que finaliza su coccion para acumular tiempo de coccion y ver si no pasa a stock
                                     //por superar el tiempo de espera. AUNQUE NO ANDA TODO
-
+                                    idPedidoFila = finCoccionEmpleado3.getLlegada().getPedido().getId();
                                     queTipoPed = finCoccionEmpleado3.getLlegada().getPedido().Tipo;
                                     cantped = finCoccionEmpleado3.getLlegada().getPedido().Cantidad;
                                     TpoCoccion = finCoccionEmpleado3.getDemora_Acu();
@@ -786,6 +790,7 @@ namespace Pizzeria
                 LlegadaPedido lp = new LlegadaPedido();
                 lp.setPedido(enPreparacion);
                 generarDemoraPedido(fila, e.getId(), lp);
+                idPedidoAAtender = enPreparacion.getId();
             }
             else
             { //libero los datos de empleado
@@ -858,6 +863,7 @@ namespace Pizzeria
 
         public void inicializarVariables()
         {
+
             this.relojSimulacion = new Reloj();
             this.identificadorPedido = 0;
             this.llegadaPedido = new LlegadaPedido(this.mediaLlegadaPedidos);
@@ -870,6 +876,8 @@ namespace Pizzeria
             this.finCoccionEmpleado3 = new FinCoccionEmpleado(promSandwich, desvSandwich, desdePizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 3, empleado3);
             this.colaPreparacion = new ColaPreparacion();
 
+            this.idPedidoAAtender = 0;
+            Pedido.id = 0;
 
             this.finDelivery = new FinDelivery(this.desdePizza, this.hastaPizza, 1, this.precioPizza);//TODO pasar parametros 
             this.empleados = new List<Empleado>() { empleado1, empleado2, empleado3 };
@@ -978,7 +986,7 @@ namespace Pizzeria
 
             //Columnas que se muestran siempre
             dgvResultados.Rows[i].Cells["colFila"].Value = fila;
-            dgvResultados.Rows[i].Cells["colEvento"].Value = evento.getNombreEvento();
+            dgvResultados.Rows[i].Cells["colEvento"].Value = concatenarId(evento);
             dgvResultados.Rows[i].Cells["colReloj"].Value = relojSimulacion.getReloj();
             dgvResultados.Rows[i].Cells["colDia"].Value = relojSimulacion.getDia();
             dgvResultados.Rows[i].Cells["colTurno"].Value = relojSimulacion.getTurno().ToString();
@@ -1003,7 +1011,7 @@ namespace Pizzeria
                 dgvResultados.Rows[i].Cells["colTipoPedido"].Value = llegadaPedido.getPedido().Tipo;
                 dgvResultados.Rows[i].Cells["colCantidad"].Value = llegadaPedido.getPedido().Cantidad;
                 if (llegadaPedido.getPedido().Tipo.Equals("Empanadas"))
-                    dgvResultados.Rows[i].Cells["colRNDCant"].Value = llegadaPedido.getPedido().RndCantidad;
+                    dgvResultados.Rows[i].Cells["colRNDCant"].Value = formatearResultado(llegadaPedido.getPedido().RndCantidad);
                 dgvResultados.Rows[i].Cells["StkPizza"].Value = w_stkpizza;
                 dgvResultados.Rows[i].Cells["StkEmp"].Value = w_stkemp;
                 dgvResultados.Rows[i].Cells["StkSand"].Value = w_stksand;
@@ -1016,37 +1024,43 @@ namespace Pizzeria
             {
                 dgvResultados.Rows[i].Cells["colProxLlegadaComb"].Value = llegadaPedido.getProximaLlegada().getReloj();
             }
-     
-            //Estos se muestra si hay un proximo fin de coccion del empleado 1 pendiente
-            if (finCoccionEmpleado1.getProximaLlegada().getReloj() > 0)
-            {
-                dgvResultados.Rows[i].Cells["colRndDemora1"].Value = finCoccionEmpleado1.getRandom();
-                dgvResultados.Rows[i].Cells["colDemora1"].Value = finCoccionEmpleado1.getTiempoEntreLlegada();
-                dgvResultados.Rows[i].Cells["colFinCoccion1"].Value = finCoccionEmpleado1.getProximaLlegada().getReloj();
-                     }
 
-            //Estos se muestra si hay un proximo fin de coccion del empleado 2 pendiente
-            if (finCoccionEmpleado2.getProximaLlegada().getReloj() > 0)
-            {
-                dgvResultados.Rows[i].Cells["colRndDemora2"].Value = finCoccionEmpleado2.getRandom();
-                dgvResultados.Rows[i].Cells["colDemora2"].Value = finCoccionEmpleado2.getTiempoEntreLlegada();
-                dgvResultados.Rows[i].Cells["colFinCoccion2"].Value = finCoccionEmpleado2.getProximaLlegada().getReloj();
-            }
-
-            //Estos se muestra si hay un proximo fin de coccion del empleado 2 pendiente
-            if (finCoccionEmpleado3.getProximaLlegada().getReloj() > 0)
-            {
-                dgvResultados.Rows[i].Cells["colRndDemora3"].Value = finCoccionEmpleado3.getRandom();
-                dgvResultados.Rows[i].Cells["colDemora3"].Value = finCoccionEmpleado3.getTiempoEntreLlegada();
-                dgvResultados.Rows[i].Cells["colFinCoccion3"].Value = finCoccionEmpleado3.getProximaLlegada().getReloj();
-            }
+            //Estos se muestra si hay un proximo fin de coccion de los empleados pendientes
+            setColDemoraFinCoccion(finCoccionEmpleado1, 1, i);
+            setColDemoraFinCoccion(finCoccionEmpleado2, 2, i);
+            setColDemoraFinCoccion(finCoccionEmpleado3, 3, i);
 
             //Estos se muestra si hay un proximo fin de delivery pendiente
             if (this.finDelivery.getProximaLlegada().getReloj() > 0)
             {
-                dgvResultados.Rows[i].Cells["colRndDelivery"].Value = this.finDelivery.getRandom();
-                dgvResultados.Rows[i].Cells["colTiempoEntrega"].Value = this.finDelivery.getTiempoEntreLlegada();
-                dgvResultados.Rows[i].Cells["colFinEntregaDelivery"].Value = this.finDelivery.getProximaLlegada().getReloj();
+                dgvResultados.Rows[i].Cells["colRndDelivery"].Value = formatearResultado(this.finDelivery.getRandom());
+                dgvResultados.Rows[i].Cells["colTiempoEntrega"].Value = formatearResultado(this.finDelivery.getTiempoEntreLlegada());
+                dgvResultados.Rows[i].Cells["colFinEntregaDelivery"].Value = formatearResultado(this.finDelivery.getProximaLlegada().getReloj());
+            }
+        }
+
+        private string concatenarId(Evento e) {
+            string idPedido = "";
+
+            if (e.getNombreEvento() == "llegada_Pedido")
+            {
+                idPedido = "-" + Convert.ToString(((LlegadaPedido)e).getPedido().getId());
+            }
+            //else if (e.getNombreEvento() == "fin_Coccion")
+            //{
+            //    idPedido = "-" + Convert.ToString(idPedidoFila);
+            //}
+            return e.getNombreEvento() + idPedido;
+           }
+
+        private void setColDemoraFinCoccion(FinCoccionEmpleado fc, int id, int i) {
+            if (fc.getProximaLlegada().getReloj() > 0)
+            {
+                dgvResultados.Rows[i].Cells["ColNroPedidoE1"].Value = idPedidoAAtender == 0 ? "-" : Convert.ToString(idPedidoAAtender);
+
+                dgvResultados.Rows[i].Cells["colRndDemora"+ id].Value = formatearResultado(fc.getRandom());
+                dgvResultados.Rows[i].Cells["colDemora" + id].Value = formatearResultado(fc.getTiempoEntreLlegada());
+                dgvResultados.Rows[i].Cells["colFinCoccion" + id].Value = formatearResultado(fc.getProximaLlegada().getReloj());
             }
         }
 

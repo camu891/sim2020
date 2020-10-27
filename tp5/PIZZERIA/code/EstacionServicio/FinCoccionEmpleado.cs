@@ -37,7 +37,7 @@ namespace Pizzeria
             this.idEmpleado = idEmpleado;
             this.e = empleado;
 			proximoFin = new Reloj();
-					}
+		}
 
         public Empleado Empleado { get => e; set => e = value; }
 

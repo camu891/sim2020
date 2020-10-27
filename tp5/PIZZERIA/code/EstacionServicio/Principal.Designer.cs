@@ -213,6 +213,7 @@
             this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colColaPreparacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEstadoEmpleado1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColNroPedidoE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRndDemora1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDemora1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCoccion1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -2000,6 +2001,7 @@
             this.colCantidad,
             this.colColaPreparacion,
             this.colEstadoEmpleado1,
+            this.ColNroPedidoE1,
             this.colRndDemora1,
             this.colDemora1,
             this.colFinCoccion1,
@@ -2176,6 +2178,13 @@
             this.colEstadoEmpleado1.ReadOnly = true;
             this.colEstadoEmpleado1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colEstadoEmpleado1.Width = 105;
+            // 
+            // ColNroPedidoE1
+            // 
+            this.ColNroPedidoE1.HeaderText = "Nro Pedido";
+            this.ColNroPedidoE1.Name = "ColNroPedidoE1";
+            this.ColNroPedidoE1.ReadOnly = true;
+            this.ColNroPedidoE1.Width = 85;
             // 
             // colRndDemora1
             // 
@@ -2596,6 +2605,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn colColaPreparacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoEmpleado1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColNroPedidoE1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRndDemora1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDemora1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCoccion1;
