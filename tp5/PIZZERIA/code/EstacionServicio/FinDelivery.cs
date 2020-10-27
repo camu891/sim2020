@@ -66,7 +66,6 @@ namespace Pizzeria
 			this.demora = Distribuciones.Exponencial(3, new Random().NextDouble());
 			this.proximoFin.setDia(reloj.getDia());
 			this.proximoFin.setTurno(reloj.getTurno());
-			this.proximoFin.setReloj(this.demora + reloj.getReloj());
 		}
 
 		public override void simularDemora(Reloj reloj, double random, LlegadaPedido llegP) { }

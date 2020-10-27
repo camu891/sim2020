@@ -40,13 +40,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_principal));
             this.gpbParametros = new System.Windows.Forms.GroupBox();
-            this.Integrantes = new System.Windows.Forms.GroupBox();
-            this.label85 = new System.Windows.Forms.Label();
-            this.label74 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -100,6 +93,9 @@
             this.txtdesvSandwich = new System.Windows.Forms.TextBox();
             this.txtPromSandwich = new System.Windows.Forms.TextBox();
             this.gpbTiemposLlegadas = new System.Windows.Forms.GroupBox();
+            this.label87 = new System.Windows.Forms.Label();
+            this.label86 = new System.Windows.Forms.Label();
+            this.textCantHorasTurno = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTopeEspera = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -109,8 +105,17 @@
             this.lblLlegadaCombustible = new System.Windows.Forms.Label();
             this.txtTopeGratis = new System.Windows.Forms.TextBox();
             this.txtLlegadaPedido = new System.Windows.Forms.TextBox();
+            this.Integrantes = new System.Windows.Forms.GroupBox();
+            this.label85 = new System.Windows.Forms.Label();
+            this.label74 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.gpbResultado = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label88 = new System.Windows.Forms.Label();
+            this.textHorasExtras = new System.Windows.Forms.TextBox();
             this.label70 = new System.Windows.Forms.Label();
             this.label69 = new System.Windows.Forms.Label();
             this.label84 = new System.Windows.Forms.Label();
@@ -235,15 +240,11 @@
             this.StkLomo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StkHamb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StkEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DejaPed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textCantHorasTurno = new System.Windows.Forms.TextBox();
-            this.label86 = new System.Windows.Forms.Label();
-            this.label87 = new System.Windows.Forms.Label();
             this.gpbParametros.SuspendLayout();
-            this.Integrantes.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gpbTiemposFin.SuspendLayout();
             this.gpbTiemposLlegadas.SuspendLayout();
+            this.Integrantes.SuspendLayout();
             this.gpbResultado.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.gpbParametrosCorrida.SuspendLayout();
@@ -256,93 +257,15 @@
             // 
             this.gpbParametros.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpbParametros.Controls.Add(this.Integrantes);
             this.gpbParametros.Controls.Add(this.groupBox1);
             this.gpbParametros.Controls.Add(this.gpbTiemposFin);
             this.gpbParametros.Controls.Add(this.gpbTiemposLlegadas);
             this.gpbParametros.Location = new System.Drawing.Point(12, 12);
             this.gpbParametros.Name = "gpbParametros";
-            this.gpbParametros.Size = new System.Drawing.Size(2240, 151);
+            this.gpbParametros.Size = new System.Drawing.Size(2256, 151);
             this.gpbParametros.TabIndex = 0;
             this.gpbParametros.TabStop = false;
             this.gpbParametros.Text = "Parámetros Simulación";
-            // 
-            // Integrantes
-            // 
-            this.Integrantes.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.Integrantes.Controls.Add(this.label85);
-            this.Integrantes.Controls.Add(this.label74);
-            this.Integrantes.Controls.Add(this.label25);
-            this.Integrantes.Controls.Add(this.label27);
-            this.Integrantes.Controls.Add(this.label31);
-            this.Integrantes.Controls.Add(this.label32);
-            this.Integrantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Integrantes.Location = new System.Drawing.Point(1365, 17);
-            this.Integrantes.Name = "Integrantes";
-            this.Integrantes.Size = new System.Drawing.Size(367, 129);
-            this.Integrantes.TabIndex = 109;
-            this.Integrantes.TabStop = false;
-            this.Integrantes.Text = "Grupo R";
-            // 
-            // label85
-            // 
-            this.label85.AutoSize = true;
-            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label85.Location = new System.Drawing.Point(182, 81);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(130, 13);
-            this.label85.TabIndex = 5;
-            this.label85.Text = "Carolina Brito - 73545";
-            // 
-            // label74
-            // 
-            this.label74.AutoSize = true;
-            this.label74.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label74.Location = new System.Drawing.Point(10, 81);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(128, 13);
-            this.label74.TabIndex = 4;
-            this.label74.Text = "Matías Primo - 72078";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(177, 27);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(148, 13);
-            this.label25.TabIndex = 3;
-            this.label25.Text = "Carlesso Nicolas - 58326";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(10, 55);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(148, 13);
-            this.label27.TabIndex = 2;
-            this.label27.Text = "Gordillo Gustavo - 16077";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(177, 53);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(145, 13);
-            this.label31.TabIndex = 1;
-            this.label31.Text = "Chavez Marcelo - 49904";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(7, 27);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(145, 13);
-            this.label32.TabIndex = 0;
-            this.label32.Text = "Camusso Matias - 58227";
             // 
             // groupBox1
             // 
@@ -916,6 +839,34 @@
             this.gpbTiemposLlegadas.TabStop = false;
             this.gpbTiemposLlegadas.Text = "Parametros de Llegadas";
             // 
+            // label87
+            // 
+            this.label87.AutoSize = true;
+            this.label87.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label87.Location = new System.Drawing.Point(175, 100);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(30, 15);
+            this.label87.TabIndex = 10;
+            this.label87.Text = "[hs]";
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.Location = new System.Drawing.Point(19, 100);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(96, 13);
+            this.label86.TabIndex = 9;
+            this.label86.Text = "Cant horas x turno:";
+            // 
+            // textCantHorasTurno
+            // 
+            this.textCantHorasTurno.Location = new System.Drawing.Point(124, 97);
+            this.textCantHorasTurno.Name = "textCantHorasTurno";
+            this.textCantHorasTurno.Size = new System.Drawing.Size(45, 20);
+            this.textCantHorasTurno.TabIndex = 8;
+            this.textCantHorasTurno.Text = "6";
+            this.textCantHorasTurno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -1003,24 +954,103 @@
             this.txtLlegadaPedido.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtLlegadaPedido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
             // 
+            // Integrantes
+            // 
+            this.Integrantes.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Integrantes.Controls.Add(this.label85);
+            this.Integrantes.Controls.Add(this.label74);
+            this.Integrantes.Controls.Add(this.label25);
+            this.Integrantes.Controls.Add(this.label27);
+            this.Integrantes.Controls.Add(this.label31);
+            this.Integrantes.Controls.Add(this.label32);
+            this.Integrantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Integrantes.Location = new System.Drawing.Point(603, 37);
+            this.Integrantes.Name = "Integrantes";
+            this.Integrantes.Size = new System.Drawing.Size(367, 129);
+            this.Integrantes.TabIndex = 109;
+            this.Integrantes.TabStop = false;
+            this.Integrantes.Text = "Grupo R";
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label85.Location = new System.Drawing.Point(182, 81);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(130, 13);
+            this.label85.TabIndex = 5;
+            this.label85.Text = "Carolina Brito - 73545";
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label74.Location = new System.Drawing.Point(10, 81);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(128, 13);
+            this.label74.TabIndex = 4;
+            this.label74.Text = "Matías Primo - 72078";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(177, 27);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(148, 13);
+            this.label25.TabIndex = 3;
+            this.label25.Text = "Carlesso Nicolas - 58326";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(10, 55);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(148, 13);
+            this.label27.TabIndex = 2;
+            this.label27.Text = "Gordillo Gustavo - 16077";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(177, 53);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(145, 13);
+            this.label31.TabIndex = 1;
+            this.label31.Text = "Chavez Marcelo - 49904";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(7, 27);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(145, 13);
+            this.label32.TabIndex = 0;
+            this.label32.Text = "Camusso Matias - 58227";
+            // 
             // gpbResultado
             // 
             this.gpbResultado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gpbResultado.Controls.Add(this.Integrantes);
             this.gpbResultado.Controls.Add(this.groupBox3);
             this.gpbResultado.Controls.Add(this.gpbParametrosCorrida);
             this.gpbResultado.Controls.Add(this.groupBox2);
-            this.gpbResultado.Controls.Add(this.gpbResult);
             this.gpbResultado.Location = new System.Drawing.Point(12, 169);
             this.gpbResultado.Name = "gpbResultado";
-            this.gpbResultado.Size = new System.Drawing.Size(2240, 780);
+            this.gpbResultado.Size = new System.Drawing.Size(2256, 407);
             this.gpbResultado.TabIndex = 1;
             this.gpbResultado.TabStop = false;
             this.gpbResultado.Text = "Simulación";
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label88);
+            this.groupBox3.Controls.Add(this.textHorasExtras);
             this.groupBox3.Controls.Add(this.label70);
             this.groupBox3.Controls.Add(this.label69);
             this.groupBox3.Controls.Add(this.label84);
@@ -1093,12 +1123,32 @@
             this.groupBox3.Controls.Add(this.textTpoLibDely);
             this.groupBox3.Controls.Add(this.textBox12);
             this.groupBox3.Controls.Add(this.textTpoEntrePed);
-            this.groupBox3.Location = new System.Drawing.Point(451, 19);
+            this.groupBox3.Location = new System.Drawing.Point(14, 195);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1281, 174);
             this.groupBox3.TabIndex = 56;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Resultados";
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label88.Location = new System.Drawing.Point(307, 149);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(102, 15);
+            this.label88.TabIndex = 127;
+            this.label88.Text = "Tiempo extras:";
+            // 
+            // textHorasExtras
+            // 
+            this.textHorasExtras.Location = new System.Drawing.Point(418, 148);
+            this.textHorasExtras.Name = "textHorasExtras";
+            this.textHorasExtras.ReadOnly = true;
+            this.textHorasExtras.Size = new System.Drawing.Size(60, 20);
+            this.textHorasExtras.TabIndex = 126;
+            this.textHorasExtras.Text = "0";
+            this.textHorasExtras.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label70
             // 
@@ -1124,7 +1174,7 @@
             // 
             this.label84.AutoSize = true;
             this.label84.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label84.Location = new System.Drawing.Point(948, 9);
+            this.label84.Location = new System.Drawing.Point(940, 9);
             this.label84.Name = "label84";
             this.label84.Size = new System.Drawing.Size(23, 15);
             this.label84.TabIndex = 56;
@@ -1134,7 +1184,7 @@
             // 
             this.label83.AutoSize = true;
             this.label83.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label83.Location = new System.Drawing.Point(694, 10);
+            this.label83.Location = new System.Drawing.Point(684, 10);
             this.label83.Name = "label83";
             this.label83.Size = new System.Drawing.Size(39, 15);
             this.label83.TabIndex = 123;
@@ -1144,7 +1194,7 @@
             // 
             this.label82.AutoSize = true;
             this.label82.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label82.Location = new System.Drawing.Point(435, 10);
+            this.label82.Location = new System.Drawing.Point(431, 10);
             this.label82.Name = "label82";
             this.label82.Size = new System.Drawing.Size(39, 15);
             this.label82.TabIndex = 56;
@@ -1154,7 +1204,7 @@
             // 
             this.label81.AutoSize = true;
             this.label81.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label81.Location = new System.Drawing.Point(176, 9);
+            this.label81.Location = new System.Drawing.Point(165, 9);
             this.label81.Name = "label81";
             this.label81.Size = new System.Drawing.Size(35, 15);
             this.label81.TabIndex = 7;
@@ -1172,20 +1222,21 @@
             // 
             // textCantVentasGratisDesv
             // 
-            this.textCantVentasGratisDesv.Location = new System.Drawing.Point(195, 143);
+            this.textCantVentasGratisDesv.Location = new System.Drawing.Point(222, 144);
             this.textCantVentasGratisDesv.Name = "textCantVentasGratisDesv";
             this.textCantVentasGratisDesv.ReadOnly = true;
-            this.textCantVentasGratisDesv.Size = new System.Drawing.Size(38, 20);
+            this.textCantVentasGratisDesv.Size = new System.Drawing.Size(16, 20);
             this.textCantVentasGratisDesv.TabIndex = 122;
             this.textCantVentasGratisDesv.Text = "0";
             this.textCantVentasGratisDesv.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textCantVentasGratisDesv.Visible = false;
             // 
             // textCantPedGratis
             // 
             this.textCantPedGratis.Location = new System.Drawing.Point(152, 143);
             this.textCantPedGratis.Name = "textCantPedGratis";
             this.textCantPedGratis.ReadOnly = true;
-            this.textCantPedGratis.Size = new System.Drawing.Size(38, 20);
+            this.textCantPedGratis.Size = new System.Drawing.Size(60, 20);
             this.textCantPedGratis.TabIndex = 121;
             this.textCantPedGratis.Text = "0";
             this.textCantPedGratis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1222,13 +1273,14 @@
             // 
             // textCantEmpDesv
             // 
-            this.textCantEmpDesv.Location = new System.Drawing.Point(195, 92);
+            this.textCantEmpDesv.Location = new System.Drawing.Point(222, 93);
             this.textCantEmpDesv.Name = "textCantEmpDesv";
             this.textCantEmpDesv.ReadOnly = true;
-            this.textCantEmpDesv.Size = new System.Drawing.Size(37, 20);
+            this.textCantEmpDesv.Size = new System.Drawing.Size(15, 20);
             this.textCantEmpDesv.TabIndex = 115;
             this.textCantEmpDesv.Text = "0";
             this.textCantEmpDesv.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textCantEmpDesv.Visible = false;
             // 
             // label78
             // 
@@ -1252,23 +1304,25 @@
             // 
             // textCantVentasPerdidasDesv
             // 
-            this.textCantVentasPerdidasDesv.Location = new System.Drawing.Point(195, 118);
+            this.textCantVentasPerdidasDesv.Location = new System.Drawing.Point(222, 119);
             this.textCantVentasPerdidasDesv.Name = "textCantVentasPerdidasDesv";
             this.textCantVentasPerdidasDesv.ReadOnly = true;
-            this.textCantVentasPerdidasDesv.Size = new System.Drawing.Size(38, 20);
+            this.textCantVentasPerdidasDesv.Size = new System.Drawing.Size(16, 20);
             this.textCantVentasPerdidasDesv.TabIndex = 114;
             this.textCantVentasPerdidasDesv.Text = "0";
             this.textCantVentasPerdidasDesv.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textCantVentasPerdidasDesv.Visible = false;
             // 
             // textBox26
             // 
-            this.textBox26.Location = new System.Drawing.Point(958, 148);
+            this.textBox26.Location = new System.Drawing.Point(997, 148);
             this.textBox26.Name = "textBox26";
             this.textBox26.ReadOnly = true;
-            this.textBox26.Size = new System.Drawing.Size(38, 20);
+            this.textBox26.Size = new System.Drawing.Size(13, 20);
             this.textBox26.TabIndex = 100;
             this.textBox26.Text = "0";
             this.textBox26.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox26.Visible = false;
             // 
             // label72
             // 
@@ -1292,13 +1346,14 @@
             // 
             // textCantPedxHoraDesv
             // 
-            this.textCantPedxHoraDesv.Location = new System.Drawing.Point(195, 66);
+            this.textCantPedxHoraDesv.Location = new System.Drawing.Point(222, 67);
             this.textCantPedxHoraDesv.Name = "textCantPedxHoraDesv";
             this.textCantPedxHoraDesv.ReadOnly = true;
-            this.textCantPedxHoraDesv.Size = new System.Drawing.Size(37, 20);
+            this.textCantPedxHoraDesv.Size = new System.Drawing.Size(15, 20);
             this.textCantPedxHoraDesv.TabIndex = 113;
             this.textCantPedxHoraDesv.Text = "0";
             this.textCantPedxHoraDesv.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textCantPedxHoraDesv.Visible = false;
             // 
             // txtProbObtener250Omenos
             // 
@@ -1332,13 +1387,14 @@
             // 
             // textCantPedDesv
             // 
-            this.textCantPedDesv.Location = new System.Drawing.Point(195, 40);
+            this.textCantPedDesv.Location = new System.Drawing.Point(222, 41);
             this.textCantPedDesv.Name = "textCantPedDesv";
             this.textCantPedDesv.ReadOnly = true;
-            this.textCantPedDesv.Size = new System.Drawing.Size(37, 20);
+            this.textCantPedDesv.Size = new System.Drawing.Size(15, 20);
             this.textCantPedDesv.TabIndex = 112;
             this.textCantPedDesv.Text = "0";
             this.textCantPedDesv.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textCantPedDesv.Visible = false;
             // 
             // label34
             // 
@@ -1355,7 +1411,7 @@
             this.textCantEmpaProm.Location = new System.Drawing.Point(152, 92);
             this.textCantEmpaProm.Name = "textCantEmpaProm";
             this.textCantEmpaProm.ReadOnly = true;
-            this.textCantEmpaProm.Size = new System.Drawing.Size(37, 20);
+            this.textCantEmpaProm.Size = new System.Drawing.Size(59, 20);
             this.textCantEmpaProm.TabIndex = 110;
             this.textCantEmpaProm.Text = "0";
             this.textCantEmpaProm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1375,7 +1431,7 @@
             this.textCantPedProm.Location = new System.Drawing.Point(152, 40);
             this.textCantPedProm.Name = "textCantPedProm";
             this.textCantPedProm.ReadOnly = true;
-            this.textCantPedProm.Size = new System.Drawing.Size(37, 20);
+            this.textCantPedProm.Size = new System.Drawing.Size(59, 20);
             this.textCantPedProm.TabIndex = 103;
             this.textCantPedProm.Text = "0";
             this.textCantPedProm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1385,7 +1441,7 @@
             this.textCantPedxHoraProm.Location = new System.Drawing.Point(152, 66);
             this.textCantPedxHoraProm.Name = "textCantPedxHoraProm";
             this.textCantPedxHoraProm.ReadOnly = true;
-            this.textCantPedxHoraProm.Size = new System.Drawing.Size(37, 20);
+            this.textCantPedxHoraProm.Size = new System.Drawing.Size(59, 20);
             this.textCantPedxHoraProm.TabIndex = 104;
             this.textCantPedxHoraProm.Text = "0";
             this.textCantPedxHoraProm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1393,18 +1449,19 @@
             // label79
             // 
             this.label79.AutoSize = true;
-            this.label79.Location = new System.Drawing.Point(200, 25);
+            this.label79.Location = new System.Drawing.Point(210, 29);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(32, 13);
             this.label79.TabIndex = 109;
             this.label79.Text = "Desv";
+            this.label79.Visible = false;
             // 
             // textVentaGratis
             // 
             this.textVentaGratis.Location = new System.Drawing.Point(917, 148);
             this.textVentaGratis.Name = "textVentaGratis";
             this.textVentaGratis.ReadOnly = true;
-            this.textVentaGratis.Size = new System.Drawing.Size(38, 20);
+            this.textVentaGratis.Size = new System.Drawing.Size(60, 20);
             this.textVentaGratis.TabIndex = 91;
             this.textVentaGratis.Text = "0";
             this.textVentaGratis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1414,7 +1471,7 @@
             this.textCantPedPerdidos.Location = new System.Drawing.Point(152, 118);
             this.textCantPedPerdidos.Name = "textCantPedPerdidos";
             this.textCantPedPerdidos.ReadOnly = true;
-            this.textCantPedPerdidos.Size = new System.Drawing.Size(38, 20);
+            this.textCantPedPerdidos.Size = new System.Drawing.Size(60, 20);
             this.textCantPedPerdidos.TabIndex = 105;
             this.textCantPedPerdidos.Text = "0";
             this.textCantPedPerdidos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1440,43 +1497,47 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(958, 96);
+            this.textBox10.Location = new System.Drawing.Point(997, 96);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(37, 20);
+            this.textBox10.Size = new System.Drawing.Size(12, 20);
             this.textBox10.TabIndex = 87;
             this.textBox10.Text = "0";
             this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox10.Visible = false;
             // 
             // textBox18
             // 
-            this.textBox18.Location = new System.Drawing.Point(958, 124);
+            this.textBox18.Location = new System.Drawing.Point(997, 124);
             this.textBox18.Name = "textBox18";
             this.textBox18.ReadOnly = true;
-            this.textBox18.Size = new System.Drawing.Size(38, 20);
+            this.textBox18.Size = new System.Drawing.Size(13, 20);
             this.textBox18.TabIndex = 86;
             this.textBox18.Text = "0";
             this.textBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox18.Visible = false;
             // 
             // textBox19
             // 
-            this.textBox19.Location = new System.Drawing.Point(958, 69);
+            this.textBox19.Location = new System.Drawing.Point(997, 69);
             this.textBox19.Name = "textBox19";
             this.textBox19.ReadOnly = true;
-            this.textBox19.Size = new System.Drawing.Size(37, 20);
+            this.textBox19.Size = new System.Drawing.Size(12, 20);
             this.textBox19.TabIndex = 85;
             this.textBox19.Text = "0";
             this.textBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox19.Visible = false;
             // 
             // textBox20
             // 
-            this.textBox20.Location = new System.Drawing.Point(958, 43);
+            this.textBox20.Location = new System.Drawing.Point(997, 43);
             this.textBox20.Name = "textBox20";
             this.textBox20.ReadOnly = true;
-            this.textBox20.Size = new System.Drawing.Size(37, 20);
+            this.textBox20.Size = new System.Drawing.Size(12, 20);
             this.textBox20.TabIndex = 84;
             this.textBox20.Text = "0";
             this.textBox20.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox20.Visible = false;
             // 
             // label42
             // 
@@ -1493,7 +1554,7 @@
             this.textTotIngHambLomo.Location = new System.Drawing.Point(917, 96);
             this.textTotIngHambLomo.Name = "textTotIngHambLomo";
             this.textTotIngHambLomo.ReadOnly = true;
-            this.textTotIngHambLomo.Size = new System.Drawing.Size(37, 20);
+            this.textTotIngHambLomo.Size = new System.Drawing.Size(60, 20);
             this.textTotIngHambLomo.TabIndex = 82;
             this.textTotIngHambLomo.Text = "0";
             this.textTotIngHambLomo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1521,11 +1582,12 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(964, 27);
+            this.label50.Location = new System.Drawing.Point(1003, 27);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(32, 13);
             this.label50.TabIndex = 81;
             this.label50.Text = "Desv";
+            this.label50.Visible = false;
             // 
             // label53
             // 
@@ -1541,7 +1603,7 @@
             this.textVentaPerdida.Location = new System.Drawing.Point(917, 124);
             this.textVentaPerdida.Name = "textVentaPerdida";
             this.textVentaPerdida.ReadOnly = true;
-            this.textVentaPerdida.Size = new System.Drawing.Size(38, 20);
+            this.textVentaPerdida.Size = new System.Drawing.Size(60, 20);
             this.textVentaPerdida.TabIndex = 77;
             this.textVentaPerdida.Text = "0";
             this.textVentaPerdida.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1551,7 +1613,7 @@
             this.textVenxHora.Location = new System.Drawing.Point(917, 69);
             this.textVenxHora.Name = "textVenxHora";
             this.textVenxHora.ReadOnly = true;
-            this.textVenxHora.Size = new System.Drawing.Size(37, 20);
+            this.textVenxHora.Size = new System.Drawing.Size(60, 20);
             this.textVenxHora.TabIndex = 76;
             this.textVenxHora.Text = "0";
             this.textVenxHora.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1561,7 +1623,7 @@
             this.textTotVentas.Location = new System.Drawing.Point(917, 43);
             this.textTotVentas.Name = "textTotVentas";
             this.textTotVentas.ReadOnly = true;
-            this.textTotVentas.Size = new System.Drawing.Size(37, 20);
+            this.textTotVentas.Size = new System.Drawing.Size(60, 20);
             this.textTotVentas.TabIndex = 75;
             this.textTotVentas.Text = "0";
             this.textTotVentas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1578,43 +1640,47 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(714, 96);
+            this.textBox2.Location = new System.Drawing.Point(752, 97);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(37, 20);
+            this.textBox2.Size = new System.Drawing.Size(13, 20);
             this.textBox2.TabIndex = 73;
             this.textBox2.Text = "0";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox2.Visible = false;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(714, 122);
+            this.textBox3.Location = new System.Drawing.Point(752, 123);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(38, 20);
+            this.textBox3.Size = new System.Drawing.Size(14, 20);
             this.textBox3.TabIndex = 72;
             this.textBox3.Text = "0";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox3.Visible = false;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(714, 70);
+            this.textBox4.Location = new System.Drawing.Point(752, 71);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(37, 20);
+            this.textBox4.Size = new System.Drawing.Size(13, 20);
             this.textBox4.TabIndex = 71;
             this.textBox4.Text = "0";
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox4.Visible = false;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(714, 44);
+            this.textBox5.Location = new System.Drawing.Point(752, 45);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(37, 20);
+            this.textBox5.Size = new System.Drawing.Size(13, 20);
             this.textBox5.TabIndex = 70;
             this.textBox5.Text = "0";
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox5.Visible = false;
             // 
             // label36
             // 
@@ -1631,7 +1697,7 @@
             this.textTpoEmp.Location = new System.Drawing.Point(671, 96);
             this.textTpoEmp.Name = "textTpoEmp";
             this.textTpoEmp.ReadOnly = true;
-            this.textTpoEmp.Size = new System.Drawing.Size(37, 20);
+            this.textTpoEmp.Size = new System.Drawing.Size(60, 20);
             this.textTpoEmp.TabIndex = 68;
             this.textTpoEmp.Text = "0";
             this.textTpoEmp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1659,11 +1725,12 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(718, 29);
+            this.label39.Location = new System.Drawing.Point(756, 30);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(32, 13);
             this.label39.TabIndex = 67;
             this.label39.Text = "Desv";
+            this.label39.Visible = false;
             // 
             // label40
             // 
@@ -1679,7 +1746,7 @@
             this.textTpoEntrega.Location = new System.Drawing.Point(671, 122);
             this.textTpoEntrega.Name = "textTpoEntrega";
             this.textTpoEntrega.ReadOnly = true;
-            this.textTpoEntrega.Size = new System.Drawing.Size(38, 20);
+            this.textTpoEntrega.Size = new System.Drawing.Size(60, 20);
             this.textTpoEntrega.TabIndex = 63;
             this.textTpoEntrega.Text = "0";
             this.textTpoEntrega.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1689,7 +1756,7 @@
             this.textTpoPizza.Location = new System.Drawing.Point(671, 70);
             this.textTpoPizza.Name = "textTpoPizza";
             this.textTpoPizza.ReadOnly = true;
-            this.textTpoPizza.Size = new System.Drawing.Size(37, 20);
+            this.textTpoPizza.Size = new System.Drawing.Size(60, 20);
             this.textTpoPizza.TabIndex = 62;
             this.textTpoPizza.Text = "0";
             this.textTpoPizza.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1699,57 +1766,61 @@
             this.textTpoSand.Location = new System.Drawing.Point(671, 44);
             this.textTpoSand.Name = "textTpoSand";
             this.textTpoSand.ReadOnly = true;
-            this.textTpoSand.Size = new System.Drawing.Size(37, 20);
+            this.textTpoSand.Size = new System.Drawing.Size(60, 20);
             this.textTpoSand.TabIndex = 61;
             this.textTpoSand.Text = "0";
             this.textTpoSand.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox14
             // 
-            this.textBox14.Location = new System.Drawing.Point(461, 95);
+            this.textBox14.Location = new System.Drawing.Point(499, 95);
             this.textBox14.Name = "textBox14";
             this.textBox14.ReadOnly = true;
-            this.textBox14.Size = new System.Drawing.Size(37, 20);
+            this.textBox14.Size = new System.Drawing.Size(14, 20);
             this.textBox14.TabIndex = 59;
             this.textBox14.Text = "0";
             this.textBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox14.Visible = false;
             // 
             // textBox15
             // 
-            this.textBox15.Location = new System.Drawing.Point(461, 121);
+            this.textBox15.Location = new System.Drawing.Point(499, 121);
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
-            this.textBox15.Size = new System.Drawing.Size(38, 20);
+            this.textBox15.Size = new System.Drawing.Size(15, 20);
             this.textBox15.TabIndex = 58;
             this.textBox15.Text = "0";
             this.textBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox15.Visible = false;
             // 
             // textBox16
             // 
-            this.textBox16.Location = new System.Drawing.Point(461, 69);
+            this.textBox16.Location = new System.Drawing.Point(499, 69);
             this.textBox16.Name = "textBox16";
             this.textBox16.ReadOnly = true;
-            this.textBox16.Size = new System.Drawing.Size(37, 20);
+            this.textBox16.Size = new System.Drawing.Size(14, 20);
             this.textBox16.TabIndex = 57;
             this.textBox16.Text = "0";
             this.textBox16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox16.Visible = false;
             // 
             // textBox17
             // 
-            this.textBox17.Location = new System.Drawing.Point(461, 43);
+            this.textBox17.Location = new System.Drawing.Point(499, 43);
             this.textBox17.Name = "textBox17";
             this.textBox17.ReadOnly = true;
-            this.textBox17.Size = new System.Drawing.Size(37, 20);
+            this.textBox17.Size = new System.Drawing.Size(14, 20);
             this.textBox17.TabIndex = 56;
             this.textBox17.Text = "0";
             this.textBox17.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox17.Visible = false;
             // 
             // textTpoLibEmp
             // 
             this.textTpoLibEmp.Location = new System.Drawing.Point(418, 95);
             this.textTpoLibEmp.Name = "textTpoLibEmp";
             this.textTpoLibEmp.ReadOnly = true;
-            this.textTpoLibEmp.Size = new System.Drawing.Size(37, 20);
+            this.textTpoLibEmp.Size = new System.Drawing.Size(60, 20);
             this.textTpoLibEmp.TabIndex = 53;
             this.textTpoLibEmp.Text = "0";
             this.textTpoLibEmp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1767,11 +1838,12 @@
             // label66
             // 
             this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(465, 27);
+            this.label66.Location = new System.Drawing.Point(503, 27);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(32, 13);
             this.label66.TabIndex = 28;
             this.label66.Text = "Desv";
+            this.label66.Visible = false;
             // 
             // label75
             // 
@@ -1787,7 +1859,7 @@
             this.textTpoLibDely.Location = new System.Drawing.Point(418, 121);
             this.textTpoLibDely.Name = "textTpoLibDely";
             this.textTpoLibDely.ReadOnly = true;
-            this.textTpoLibDely.Size = new System.Drawing.Size(38, 20);
+            this.textTpoLibDely.Size = new System.Drawing.Size(60, 20);
             this.textTpoLibDely.TabIndex = 2;
             this.textTpoLibDely.Text = "0";
             this.textTpoLibDely.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1797,7 +1869,7 @@
             this.textBox12.Location = new System.Drawing.Point(418, 69);
             this.textBox12.Name = "textBox12";
             this.textBox12.ReadOnly = true;
-            this.textBox12.Size = new System.Drawing.Size(37, 20);
+            this.textBox12.Size = new System.Drawing.Size(60, 20);
             this.textBox12.TabIndex = 1;
             this.textBox12.Text = "0";
             this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1807,7 +1879,7 @@
             this.textTpoEntrePed.Location = new System.Drawing.Point(418, 43);
             this.textTpoEntrePed.Name = "textTpoEntrePed";
             this.textTpoEntrePed.ReadOnly = true;
-            this.textTpoEntrePed.Size = new System.Drawing.Size(37, 20);
+            this.textTpoEntrePed.Size = new System.Drawing.Size(60, 20);
             this.textTpoEntrePed.TabIndex = 0;
             this.textTpoEntrePed.Text = "0";
             this.textTpoEntrePed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1979,9 +2051,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gpbResult.Controls.Add(this.dgvResultados);
-            this.gpbResult.Location = new System.Drawing.Point(6, 199);
+            this.gpbResult.Location = new System.Drawing.Point(12, 582);
             this.gpbResult.Name = "gpbResult";
-            this.gpbResult.Size = new System.Drawing.Size(1815, 382);
+            this.gpbResult.Size = new System.Drawing.Size(1829, 483);
             this.gpbResult.TabIndex = 1;
             this.gpbResult.TabStop = false;
             this.gpbResult.Text = "Resultado";
@@ -2028,8 +2100,7 @@
             this.StkSand,
             this.StkLomo,
             this.StkHamb,
-            this.StkEmp,
-            this.DejaPed});
+            this.StkEmp});
             this.dgvResultados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResultados.Location = new System.Drawing.Point(3, 16);
             this.dgvResultados.MultiSelect = false;
@@ -2038,7 +2109,7 @@
             this.dgvResultados.RowHeadersVisible = false;
             this.dgvResultados.RowHeadersWidth = 51;
             this.dgvResultados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvResultados.Size = new System.Drawing.Size(1809, 363);
+            this.dgvResultados.Size = new System.Drawing.Size(1823, 464);
             this.dgvResultados.TabIndex = 0;
             // 
             // ColFila
@@ -2392,64 +2463,29 @@
             this.StkEmp.ReadOnly = true;
             this.StkEmp.Width = 72;
             // 
-            // DejaPed
-            // 
-            this.DejaPed.HeaderText = "Deja Ped";
-            this.DejaPed.MinimumWidth = 6;
-            this.DejaPed.Name = "DejaPed";
-            this.DejaPed.ReadOnly = true;
-            this.DejaPed.Width = 76;
-            // 
-            // textCantHorasTurno
-            // 
-            this.textCantHorasTurno.Location = new System.Drawing.Point(124, 97);
-            this.textCantHorasTurno.Name = "textCantHorasTurno";
-            this.textCantHorasTurno.Size = new System.Drawing.Size(45, 20);
-            this.textCantHorasTurno.TabIndex = 8;
-            this.textCantHorasTurno.Text = "6";
-            this.textCantHorasTurno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label86
-            // 
-            this.label86.AutoSize = true;
-            this.label86.Location = new System.Drawing.Point(19, 100);
-            this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(96, 13);
-            this.label86.TabIndex = 9;
-            this.label86.Text = "Cant horas x turno:";
-            // 
-            // label87
-            // 
-            this.label87.AutoSize = true;
-            this.label87.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label87.Location = new System.Drawing.Point(175, 100);
-            this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(30, 15);
-            this.label87.TabIndex = 10;
-            this.label87.Text = "[hs]";
-            // 
             // frm_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1845, 761);
+            this.ClientSize = new System.Drawing.Size(1861, 1061);
             this.Controls.Add(this.gpbResultado);
             this.Controls.Add(this.gpbParametros);
+            this.Controls.Add(this.gpbResult);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pizzeria - Grupo R";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.gpbParametros.ResumeLayout(false);
-            this.Integrantes.ResumeLayout(false);
-            this.Integrantes.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.gpbTiemposFin.ResumeLayout(false);
             this.gpbTiemposFin.PerformLayout();
             this.gpbTiemposLlegadas.ResumeLayout(false);
             this.gpbTiemposLlegadas.PerformLayout();
+            this.Integrantes.ResumeLayout(false);
+            this.Integrantes.PerformLayout();
             this.gpbResultado.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -2625,6 +2661,11 @@
         private System.Windows.Forms.Label label74;
         private System.Windows.Forms.GroupBox gpbParametrosCorrida;
         private System.Windows.Forms.Label lblTiempoSim;
+        private System.Windows.Forms.Label label87;
+        private System.Windows.Forms.Label label86;
+        private System.Windows.Forms.TextBox textCantHorasTurno;
+        private System.Windows.Forms.Label label88;
+        private System.Windows.Forms.TextBox textHorasExtras;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFila;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn colReloj;
@@ -2661,10 +2702,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StkLomo;
         private System.Windows.Forms.DataGridViewTextBoxColumn StkHamb;
         private System.Windows.Forms.DataGridViewTextBoxColumn StkEmp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DejaPed;
-        private System.Windows.Forms.Label label87;
-        private System.Windows.Forms.Label label86;
-        private System.Windows.Forms.TextBox textCantHorasTurno;
     }
 }
 

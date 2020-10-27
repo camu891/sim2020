@@ -46,6 +46,7 @@ namespace Pizzeria
         private double precioLomo;
         private double t_acutot_ventas;
         private double t_acutot_hamblomo;
+        private double cantLomHamb;
         private int t_contped_dejados;
         private double t_acuimporte_dejados;
         private int t_contped_gratis;
@@ -161,7 +162,8 @@ namespace Pizzeria
 
                 t_acutot_ventas=0;
                 t_acutot_hamblomo=0;
-                t_contped_gratis=0;
+                cantLomHamb = 0;
+                t_contped_gratis =0;
                 t_acuimporte_gratis=0;
 
                 t_contentregas = 0;
@@ -419,6 +421,7 @@ namespace Pizzeria
                                     t_acutot_ventas += precioven * cantped; //GG Acumulo venta total
                                     if (queTipoPed == "Lomito" || queTipoPed == "Hamburguesa") // GG Acumulo venta Lom/Hamb
                                     {
+                                        cantLomHamb++;
                                         t_acutot_hamblomo += precioven * cantped;
                                     }
                                 }
@@ -731,15 +734,16 @@ namespace Pizzeria
             this.textTpoLibEmp.Text = formatearResultado((t_acutpolibEmp1 + t_acutpolibEmp2 + t_acutpolibEmp3)/numeropedido);
             this.textTpoLibDely.Text = formatearResultado(t_acutpoLibDel/numeropedido);
             this.textTpoEntrega.Text = formatearResultado(t_tpodelivery/t_contentregas);
-            this.textTotVentas.Text = formatearResultado(t_acutot_ventas);
-            this.textTotIngHambLomo.Text = formatearResultado(t_acutot_hamblomo);
+            this.textTotVentas.Text = formatearResultado(t_acutot_ventas / numeropedido);
+            this.textTotIngHambLomo.Text = !Double.IsNaN(t_acutot_hamblomo / cantLomHamb) ? formatearResultado(t_acutot_hamblomo / cantLomHamb) : "0";
             this.textCantPedGratis.Text = formatearResultado(t_contped_gratis);
             this.textVentaGratis.Text = formatearResultado(t_acuimporte_gratis);
             this.textVentaPerdida.Text = formatearResultado(t_acuimporte_dejados);
             this.textCantPedPerdidos.Text = formatearResultado(t_contped_dejados);
             this.textTpoEntrePed.Text = formatearResultado(t_acutpolleped / numeropedido);
+            this.textHorasExtras.Text = formatearResultado(minutosExtras);
+            this.textCantPedxHoraProm.Text = formatearResultado(getPedidosXHora(numeropedido, this.relojSimulacion));
             //this.txtProbObtener250Omenos.Text = 
-
 
             //Fin Bloque Simulacion
         }
@@ -981,7 +985,6 @@ namespace Pizzeria
             dgvResultados.Rows[0].Cells["colEstadoEmpleado2"].Value = empleado2.getEstado();
             dgvResultados.Rows[0].Cells["colEstadoEmpleado3"].Value = empleado3.getEstado();
             dgvResultados.Rows[0].Cells["colEstadoMoto"].Value = delivery.getEstado();
-            dgvResultados.Rows[0].Cells["DejaPed"].Value = "";
             dgvResultados.Rows[0].Cells["StkPizza"].Value = 0;
             dgvResultados.Rows[0].Cells["StkEmp"].Value = 0;
             dgvResultados.Rows[0].Cells["StkSand"].Value = 0;
@@ -993,9 +996,6 @@ namespace Pizzeria
         private void agregarEventoAGrilla(int i, Evento evento, int fila)
         {
             Console.WriteLine("Imprimiendo: " + fila);
-
-            dgvResultados.Rows[i].Cells["DejaPed"].Value = t_tpolibDel.getReloj();
-            dgvResultados.Rows[i].Cells["DejaPed"].Value = t_acutpoLibDel;
 
             //Columnas que se muestran siempre
             dgvResultados.Rows[i].Cells["colFila"].Value = fila;
@@ -1082,5 +1082,8 @@ namespace Pizzeria
             return Convert.ToString(Math.Round(value, 2));
         }
 
+        private double getPedidosXHora(double cant, Reloj reloj) {
+            return cant / (reloj.getComparable() / 60);
+        }
     }
 }

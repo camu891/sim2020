@@ -11,7 +11,7 @@ namespace Pizzeria
         private _TipoTurno turno;
         private int dia;
         private double comparable;
-        private int minutosXDia = 24*60;
+        private int minutosXDia = 24 * 60;
 
         public Reloj(double reloj, _TipoTurno turno, int dia)
         {
@@ -105,6 +105,10 @@ namespace Pizzeria
         {
             Reloj otherReloj = obj as Reloj;
             return this.comparable.CompareTo(otherReloj.comparable);
+        }
+
+        public double getComparable() {
+            return comparable;
         }
 
         public bool Equals(Reloj other)
