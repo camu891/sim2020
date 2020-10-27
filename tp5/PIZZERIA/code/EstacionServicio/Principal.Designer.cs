@@ -1053,6 +1053,8 @@
             this.groupBox3.Controls.Add(this.textHorasExtras);
             this.groupBox3.Controls.Add(this.label70);
             this.groupBox3.Controls.Add(this.label69);
+            this.groupBox3.Controls.Add(this.textTpoLibDely);
+            this.groupBox3.Controls.Add(this.label78);
             this.groupBox3.Controls.Add(this.label84);
             this.groupBox3.Controls.Add(this.label83);
             this.groupBox3.Controls.Add(this.label82);
@@ -1064,7 +1066,6 @@
             this.groupBox3.Controls.Add(this.label57);
             this.groupBox3.Controls.Add(this.label71);
             this.groupBox3.Controls.Add(this.textCantEmpDesv);
-            this.groupBox3.Controls.Add(this.label78);
             this.groupBox3.Controls.Add(this.label67);
             this.groupBox3.Controls.Add(this.textCantVentasPerdidasDesv);
             this.groupBox3.Controls.Add(this.textBox26);
@@ -1120,7 +1121,6 @@
             this.groupBox3.Controls.Add(this.label73);
             this.groupBox3.Controls.Add(this.label66);
             this.groupBox3.Controls.Add(this.label75);
-            this.groupBox3.Controls.Add(this.textTpoLibDely);
             this.groupBox3.Controls.Add(this.textBox12);
             this.groupBox3.Controls.Add(this.textTpoEntrePed);
             this.groupBox3.Location = new System.Drawing.Point(14, 195);
@@ -1134,7 +1134,7 @@
             // 
             this.label88.AutoSize = true;
             this.label88.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label88.Location = new System.Drawing.Point(307, 149);
+            this.label88.Location = new System.Drawing.Point(307, 121);
             this.label88.Name = "label88";
             this.label88.Size = new System.Drawing.Size(102, 15);
             this.label88.TabIndex = 127;
@@ -1142,7 +1142,7 @@
             // 
             // textHorasExtras
             // 
-            this.textHorasExtras.Location = new System.Drawing.Point(418, 148);
+            this.textHorasExtras.Location = new System.Drawing.Point(418, 120);
             this.textHorasExtras.Name = "textHorasExtras";
             this.textHorasExtras.ReadOnly = true;
             this.textHorasExtras.Size = new System.Drawing.Size(60, 20);
@@ -1159,6 +1159,7 @@
             this.label70.Size = new System.Drawing.Size(27, 15);
             this.label70.TabIndex = 125;
             this.label70.Text = "[%]";
+            this.label70.Visible = false;
             // 
             // label69
             // 
@@ -1169,6 +1170,7 @@
             this.label69.Size = new System.Drawing.Size(27, 15);
             this.label69.TabIndex = 124;
             this.label69.Text = "[%]";
+            this.label69.Visible = false;
             // 
             // label84
             // 
@@ -1260,6 +1262,7 @@
             this.label57.Size = new System.Drawing.Size(117, 30);
             this.label57.TabIndex = 117;
             this.label57.Text = "Prob de perder \r\n5 o mas pedidos:";
+            this.label57.Visible = false;
             // 
             // label71
             // 
@@ -1286,11 +1289,12 @@
             // 
             this.label78.AutoSize = true;
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label78.Location = new System.Drawing.Point(265, 121);
+            this.label78.Location = new System.Drawing.Point(265, 144);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(147, 15);
             this.label78.TabIndex = 107;
             this.label78.Text = "Tiempo libre Delivery:";
+            this.label78.Visible = false;
             // 
             // label67
             // 
@@ -1343,6 +1347,7 @@
             this.textBox27.TabIndex = 99;
             this.textBox27.Text = "0";
             this.textBox27.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox27.Visible = false;
             // 
             // textCantPedxHoraDesv
             // 
@@ -1364,6 +1369,7 @@
             this.txtProbObtener250Omenos.TabIndex = 98;
             this.txtProbObtener250Omenos.Text = "0";
             this.txtProbObtener250Omenos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtProbObtener250Omenos.Visible = false;
             // 
             // label33
             // 
@@ -1384,6 +1390,7 @@
             this.label60.Size = new System.Drawing.Size(110, 30);
             this.label60.TabIndex = 97;
             this.label60.Text = "Prob de obtener\r\n $250 o menos:";
+            this.label60.Visible = false;
             // 
             // textCantPedDesv
             // 
@@ -1856,13 +1863,14 @@
             // 
             // textTpoLibDely
             // 
-            this.textTpoLibDely.Location = new System.Drawing.Point(418, 121);
+            this.textTpoLibDely.Location = new System.Drawing.Point(418, 144);
             this.textTpoLibDely.Name = "textTpoLibDely";
             this.textTpoLibDely.ReadOnly = true;
             this.textTpoLibDely.Size = new System.Drawing.Size(60, 20);
             this.textTpoLibDely.TabIndex = 2;
             this.textTpoLibDely.Text = "0";
             this.textTpoLibDely.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textTpoLibDely.Visible = false;
             // 
             // textBox12
             // 
