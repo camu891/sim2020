@@ -78,6 +78,8 @@ namespace Pizzeria
         private double t_acutpolibEmp3;
         private double t_acutpolleped;
         private double audito;
+        private int horasXTurno;
+        private double minutosExtras;
 
         //Parametros de la corrida
         private double tiempoFinCorrida;
@@ -210,6 +212,13 @@ namespace Pizzeria
                         w_stkhamb = 0;
                         w_stksand = 0;
                         w_stkemp = 0;
+                    }
+
+                    // Horas extras
+                    if (firstEvent.getReloj()> (this.horasXTurno * 60))
+                    {
+                        this.minutosExtras += firstEvent.getReloj() - (this.horasXTurno * 60);
+                        Console.WriteLine("Minutos Extras: " + minutosExtras);
                     }
                     //Evento Llegada Pedido
                     if (this.llegadaPedido.getProximaLlegada().Equals(firstEvent))
@@ -746,6 +755,7 @@ namespace Pizzeria
             }
         }
 
+        /*
         public void generarDemoraPedido(int j, int idEmpleado, LlegadaPedido lp)
         {
             switch (idEmpleado)
@@ -761,6 +771,7 @@ namespace Pizzeria
                     break;
             }
         }
+        */
 
         private void generarDemoraDelivery(int fila, Reloj reloj, int idDelivery)
         {
@@ -820,7 +831,7 @@ namespace Pizzeria
             colaPreparacion.setCola(lp.getPedido());
         }
 
-        public void generarDemoraEnEmpleado(int i, int id, LlegadaPedido p)
+        public void generarDemoraPedido(int i, int id, LlegadaPedido p)
         {
             switch (id)
             {
@@ -857,7 +868,8 @@ namespace Pizzeria
             this.precioHamburguesa = Convert.ToDouble(this.textPrecioHambur.Text);
             this.demoraLomo = Convert.ToDouble(this.textDemoraLomo.Text);
             this.precioLomo = Convert.ToDouble(this.textPrecioLomo.Text);
-          
+            this.horasXTurno = Convert.ToInt32(this.textCantHorasTurno.Text);
+
         }
 
 
@@ -866,7 +878,7 @@ namespace Pizzeria
 
             this.relojSimulacion = new Reloj();
             this.identificadorPedido = 0;
-            this.llegadaPedido = new LlegadaPedido(this.mediaLlegadaPedidos);
+            this.llegadaPedido = new LlegadaPedido(this.mediaLlegadaPedidos, this.horasXTurno);
             this.empleado1 = new Empleado(1, 0); //TODO pasar valores tomados por parametros
             this.empleado2 = new Empleado(2, 0); //TODO pasar valores tomados por parametros
             this.empleado3 = new Empleado(3, 0); //TODO pasar valores tomados por parametros
@@ -881,6 +893,7 @@ namespace Pizzeria
 
             this.finDelivery = new FinDelivery(this.desdePizza, this.hastaPizza, 1, this.precioPizza);//TODO pasar parametros 
             this.empleados = new List<Empleado>() { empleado1, empleado2, empleado3 };
+            this.minutosExtras = 0;
 
         }
 

@@ -12,7 +12,7 @@ namespace Pizzeria
 		private double mu;
 		private Pedido pedido;
 		private double rndTipoPedido;
-		private double minutosTurno = 6*60;
+		private double minutosTurno;
 		/*
 		private string tipoPedido;
 		private int cantidad;
@@ -24,10 +24,11 @@ namespace Pizzeria
 
 		}
 
-		public LlegadaPedido(double mu)
+		public LlegadaPedido(double mu, int cantHoras)
 		{
 			this.mu = mu;
 			proximaLlegada = new Reloj();
+			minutosTurno = cantHoras * 60;
 		}
 
 		public override string getNombreEvento()

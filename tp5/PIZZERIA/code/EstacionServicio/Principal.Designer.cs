@@ -236,6 +236,9 @@
             this.StkHamb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StkEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DejaPed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textCantHorasTurno = new System.Windows.Forms.TextBox();
+            this.label86 = new System.Windows.Forms.Label();
+            this.label87 = new System.Windows.Forms.Label();
             this.gpbParametros.SuspendLayout();
             this.Integrantes.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -894,6 +897,9 @@
             // 
             // gpbTiemposLlegadas
             // 
+            this.gpbTiemposLlegadas.Controls.Add(this.label87);
+            this.gpbTiemposLlegadas.Controls.Add(this.label86);
+            this.gpbTiemposLlegadas.Controls.Add(this.textCantHorasTurno);
             this.gpbTiemposLlegadas.Controls.Add(this.label2);
             this.gpbTiemposLlegadas.Controls.Add(this.txtTopeEspera);
             this.gpbTiemposLlegadas.Controls.Add(this.label4);
@@ -2394,6 +2400,34 @@
             this.DejaPed.ReadOnly = true;
             this.DejaPed.Width = 76;
             // 
+            // textCantHorasTurno
+            // 
+            this.textCantHorasTurno.Location = new System.Drawing.Point(124, 97);
+            this.textCantHorasTurno.Name = "textCantHorasTurno";
+            this.textCantHorasTurno.Size = new System.Drawing.Size(45, 20);
+            this.textCantHorasTurno.TabIndex = 8;
+            this.textCantHorasTurno.Text = "6";
+            this.textCantHorasTurno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.Location = new System.Drawing.Point(19, 100);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(96, 13);
+            this.label86.TabIndex = 9;
+            this.label86.Text = "Cant horas x turno:";
+            // 
+            // label87
+            // 
+            this.label87.AutoSize = true;
+            this.label87.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label87.Location = new System.Drawing.Point(175, 100);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(30, 15);
+            this.label87.TabIndex = 10;
+            this.label87.Text = "[hs]";
+            // 
             // frm_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2628,6 +2662,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StkHamb;
         private System.Windows.Forms.DataGridViewTextBoxColumn StkEmp;
         private System.Windows.Forms.DataGridViewTextBoxColumn DejaPed;
+        private System.Windows.Forms.Label label87;
+        private System.Windows.Forms.Label label86;
+        private System.Windows.Forms.TextBox textCantHorasTurno;
     }
 }
 
