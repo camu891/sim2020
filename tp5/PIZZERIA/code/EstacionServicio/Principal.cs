@@ -733,7 +733,7 @@ namespace Pizzeria
             this.textTpoSand.Text = formatearResultado(t_tposand.TruncateDouble(2)/ t_contpedsand);
             this.textTpoLibEmp.Text = formatearResultado((t_acutpolibEmp1 + t_acutpolibEmp2 + t_acutpolibEmp3)/numeropedido);
             this.textTpoLibDely.Text = formatearResultado(t_acutpoLibDel/numeropedido);
-            this.textTpoEntrega.Text = formatearResultado(t_tpodelivery/t_contentregas);
+            this.textTpoEntrega.Text = !Double.IsNaN(t_tpodelivery / t_contentregas) ? formatearResultado(t_tpodelivery/t_contentregas) : "0";
             this.textTotVentas.Text = formatearResultado(t_acutot_ventas / numeropedido);
             this.textTotIngHambLomo.Text = !Double.IsNaN(t_acutot_hamblomo / cantLomHamb) ? formatearResultado(t_acutot_hamblomo / cantLomHamb) : "0";
             this.textCantPedGratis.Text = formatearResultado(t_contped_gratis);
@@ -743,6 +743,8 @@ namespace Pizzeria
             this.textTpoEntrePed.Text = formatearResultado(t_acutpolleped / numeropedido);
             this.textHorasExtras.Text = formatearResultado(minutosExtras);
             this.textCantPedxHoraProm.Text = formatearResultado(getPedidosXHora(numeropedido, this.relojSimulacion));
+            this.textVenxHora.Text = formatearResultado(getPedidosXHora(t_acutot_ventas, this.relojSimulacion));
+
             //this.txtProbObtener250Omenos.Text = 
 
             //Fin Bloque Simulacion
@@ -1083,7 +1085,12 @@ namespace Pizzeria
         }
 
         private double getPedidosXHora(double cant, Reloj reloj) {
-            return cant / (reloj.getComparable() / 60);
+            double aux = 0;
+            if (reloj.getDia() > 0) {
+                aux = reloj.getDia() * horasXTurno * 2 * 60;
+            }
+            return cant / ((aux + reloj.getReloj()) / 60);
         }
+
     }
 }
