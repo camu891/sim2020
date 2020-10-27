@@ -4,8 +4,8 @@ namespace Pizzeria
 {
 	public class Pedido
 	{
-		private string id;
-		private string  estado;
+		public static int id;
+		private string estado;
 		private string tipoServicio;
 		private int cantidad;
 		private double rndCantidad;
@@ -47,18 +47,6 @@ namespace Pizzeria
 			}
 		}
 
-		public string Id
-		{
-			get
-			{
-				return this.id;
-			}
-			set
-			{
-				this.id = value;
-			}
-		}
-
 		public int Cantidad
 		{
 			get
@@ -73,13 +61,13 @@ namespace Pizzeria
 
 		public Pedido(string estado, string tipo,int cant, Reloj horaInicioEspera, double rndCant)
 		{
-		//	this.id = id;
+			id++;
 			this.estado = estado;
 			this.tipoServicio = tipo;
 			cantidad = cant;
 			this.horaInicioEspera = horaInicioEspera;
 			this.rndCantidad = rndCant;
-					}
+		}
 
 		public void setHoraInicioEspera(Reloj horaInicioEspera)
 		{
@@ -89,6 +77,10 @@ namespace Pizzeria
 		public Reloj getInicioEspera()
 		{
 			return this.horaInicioEspera;
+		}
+
+		public int getId() {
+			return id;
 		}
 	}
 }
