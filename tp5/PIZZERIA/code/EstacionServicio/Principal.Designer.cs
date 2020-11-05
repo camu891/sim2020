@@ -118,6 +118,8 @@
             this.textHorasExtras = new System.Windows.Forms.TextBox();
             this.label70 = new System.Windows.Forms.Label();
             this.label69 = new System.Windows.Forms.Label();
+            this.textTpoLibDely = new System.Windows.Forms.TextBox();
+            this.label78 = new System.Windows.Forms.Label();
             this.label84 = new System.Windows.Forms.Label();
             this.label83 = new System.Windows.Forms.Label();
             this.label82 = new System.Windows.Forms.Label();
@@ -129,7 +131,6 @@
             this.label57 = new System.Windows.Forms.Label();
             this.label71 = new System.Windows.Forms.Label();
             this.textCantEmpDesv = new System.Windows.Forms.TextBox();
-            this.label78 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
             this.textCantVentasPerdidasDesv = new System.Windows.Forms.TextBox();
             this.textBox26 = new System.Windows.Forms.TextBox();
@@ -185,7 +186,6 @@
             this.label73 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
             this.label75 = new System.Windows.Forms.Label();
-            this.textTpoLibDely = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textTpoEntrePed = new System.Windows.Forms.TextBox();
             this.gpbParametrosCorrida = new System.Windows.Forms.GroupBox();
@@ -218,7 +218,6 @@
             this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colColaPreparacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEstadoEmpleado1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColNroPedidoE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRndDemora1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDemora1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFinCoccion1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1172,6 +1171,28 @@
             this.label69.Text = "[%]";
             this.label69.Visible = false;
             // 
+            // textTpoLibDely
+            // 
+            this.textTpoLibDely.Location = new System.Drawing.Point(418, 144);
+            this.textTpoLibDely.Name = "textTpoLibDely";
+            this.textTpoLibDely.ReadOnly = true;
+            this.textTpoLibDely.Size = new System.Drawing.Size(60, 20);
+            this.textTpoLibDely.TabIndex = 2;
+            this.textTpoLibDely.Text = "0";
+            this.textTpoLibDely.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textTpoLibDely.Visible = false;
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label78.Location = new System.Drawing.Point(265, 144);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(147, 15);
+            this.label78.TabIndex = 107;
+            this.label78.Text = "Tiempo libre Delivery:";
+            this.label78.Visible = false;
+            // 
             // label84
             // 
             this.label84.AutoSize = true;
@@ -1284,17 +1305,6 @@
             this.textCantEmpDesv.Text = "0";
             this.textCantEmpDesv.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textCantEmpDesv.Visible = false;
-            // 
-            // label78
-            // 
-            this.label78.AutoSize = true;
-            this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label78.Location = new System.Drawing.Point(265, 144);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(147, 15);
-            this.label78.TabIndex = 107;
-            this.label78.Text = "Tiempo libre Delivery:";
-            this.label78.Visible = false;
             // 
             // label67
             // 
@@ -1861,17 +1871,6 @@
             this.label75.TabIndex = 15;
             this.label75.Text = "Prom";
             // 
-            // textTpoLibDely
-            // 
-            this.textTpoLibDely.Location = new System.Drawing.Point(418, 144);
-            this.textTpoLibDely.Name = "textTpoLibDely";
-            this.textTpoLibDely.ReadOnly = true;
-            this.textTpoLibDely.Size = new System.Drawing.Size(60, 20);
-            this.textTpoLibDely.TabIndex = 2;
-            this.textTpoLibDely.Text = "0";
-            this.textTpoLibDely.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textTpoLibDely.Visible = false;
-            // 
             // textBox12
             // 
             this.textBox12.Location = new System.Drawing.Point(418, 69);
@@ -2087,7 +2086,6 @@
             this.colCantidad,
             this.colColaPreparacion,
             this.colEstadoEmpleado1,
-            this.ColNroPedidoE1,
             this.colRndDemora1,
             this.colDemora1,
             this.colFinCoccion1,
@@ -2263,13 +2261,6 @@
             this.colEstadoEmpleado1.ReadOnly = true;
             this.colEstadoEmpleado1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colEstadoEmpleado1.Width = 105;
-            // 
-            // ColNroPedidoE1
-            // 
-            this.ColNroPedidoE1.HeaderText = "Nro Pedido";
-            this.ColNroPedidoE1.Name = "ColNroPedidoE1";
-            this.ColNroPedidoE1.ReadOnly = true;
-            this.ColNroPedidoE1.Width = 85;
             // 
             // colRndDemora1
             // 
@@ -2688,7 +2679,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn colColaPreparacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoEmpleado1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColNroPedidoE1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRndDemora1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDemora1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFinCoccion1;

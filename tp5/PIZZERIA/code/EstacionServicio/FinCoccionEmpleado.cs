@@ -24,22 +24,22 @@ namespace Pizzeria
 		private Empleado e;
 		private LlegadaPedido llegadaP;
 
-        public FinCoccionEmpleado(double promSandwich, double desvSandwich, double desdePizza, double hastaPizza, double demoraEmpanadax3, double demoraEmpanadax2, double demoraHamburguesa, double demoraLomo, int idEmpleado, Empleado empleado)
-        {
-            this.promSandwich = promSandwich;
-            this.desvSandwich = desvSandwich;
-            this.desdePizza = desdePizza;
-            this.hastaPizza = hastaPizza;
-            this.demoraEmpanadax3 = demoraEmpanadax3;
-            this.demoraEmpanadax2 = demoraEmpanadax2;
-            this.demoraHamburguesa = demoraHamburguesa;
-            this.demoraLomo = demoraLomo;
-            this.idEmpleado = idEmpleado;
-            this.e = empleado;
+		public FinCoccionEmpleado(double promSandwich, double desvSandwich, double desdePizza, double hastaPizza, double demoraEmpanadax3, double demoraEmpanadax2, double demoraHamburguesa, double demoraLomo, int idEmpleado, Empleado empleado)
+		{
+			this.promSandwich = promSandwich;
+			this.desvSandwich = desvSandwich;
+			this.desdePizza = desdePizza;
+			this.hastaPizza = hastaPizza;
+			this.demoraEmpanadax3 = demoraEmpanadax3;
+			this.demoraEmpanadax2 = demoraEmpanadax2;
+			this.demoraHamburguesa = demoraHamburguesa;
+			this.demoraLomo = demoraLomo;
+			this.idEmpleado = idEmpleado;
+			this.e = empleado;
 			proximoFin = new Reloj();
 		}
 
-        public Empleado Empleado { get => e; set => e = value; }
+		public Empleado Empleado { get => e; set => e = value; }
 
 		public override string getNombreEvento()
 		{
@@ -131,15 +131,15 @@ namespace Pizzeria
 			this.proximoFin.setTurno(reloj.getTurno());
 			this.proximoFin.setReloj(this.demora + reloj.getReloj());
 			this.entroped = llegP.getPedido().getInicioEspera();
-			this.demora_acu=demoraPedido + (reloj.getReloj() - llegP.getPedido().getInicioEspera().getReloj());
+			this.demora_acu = demoraPedido + (reloj.getReloj() - llegP.getPedido().getInicioEspera().getReloj());
 
 
 			// actualiza empleado
 			e.setEstado("Ocupado");
 			e.setDemora(this.demora);
 			e.setFinCoccion(this.proximoFin);
-			
-			}
+
+		}
 
 		public override void simular(Reloj reloj, double random) { }
 
@@ -149,9 +149,32 @@ namespace Pizzeria
 
 		private double getDemoraPizza(double random)
 		{
-			return Distribuciones.Uniforme(this.desdePizza, this.hastaPizza, random);
+			// return Distribuciones.Uniforme(this.desdePizza, this.hastaPizza, random);
+
+			//dE/dt=-k*E-1,99+0.0001t
+			//K distribucion uniforme (0.3 - 0.8)
+			//E siempre inicia en 100% y cuando llega a 0 finaliza
+			// h=0.05 igual a 1 minuto
+			Double E = 1;
+			Double k = Distribuciones.Uniforme(0.3, 0.8, random);
+			Double h = 0.05;
+			Double acuh = 0;
+			int corridas = 0;
+			while (E > 0)
+			{ 
+				corridas++;
+				double derivada = -k * E - 1.99 + 0.0001*acuh;
+				E =caleuler(E, derivada, h);
+				acuh += h;
+			}
+			return acuh/0.05; //Representa que un minuto es 0,05 de H
 		}
 
+		private double caleuler(double xi, double xderivada, double hciclo)
+		{
+			// xi+1=xi+h*derivada de xi
+			return xi + (hciclo * xderivada);	
+		}
 
 		private double getDemoraEmpanadas(int cantidad) {
 

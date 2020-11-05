@@ -80,6 +80,7 @@ namespace Pizzeria
         private double t_acutpolleped;
         private double audito;
         private int horasXTurno;
+        private double mediadelivery;
         private double minutosExtras;
 
         //Parametros de la corrida
@@ -430,7 +431,7 @@ namespace Pizzeria
                                     //aca me quede controlar bien xq se armo el bucle
                                     //GG Calculo y acumulo el tiempo libre del delibery, cuando paso a Libre se fija la fecha
                                     t_acutpoLibDel += firstEvent.getReloj() - t_tpolibDel.getReloj();
-                                    this.generarDemoraDelivery(fila, relojSimulacion, 1);
+                                    this.generarDemoraDelivery(fila, relojSimulacion, 1) ;
                                     delivery.setEstado("Reparto");
                                 }
                                 else
@@ -657,7 +658,7 @@ namespace Pizzeria
                                             //aca me quede controlar bien xq se armo el bucle
                                             //GG Calculo y acumulo el tiempo libre del delibery, cuando paso a Libre se fija la fecha
                                             t_acutpoLibDel += firstEvent.getReloj() - t_tpolibDel.getReloj();
-                                            this.generarDemoraDelivery(fila, relojSimulacion, 1);
+                                            this.generarDemoraDelivery(fila, relojSimulacion, 1) ;
                                             delivery.setEstado("Reparto");
                                         }
                                         else
@@ -703,7 +704,7 @@ namespace Pizzeria
                                         }
                                         if (tope_delivery > 0)
                                         {
-                                            this.generarDemoraDelivery(fila, relojSimulacion, 1);
+                                            this.generarDemoraDelivery(fila, relojSimulacion, 1) ;
                                         }
                                         else
                                         {
@@ -735,7 +736,8 @@ namespace Pizzeria
             this.textTpoLibDely.Text = formatearResultado(t_acutpoLibDel/numeropedido);
             this.textTpoEntrega.Text = !Double.IsNaN(t_tpodelivery / t_contentregas) ? formatearResultado(t_tpodelivery/t_contentregas) : "0";
             this.textTotVentas.Text = formatearResultado(t_acutot_ventas / numeropedido);
-            this.textTotIngHambLomo.Text = !Double.IsNaN(t_acutot_hamblomo / cantLomHamb) ? formatearResultado(t_acutot_hamblomo / cantLomHamb) : "0";
+            if (t_acutot_hamblomo > 0)
+                this.textTotIngHambLomo.Text = !Double.IsNaN(t_acutot_hamblomo / cantLomHamb) ? formatearResultado(t_acutot_hamblomo / cantLomHamb) : "0";
             this.textCantPedGratis.Text = formatearResultado(t_contped_gratis);
             this.textVentaGratis.Text = formatearResultado(t_acuimporte_gratis);
             this.textVentaPerdida.Text = formatearResultado(t_acuimporte_dejados);
@@ -875,6 +877,7 @@ namespace Pizzeria
             this.demoraLomo = Convert.ToDouble(this.textDemoraLomo.Text);
             this.precioLomo = Convert.ToDouble(this.textPrecioLomo.Text);
             this.horasXTurno = Convert.ToInt32(this.textCantHorasTurno.Text);
+            this.mediadelivery = Convert.ToDouble(this.textMediaDelivery.Text);
 
         }
 
@@ -1071,7 +1074,7 @@ namespace Pizzeria
         private void setColDemoraFinCoccion(FinCoccionEmpleado fc, int id, int i) {
             if (fc.getProximaLlegada().getReloj() > 0)
             {
-                dgvResultados.Rows[i].Cells["ColNroPedidoE1"].Value = idPedidoAAtender == 0 ? "-" : Convert.ToString(idPedidoAAtender);
+                //dgvResultados.Rows[i].Cells["ColNroPedidoE1"].Value = idPedidoAAtender == 0 ? "-" : Convert.ToString(idPedidoAAtender);
 
                 dgvResultados.Rows[i].Cells["colRndDemora"+ id].Value = formatearResultado(fc.getRandom());
                 dgvResultados.Rows[i].Cells["colDemora" + id].Value = formatearResultado(fc.getTiempoEntreLlegada());

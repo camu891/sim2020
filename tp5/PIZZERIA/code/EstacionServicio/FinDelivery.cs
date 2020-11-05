@@ -11,6 +11,7 @@ namespace Pizzeria
 		private double desde;
 		private double hasta;
 		private double cteDemora;
+
 		private Delivery delivery;
 
 
@@ -63,7 +64,8 @@ namespace Pizzeria
 		public override void simular(Reloj reloj, double random)
 		{
 			this.rndTiempo = random;
-			this.demora = Distribuciones.Exponencial(3, new Random().NextDouble());
+			this.demora = Distribuciones.Exponencial(3,new Random().NextDouble());
+			this.proximoFin.setReloj(reloj.getReloj());
 			this.proximoFin.setDia(reloj.getDia());
 			this.proximoFin.setTurno(reloj.getTurno());
 		}
