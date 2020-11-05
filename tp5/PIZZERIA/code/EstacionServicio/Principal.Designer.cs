@@ -52,7 +52,10 @@
             this.label65 = new System.Windows.Forms.Label();
             this.textPrecioSandwich = new System.Windows.Forms.TextBox();
             this.label58 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtHastaPizza = new System.Windows.Forms.TextBox();
             this.label59 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
@@ -76,7 +79,6 @@
             this.textDemora2Empa = new System.Windows.Forms.TextBox();
             this.textDemora3Empa = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -84,10 +86,8 @@
             this.txtPrecioPizza = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtHastaPizza = new System.Windows.Forms.TextBox();
-            this.txtDesdePizza = new System.Windows.Forms.TextBox();
+            this.txtHPizza = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtdesvSandwich = new System.Windows.Forms.TextBox();
@@ -113,6 +113,7 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.gpbResultado = new System.Windows.Forms.GroupBox();
+            this.btnVerEuler = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label88 = new System.Windows.Forms.Label();
             this.textHorasExtras = new System.Windows.Forms.TextBox();
@@ -378,7 +379,7 @@
             this.gpbTiemposFin.Controls.Add(this.label11);
             this.gpbTiemposFin.Controls.Add(this.label10);
             this.gpbTiemposFin.Controls.Add(this.label9);
-            this.gpbTiemposFin.Controls.Add(this.txtDesdePizza);
+            this.gpbTiemposFin.Controls.Add(this.txtHPizza);
             this.gpbTiemposFin.Controls.Add(this.label7);
             this.gpbTiemposFin.Controls.Add(this.label6);
             this.gpbTiemposFin.Controls.Add(this.txtdesvSandwich);
@@ -429,6 +430,28 @@
             this.label58.TabIndex = 51;
             this.label58.Text = "Precio:";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(263, 96);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 15);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "[min]";
+            this.label8.Visible = false;
+            // 
+            // txtHastaPizza
+            // 
+            this.txtHastaPizza.Location = new System.Drawing.Point(219, 95);
+            this.txtHastaPizza.Name = "txtHastaPizza";
+            this.txtHastaPizza.Size = new System.Drawing.Size(38, 20);
+            this.txtHastaPizza.TabIndex = 3;
+            this.txtHastaPizza.Text = "18";
+            this.txtHastaPizza.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHastaPizza.Visible = false;
+            this.txtHastaPizza.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
+            // 
             // label59
             // 
             this.label59.AutoSize = true;
@@ -438,6 +461,17 @@
             this.label59.Size = new System.Drawing.Size(60, 15);
             this.label59.TabIndex = 50;
             this.label59.Text = "demora:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(195, 96);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(20, 15);
+            this.label15.TabIndex = 21;
+            this.label15.Text = "B:";
+            this.label15.Visible = false;
             // 
             // label61
             // 
@@ -659,17 +693,6 @@
             this.label17.TabIndex = 22;
             this.label17.Text = "Precio:";
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(195, 96);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(20, 15);
-            this.label15.TabIndex = 21;
-            this.label15.Text = "B:";
-            this.label15.Visible = false;
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -738,17 +761,6 @@
             this.label10.TabIndex = 14;
             this.label10.Text = "Docena de Sandwich";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(263, 96);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(39, 15);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "[min]";
-            this.label8.Visible = false;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -760,26 +772,15 @@
             this.label9.Text = "[min]";
             this.label9.Visible = false;
             // 
-            // txtHastaPizza
+            // txtHPizza
             // 
-            this.txtHastaPizza.Location = new System.Drawing.Point(219, 95);
-            this.txtHastaPizza.Name = "txtHastaPizza";
-            this.txtHastaPizza.Size = new System.Drawing.Size(38, 20);
-            this.txtHastaPizza.TabIndex = 3;
-            this.txtHastaPizza.Text = "18";
-            this.txtHastaPizza.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtHastaPizza.Visible = false;
-            this.txtHastaPizza.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
-            // 
-            // txtDesdePizza
-            // 
-            this.txtDesdePizza.Location = new System.Drawing.Point(219, 42);
-            this.txtDesdePizza.Name = "txtDesdePizza";
-            this.txtDesdePizza.Size = new System.Drawing.Size(38, 20);
-            this.txtDesdePizza.TabIndex = 2;
-            this.txtDesdePizza.Text = "0,05";
-            this.txtDesdePizza.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtDesdePizza.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
+            this.txtHPizza.Location = new System.Drawing.Point(219, 42);
+            this.txtHPizza.Name = "txtHPizza";
+            this.txtHPizza.Size = new System.Drawing.Size(38, 20);
+            this.txtHPizza.TabIndex = 2;
+            this.txtHPizza.Text = "0,05";
+            this.txtHPizza.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHPizza.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
             // 
             // label7
             // 
@@ -1039,6 +1040,7 @@
             this.gpbResultado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gpbResultado.Controls.Add(this.btnVerEuler);
             this.gpbResultado.Controls.Add(this.Integrantes);
             this.gpbResultado.Controls.Add(this.groupBox3);
             this.gpbResultado.Controls.Add(this.gpbParametrosCorrida);
@@ -1049,6 +1051,16 @@
             this.gpbResultado.TabIndex = 1;
             this.gpbResultado.TabStop = false;
             this.gpbResultado.Text = "Simulación";
+            // 
+            // btnVerEuler
+            // 
+            this.btnVerEuler.Location = new System.Drawing.Point(1360, 265);
+            this.btnVerEuler.Name = "btnVerEuler";
+            this.btnVerEuler.Size = new System.Drawing.Size(80, 43);
+            this.btnVerEuler.TabIndex = 110;
+            this.btnVerEuler.Text = "Ver Ultimo Euler";
+            this.btnVerEuler.UseVisualStyleBackColor = true;
+            this.btnVerEuler.Click += new System.EventHandler(this.btnVerEuler_Click);
             // 
             // groupBox3
             // 
@@ -2520,7 +2532,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtHastaPizza;
-        private System.Windows.Forms.TextBox txtDesdePizza;
+        private System.Windows.Forms.TextBox txtHPizza;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtdesvSandwich;
@@ -2704,6 +2716,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StkLomo;
         private System.Windows.Forms.DataGridViewTextBoxColumn StkHamb;
         private System.Windows.Forms.DataGridViewTextBoxColumn StkEmp;
+        private System.Windows.Forms.Button btnVerEuler;
     }
 }
 

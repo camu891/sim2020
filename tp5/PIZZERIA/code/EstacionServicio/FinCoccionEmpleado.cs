@@ -164,7 +164,7 @@ namespace Pizzeria
 			{ 
 				corridas++;
 				double derivada = -k * E - 1.99 + 0.0001*acuh;
-				E =caleuler(E, derivada, h);
+				E = caleuler(E, derivada, h);
 				acuh += h;
 			}
 			return acuh/0.05; //Representa que un minuto es 0,05 de H

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PizzeriaTP5;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace Pizzeria
         //Parametros de Finalizacion
         private double promSandwich;
         private double desvSandwich;
-        private double desdePizza;
+        private double HPizza;
         private double hastaPizza;
         private double precioPizza;
         private double filaHastaDondeMostrar;
@@ -109,6 +110,7 @@ namespace Pizzeria
         TextBox invalido = null;
         private int idPedidoAAtender;
         private int idPedidoFila;
+        private double rndDemora;
 
         public frm_principal()
         {
@@ -841,18 +843,34 @@ namespace Pizzeria
 
         public void generarDemoraPedido(int i, int id, LlegadaPedido p)
         {
+
+           double rnd = this.rand.NextDouble();
+
             switch (id)
             {
                 case 1:
-                    this.finCoccionEmpleado1.simularDemora(this.relojSimulacion, this.rand.NextDouble(), p);
+                    this.finCoccionEmpleado1.simularDemora(this.relojSimulacion, rnd, p);
+                    if (this.finCoccionEmpleado1.getLlegada().getPedido().Tipo == "Pizza") 
+                    {
+                        rndDemora = rnd;
+                    }
                     break;
                 case 2:
-                    this.finCoccionEmpleado2.simularDemora(this.relojSimulacion, this.rand.NextDouble(), p);
+                    this.finCoccionEmpleado2.simularDemora(this.relojSimulacion, rnd, p);
+                    if (this.finCoccionEmpleado2.getLlegada().getPedido().Tipo == "Pizza")
+                    {
+                        rndDemora = rnd;
+                    }
                     break;
                 case 3:
-                    this.finCoccionEmpleado3.simularDemora(this.relojSimulacion, this.rand.NextDouble(), p);
+                    this.finCoccionEmpleado3.simularDemora(this.relojSimulacion, rnd, p);
+                    if (this.finCoccionEmpleado3.getLlegada().getPedido().Tipo == "Pizza")
+                    {
+                        rndDemora = rnd;
+                    }
                     break;
             }
+
         }
 
         public void tomarDatosPatalla()
@@ -866,7 +884,7 @@ namespace Pizzeria
             this.promSandwich = Convert.ToDouble(this.txtPromSandwich.Text);
             this.desvSandwich = Convert.ToDouble(this.txtdesvSandwich.Text);
             this.precioSandwich = Convert.ToDouble(this.textPrecioSandwich.Text);
-            this.desdePizza = Convert.ToDouble(this.txtDesdePizza.Text);
+            this.HPizza = Convert.ToDouble(this.txtHPizza.Text);
             this.hastaPizza = Convert.ToDouble(this.txtHastaPizza.Text);
             this.precioPizza = Convert.ToDouble(this.txtPrecioPizza.Text);
             this.demoraEmpax3 = Convert.ToDouble(this.textDemora3Empa.Text);
@@ -892,15 +910,15 @@ namespace Pizzeria
             this.empleado2 = new Empleado(2, 0); //TODO pasar valores tomados por parametros
             this.empleado3 = new Empleado(3, 0); //TODO pasar valores tomados por parametros
             this.delivery = new Delivery(1, 0); //TODO pasar valores tomados por parametros
-            this.finCoccionEmpleado1 = new FinCoccionEmpleado(promSandwich, desvSandwich, desdePizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 1, empleado1);
-            this.finCoccionEmpleado2 = new FinCoccionEmpleado(promSandwich, desvSandwich, desdePizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 2, empleado2);
-            this.finCoccionEmpleado3 = new FinCoccionEmpleado(promSandwich, desvSandwich, desdePizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 3, empleado3);
+            this.finCoccionEmpleado1 = new FinCoccionEmpleado(promSandwich, desvSandwich, HPizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 1, empleado1);
+            this.finCoccionEmpleado2 = new FinCoccionEmpleado(promSandwich, desvSandwich, HPizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 2, empleado2);
+            this.finCoccionEmpleado3 = new FinCoccionEmpleado(promSandwich, desvSandwich, HPizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 3, empleado3);
             this.colaPreparacion = new ColaPreparacion();
 
             this.idPedidoAAtender = 0;
             Pedido.id = 0;
 
-            this.finDelivery = new FinDelivery(this.desdePizza, this.hastaPizza, 1, this.precioPizza);//TODO pasar parametros 
+            this.finDelivery = new FinDelivery(this.HPizza, this.hastaPizza, 1, this.precioPizza);//TODO pasar parametros 
             this.empleados = new List<Empleado>() { empleado1, empleado2, empleado3 };
             this.minutosExtras = 0;
 
@@ -1095,5 +1113,10 @@ namespace Pizzeria
             return cant / ((aux + reloj.getReloj()) / 60);
         }
 
+        private void btnVerEuler_Click(object sender, EventArgs e)
+        {
+            EulerForm eulerForm = new EulerForm(rndDemora, HPizza);
+            eulerForm.Show();
+        }
     }
 }

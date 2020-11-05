@@ -45,3 +45,4 @@ D:\Sim\sim2020\tp5\PIZZERIA\code\EstacionServicio\bin\Debug\PizzeriaTP5.pdb
 D:\Sim\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\PizzeriaTP5.Properties.Resources.resources
 D:\Sim\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\PizzeriaTP5.exe
 D:\Sim\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\PizzeriaTP5.pdb
+C:\Users\Mati\source\repos\TP_SIMULACION_4K4_GR\sim2020\tp5\PIZZERIA\code\EstacionServicio\obj\Debug\PizzeriaTP5.EulerForm.resources

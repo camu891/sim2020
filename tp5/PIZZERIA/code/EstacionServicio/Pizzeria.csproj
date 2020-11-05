@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EulerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EulerForm.Designer.cs">
+      <DependentUpon>EulerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reloj.cs" />
     <Compile Include="ColaPreparacion.cs" />
     <Compile Include="Empleado.cs" />
@@ -66,6 +72,9 @@
     <Compile Include="Delivery.cs" />
     <Compile Include="Validaciones.cs" />
     <Compile Include="Pedido.cs" />
+    <EmbeddedResource Include="EulerForm.resx">
+      <DependentUpon>EulerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
