@@ -343,7 +343,10 @@
             this.gpbTiemposFin.Controls.Add(this.label65);
             this.gpbTiemposFin.Controls.Add(this.textPrecioSandwich);
             this.gpbTiemposFin.Controls.Add(this.label58);
+            this.gpbTiemposFin.Controls.Add(this.label8);
+            this.gpbTiemposFin.Controls.Add(this.txtHastaPizza);
             this.gpbTiemposFin.Controls.Add(this.label59);
+            this.gpbTiemposFin.Controls.Add(this.label15);
             this.gpbTiemposFin.Controls.Add(this.label61);
             this.gpbTiemposFin.Controls.Add(this.label62);
             this.gpbTiemposFin.Controls.Add(this.label63);
@@ -367,7 +370,6 @@
             this.gpbTiemposFin.Controls.Add(this.textDemora2Empa);
             this.gpbTiemposFin.Controls.Add(this.textDemora3Empa);
             this.gpbTiemposFin.Controls.Add(this.label17);
-            this.gpbTiemposFin.Controls.Add(this.label15);
             this.gpbTiemposFin.Controls.Add(this.label16);
             this.gpbTiemposFin.Controls.Add(this.label14);
             this.gpbTiemposFin.Controls.Add(this.label13);
@@ -375,9 +377,7 @@
             this.gpbTiemposFin.Controls.Add(this.txtPrecioPizza);
             this.gpbTiemposFin.Controls.Add(this.label11);
             this.gpbTiemposFin.Controls.Add(this.label10);
-            this.gpbTiemposFin.Controls.Add(this.label8);
             this.gpbTiemposFin.Controls.Add(this.label9);
-            this.gpbTiemposFin.Controls.Add(this.txtHastaPizza);
             this.gpbTiemposFin.Controls.Add(this.txtDesdePizza);
             this.gpbTiemposFin.Controls.Add(this.label7);
             this.gpbTiemposFin.Controls.Add(this.label6);
@@ -653,7 +653,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(165, 96);
+            this.label17.Location = new System.Drawing.Point(165, 70);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(52, 15);
             this.label17.TabIndex = 22;
@@ -663,11 +663,12 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(195, 69);
+            this.label15.Location = new System.Drawing.Point(195, 96);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(20, 15);
             this.label15.TabIndex = 21;
             this.label15.Text = "B:";
+            this.label15.Visible = false;
             // 
             // label16
             // 
@@ -677,7 +678,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(19, 15);
             this.label16.TabIndex = 20;
-            this.label16.Text = "A:";
+            this.label16.Text = "h:";
             // 
             // label14
             // 
@@ -703,7 +704,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(272, 95);
+            this.label12.Location = new System.Drawing.Point(272, 69);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(23, 15);
             this.label12.TabIndex = 17;
@@ -711,7 +712,7 @@
             // 
             // txtPrecioPizza
             // 
-            this.txtPrecioPizza.Location = new System.Drawing.Point(219, 94);
+            this.txtPrecioPizza.Location = new System.Drawing.Point(219, 68);
             this.txtPrecioPizza.Name = "txtPrecioPizza";
             this.txtPrecioPizza.Size = new System.Drawing.Size(38, 20);
             this.txtPrecioPizza.TabIndex = 4;
@@ -741,11 +742,12 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(263, 69);
+            this.label8.Location = new System.Drawing.Point(263, 96);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(39, 15);
             this.label8.TabIndex = 13;
             this.label8.Text = "[min]";
+            this.label8.Visible = false;
             // 
             // label9
             // 
@@ -756,15 +758,17 @@
             this.label9.Size = new System.Drawing.Size(39, 15);
             this.label9.TabIndex = 12;
             this.label9.Text = "[min]";
+            this.label9.Visible = false;
             // 
             // txtHastaPizza
             // 
-            this.txtHastaPizza.Location = new System.Drawing.Point(219, 68);
+            this.txtHastaPizza.Location = new System.Drawing.Point(219, 95);
             this.txtHastaPizza.Name = "txtHastaPizza";
             this.txtHastaPizza.Size = new System.Drawing.Size(38, 20);
             this.txtHastaPizza.TabIndex = 3;
             this.txtHastaPizza.Text = "18";
             this.txtHastaPizza.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHastaPizza.Visible = false;
             this.txtHastaPizza.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
             // 
             // txtDesdePizza
@@ -773,7 +777,7 @@
             this.txtDesdePizza.Name = "txtDesdePizza";
             this.txtDesdePizza.Size = new System.Drawing.Size(38, 20);
             this.txtDesdePizza.TabIndex = 2;
-            this.txtDesdePizza.Text = "15";
+            this.txtDesdePizza.Text = "0,05";
             this.txtDesdePizza.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDesdePizza.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLlegadaConbustible_KeyDown);
             // 

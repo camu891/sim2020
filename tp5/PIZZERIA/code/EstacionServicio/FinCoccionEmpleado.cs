@@ -157,7 +157,7 @@ namespace Pizzeria
 			// h=0.05 igual a 1 minuto
 			Double E = 1;
 			Double k = Distribuciones.Uniforme(0.3, 0.8, random);
-			Double h = 0.05;
+			Double h = this.desdePizza;
 			Double acuh = 0;
 			int corridas = 0;
 			while (E > 0)
