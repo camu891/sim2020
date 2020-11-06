@@ -292,7 +292,7 @@ namespace Pizzeria
                                 //aca me quede controlar bien xq se armo el bucle
                                 //GG Se utiliza para acumular el tiepo libre del libery, en este bucle es cuando hay stock y pasa directamente.
                                 t_acutpoLibDel += this.llegadaPedido.getProximaLlegada().getReloj() - t_tpolibDel.getReloj();
-                                this.generarDemoraDelivery(fila, relojSimulacion, 1);
+                                this.generarDemoraDelivery(fila, relojSimulacion, 1,mediadelivery);
                                 delivery.setEstado("Reparto");
                                                             }
                             else
@@ -433,7 +433,7 @@ namespace Pizzeria
                                     //aca me quede controlar bien xq se armo el bucle
                                     //GG Calculo y acumulo el tiempo libre del delibery, cuando paso a Libre se fija la fecha
                                     t_acutpoLibDel += firstEvent.getReloj() - t_tpolibDel.getReloj();
-                                    this.generarDemoraDelivery(fila, relojSimulacion, 1) ;
+                                    this.generarDemoraDelivery(fila, relojSimulacion, 1,mediadelivery) ;
                                     delivery.setEstado("Reparto");
                                 }
                                 else
@@ -547,7 +547,7 @@ namespace Pizzeria
                                         //aca me quede controlar bien xq se armo el bucle
                                         //GG Calculo y acumulo el tiempo libre del delibery, cuando paso a Libre se fija la fecha
                                         t_acutpoLibDel += firstEvent.getReloj() - t_tpolibDel.getReloj();
-                                        this.generarDemoraDelivery(fila, relojSimulacion, 1);
+                                        this.generarDemoraDelivery(fila, relojSimulacion, 1, mediadelivery);
                                         delivery.setEstado("Reparto");
                                     }
                                     else
@@ -660,7 +660,7 @@ namespace Pizzeria
                                             //aca me quede controlar bien xq se armo el bucle
                                             //GG Calculo y acumulo el tiempo libre del delibery, cuando paso a Libre se fija la fecha
                                             t_acutpoLibDel += firstEvent.getReloj() - t_tpolibDel.getReloj();
-                                            this.generarDemoraDelivery(fila, relojSimulacion, 1) ;
+                                            this.generarDemoraDelivery(fila, relojSimulacion, 1, mediadelivery) ;
                                             delivery.setEstado("Reparto");
                                         }
                                         else
@@ -706,7 +706,7 @@ namespace Pizzeria
                                         }
                                         if (tope_delivery > 0)
                                         {
-                                            this.generarDemoraDelivery(fila, relojSimulacion, 1) ;
+                                            this.generarDemoraDelivery(fila, relojSimulacion, 1, mediadelivery) ;
                                         }
                                         else
                                         {
@@ -783,11 +783,11 @@ namespace Pizzeria
         }
         */
 
-        private void generarDemoraDelivery(int fila, Reloj reloj, int idDelivery)
+        private void generarDemoraDelivery(int fila, Reloj reloj, int idDelivery, double mediadely)
         {
             // fijarse en la cola si hay pedidos 
             Random r = new Random();
-            this.finDelivery.simular(reloj, r.NextDouble());
+            this.finDelivery.simulardel(reloj, r.NextDouble(), mediadely);
             //if (delivery.getCola().Count != 0)
             //{ //puede solo cargar tres pedidos 
             //    aca me quede
@@ -1115,8 +1115,11 @@ namespace Pizzeria
 
         private void btnVerEuler_Click(object sender, EventArgs e)
         {
-            EulerForm eulerForm = new EulerForm(rndDemora, HPizza);
-            eulerForm.Show();
+            if (rndDemora > 0)
+            {
+                EulerForm eulerForm = new EulerForm(rndDemora, HPizza);
+                eulerForm.Show();
+            }
         }
     }
 }

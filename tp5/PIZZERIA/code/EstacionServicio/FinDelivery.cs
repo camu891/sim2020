@@ -61,15 +61,22 @@ namespace Pizzeria
 			return this.proximoFin;
 		}
 
-		public override void simular(Reloj reloj, double random)
+	//	public override void simular(Reloj reloj, double random)
+	    public void simulardel (Reloj reloj, double random, double mediadel)
 		{
 			this.rndTiempo = random;
-			this.demora = Distribuciones.Exponencial(3,new Random().NextDouble());
-			this.proximoFin.setReloj(reloj.getReloj());
+		//  this.demora = Distribuciones.Exponencial(3,new Random().NextDouble());
+			this.demora = Distribuciones.Exponencial(mediadel, new Random().NextDouble());
+			this.proximoFin.setReloj(this.demora + reloj.getReloj());
 			this.proximoFin.setDia(reloj.getDia());
 			this.proximoFin.setTurno(reloj.getTurno());
 		}
 
 		public override void simularDemora(Reloj reloj, double random, LlegadaPedido llegP) { }
-	}
+
+        public override void simular(Reloj reloj, double random)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
