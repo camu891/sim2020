@@ -38,7 +38,7 @@ namespace PizzeriaTP5
 			int j = this.dataGridViewEuler.Rows.Add();
 			dataGridViewEuler.Rows[j].Cells["colC"].Value = E;
 			dataGridViewEuler.Rows[j].Cells["colT"].Value = acuh / 0.05;
-			dataGridViewEuler.Rows[j].Cells["colDerivada"].Value = derivada;
+			dataGridViewEuler.Rows[j].Cells["colDerivada"].Value = "";
 
 			while (E > 0)
 			{
