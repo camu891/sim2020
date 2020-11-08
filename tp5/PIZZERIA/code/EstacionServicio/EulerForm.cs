@@ -13,15 +13,15 @@ namespace PizzeriaTP5
 {
     public partial class EulerForm : Form
     {
-        public EulerForm(double random, double h)
+        public EulerForm(double random, double h, double e)
         {
             InitializeComponent();
-            initEulerGrilla(random, h);
+            initEulerGrilla(random, h, e);
         }
 
     
 
-		private void initEulerGrilla(double random, double h)
+		private void initEulerGrilla(double random, double h, double e)
 		{
 			// return Distribuciones.Uniforme(this.desdePizza, this.hastaPizza, random);
 
@@ -29,7 +29,7 @@ namespace PizzeriaTP5
 			//K distribucion uniforme (0.3 - 0.8)
 			//E siempre inicia en 100% y cuando llega a 0 finaliza
 			// h=0.05 igual a 1 minuto
-			Double E = 1;
+			Double E = e;
 			Double k = Distribuciones.Uniforme(0.3, 0.8, random);
 			Double acuh = 0;
 			double derivada = 0;

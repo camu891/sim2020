@@ -155,7 +155,7 @@ namespace Pizzeria
 			//K distribucion uniforme (0.3 - 0.8)
 			//E siempre inicia en 100% y cuando llega a 0 finaliza
 			// h=0.05 igual a 1 minuto
-			Double E = 1;
+			Double E = this.hastaPizza;
 			Double k = Distribuciones.Uniforme(0.3, 0.8, random);
 			Double h = this.desdePizza;
 			Double acuh = 0;
@@ -167,6 +167,7 @@ namespace Pizzeria
 				E = caleuler(E, derivada, h);
 				acuh += h;
 			}
+			Console.WriteLine("k: " + k + " Euler: " + acuh / 0.05);
 			return acuh/0.05; //Representa que un minuto es 0,05 de H
 		}
 

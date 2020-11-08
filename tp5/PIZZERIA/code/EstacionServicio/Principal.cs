@@ -994,7 +994,7 @@ namespace Pizzeria
 
         private void agregarEventoInicio()
         {
-            Console.WriteLine("Imprimiendo: " + 0);
+            //Console.WriteLine("Imprimiendo: " + 0);
             dgvResultados.Rows[0].Cells["colFila"].Value = 0;
             dgvResultados.Rows[0].Cells["colEvento"].Value = "Inicio Simulacion";
             dgvResultados.Rows[0].Cells["colReloj"].Value = relojSimulacion.getReloj();
@@ -1018,7 +1018,7 @@ namespace Pizzeria
 
         private void agregarEventoAGrilla(int i, Evento evento, int fila)
         {
-            Console.WriteLine("Imprimiendo: " + fila);
+            //Console.WriteLine("Imprimiendo: " + fila);
 
             //Columnas que se muestran siempre
             dgvResultados.Rows[i].Cells["colFila"].Value = fila;
@@ -1117,7 +1117,7 @@ namespace Pizzeria
         {
             if (rndDemora > 0)
             {
-                EulerForm eulerForm = new EulerForm(rndDemora, HPizza);
+                EulerForm eulerForm = new EulerForm(rndDemora, HPizza, hastaPizza);
                 eulerForm.Show();
             }
         }
