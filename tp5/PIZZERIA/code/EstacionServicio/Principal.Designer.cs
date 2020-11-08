@@ -240,6 +240,7 @@
             this.StkLomo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StkHamb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StkEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textRelHMin = new System.Windows.Forms.TextBox();
             this.gpbParametros.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gpbTiemposFin.SuspendLayout();
@@ -340,6 +341,7 @@
             // 
             // gpbTiemposFin
             // 
+            this.gpbTiemposFin.Controls.Add(this.textRelHMin);
             this.gpbTiemposFin.Controls.Add(this.label64);
             this.gpbTiemposFin.Controls.Add(this.label65);
             this.gpbTiemposFin.Controls.Add(this.textPrecioSandwich);
@@ -695,7 +697,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(196, 43);
+            this.label16.Location = new System.Drawing.Point(154, 43);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(19, 15);
             this.label16.TabIndex = 20;
@@ -763,16 +765,15 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(263, 43);
+            this.label9.Location = new System.Drawing.Point(221, 43);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(39, 15);
+            this.label9.Size = new System.Drawing.Size(60, 15);
             this.label9.TabIndex = 12;
-            this.label9.Text = "[min]";
-            this.label9.Visible = false;
+            this.label9.Text = "/ rel min";
             // 
             // txtHPizza
             // 
-            this.txtHPizza.Location = new System.Drawing.Point(219, 42);
+            this.txtHPizza.Location = new System.Drawing.Point(177, 42);
             this.txtHPizza.Name = "txtHPizza";
             this.txtHPizza.Size = new System.Drawing.Size(38, 20);
             this.txtHPizza.TabIndex = 2;
@@ -2476,6 +2477,15 @@
             this.StkEmp.ReadOnly = true;
             this.StkEmp.Width = 72;
             // 
+            // textRelHMin
+            // 
+            this.textRelHMin.Location = new System.Drawing.Point(281, 41);
+            this.textRelHMin.Name = "textRelHMin";
+            this.textRelHMin.Size = new System.Drawing.Size(38, 20);
+            this.textRelHMin.TabIndex = 56;
+            this.textRelHMin.Text = "0,05";
+            this.textRelHMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // frm_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2715,6 +2725,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StkHamb;
         private System.Windows.Forms.DataGridViewTextBoxColumn StkEmp;
         private System.Windows.Forms.Button btnVerEuler;
+        private System.Windows.Forms.TextBox textRelHMin;
     }
 }
 

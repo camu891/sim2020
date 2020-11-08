@@ -13,15 +13,15 @@ namespace PizzeriaTP5
 {
     public partial class EulerForm : Form
     {
-        public EulerForm(double random, double h, double e)
+        public EulerForm(double random, double h, double e, double hMin)
         {
             InitializeComponent();
-            initEulerGrilla(random, h, e);
+            initEulerGrilla(random, h, e, hMin);
         }
 
     
 
-		private void initEulerGrilla(double random, double h, double e)
+		private void initEulerGrilla(double random, double h, double e, double hMin)
 		{
 			// return Distribuciones.Uniforme(this.desdePizza, this.hastaPizza, random);
 
@@ -37,7 +37,7 @@ namespace PizzeriaTP5
 			//init grilla
 			int j = this.dataGridViewEuler.Rows.Add();
 			dataGridViewEuler.Rows[j].Cells["colC"].Value = E;
-			dataGridViewEuler.Rows[j].Cells["colT"].Value = acuh / 0.05;
+			dataGridViewEuler.Rows[j].Cells["colT"].Value = acuh / hMin;
 			dataGridViewEuler.Rows[j].Cells["colDerivada"].Value = "";
 
 			while (E > 0)
@@ -49,7 +49,7 @@ namespace PizzeriaTP5
 				//cargamos grilla
 				int i = this.dataGridViewEuler.Rows.Add();
 				dataGridViewEuler.Rows[i].Cells["colC"].Value = E;
-				dataGridViewEuler.Rows[i].Cells["colT"].Value = acuh / 0.05;
+				dataGridViewEuler.Rows[i].Cells["colT"].Value = acuh / hMin;
 				dataGridViewEuler.Rows[i].Cells["colDerivada"].Value = derivada;
 			}
 

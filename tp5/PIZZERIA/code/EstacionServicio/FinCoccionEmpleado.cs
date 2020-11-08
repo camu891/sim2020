@@ -23,8 +23,9 @@ namespace Pizzeria
 		private Reloj entroped;
 		private Empleado e;
 		private LlegadaPedido llegadaP;
+		private double minutosH;
 
-		public FinCoccionEmpleado(double promSandwich, double desvSandwich, double desdePizza, double hastaPizza, double demoraEmpanadax3, double demoraEmpanadax2, double demoraHamburguesa, double demoraLomo, int idEmpleado, Empleado empleado)
+		public FinCoccionEmpleado(double promSandwich, double desvSandwich, double desdePizza, double hastaPizza, double demoraEmpanadax3, double demoraEmpanadax2, double demoraHamburguesa, double demoraLomo, int idEmpleado, Empleado empleado, double minutosH)
 		{
 			this.promSandwich = promSandwich;
 			this.desvSandwich = desvSandwich;
@@ -37,6 +38,7 @@ namespace Pizzeria
 			this.idEmpleado = idEmpleado;
 			this.e = empleado;
 			proximoFin = new Reloj();
+			this.minutosH = minutosH;
 		}
 
 		public Empleado Empleado { get => e; set => e = value; }
@@ -167,8 +169,8 @@ namespace Pizzeria
 				E = caleuler(E, derivada, h);
 				acuh += h;
 			}
-			Console.WriteLine("k: " + k + " Euler: " + acuh / 0.05);
-			return acuh/0.05; //Representa que un minuto es 0,05 de H
+			Console.WriteLine("k: " + k + " Euler: " + acuh / minutosH);
+			return acuh/ minutosH; //Representa que un minuto es 0,05 de H
 		}
 
 		private double caleuler(double xi, double xderivada, double hciclo)

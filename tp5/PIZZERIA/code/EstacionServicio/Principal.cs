@@ -34,7 +34,8 @@ namespace Pizzeria
         private double promSandwich;
         private double desvSandwich;
         private double HPizza;
-        private double hastaPizza;
+        private double e0Pizza;
+        private double relHMinPizza;
         private double precioPizza;
         private double filaHastaDondeMostrar;
         private double precioSandwich;
@@ -765,24 +766,6 @@ namespace Pizzeria
             }
         }
 
-        /*
-        public void generarDemoraPedido(int j, int idEmpleado, LlegadaPedido lp)
-        {
-            switch (idEmpleado)
-            {
-                case 1:
-                    this.generarDemoraEnEmpleado(j, this.finCoccionEmpleado1.getIdEmpleado(), lp);
-                    break;
-                case 2:
-                    this.generarDemoraEnEmpleado(j, this.finCoccionEmpleado2.getIdEmpleado(), lp);
-                    break;
-                case 3:
-                    this.generarDemoraEnEmpleado(j, this.finCoccionEmpleado3.getIdEmpleado(), lp);
-                    break;
-            }
-        }
-        */
-
         private void generarDemoraDelivery(int fila, Reloj reloj, int idDelivery, double mediadely)
         {
             // fijarse en la cola si hay pedidos 
@@ -885,7 +868,8 @@ namespace Pizzeria
             this.desvSandwich = Convert.ToDouble(this.txtdesvSandwich.Text);
             this.precioSandwich = Convert.ToDouble(this.textPrecioSandwich.Text);
             this.HPizza = Convert.ToDouble(this.txtHPizza.Text);
-            this.hastaPizza = Convert.ToDouble(this.txtHastaPizza.Text);
+            this.e0Pizza = Convert.ToDouble(this.txtHastaPizza.Text);
+            this.relHMinPizza = Convert.ToDouble(this.textRelHMin.Text);
             this.precioPizza = Convert.ToDouble(this.txtPrecioPizza.Text);
             this.demoraEmpax3 = Convert.ToDouble(this.textDemora3Empa.Text);
             this.demoraEmpax2 = Convert.ToDouble(this.textDemora2Empa.Text);
@@ -910,15 +894,15 @@ namespace Pizzeria
             this.empleado2 = new Empleado(2, 0); //TODO pasar valores tomados por parametros
             this.empleado3 = new Empleado(3, 0); //TODO pasar valores tomados por parametros
             this.delivery = new Delivery(1, 0); //TODO pasar valores tomados por parametros
-            this.finCoccionEmpleado1 = new FinCoccionEmpleado(promSandwich, desvSandwich, HPizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 1, empleado1);
-            this.finCoccionEmpleado2 = new FinCoccionEmpleado(promSandwich, desvSandwich, HPizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 2, empleado2);
-            this.finCoccionEmpleado3 = new FinCoccionEmpleado(promSandwich, desvSandwich, HPizza, hastaPizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 3, empleado3);
+            this.finCoccionEmpleado1 = new FinCoccionEmpleado(promSandwich, desvSandwich, HPizza, e0Pizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 1, empleado1, relHMinPizza);
+            this.finCoccionEmpleado2 = new FinCoccionEmpleado(promSandwich, desvSandwich, HPizza, e0Pizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 2, empleado2, relHMinPizza);
+            this.finCoccionEmpleado3 = new FinCoccionEmpleado(promSandwich, desvSandwich, HPizza, e0Pizza, demoraEmpax3, demoraEmpax2, demoraHamburguesa, demoraLomo, 3, empleado3, relHMinPizza);
             this.colaPreparacion = new ColaPreparacion();
 
             this.idPedidoAAtender = 0;
             Pedido.id = 0;
 
-            this.finDelivery = new FinDelivery(this.HPizza, this.hastaPizza, 1, this.precioPizza);//TODO pasar parametros 
+            this.finDelivery = new FinDelivery(this.HPizza, this.e0Pizza, 1, this.precioPizza);//TODO pasar parametros 
             this.empleados = new List<Empleado>() { empleado1, empleado2, empleado3 };
             this.minutosExtras = 0;
 
@@ -1117,7 +1101,7 @@ namespace Pizzeria
         {
             if (rndDemora > 0)
             {
-                EulerForm eulerForm = new EulerForm(rndDemora, HPizza, hastaPizza);
+                EulerForm eulerForm = new EulerForm(rndDemora, HPizza, e0Pizza, relHMinPizza);
                 eulerForm.Show();
             }
         }
