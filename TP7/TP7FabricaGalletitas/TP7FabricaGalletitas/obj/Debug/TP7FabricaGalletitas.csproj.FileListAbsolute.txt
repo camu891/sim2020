@@ -1,0 +1,11 @@
+C:\Users\Mati\source\repos\TP7\TP7FabricaGalletitas\TP7FabricaGalletitas\bin\Debug\TP7FabricaGalletitas.exe.config
+C:\Users\Mati\source\repos\TP7\TP7FabricaGalletitas\TP7FabricaGalletitas\bin\Debug\TP7FabricaGalletitas.exe
+C:\Users\Mati\source\repos\TP7\TP7FabricaGalletitas\TP7FabricaGalletitas\bin\Debug\TP7FabricaGalletitas.pdb
+C:\Users\Mati\source\repos\TP7\TP7FabricaGalletitas\TP7FabricaGalletitas\obj\Debug\TP7FabricaGalletitas.csprojAssemblyReference.cache
+C:\Users\Mati\source\repos\TP7\TP7FabricaGalletitas\TP7FabricaGalletitas\obj\Debug\TP7FabricaGalletitas.Properties.Resources.resources
+C:\Users\Mati\source\repos\TP7\TP7FabricaGalletitas\TP7FabricaGalletitas\obj\Debug\TP7FabricaGalletitas.csproj.GenerateResource.cache
+C:\Users\Mati\source\repos\TP7\TP7FabricaGalletitas\TP7FabricaGalletitas\obj\Debug\TP7FabricaGalletitas.csproj.CoreCompileInputs.cache
+C:\Users\Mati\source\repos\TP7\TP7FabricaGalletitas\TP7FabricaGalletitas\obj\Debug\TP7FabricaGalletitas.exe
+C:\Users\Mati\source\repos\TP7\TP7FabricaGalletitas\TP7FabricaGalletitas\obj\Debug\TP7FabricaGalletitas.pdb
+C:\Users\Mati\source\repos\TP7\TP7FabricaGalletitas\TP7FabricaGalletitas\obj\Debug\TP7FabricaGalletitas.Principal.resources
+C:\Users\Mati\source\repos\TP7\TP7FabricaGalletitas\TP7FabricaGalletitas\obj\Debug\TP7FabricaGalletitas.EcDiferencial.resources
