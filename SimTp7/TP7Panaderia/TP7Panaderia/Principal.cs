@@ -22,6 +22,8 @@ namespace TP7Panaderia
         private double cantClientesPerdidos;
         private int stockInicial;
         private int stockMinimo;
+        private int recargaSinStock;
+        private int recargaConStock;
 
         //Parametros de la corrida
         private double tiempoFinCorrida;
@@ -114,7 +116,7 @@ namespace TP7Panaderia
                             generarDemoraAtencion(empleadoLibre.getId());
                         } else
                         {
-                            cantClientesPerdidos++;
+                            llegadaClienteSinStock(empleadoLibre.getId());
                         }
                     }
                     else {
@@ -176,6 +178,32 @@ namespace TP7Panaderia
             this.txtPorcenPerdidos.Text = formatearResultado((cantClientesPerdidos/ cantClientes)*100);
         }
 
+        public void llegadaClienteSinStock(int empl)
+        {
+            double tiempoFaltanteHorno = Math.Round(finCoccion.getProximoTiempo().getReloj() - relojSimulacion.getReloj(),2);
+            if (Constantes.ESTADO_ENCENDIDO.Equals(horno.getEstado()) && tiempoFaltanteHorno < 5 && tiempoFaltanteHorno > 0)
+            {
+                //Actualizo el stock dejandolo negativo
+                stock -= llegadaCliente.getCantProd();
+                cantClientesAtendidos++;
+                double rnd = this.rand.NextDouble();
+                switch (empl)
+                {
+                    case 1:
+                        this.finAtencionEmpleado1.simular(this.relojSimulacion, rnd);
+                        this.finAtencionEmpleado1.setDemoraHoraFin(tiempoFaltanteHorno);
+                        break;
+                    case 2:
+                        this.finAtencionEmpleado2.simular(this.relojSimulacion, rnd);
+                        this.finAtencionEmpleado2.setDemoraHoraFin(tiempoFaltanteHorno);
+                        break;
+                }
+            } else
+            {
+                cantClientesPerdidos++;
+            }
+        }
+
         public static string formatearResultado(double value)
         {
             return Convert.ToString(Math.Round(value, 2));
@@ -202,10 +230,10 @@ namespace TP7Panaderia
         {
             if (stock > 0)
             {
-                horno = new Horno(30);
+                horno = new Horno(this.recargaSinStock);
             } else
             {
-                horno = new Horno(45);
+                horno = new Horno(this.recargaConStock);
             }
         }
 
@@ -341,6 +369,8 @@ namespace TP7Panaderia
                     } else
                     {
                         cantClientesPerdidos++;
+                        //Agrego recursividad en caso de que haya clientes en cola si stock
+                        actualizarEstadoEmpleado(s);
                     }
                 }
 
@@ -469,6 +499,8 @@ namespace TP7Panaderia
             this.relHMin = Convert.ToDouble(this.txtRelHMin.Value);
             this.stockInicial = Convert.ToInt32(this.txtStockInicial.Value);
             this.stockMinimo = Convert.ToInt32(this.txtMinCocinar.Value);
+            this.recargaConStock = Convert.ToInt32(this.txtRecargaConStock.Value);
+            this.recargaSinStock = Convert.ToInt32(this.txtRecargaSinStock.Value);
         }
 
         public void inicializarVariables()

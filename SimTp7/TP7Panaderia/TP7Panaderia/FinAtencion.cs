@@ -47,6 +47,21 @@ namespace TP7Panaderia
             this.proximoFin = horaFin;
         }
 
+        public void setDemoraHoraFin(double demora)
+        {
+            this.proximoFin.setReloj(this.proximoFin.getReloj() + demora); ;
+        }
+
+        public void setDemora(double demora)
+        {
+            this.demora = demora;
+        }
+
+        public double getDemora()
+        {
+            return this.demora;
+        }
+
         public double getTiempoEntreLlegada()
         {
             return this.demora;

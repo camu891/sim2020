@@ -71,32 +71,6 @@
             this.label22 = new System.Windows.Forms.Label();
             this.radioCada10mil = new System.Windows.Forms.RadioButton();
             this.dgvResultados = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.textMediaLlegada = new System.Windows.Forms.NumericUpDown();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label70 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
-            this.label77 = new System.Windows.Forms.Label();
-            this.txtPorcenPerdidos = new System.Windows.Forms.TextBox();
-            this.label72 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.txtCantClientesPerdidos = new System.Windows.Forms.TextBox();
-            this.txtCantClientes = new System.Windows.Forms.TextBox();
-            this.txtCantClixHoraProm = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtCantClientesAtendidos = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtMinCocinar = new System.Windows.Forms.NumericUpDown();
-            this.txtStockInicial = new System.Windows.Forms.NumericUpDown();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
             this.colFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -122,6 +96,38 @@
             this.colProximoFinCoccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCantClientesPerdidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPromPorcCliPerdidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.textMediaLlegada = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtCantClientesAtendidos = new System.Windows.Forms.TextBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label77 = new System.Windows.Forms.Label();
+            this.txtPorcenPerdidos = new System.Windows.Forms.TextBox();
+            this.label72 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.txtCantClientesPerdidos = new System.Windows.Forms.TextBox();
+            this.txtCantClientes = new System.Windows.Forms.TextBox();
+            this.txtCantClixHoraProm = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.txtMinCocinar = new System.Windows.Forms.NumericUpDown();
+            this.txtStockInicial = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtRecargaConStock = new System.Windows.Forms.NumericUpDown();
+            this.txtRecargaSinStock = new System.Windows.Forms.NumericUpDown();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTiempoAtenB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTiempoAtenA)).BeginInit();
@@ -144,6 +150,8 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinCocinar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStockInicial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRecargaConStock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRecargaSinStock)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -678,300 +686,6 @@
             this.dgvResultados.Size = new System.Drawing.Size(1253, 500);
             this.dgvResultados.TabIndex = 11;
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.dgvResultados);
-            this.panel1.Location = new System.Drawing.Point(0, 267);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.panel1.Size = new System.Drawing.Size(1273, 520);
-            this.panel1.TabIndex = 13;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.txtCantCompraB);
-            this.groupBox8.Controls.Add(this.textMediaLlegada);
-            this.groupBox8.Controls.Add(this.txtCantCompraA);
-            this.groupBox8.Controls.Add(this.label3);
-            this.groupBox8.Controls.Add(this.label18);
-            this.groupBox8.Controls.Add(this.label4);
-            this.groupBox8.Controls.Add(this.label25);
-            this.groupBox8.Controls.Add(this.label2);
-            this.groupBox8.Controls.Add(this.label1);
-            this.groupBox8.Location = new System.Drawing.Point(12, 12);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(115, 103);
-            this.groupBox8.TabIndex = 11;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Llegada Clientes";
-            // 
-            // textMediaLlegada
-            // 
-            this.textMediaLlegada.DecimalPlaces = 2;
-            this.textMediaLlegada.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.textMediaLlegada.Location = new System.Drawing.Point(34, 22);
-            this.textMediaLlegada.Name = "textMediaLlegada";
-            this.textMediaLlegada.Size = new System.Drawing.Size(45, 20);
-            this.textMediaLlegada.TabIndex = 9;
-            this.textMediaLlegada.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(85, 26);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(29, 13);
-            this.label18.TabIndex = 4;
-            this.label18.Text = "[min]";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(15, 24);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(18, 13);
-            this.label25.TabIndex = 0;
-            this.label25.Text = "u:";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.txtCantClientesAtendidos);
-            this.groupBox2.Controls.Add(this.label70);
-            this.groupBox2.Controls.Add(this.label69);
-            this.groupBox2.Controls.Add(this.label77);
-            this.groupBox2.Controls.Add(this.txtPorcenPerdidos);
-            this.groupBox2.Controls.Add(this.label72);
-            this.groupBox2.Controls.Add(this.label33);
-            this.groupBox2.Controls.Add(this.label34);
-            this.groupBox2.Controls.Add(this.txtCantClientesPerdidos);
-            this.groupBox2.Controls.Add(this.txtCantClientes);
-            this.groupBox2.Controls.Add(this.txtCantClixHoraProm);
-            this.groupBox2.Location = new System.Drawing.Point(665, 126);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(585, 123);
-            this.groupBox2.TabIndex = 57;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Resultados";
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.Location = new System.Drawing.Point(1194, 108);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(27, 15);
-            this.label70.TabIndex = 125;
-            this.label70.Text = "[%]";
-            this.label70.Visible = false;
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(1194, 53);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(27, 15);
-            this.label69.TabIndex = 124;
-            this.label69.Text = "[%]";
-            this.label69.Visible = false;
-            // 
-            // label77
-            // 
-            this.label77.AutoSize = true;
-            this.label77.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label77.Location = new System.Drawing.Point(296, 49);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(178, 15);
-            this.label77.TabIndex = 120;
-            this.label77.Text = "% Prom Clientes Perdidos:";
-            // 
-            // txtPorcenPerdidos
-            // 
-            this.txtPorcenPerdidos.Location = new System.Drawing.Point(482, 45);
-            this.txtPorcenPerdidos.Name = "txtPorcenPerdidos";
-            this.txtPorcenPerdidos.ReadOnly = true;
-            this.txtPorcenPerdidos.Size = new System.Drawing.Size(67, 20);
-            this.txtPorcenPerdidos.TabIndex = 121;
-            this.txtPorcenPerdidos.Text = "0";
-            this.txtPorcenPerdidos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label72.Location = new System.Drawing.Point(50, 76);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(138, 15);
-            this.label72.TabIndex = 19;
-            this.label72.Text = "Cant clientes x hora:";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(93, 25);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(94, 15);
-            this.label33.TabIndex = 55;
-            this.label33.Text = "Cant clientes:";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(319, 24);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(154, 15);
-            this.label34.TabIndex = 60;
-            this.label34.Text = "Cant clientes perdidos:";
-            // 
-            // txtCantClientesPerdidos
-            // 
-            this.txtCantClientesPerdidos.Location = new System.Drawing.Point(482, 21);
-            this.txtCantClientesPerdidos.Name = "txtCantClientesPerdidos";
-            this.txtCantClientesPerdidos.ReadOnly = true;
-            this.txtCantClientesPerdidos.Size = new System.Drawing.Size(67, 20);
-            this.txtCantClientesPerdidos.TabIndex = 110;
-            this.txtCantClientesPerdidos.Text = "0";
-            this.txtCantClientesPerdidos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtCantClientes
-            // 
-            this.txtCantClientes.Location = new System.Drawing.Point(198, 24);
-            this.txtCantClientes.Name = "txtCantClientes";
-            this.txtCantClientes.ReadOnly = true;
-            this.txtCantClientes.Size = new System.Drawing.Size(67, 20);
-            this.txtCantClientes.TabIndex = 103;
-            this.txtCantClientes.Text = "0";
-            this.txtCantClientes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtCantClixHoraProm
-            // 
-            this.txtCantClixHoraProm.Location = new System.Drawing.Point(198, 73);
-            this.txtCantClixHoraProm.Name = "txtCantClixHoraProm";
-            this.txtCantClixHoraProm.ReadOnly = true;
-            this.txtCantClixHoraProm.Size = new System.Drawing.Size(67, 20);
-            this.txtCantClixHoraProm.TabIndex = 104;
-            this.txtCantClixHoraProm.Text = "0";
-            this.txtCantClixHoraProm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(27, 50);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(163, 15);
-            this.label12.TabIndex = 126;
-            this.label12.Text = "Cant Clientes Atendidos:";
-            // 
-            // txtCantClientesAtendidos
-            // 
-            this.txtCantClientesAtendidos.Location = new System.Drawing.Point(198, 47);
-            this.txtCantClientesAtendidos.Name = "txtCantClientesAtendidos";
-            this.txtCantClientesAtendidos.ReadOnly = true;
-            this.txtCantClientesAtendidos.Size = new System.Drawing.Size(67, 20);
-            this.txtCantClientesAtendidos.TabIndex = 127;
-            this.txtCantClientesAtendidos.Text = "0";
-            this.txtCantClientesAtendidos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.label30);
-            this.groupBox4.Controls.Add(this.txtMinCocinar);
-            this.groupBox4.Controls.Add(this.txtStockInicial);
-            this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.label15);
-            this.groupBox4.Controls.Add(this.label17);
-            this.groupBox4.Location = new System.Drawing.Point(598, 12);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(234, 103);
-            this.groupBox4.TabIndex = 17;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Stock";
-            // 
-            // txtMinCocinar
-            // 
-            this.txtMinCocinar.Location = new System.Drawing.Point(123, 66);
-            this.txtMinCocinar.Name = "txtMinCocinar";
-            this.txtMinCocinar.Size = new System.Drawing.Size(45, 20);
-            this.txtMinCocinar.TabIndex = 16;
-            // 
-            // txtStockInicial
-            // 
-            this.txtStockInicial.Location = new System.Drawing.Point(123, 26);
-            this.txtStockInicial.Name = "txtStockInicial";
-            this.txtStockInicial.Size = new System.Drawing.Size(45, 20);
-            this.txtStockInicial.TabIndex = 15;
-            this.txtStockInicial.Value = new decimal(new int[] {
-            45,
-            0,
-            0,
-            0});
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(72, 30);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(45, 13);
-            this.label13.TabIndex = 11;
-            this.label13.Text = "Inicial:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(174, 70);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(27, 13);
-            this.label14.TabIndex = 14;
-            this.label14.Text = "[uni]";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(34, 70);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(83, 13);
-            this.label15.TabIndex = 12;
-            this.label15.Text = "para Cocinar:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(174, 30);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(27, 13);
-            this.label17.TabIndex = 13;
-            this.label17.Text = "[uni]";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(23, 57);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(83, 13);
-            this.label30.TabIndex = 17;
-            this.label30.Text = "Stock Minimo";
-            // 
             // colFila
             // 
             this.colFila.HeaderText = "Fila";
@@ -1005,7 +719,7 @@
             this.colTiempoEntreLlegada.HeaderText = "Tiempo Entre Llegada";
             this.colTiempoEntreLlegada.Name = "colTiempoEntreLlegada";
             this.colTiempoEntreLlegada.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTiempoEntreLlegada.Width = 71;
+            this.colTiempoEntreLlegada.Width = 105;
             // 
             // colProxLlegada
             // 
@@ -1147,6 +861,368 @@
             this.colPromPorcCliPerdidos.Name = "colPromPorcCliPerdidos";
             this.colPromPorcCliPerdidos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.dgvResultados);
+            this.panel1.Location = new System.Drawing.Point(0, 267);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(10);
+            this.panel1.Size = new System.Drawing.Size(1273, 520);
+            this.panel1.TabIndex = 13;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.txtCantCompraB);
+            this.groupBox8.Controls.Add(this.textMediaLlegada);
+            this.groupBox8.Controls.Add(this.txtCantCompraA);
+            this.groupBox8.Controls.Add(this.label3);
+            this.groupBox8.Controls.Add(this.label18);
+            this.groupBox8.Controls.Add(this.label4);
+            this.groupBox8.Controls.Add(this.label25);
+            this.groupBox8.Controls.Add(this.label2);
+            this.groupBox8.Controls.Add(this.label1);
+            this.groupBox8.Location = new System.Drawing.Point(12, 12);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(115, 103);
+            this.groupBox8.TabIndex = 11;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Llegada Clientes";
+            // 
+            // textMediaLlegada
+            // 
+            this.textMediaLlegada.DecimalPlaces = 2;
+            this.textMediaLlegada.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.textMediaLlegada.Location = new System.Drawing.Point(34, 22);
+            this.textMediaLlegada.Name = "textMediaLlegada";
+            this.textMediaLlegada.Size = new System.Drawing.Size(45, 20);
+            this.textMediaLlegada.TabIndex = 9;
+            this.textMediaLlegada.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(85, 26);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(29, 13);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "[min]";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(15, 24);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(18, 13);
+            this.label25.TabIndex = 0;
+            this.label25.Text = "u:";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.txtCantClientesAtendidos);
+            this.groupBox2.Controls.Add(this.label70);
+            this.groupBox2.Controls.Add(this.label69);
+            this.groupBox2.Controls.Add(this.label77);
+            this.groupBox2.Controls.Add(this.txtPorcenPerdidos);
+            this.groupBox2.Controls.Add(this.label72);
+            this.groupBox2.Controls.Add(this.label33);
+            this.groupBox2.Controls.Add(this.label34);
+            this.groupBox2.Controls.Add(this.txtCantClientesPerdidos);
+            this.groupBox2.Controls.Add(this.txtCantClientes);
+            this.groupBox2.Controls.Add(this.txtCantClixHoraProm);
+            this.groupBox2.Location = new System.Drawing.Point(665, 126);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(585, 123);
+            this.groupBox2.TabIndex = 57;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Resultados";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(27, 50);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(163, 15);
+            this.label12.TabIndex = 126;
+            this.label12.Text = "Cant Clientes Atendidos:";
+            // 
+            // txtCantClientesAtendidos
+            // 
+            this.txtCantClientesAtendidos.Location = new System.Drawing.Point(198, 47);
+            this.txtCantClientesAtendidos.Name = "txtCantClientesAtendidos";
+            this.txtCantClientesAtendidos.ReadOnly = true;
+            this.txtCantClientesAtendidos.Size = new System.Drawing.Size(67, 20);
+            this.txtCantClientesAtendidos.TabIndex = 127;
+            this.txtCantClientesAtendidos.Text = "0";
+            this.txtCantClientesAtendidos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label70.Location = new System.Drawing.Point(1194, 108);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(27, 15);
+            this.label70.TabIndex = 125;
+            this.label70.Text = "[%]";
+            this.label70.Visible = false;
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(1194, 53);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(27, 15);
+            this.label69.TabIndex = 124;
+            this.label69.Text = "[%]";
+            this.label69.Visible = false;
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label77.Location = new System.Drawing.Point(296, 49);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(178, 15);
+            this.label77.TabIndex = 120;
+            this.label77.Text = "% Prom Clientes Perdidos:";
+            // 
+            // txtPorcenPerdidos
+            // 
+            this.txtPorcenPerdidos.Location = new System.Drawing.Point(482, 45);
+            this.txtPorcenPerdidos.Name = "txtPorcenPerdidos";
+            this.txtPorcenPerdidos.ReadOnly = true;
+            this.txtPorcenPerdidos.Size = new System.Drawing.Size(67, 20);
+            this.txtPorcenPerdidos.TabIndex = 121;
+            this.txtPorcenPerdidos.Text = "0";
+            this.txtPorcenPerdidos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label72.Location = new System.Drawing.Point(50, 76);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(138, 15);
+            this.label72.TabIndex = 19;
+            this.label72.Text = "Cant clientes x hora:";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(93, 25);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(94, 15);
+            this.label33.TabIndex = 55;
+            this.label33.Text = "Cant clientes:";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(319, 24);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(154, 15);
+            this.label34.TabIndex = 60;
+            this.label34.Text = "Cant clientes perdidos:";
+            // 
+            // txtCantClientesPerdidos
+            // 
+            this.txtCantClientesPerdidos.Location = new System.Drawing.Point(482, 21);
+            this.txtCantClientesPerdidos.Name = "txtCantClientesPerdidos";
+            this.txtCantClientesPerdidos.ReadOnly = true;
+            this.txtCantClientesPerdidos.Size = new System.Drawing.Size(67, 20);
+            this.txtCantClientesPerdidos.TabIndex = 110;
+            this.txtCantClientesPerdidos.Text = "0";
+            this.txtCantClientesPerdidos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtCantClientes
+            // 
+            this.txtCantClientes.Location = new System.Drawing.Point(198, 24);
+            this.txtCantClientes.Name = "txtCantClientes";
+            this.txtCantClientes.ReadOnly = true;
+            this.txtCantClientes.Size = new System.Drawing.Size(67, 20);
+            this.txtCantClientes.TabIndex = 103;
+            this.txtCantClientes.Text = "0";
+            this.txtCantClientes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtCantClixHoraProm
+            // 
+            this.txtCantClixHoraProm.Location = new System.Drawing.Point(198, 73);
+            this.txtCantClixHoraProm.Name = "txtCantClixHoraProm";
+            this.txtCantClixHoraProm.ReadOnly = true;
+            this.txtCantClixHoraProm.Size = new System.Drawing.Size(67, 20);
+            this.txtCantClixHoraProm.TabIndex = 104;
+            this.txtCantClixHoraProm.Text = "0";
+            this.txtCantClixHoraProm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.txtRecargaConStock);
+            this.groupBox4.Controls.Add(this.txtRecargaSinStock);
+            this.groupBox4.Controls.Add(this.label32);
+            this.groupBox4.Controls.Add(this.label35);
+            this.groupBox4.Controls.Add(this.label36);
+            this.groupBox4.Controls.Add(this.label37);
+            this.groupBox4.Controls.Add(this.label30);
+            this.groupBox4.Controls.Add(this.txtMinCocinar);
+            this.groupBox4.Controls.Add(this.txtStockInicial);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Location = new System.Drawing.Point(598, 12);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(492, 103);
+            this.groupBox4.TabIndex = 17;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Stock";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(23, 57);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(83, 13);
+            this.label30.TabIndex = 17;
+            this.label30.Text = "Stock Minimo";
+            // 
+            // txtMinCocinar
+            // 
+            this.txtMinCocinar.Location = new System.Drawing.Point(123, 66);
+            this.txtMinCocinar.Name = "txtMinCocinar";
+            this.txtMinCocinar.Size = new System.Drawing.Size(45, 20);
+            this.txtMinCocinar.TabIndex = 16;
+            // 
+            // txtStockInicial
+            // 
+            this.txtStockInicial.Location = new System.Drawing.Point(123, 26);
+            this.txtStockInicial.Name = "txtStockInicial";
+            this.txtStockInicial.Size = new System.Drawing.Size(45, 20);
+            this.txtStockInicial.TabIndex = 15;
+            this.txtStockInicial.Value = new decimal(new int[] {
+            45,
+            0,
+            0,
+            0});
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(72, 30);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(45, 13);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "Inicial:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(174, 70);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(27, 13);
+            this.label14.TabIndex = 14;
+            this.label14.Text = "[uni]";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(34, 70);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(83, 13);
+            this.label15.TabIndex = 12;
+            this.label15.Text = "para Cocinar:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(174, 30);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(27, 13);
+            this.label17.TabIndex = 13;
+            this.label17.Text = "[uni]";
+            // 
+            // txtRecargaConStock
+            // 
+            this.txtRecargaConStock.Location = new System.Drawing.Point(381, 65);
+            this.txtRecargaConStock.Name = "txtRecargaConStock";
+            this.txtRecargaConStock.Size = new System.Drawing.Size(45, 20);
+            this.txtRecargaConStock.TabIndex = 23;
+            this.txtRecargaConStock.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // txtRecargaSinStock
+            // 
+            this.txtRecargaSinStock.Location = new System.Drawing.Point(381, 26);
+            this.txtRecargaSinStock.Name = "txtRecargaSinStock";
+            this.txtRecargaSinStock.Size = new System.Drawing.Size(45, 20);
+            this.txtRecargaSinStock.TabIndex = 22;
+            this.txtRecargaSinStock.Value = new decimal(new int[] {
+            45,
+            0,
+            0,
+            0});
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(223, 32);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(152, 13);
+            this.label32.TabIndex = 18;
+            this.label32.Text = "Recarga Horno sin stock:";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(432, 69);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(27, 13);
+            this.label35.TabIndex = 21;
+            this.label35.Text = "[uni]";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(220, 69);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(155, 13);
+            this.label36.TabIndex = 19;
+            this.label36.Text = "Recarga horno con stock:";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(432, 30);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(27, 13);
+            this.label37.TabIndex = 20;
+            this.label37.Text = "[uni]";
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1191,6 +1267,8 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinCocinar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStockInicial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRecargaConStock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRecargaSinStock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1291,6 +1369,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colProximoFinCoccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCantClientesPerdidos;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPromPorcCliPerdidos;
+        private System.Windows.Forms.NumericUpDown txtRecargaConStock;
+        private System.Windows.Forms.NumericUpDown txtRecargaSinStock;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
     }
 }
 
